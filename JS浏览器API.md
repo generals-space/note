@@ -48,3 +48,20 @@ function myrefresh()
 setTimeout('myrefresh()',1000); //指定1秒刷新一次
 </script>
 ```
+
+## 4. 文本选中行为
+
+获取选中文本
+
+```js
+function getSelectionText() {
+    //如果是Firefox、Chrome、Safari、Opera
+    if (window.getSelection) { 
+        return window.getSelection().toString();
+    //如果是IE 
+    } else if (document.selection && document.selection.createRange) { 
+        return copytext_keleyi_com = document.selection.createRange().text;
+    }
+    return '';
+}
+```

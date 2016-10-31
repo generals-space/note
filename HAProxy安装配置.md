@@ -29,7 +29,7 @@ $ tar -zxf haproxy-1.6.8.tar.gz
 $ cd haproxy-1.6.8
 ## 这里指定了安装目录, 开启pcre及ssl支持. 更多配置项可以参考源码包内的`README`文件
 $ make PREFIX=/usr/local/haproxy TARGET=linux26 USE_PCRE=1 USE_OPENSSL=1
-## 将haproxy安装到
+## 将haproxy安装到指定位置
 $ make install PREFIX=/usr/local/haproxy
 ```
 

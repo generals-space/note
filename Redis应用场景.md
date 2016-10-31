@@ -1,6 +1,6 @@
 # Redis 应用场景
 
-## 1. 多数据库
+## 1. 多数据库操作
 
 redis可以开启多个实例监听不同端口以便对不同程序服务, 有没有什么方法使不同的应用程序数据彼此分开同时又存储在相同的实例上呢? 毕竟mysql通常只是启动`3306`端口, 就可以服务多个应用程序了.
 
@@ -154,4 +154,19 @@ redis 127.0.0.1:6379> config get requirepass
 
 ```
 #masterauth  master的密码
+```
+
+## 3. redis-cli操作 
+
+删除指定前缀的key
+
+```
+## bash命令行中必须将keys子命令的参数用引号包裹起来
+$ redis-cli KEYS 'edu:*' | xargs redis-cli DEL
+```
+
+指定操作的数据库(`-n`参数)
+
+```
+$ redis-cli -n 12 KEYS 'edu:*' | xargs redis-cli -n 12 DEL
 ```

@@ -166,7 +166,7 @@ $ ldapadd -x -W -D "cn=general,dc=generals,dc=space" -f /tmp/group.ldif
 yum -y install openldap-clients nss-pam-ldapd pam_ldap
 ```
 
-> 如果没有authconfig系列命令的话(比如docker容器环境), 需要手动安装, `yum install authconfig`
+> 如果没有authconfig系列命令的话(比如精简版的服务器镜像, docker容器环境), 需要手动安装, `yum install authconfig`
 
 ### 3.2 配置ldap服务器地址
 
