@@ -514,3 +514,16 @@ location /static/ {
 ```
 
 `rewrite`指令或`try_files`发起的内部跳转行为, 还是比较独立的. 比如, 如果在第1个`location`块中加入`expires`指令, 那么当访问的uri被重写到`/static/`的块的时候, `/static`下返回的资源是不会被缓存的.
+
+## 14. nginx记录post内容
+
+```conf
+## post_log为自定义日志名称, $request_body就是上传的文件内容
+log_format post_log '$remote_addr - $request_body';
+```
+
+然后在需要的地方添加日志打印命令即可.
+
+```conf
+access_log  logs/skycmdb_post.log  post_log;
+```

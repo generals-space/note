@@ -64,7 +64,7 @@ Enter pass phrase for server.key:
 
 免费的CA机构有`startssl`与`沃通`等, 这两者的证书申请可能有些不同, 并且网上大部分教程与现在的申请流程也不再完全适用, 但基本流程大多相似. 这里不做具体的申请示范.
 
-一般来说, 注册之后, 首先需要验证你将要为之申请的域名, CA会批准为你的这个域名进行签名, 让浏览器信任它. 一般免费的途径只能为5个域名颁发证书. **域名可以是顶级域名或是二级域名, 但顶级域名不能是泛解析形式的**
+一般来说, 在这些网站上完成注册之后, 首先需要验证你将要为之申请的域名, 证明你是这个域名的所有者, 然后CA会批准为你的这个域名进行签名, 让浏览器信任它. 一般免费的途径只能为~~5~~有限个域名颁发证书. **域名可以是顶级域名或是二级域名, 但顶级域名不能是泛解析形式的**.
 
 然后你需要提供`key`与`csr`文件, 一个是服务器私钥, 一个是你的信息文件, 这两者可以本地生成, 貌似也可以使用工具. CA机构会为你的`csr`(成绩单)文件签名生成证书. 然后下载下来就可以了.
 
@@ -85,8 +85,8 @@ server {
         root        你的网站目录;
         index index.php;
         ssl on;
-        ssl_certificate crt文件路径;
-        ssl_certificate_key key文件路径;
+        ssl_certificate crt文件路径, 相对路径以conf为根目录;
+        ssl_certificate_key key文件路径, 相对路径也conf为根目录;
         ssl_session_timeout 5m;
         ssl_protocols SSLv2 SSLv3 TLSv1 TLSv1.1 TLSv1.2;
         ##ssl_ciphers HIGH:!aNULL:!MD5;
@@ -174,6 +174,20 @@ ing password error:0906A068:PEM routines:PEM_do_header:bad password read error:1
 原因分析: https的`.key`文件有密码, 虽然重启时输入了密码, 但nginx貌似没办法正确使用. 
 
 解决方法: 使用下面的密码移除命令, 将`.key`的密码移除, 加载没有密码的`.key`文件再次重启即可.
+
+### 4.3 
+
+使用第三方认证机构进行证书签名时, 需要指定要使用的顶级域名或二级域名. 访问目标网站与配置的证书不符时, 会显示"不安全的连接", 情况大致如下.
+
+![](http://img.generals.space/cce096442576ff9b29222879af44b7f7.png)
+
+![](http://img.generals.space/593f860cbebbb8704177c9ff6128154d.jpg)
+
+![](http://img.generals.space/d11b57c48a4e2a1cb8e1fb8833a11ce3.jpg)
+
+可以看到chrome与firefox中都提到该域名的证书是为`databegin.com`申请的, 虽然在服务器上配置了`www.databegin.com`也使用这个证书, 但由于没有为`www`这个子域名进行签名, 所以浏览器认为此网站不安全.
+
+当然, 还有一种情况是, 自己本地为自己颁发证书, 这样也会导致上述图片中的警告.
 
 ## 5. 扩展
 

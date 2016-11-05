@@ -170,7 +170,7 @@ $ find /var/log/httpd -mtime +1000
 
 我们使用`find`, 很多时候并不是单单只是想看看有哪些文件而已, 比如删掉查出来的很早的文件, 或是查看这些文件的详细信息. 这个时候可以使用`find`的`exec`参数.
 
-`-exec`参数后面跟的是普通的bash命令，它的终止是以`;`为结束标志的，所以命令后面的分号是不可缺少的，考虑到各个系统中分号会有不同的意义，所以前面加反斜杠。
+`-exec`参数后面跟的是普通的bash命令，它的终止是以`;`为结束标志的，所以命令后面的分号是不可缺少的，考虑到各个系统中分号会有不同的意义，所以前面加反斜杠, 而`{}`代表查找出的文件。
 
 ```
 ## 显示详细信息
@@ -188,7 +188,7 @@ find ./ -mtime +1000 -exec rm {} \;
 ```
 ## -A表示所有进程, -o表示输出格式(stime: start time, 启动时间; etime: elapsed time, 消逝的时间, 即运行时间, args: 启动命令及参数)
 ## stime如果超过一年就只能显示年的数字而不能再显示日期, 运行时间可以看到启动的天数和精确到秒级的计算结果
-ps -A -o pid,stime,etime,args
+$ ps -A -o pid,stime,etime,args
   PID STIME     ELAPSED COMMAND
     1  2014 846-23:09:53 /sbin/init
 11883 Jan29 254-23:59:04 java -Xbootclasspath/a:. -Denv=product -Ddubbo.properties.file=conf/product/dubbo.properties -Djava.a
