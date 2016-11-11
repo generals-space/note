@@ -13,7 +13,7 @@ ssh-copy-id命令可以将指定公钥添加到远程机器的authorized_keys中
 在执行`ssh-copy-id`命令时, 可能会出现如下错误
 
 ```
-ssh-copy-id -i id_rsa.pub root@192.168.169.115
+$ ssh-copy-id -i id_rsa.pub root@192.168.169.115
 /usr/bin/ssh-copy-id: ERROR: failed to open ID file './id_rsa': No such file or directory
 ```
 
@@ -28,7 +28,7 @@ ssh-copy-id -i id_rsa.pub root@192.168.169.115
 ## 2. 
 
 ```shell
-[root@localhost ~]$ ssh 用户名@ip地址
+$ ssh 用户名@ip地址
 ssh_exchange_identification: read: Connection reset by peer
 ```
 

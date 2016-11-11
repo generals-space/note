@@ -126,10 +126,32 @@ linux 下在终端与脚本进行交互时, 内容输入错误使用`backspace`�
 
 解决办法是将第2个`EOF`标记放在行首.
 
+------
+
+同样还是`<< EOF ... EOF`的使用, 脚本如下
+
+```
+#!/bin/bash  
+whoami  
+su - general << ! 
+whoami  
+exit  
+! 
+whoami
+```
+
+执行时有一个warning如下
+
+```
+./sus.sh: line 7: warning: here-document at line 3 delimited by end-of-file (wanted `!')
+```
+
+原因是, 第2个`!`前后不能有空格, 当然也不能有其他任何字符.
+
 ## 5. tar无法解压.tar.gz后缀的压缩文件
 
 ```
-[access@192-168-1-2 ~]$ tar -zxf ./access.tar.gz 
+$ tar -zxf ./access.tar.gz 
 tar: This does not look like a tar archive
 tar: Skipping to next header
 tar: Exiting with failure status due to previous errors
@@ -137,7 +159,7 @@ tar: Exiting with failure status due to previous errors
 
 解决办法: 
 
-单独使用gzip与tar命令进行解压与解包
+单独使用`gzip`与`tar`命令进行解压与解包
 
 ```
 $ gzip -d access.tar.gz
@@ -155,5 +177,5 @@ scp: /home/Download/wap: not a regular file
 解决方法: 加上`-r`参数, 即
 
 ```
-scp -r 用户名@IP地址:/home/Download/wap  ./
+$ scp -r 用户名@IP地址:/home/Download/wap  ./
 ```

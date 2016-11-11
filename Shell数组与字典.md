@@ -1,12 +1,14 @@
 # Shell数组
 
+## 1. 数组
+
 原文链接
 
 [Shell数组：shell数组的定义、数组长度](http://c.biancheng.net/cpp/view/7002.html)
 
 bash支持一维数组（不支持多维数组），并且没有限定数组的大小。类似与C语言，数组元素的下标由0开始编号。获取数组中的元素要利用下标，下标可以是整数或算术表达式，其值应大于或等于0。
 
-## 1. 定义数组
+### 1.1 定义数组
 
 在Shell中，用括号来表示数组，数组元素用“空格”符号分割开。定义数组的一般形式为：`array_name=(value1 ... valuen)`. 索引从0开始计数.
 
@@ -27,6 +29,8 @@ value3
 )
 ```
 
+**注意没有逗号或分号**
+
 还可以单独定义数组的各个分量：
 
 ```
@@ -37,7 +41,7 @@ array_name[2]=value2
 
 可以不使用连续的下标，而且下标的范围没有限制。
 
-## 2. 读取数组
+### 1.2 读取数组
 
 读取数组元素值的一般格式是：`${array_name[index]}`
 
@@ -109,7 +113,7 @@ length=${#array_name[*]}
 lengthn=${#array_name[n]}
 ```
 
-## 3. 扩展
+### 1.3 扩展
 
 使用索引直接定义数组时, 可以跳跃定义
 
@@ -119,4 +123,75 @@ array[0]=value0
 array[2]=value2
 ```
 
-这种情况下, 数组的长度是实际有数据的元素个数而不是索引范围. 这一点与高级编程语言不同.
+这种情况下, **数组的长度是实际有数据的元素个数而不是索引范围**. 这一点与高级编程语言不同.
+
+## 2. 字典
+
+必须通过`declare`先声明, 没有办法像数组那样直接通过变量名定义.
+
+```
+#必须先声明
+$ declare -A dic
+$ dic=([key1]='value1' [key2]='value2' [key3]='value3')
+
+## 打印指定key
+$ echo ${dic['key1']}
+value1
+## 打印所有key值...还是倒序的
+$ echo ${!dic[*]}
+key3 key2 key1
+## 打印所有value...也是倒序的
+$ echo ${dic[*]}
+value3 value2 value1
+## 打印key的个数, 值为空的key也算
+$ echo ${#dic[*]}
+3
+## 添加新的key
+$ dic['key4']='value4'
+$ echo ${#dic[*]}
+4
+
+## 遍历
+for key in $(echo ${!dic[*]})
+do
+    echo "$key : ${dic[$key]}"
+done
+```
+
+------
+
+正确
+
+```
+$ declare -A dic
+$ dic=(
+> [key1]='val1'
+> [key2]='val2'
+> )
+$ echo ${dic['key1']}
+val1
+```
+
+错误, 不使用`declare`声明的定义不会提示错误, 但取值都是空的.
+
+```
+$ abc=(
+[key1]='val1'
+[key2]='val2'
+)
+$ echo ${abc[key2]}
+
+$ echo ${abc['key2']}
+```
+
+也可以先声明多个, 再依次定义
+
+```
+$ declare -A dic1 dic2
+$ dic1=([key1]='val1' [key2]='val2')
+$ dic2=([key1]='value1' [key2]='value2')
+$ echo ${dic1['key2']}
+val2
+$ echo ${dic2['key2']}
+value2
+```

@@ -84,3 +84,27 @@ shell: su - general && ls
 ls命令列出的依然是remote_user指定用户的家目录内容.
 
 也就是说, shell模块虽然可以执行一连串bash命令, 但这些命令是不相关的, 后者也没办法取到前者的返回值, 它们相互独立.
+
+
+`with_items`指令, 还有`with_dic`, 放在一个task中. 
+
+```yml
+- name: add several users
+  user: name={{ item }} state=present groups=wheel
+  with_items:
+     - testuser1
+     - testuser2
+```
+
+输出debug信息到文件
+
+```yml
+- hosts: all
+  tasks:
+    # emit a debug message containing the content of each file.
+    - debug:
+        msg: "{{ item }}"
+      with_file:
+        - first_example_file
+        - second_example_file
+```
