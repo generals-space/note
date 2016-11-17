@@ -10,6 +10,7 @@
 http://localhost/level1/level2/9.html?ab=123
 ```
 
+```
 $args	                  ab=123
 $query_string	          ab=123
 $uri	                  /index.php
@@ -17,6 +18,7 @@ $request_uri	          /level1/level2/9.html?ab=123
 $request_filename	      /var/www/html/index.php
 $fastcgi_script_name	  /index.php
 $document_uri	          /index.php
+```
 
 ### 1.1 $args与$query_string
 

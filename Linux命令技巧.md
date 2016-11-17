@@ -89,7 +89,7 @@ yum install -y lrzsz
 许多文件的名称显示为乱码, 无法选中也无法删除, 比如:
 
 ```
-[root@20ce69da6dac tmp]# ll
+$ ll
 total 20
 -rw------- 1 root root 19151    Jul  1      20:22 anaconda-post.log
 -rw-r--r-- 1 root root     0        Sep 22    05:48 ÿ3Ҩg[1ϕ??????eҬ
@@ -101,7 +101,7 @@ total 20
 首先使用`ls`的`-i`选项, 取到目标文件的`inode`编号.
 
 ```
-[root@20ce69da6dac tmp]# ls -li
+$ ls -li
 total 20
 8388946 -rw------- 1 root root 19151 Jul  1   20:22 anaconda-post.log
 8427830 -rw-r--r-- 1 root root         0 Sep 22 05:48 ÿ3Ҩg[1ϕ??????eҬ
@@ -111,13 +111,13 @@ total 20
 然后通过`find`命令删除它
 
 ```
-[root@20ce69da6dac tmp]# ls -li
+$ ls -li
 total 20
 8388946 -rw------- 1 root root 19151 Jul  1 20:22 anaconda-post.log
 8427830 -rw-r--r-- 1 root root     0 Sep 22   05:48 ÿ3Ҩg[1ϕ??????eҬ
 8388947 -rw------- 1 root root     0 Jul  1     20:20 yum.log
-[root@20ce69da6dac tmp]# find -inum 8427830 -delete
-[root@20ce69da6dac tmp]# ls
+$ find -inum 8427830 -delete
+$ ls
 anaconda-post.log  yum.log
 ```
 

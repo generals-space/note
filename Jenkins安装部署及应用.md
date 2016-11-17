@@ -1,5 +1,7 @@
 # Jenkins 安装部署
 
+[官方文档](https://wiki.jenkins-ci.org)
+
 ### 1. 修改admin用户密码
 
 参考文章
