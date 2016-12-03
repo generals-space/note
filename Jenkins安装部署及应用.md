@@ -31,4 +31,6 @@ Jenkins并没有使用数据库, 其专有用户的数据存放在`$JENKINS_HOME
 localhost:8080/exit
 ## 重启
 localhost:8080/restart
+## 重新加载...不太好使
+localhost:8080/reload
 ```

@@ -44,4 +44,4 @@ mount /dev/cdrom /mnt
 umount /mnt
 ```
 
-## 
+## 4. 压缩硬盘

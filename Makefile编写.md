@@ -43,9 +43,9 @@ make hello.o
 以下工程包含3个头文件和8个C文件，其Makefile如下
 
 ```
-edit : main.o kbd.o command.o display.o 
+edit : main.o kbd.o command.o display.o \
        insert.o search.o files.o utils.o
-    cc -o edit main.o kbd.o command.o display.o 
+    cc -o edit main.o kbd.o command.o display.o \
                insert.o search.o files.o utils.o
 main.o : main.c defs.h
     cc -c main.c
@@ -64,7 +64,7 @@ files.o : files.c defs.h buffer.h command.h
 utils.o : utils.c defs.h
     cc -c utils.c
 clean :
-    rm edit main.o kbd.o command.o display.o 
+    rm edit main.o kbd.o command.o display.o \
             insert.o search.o files.o utils.o
 ```
 
@@ -148,3 +148,15 @@ clean :
 扩展阅读
 
 http://blog.csdn.net/ruglcc/article/details/7814546/
+
+## 4. 变量定义
+
+`var := $(a)`, 如果变量`a`在之前和之后都有定义, 则`var`只取在其前面定义的变量值.
+
+```makefile
+a = 123
+var := $(a)
+a = abc
+```
+
+则`var`的值为123

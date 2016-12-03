@@ -133,7 +133,7 @@ $ yum install linux-headers-$(uname -r)
 root    ALL=(ALL)       ALL
 ```
 
-### 5.1 赋予普通用记sudo权限
+### 5.1 赋予普通用户sudo权限
 
 如果一个用户知道`root`用户的密码, 可以使用`sudo 命令`以root身份执行, 但如果我们不想这个用户拥有root密码, 并且想要其可以拥有`root`用户的全部权限, 可以在这个文件中添加这样一行
 
@@ -312,3 +312,11 @@ User_List Host_List=(Runas_List1:Runas_List2) SELinux_Spec Tag_Spec Cmnd_List,..
 - `...`（可选项）：表示可以有多个(`Runas_List1`:`Runas_List2`) `SELinux_Spec` `Tag_Spec` `Cmnd_List`段的意思。
 
 注意：如果`Runas_List1`和`Runas_List2`都没填的话，默认是以root用户执行
+
+## 6. hostname
+
+执行以下命令, 当前hostname不会变化, 但是新的会话终端会有变化
+
+```
+$ hostname 新的hostname
+```

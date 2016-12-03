@@ -42,7 +42,7 @@ mvn archetype:generate -DartifactId=my-app -DgroupId=com.mycompany.app -Darchety
 
 - mvn archetype:generate　　固定格式
 
-- -DartifactId　　　　　　　　项目名称(这个决定创建的Java项目顶层目录的名称)
+- -DartifactId　　　　　　　　项目名称(这个决定生成的Java项目顶层目录的名称)
 
 - -DgroupId　　　　　　　　　组织标识(即包名, 这是项目的一个组件/模块, 这将出现在所创建的Java项目源文件中的`package`语句中)
 
@@ -52,11 +52,65 @@ mvn archetype:generate -DartifactId=my-app -DgroupId=com.mycompany.app -Darchety
 
 ### 3.2 编译源代码
 
+进入到生成的`my-app`目录中, 其目录结构为
+
+```
+.
+├── pom.xml
+└── src
+    ├── main
+    │   └── java
+    │       └── com
+    │           └── mycompany
+    │               └── app
+    │                   └── App.java
+    └── test
+        └── java
+            └── com
+                └── mycompany
+                    └── app
+                        └── AppTest.java
+
+11 directories, 3 files
+```
+
+然后执行如下命令, 将会生成与`src`同级的`target`目录, 其下会得到`class`可执行文件.
+
 ```
 mvn compile
 ```
 
-将生成`class`可执行文件.
+```
+.
+├── pom.xml
+├── src
+│   ├── main
+│   │   └── java
+│   │       └── com
+│   │           └── mycompany
+│   │               └── app
+│   │                   └── App.java
+│   └── test
+│       └── java
+│           └── com
+│               └── mycompany
+│                   └── app
+│                       └── AppTest.java
+└── target
+    ├── classes
+    │   └── com
+    │       └── mycompany
+    │           └── app
+    │               └── App.class
+    └── maven-status
+        └── maven-compiler-plugin
+            └── compile
+                └── default-compile
+                    ├── createdFiles.lst
+                    └── inputFiles.lst
+
+20 directories, 6 files
+```
 
 ### 3.3 编译测试代码
 
@@ -70,7 +124,6 @@ mvn test-compile
 
 ```
 mvn test
-
 ```
 
 不会写测试代码, 不做分析...
@@ -81,7 +134,7 @@ mvn test
 mvn package
 ```
 
-将当前项目打包成jar文件
+将当前项目打包成jar文件, jar包就在`target`目录下.
 
 ### 3.6 安装当前工程的输出文件到本地仓库
 
@@ -526,3 +579,20 @@ mvn jetty:run
 ```
 
 访问地址`http://127.0.0.1:8080/my-web-app/index.jsp`.
+
+## 5. 本地Maven仓库配置
+
+## 6. 远程镜像仓库配置
+
+阿里云maven镜像
+
+```xml
+ <mirrors>
+    <mirror>
+      <id>alimaven</id>
+      <name>aliyun maven</name>
+      <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+      <mirrorOf>central</mirrorOf>        
+    </mirror>
+  </mirrors>
+```

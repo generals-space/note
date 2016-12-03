@@ -171,7 +171,7 @@ location /img/M00{
 }
 ```
 
-**别忘了在新组`img`的存储目录下建立`M00`软链接啊**.
+**别忘了在新组`img`的存储目录下建立`M00`软链接**.
 
 访问格式: `服务器IP/img/M00/00/00/rCBkhFgUt22AXX-eADrnsfpg_rA739.jpg`.
 

@@ -12,4 +12,4 @@ ArrayList相当于动态数组(它与Vector并列)，C++里的vector，它的初
 
 ArrayList<String> paths;只是声明, 并非初始化
 
-3.Java中可以通过System.go()函数建议JVM回收对象, 但并没有办法强制回收.
+3.Java中可以通过`System.go()`函数建议JVM回收对象, 但并没有办法强制回收.

@@ -145,4 +145,46 @@ i am in /tmp
 root
 ```
 
-可以看到, 以两个`+`开头的行, 虽然在`su - general`后执行, 但却在显示在'Last login: ...'的登录信息之前. 即这些内联命令都是在原来shell下执行的, 所以这种用法十分危险, 也不能通过对变量赋值取出这些值, 所以目前没有好的解决办法.
+可以看到, 以两个`+`开头的行, 虽然在`su - general`后执行, 但却在显示在'Last login: ...'的登录信息之前. 即**这些内联命令都是在原来shell下执行的, 也不能通过对变量赋值取出这些值(在`su`之后执行`var_pwd=$(pwd)`得到的依然是原shell中的值), 目前没有好的解决办法**.
+
+------
+
+## 1.4 更新, 2016-12-03
+
+根据另一篇对`EOF`标记深究的分析文章, 1.3节提到的问题也有了解决办法. 
+
+为了保证在`su`切换用户后执行的命令是在新的shell中, 可以使用以下两种方法
+
+1. 执行的命令前使用反斜线`\`转义
+
+2. 第一个EOF使用`<< 'EOF'`表示
+
+第一种方法的示例
+
+```
+#!/bin/bash
+
+whoami
+su - general << EOF
+whoami
+echo 'i am' \$(whoami)
+pwd
+echo 'i am in' \$(pwd)
+EOF
+whoami
+```
+
+第二种方法的示例
+
+```
+#!/bin/bash
+
+whoami
+su - general << 'EOF'
+whoami
+echo 'i am' $(whoami)
+pwd
+echo 'i am in' $(pwd)
+EOF
+whoami
+```

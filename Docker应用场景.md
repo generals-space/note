@@ -62,3 +62,10 @@ OPTIONS='--selinux-enabled --log-driver=journald -g=/opt/docker/data'
 ```
 
 然后启动docker服务, 查看当前存储根目录, 是否已经写入数据.
+
+## 3. 命令技巧
+
+```
+## 删除旧容器, 不会删除当前正在运行的容器
+$ docker rm $(docker ps -a -q)
+```

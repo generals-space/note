@@ -22,7 +22,7 @@ Please wait while Jenkins is getting ready to work...
 
 ![](img.generals.space/6a97f8404a44ce6160b2603324f05798.png)
 
-首次访问Jenkins需要确认其已经正常启动(Jenkins在当前用户主目录创建了`.jenkins`目录). 请从指定文件中取出这个值, 填写到输入框, 点击`continue`.
+首次访问Jenkins需要确认其已经正常启动(Jenkins在当前用户主目录创建了`.jenkins`目录). 从图中指定文件中取出这个值, 填写到输入框, 点击`continue`.
 
 在一段等待之后, 会出现预装插件的选择界面. 这里有两个选项: 安装建议的插件, 选择要安装哪些插件. 为了能更清楚的认识Jenkins的工作流程, 这里选择第2项.
 
@@ -147,3 +147,16 @@ docs  examples  host-manager  item2  item2.war  manager  ROOT
 ## 注意
 
 `SSH plugin`插件需要系统中安装有`sshd`服务; `git plugin`连接git需要系统中安装`git`; 连接svn需要系统中安装`subversion`, 这些需要在安装插件之前安装.
+
+
+## 推荐插件列表
+
+- SSH Credentials Plugin:
+
+- Subversion Plug-in: 提供连接SVN源码管理服务器的功能.
+
+- Git plugin: Git源码管理
+
+- SSH plugin: 提供SSH连接目标主机的方式
+
+> 注意: 安装插件不需要重启Jenkins, 即时生效.

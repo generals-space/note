@@ -108,3 +108,7 @@ ls命令列出的依然是remote_user指定用户的家目录内容.
         - first_example_file
         - second_example_file
 ```
+
+如果不在主调yml文件中显示include某个角色, 就没有办法使用它下面的默认变量.
+
+`ansible ImportError: No module named yum`
