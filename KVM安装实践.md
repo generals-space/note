@@ -92,7 +92,7 @@ make install没有遇到问题, 而且速度很快.
 
 ### 3.1 首先创建硬盘
 
-使用Linux下的dd命令, of选项的参数是目标文件的名称, count选项的参数为硬盘大小, 10G对于ubuntu来说足够了
+使用Linux下的`dd`命令, `of`选项的参数是目标文件的名称, count选项的参数为硬盘大小, 10G对于ubuntu来说足够了
 
 ```
 [general@localhost kvm1]$ dd if=/dev/zero of=ubuntu.img bs=1M count=10240

@@ -1,5 +1,7 @@
 # 搜索引擎-robots.txt协议详解
 
+<!tags!>: <!搜索引擎!> <!robots.txt!>
+
 参考文章
 
 [robots.txt的语法和写法详解](http://www.cnblogs.com/top5/archive/2011/07/30/2121881.html)

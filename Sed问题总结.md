@@ -17,3 +17,7 @@ sed: -e expression #1, char 4: invalid usage of line address 0
 解决办法: 
 
 把行号从0改成1就行了.
+
+## 符号应用
+
+在使用sed的正则时, 基本正则中没有`+`号(匹配一次或多次), 只有`*`(匹配0次或多次)
