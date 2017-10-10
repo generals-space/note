@@ -1,4 +1,26 @@
 
+1. [Kubernetes扫盲](http://blog.csdn.net/ztsinghua/article/details/52385376)
+
+    - 各个组件讲解的很详细, 虽然有些不够通俗
+
+2. [kubernetes1.6 安装DNS（四）](http://blog.csdn.net/u010278923/article/details/71152796)
+
+    - 这个系列讲得都不错
+
+3. [利用 Kubernetes Service 的 selector 无痛运维在线 pod](https://segmentfault.com/a/1190000007109399#articleHeader0)
+
+    - service的label与selector字段解释
+
+4. [Kubernetes 中的PodIP、ClusterIP 和外部IP](http://blog.csdn.net/liukuan73/article/details/54773579)
+
+
+5. [Kubernetes如何使用kube-dns实现服务发现](http://www.cnblogs.com/ilinuxer/p/6188804.html)
+
+```
+docker pull registry.cn-hangzhou.aliyuncs.com/google-containers/pause-amd64:3.0
+docker tag registry.cn-hangzhou.aliyuncs.com/google-containers/pause-amd64:3.0 gcr.io/google_containers/pause-amd64:3.0
+```
+
 参考文章
 
 1. [kubelet组件操作API - kubernetes 简介： kubelet 和 pod](http://cizixs.com/2016/10/25/kubernetes-intro-kubelet?utm_source=tuicool&utm_medium=referral)

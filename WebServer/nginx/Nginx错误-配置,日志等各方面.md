@@ -46,3 +46,25 @@ upstream pool名称 {
 
 其中`IP`前不可以加`http(s)://`前缀, 端口后不可以加`/`和任何后缀.
 
+## 3.
+
+参考文章
+
+1. [nginx: [alert] version 1.4.0 of nginx.pm is required, but 1.2.0 was found](http://blog.csdn.net/longxibendi/article/details/50813789)
+
+```
+nginx: [alert] version 1.10.2 of nginx.pm is required, but 1.10.1 was found
+```
+
+问题描述: 之前用源码装了一下nginx, 后来想了想, CentOS自带的nginx版本已经够新了, 源码安装没什么优势, 于是把源码装的删掉了. 但是在启动nginx时报上述错误.
+
+参考文章中也说升级的时候可能出现这个问题.
+
+可以看到是因为两次安装的nginx版本不同, 安装过程中肯定还有什么文件放置在了指定位置, 删除的时候没删干净.
+
+`find nginx.pm`发现, 这个perl文件, 在`make install`的时候, 就会安装, 如果不指定安装目录, 这个文件会默认安装到`/usr/local/lib64/perl5/nginx.pm`. 
+而nginx.pm里面记录了nginx的版本号. 所以, 如果启动nginx的时候, 运行的nginx与nginx.pm版本号不一致就有问题, 特别是升级nginx, 或者一台机器上部署了多个nginx. 
+
+删掉这个文件, 再启动新的nginx就没问题了.
+
+> 编译选项` --with-perl_modules_path=/home/webserver/nginx3/perl`可以指定这个文件的安装路径.

@@ -1,5 +1,11 @@
 # linux函数劫持-基于LD_PRELOAD
 
+<!--
+
+<!tags!>: <!共享库!> <!链接库!>
+
+-->
+
 原文链接
 
 [The magic of LD_PRELOAD for Userland Rootkits](http://fluxius.handgrep.se/2011/10/31/the-magic-of-ld_preload-for-userland-rootkits/)

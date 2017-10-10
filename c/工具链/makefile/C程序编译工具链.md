@@ -1,1 +1,0 @@
-ldconfig命令

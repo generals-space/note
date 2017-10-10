@@ -1,8 +1,12 @@
 # Linux下profile,bashrc,bashrc_profile文件作用及区别
 
-`/etc/profile`, `~/.bashrc`的内容可以看作普通的shell脚本, 格式相同, 只是生效时机(或者说执行时机)不一样.
+参考文章
 
-`~/.bashrc`
+1. [Linux 中/etc/profile、~/.bash_profile 等几个环境配置文件的执行过程](http://www.cnblogs.com/xmkk/p/3582336.html?utm_source=tuicool&utm_medium=referral)
+
+`/etc/profile`, `~/.bashrc`等的内容可以看作普通的shell脚本, 格式相同, 只是生效时机(或者说执行时机)不一样.
+
+## 1. `~/.bashrc`
 
 对当前用户有效, 每登陆一次新终端, 或是`su`切换用户时首先自动执行一次. 可以用来设置环境变量(`export key=value`), 定义命令别名(`alias`), 函数(`function(){}`)等.
 
@@ -12,7 +16,7 @@
 
 需要在当前终端生效的, 使用`source ~/.bashrc`命令.
 
-`/etc/profile`
+## 2. `/etc/profile`
 
 对所有用户有效, 需要使用root用户编辑. 使用方法及内容都和`~/.bashrc`相同, 只是生效时机不一样.
 
@@ -26,6 +30,6 @@
 
 原因应该是本地新建终端并不算是一个完整的登陆操作吧. 只能`log out`再登陆. 另外, `su - 目标用户名`是可以使新配置生效的.
 
-`/etc/rc.local`
+## 3. `/etc/rc.local`
 
 开机启动配置文件

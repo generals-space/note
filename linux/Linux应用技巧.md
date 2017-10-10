@@ -118,11 +118,3 @@ general  pts/24   192.168.138.1    05:54    5.00s  0.12s  0.01s w
 ```
 $ yum install linux-headers-$(uname -r)  
 ```
-
-## 6. hostname
-
-执行以下命令, 当前hostname不会变化, 但是新的会话终端会有变化
-
-```
-$ hostname 新的hostname
-```
