@@ -9,3 +9,4 @@ grains是Saltstack最重要的组件之一，grains的作用是手机被控主�
 `salt '*' grains.ls`:               查看grains分类
 `salt '*' grains.items`:            查看grains所有信息
 `salt '*' grains.item osrelease`:   查看grains某个信息
+`salt '*' grains.item osrelease osarch`: 查看多个指定字段信息

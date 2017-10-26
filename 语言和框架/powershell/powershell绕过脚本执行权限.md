@@ -33,7 +33,7 @@ go.microsoft.com/fwlink/?LinkID=135170 中的 about_Execution_Policies。
 我们需要显式在powershell控制台修改这种执行策略, 而且需要在管理员运行的powershell控制台.
 
 ```
-$ Set-ExecutionPolicy remotesigned
+$ Set-ExecutionPolicy -Scope [CurrentUser remotesigned]
 
 执行策略更改
 执行策略可帮助你防止执行不信任的脚本。更改执行策略可能会产生安全风险，如 http://go.microsoft.com/fwlink/?LinkID=135170

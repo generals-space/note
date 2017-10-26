@@ -105,11 +105,9 @@ $ vim ./storage.conf
 storage.conf的文件内容.
 
 ```conf
-## 这个路径是存储日志文件的路径
-## 这个路径可以自定义, 但必须是已经存在的, fdfs不能自动创建
+## 这个路径是存储日志文件的路径, 路径可以自定义, 但必须是已经存在的, fdfs不能自动创建
 base_path=/opt/fastdfs/storage
-## 上传文件的存储路径
-## 这个路径也必须存在
+## 上传文件的存储路径, 这个路径也必须存在
 store_path0=/opt/fastdfs/storage
 ## tracker_server的地址, IP:port
 tracker_server=172.16.3.150:22122

@@ -26,3 +26,16 @@ $ salt '*' sys.list_functions sys
     - sys.list_modules
 ...省略
 ```
+
+操作多个key, 用逗号分隔
+
+```
+$ salt-key -d 192_168_67_42,192_168_67_44
+The following keys are going to be deleted:
+Accepted Keys:
+192_168_67_42
+192_168_67_44
+Proceed? [N/y] y
+Key for minion 192_168_67_42 deleted.
+Key for minion 192_168_67_44 deleted.
+```

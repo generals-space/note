@@ -116,7 +116,7 @@ $vim /etc/fdfs/storage_img.conf
 group_name=img
 ## 如果在同一台服务器上, 则每个组监听的端口必须不同
 port=24000
-## 存储路径也必须不同...相同也没关系, 不过就没什么意义了.
+## 存储路径也要不同...相同也没关系, 不过就没什么意义了, 还不如直接用同一个...
 base_path=/opt/fastdfs/storage_img
 store_path0=/opt/fastdfs/storage_img
 ## 不同组的storage服务器可以用同一个tracker_server, tracker一般不会是瓶颈.

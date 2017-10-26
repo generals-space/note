@@ -1,5 +1,9 @@
 # JS浏览器API
 
+参考文章
+
+1. [Web API 接口 - MDN官方文档](https://developer.mozilla.org/zh-CN/docs/Web/API)
+
 ## 1. js刷新当前页面
 
 ```js

@@ -36,6 +36,8 @@
 $ pip install salt-api==2017.7.1 CherryPy M2Crypto
 ```
 
+> 要是通过yum装的saltstack, 这些插件也要用yum装, pip装的没用, 而cherrypy在yum源中有两个包, 分别是`python-cherrypy`和`python-cherrypy2`...连介绍都一样, 完全看不出来有什么区别...后者缺了点东西, salt-api启动后无法监听端口, 说是没有`expose`方法. 后来安装的前者, 就可以了.
+
 编辑`/etc/salt/master`文件, 向其中添加如下配置
 
 ```
@@ -44,7 +46,7 @@ rest_cherrypy:
   disable_ssl: true
 ```
 
-注意`disable_ssl`字段, 我们不使用https形式, 不然还需要生成证书, 太麻烦. 
+注意`disable_ssl`字段, 我们不使用`https`形式, 不然还需要生成证书, 太麻烦. 
 
 然后是配置访问用户权限, salt-api拥有用户验证手段, 也可以定义对外开放的模块. 修改`external_auth`字段如下
 
@@ -53,7 +55,7 @@ external_auth:
   pam:                          ## 认证模式，pam指的是用Linux系统本身的用户认证模式
     general:                    ## 这里general是系统用户, 到时需要通过该用户的系统密码完成认证, 不能为root
       - .*                      ## 点号+星号, 表示由api组件开放所有模块的访问
-      - '@wheel'                ## 网上还有这种配置, 意思是开放wheel模块下所有方法的权限, 
+      - '@wheel'                ## 网上还有这种配置, 意思是开放wheel模块下所有方法的权限, 貌似要开放key查询权限必须加上这一条
       ## - '@runner'
 ```
 
