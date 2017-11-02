@@ -27,7 +27,7 @@
 
 ------
 
-首先, 网上各种版本纷杂, 不同版本的linux对hostname修改各不相同, 并且修改hostname不只有一种手段. 不过大部分人应该是为的能在命令提示符中显示当前hostname值, 生效即可, 不必过多地纠结.
+首先, 网上各种版本纷杂, 不同版本的linux对`hostname`修改各不相同, 并且修改hostname不只有一种手段. 不过大部分人应该是为的能在命令提示符中显示当前hostname值, 生效即可, 不必过多地纠结.
 
 > `$HOSTNAME`值, 体现在Linux命令提示符`PS1`变量的`\H`选项中, 可以通过设置`PS1`变量查看当前会话中的hostname(当然, 也可以直接`echo $HOSTNAME`查看).
 
@@ -108,6 +108,27 @@ $ hostnamectl [--static | --transient | --pretty] set-hostname 新的hostname
 
 有意思的是, 通过`hostnamectl`命令设置`static`类型的hostname后, 删除`/etc/hostname`文件, `/etc/sysconfig/network`中的`HOSTNAME`字段居然又生效了...而且每次修改它, 重启后都会生效, 简直就像是`hostnamectl`打开了这个文件的开关一样...stupid.
 
-## 2. hostname原理
+## 2. /etc/hosts对hostname的影响
+
+这个要求在`/etc/hosts`文件中写入当前`hostname`对应的IP映射才有效.
+
+`hostname`有两个选项`-a`和`-f`, 会输出`/etc/hosts`中配置的值.
+
+```
+[root@192-168-174-93 ~]# cat /etc/hosts
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+192.168.174.93 192-168-174-93.localdomain 192-168-174-93
+[root@192-168-174-93 ~]# hostname -a
+192-168-174-93
+[root@192-168-174-93 ~]# hostname -f
+192-168-174-93.localdomain
+```
+
+貌似在`/etc/hosts`这个文件中, 加了主机名的hostname要写前面, 单纯的hostname要写后面.
+
+如果删掉hostname的映射, 则`hostname -a`将输出空值, `hostname -f`会直接得到`hostname`的值.
+
+## 3. hostname原理
 
 <???>

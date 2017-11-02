@@ -1,4 +1,4 @@
-# Python可变参数
+# Python参数列表args与kwargs
 
 原文链接
 
