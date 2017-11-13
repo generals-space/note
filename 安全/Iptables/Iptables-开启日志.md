@@ -6,6 +6,10 @@
 
 2. [iptables日志探秘](http://www.cnblogs.com/AloneSword/p/4193419.html)
 
+3. [iptables之LOG目标](http://blog.163.com/leekwen@126/blog/static/33166229200973105543171/)
+
+## 1. 使用方法
+
 核心命令
 
 ```
@@ -58,4 +62,37 @@ Jun 29 08:14:20 localhost kernel: SSH Connection: IN=eno16777736 OUT= MAC=00:0c:
 | 32  | [  ]                                    | 中括号出现在两个地方，在ICMP协议中作为协议头的递归使用；在数据包长度出现非法时用于指出数据实际长度       |
 
 
-参考文章中有提到几个iptables日志分析工具, 值得一看.
+参考文章1, 2(其实是同一篇)中有提到几个iptables日志分析工具, 值得一看.
+
+## 更详尽的配置
+
+### 自定义日志文件路径
+
+`--log-level n`设置日志级别, 注意这个级别不是内容层面, 而是iptables可以连接`rsyslog`服务, 可以进行自定义文件存储. 查看`/etc/rsyslog.conf`.
+
+```
+...
+# Save boot messages also to boot.log
+local7.*                                                /var/log/boot.log
+...
+```
+
+可以在`iptables`命令中加入`--log-level 5`, 然后在`/etc/rsyslog.conf`添加
+
+```
+local5.*                                                /var/log/iptables.log
+```
+
+然后重启`rsyslog`服务.
+
+### 
+
+```
+[root@localhost ~]# iptables -I INPUT  -p tcp -m tcp ! --dport 22 -j LOG --log-prefix 'Catching'
+[root@localhost ~]# iptables -nL
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination         
+LOG        tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:!22 LOG flags 0 level 4 prefix "Catching"
+```
+
+> 非22端口用叹号`!`

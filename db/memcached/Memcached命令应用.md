@@ -15,6 +15,10 @@
 -u <username> 绑定使用指定用于运行进程<username>
 -m <num>      允许最大内存用量，单位M (默认: 64 MB)
 -P <file>     将PID写入文件<file>，这样可以使得后边进行快速进程终止, 需要与-d 一起使用
+
+-v            verbose (print errors/warnings while in event loop)  打印日志, 在非`daemon`情况下才能生效
+-vv           very verbose (also print client commands/reponses)  
+-vvv          extremely verbose (also print internal state transitions)  
 ```
 
 命令行连接

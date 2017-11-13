@@ -4,11 +4,11 @@
 
 参考文章
 
-[va_start和va_end使用详解](http://www.cnblogs.com/hanyonglu/archive/2011/05/07/2039916.html)
+1. [va_start和va_end使用详解](http://www.cnblogs.com/hanyonglu/archive/2011/05/07/2039916.html)
 
-[linux下利用va_start编写参数可变的函数](http://ju.outofmemory.cn/entry/154069)
+2. [linux下利用va_start编写参数可变的函数](http://ju.outofmemory.cn/entry/154069)
 
-[C library macro - va_start()](https://www.tutorialspoint.com/c_standard_library/c_macro_va_start.htm)
+3. [C library macro - va_start()](https://www.tutorialspoint.com/c_standard_library/c_macro_va_start.htm)
 
 在编写C程序时，会遇到`printf`这样形参可变的函数，可能会好奇这是怎么做到的。
 

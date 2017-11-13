@@ -26,3 +26,5 @@ $ curl -x 127.0.0.1:3128 www.google.com
 ## socks5代理
 $ curl --socks5 127.0.0.1:1080 www.google.com
 ```
+
+至于wget, 它只有http代理, 要使用socks代理貌似需要额外的工具.

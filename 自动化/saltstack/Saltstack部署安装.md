@@ -32,7 +32,6 @@ master_port: master端口
 $ service salt-minion start
 ```
 
-
 master不需要做修改, 直接启动即可.
 
 ```
