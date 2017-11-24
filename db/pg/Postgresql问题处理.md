@@ -62,3 +62,23 @@ DETAIL:  There is 1 other session using the database.
 ...`ps -ef | grep psql`发现有两个`psql`进程, 嗯, 可能是之前psql进行没退出就直接把电脑休眠的原因. 把那个被挂起的psql进程kill掉就可以.
 
 网上也有说是其他主机上来连接的会话. 这个就需要重新确认了. 可能通过`netstat -anp | grep pg监听端口`可以查看.
+
+## 4.
+
+```
+permission denied for sequence user_id_seq
+```
+
+在使用`psycopg2`操作pg时, `insert`操作报上述错误.
+
+原因是在创建了`userA`用户, 创建了`exampledb`数据库并将数据库的属主赋予`userA`后, 又用超级帐户创建该库中的`user`表. 后来发现程序没有此表的权限, 就又删除了这个表, 用普通用户`userA`创建新表, 但再次运行程序就报`permission denied for sequence user_id_seq`. 可能是删除`user`表, 但是`user_id_seq`(自增序列, 不是某一个表字段)没有删除的原因.
+
+解决办法是, 超级用户在此数据库中执行如下语句.
+
+```
+grant all on sequence user_id_seq to myuser;
+```
+
+参考文章
+
+[Error "permission denied for sequence user_id_seq" when POSTing](https://github.com/begriffs/postgrest/issues/251)

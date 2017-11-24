@@ -55,7 +55,7 @@ docker pull docker.io/centos:6
 给它打个标签, 注意这个标签名, 也就是`127.0.0.1:5000/centos6:base`是有意义的, 尤其是`127.0.0.1:5000`, 这其实是镜像所属的仓库地址, 就类似与那个`docker.io`. 镜像名称与标签名就随便了, 你开心就好.
 
 ```
-docker tag centos6的镜像ID 127.0.0.1：5000/centos6:base
+docker tag centos6的镜像ID 127.0.0.1:5000/centos6:base
 ```
 
 然后修改Docker配置文件, Docker新版需要 `SSL Auth`, 解决就是两种方法,一种就是在私有仓库上使用SSL, 需要安装签发证书,另一种就是强制使用普通http方式...签发证书那么麻烦, 果断放弃. 注意重启docker服务.

@@ -29,6 +29,7 @@ docker cp <containerID>:/file/path/of/container /host/path/target
 - 若容器内目标目录已经存在, 挂载之后宿主机的目录将会将其**覆盖**
 
 ```shell
-docker run -v /path/to/hostdir:/path/to/hostdir 镜像名:标签
+docker run -v /path/to/hostdir:/path/to/container 镜像名:标签
 ```
 
+[宿主机路径:容器内路径]

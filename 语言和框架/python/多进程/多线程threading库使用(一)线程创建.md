@@ -117,6 +117,20 @@ def __init__(self, group=None, target=None, name=None, args=(), kwargs={})
 
 ### 4. 
 
+`Thread.activeCount()`
+
+得到通过`threading`模块创建的所有正在运行的线程个数(包括主线程).
+
+### 5.
+
+`Thread.setDaemon(1)`
+
+设置子线程随着主线程程的退出而结束.
+
+在终端直接运行python脚本时, 如果不手动设置这个值, `Ctrl + C`无法返回终端, 因为子线程无法释放.
+
+### 6. 
+
 `Thread.join([timeout])`
 
 调用`Thread.join`将会使主调线程堵塞，直到被调用线程运行结束或超时。参数`timeout`是一个数值类型，表示超时时间，如果未提供该参数，那么主调线程将一直堵塞到被调线程结束。

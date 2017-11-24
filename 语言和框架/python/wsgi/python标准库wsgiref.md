@@ -68,6 +68,7 @@ OK, 在这种程度之上, 我们至少还有两个要求: 1. 循环接受请求
 我们以类实例为例
 
 ```py
+#!encoding: utf-8
 from wsgiref.simple_server import make_server
 
 class instance_app:

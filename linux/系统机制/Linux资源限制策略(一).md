@@ -30,6 +30,8 @@ file locks                      (-x) unlimited
 
 > 这种方式只能在当前shell会话中生效, 无法持久. 如果希望在当前系统中全局有效, 需要在`/etc/security/limit.conf`中配置.
 
+> 只有root有权限执行这个命令, 但只能修改root本身的限制, 要修改普通用户的, 同样需要在`/etc/security/limit.conf`中配置.
+
 ## 2. limit配置文件
 
 `/etc/security/limit.conf`中有上述`ulimit`可以设置的选项, 格式如下
@@ -58,3 +60,6 @@ root       soft    nproc     unlimited
 
 修改后立即生效, 不需要重启.
 
+> 注意: 系统可能对`hard`的标准有默认限制, 自定义的设置如果单纯设置`soft`值将会无法越过默认值限制, 所以如果有需要, 可以同时设置`hard`标准.
+
+> **警告:** 对root所做的`hard`类型修改可能导致严重的结果, 但好在只有在新终端生效, 所以保持编辑终端不要退出, 有问题可以及时撤销.

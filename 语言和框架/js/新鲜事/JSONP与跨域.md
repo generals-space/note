@@ -68,6 +68,21 @@ echo $callback."($result)";
 
 非常巧妙的设计.
 
+如果单纯请求一个文件, 不经过后台处理, 则其格式可为
+
+```js
+resHandler(
+    {
+        id: 1,
+        name: 'general'
+    }
+)
+```
+
+则前端可以得到`{id:1,name:'general'}`这个对象.
+
+这样的优点是方便, 不经过后台, 但是前端就无法通过`jsonpCallback`这个参数自定义处理函数了, 可能会有些不够灵活.
+
 ## 3. jQuery的实现
 
 jquery为我们封装了这个过程. 一共有3种实现方式.
