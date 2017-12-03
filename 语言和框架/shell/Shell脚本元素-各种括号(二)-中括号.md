@@ -83,3 +83,16 @@ yes
 $ if [[ "hashes" =~ ^hash(e|d)s ]]; then echo yes; else echo no; fi
 yes
 ```
+
+> 貌似运算符左右两边都要有空格才行
+
+```
+$ a='abc'
+$ if [[ $a == 'abc' ]]; then echo yes; else echo no; fi
+yes
+$ if [[ $a == 'ac' ]]; then echo yes; else echo no; fi
+no
+## 没空格的都会匹配到第一项...
+$ if [[ $a=='ac' ]]; then echo yes; else echo no; fi
+yes
+```

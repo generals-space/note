@@ -24,7 +24,7 @@ salt-2015.5.10-2.el7.noarch.rpm
 而且!!! 它还有一个`--resolve`参数!!! 能把一个软件包的所有依赖包都下载了!!! 多么美好的事情!!!
 
 ```
-yumdownloader --resolve salt
+$ yumdownloader --resolve salt
 Loaded plugins: fastestmirror
 Loading mirror speeds from cached hostfile
 --> Running transaction check
@@ -46,6 +46,8 @@ dracut-033-502.el7.x86_64.rpm                python2-crypto-2.6.1-15.el7.x86_64.
 openpgm-5.2.122-2.el7.x86_64.rpm             python-zmq-14.3.1-1.el7.x86_64.rpm        zeromq3-3.2.5-1.el7.x86_64.rpm
 ...
 ```
+
+> 注意: 如果当前服务器上已经安装了某个依赖, 那么`yumdownloader`在`resolve`时是不会再下载的!!!
 
 参考文章1中介绍了两种方法, 除了`yumdownloader`这个独立的工具, 还有一个yum插件`yum-downloadonly`, 当然也是需要安装的.
 
