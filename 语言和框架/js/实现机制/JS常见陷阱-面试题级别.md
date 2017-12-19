@@ -100,3 +100,21 @@ a.name //kelen
 第2题中
 
 `b.person.name`引用到的倒的确是`a`对象的`person.name`了. 因为b对象在没有设置其本身的`person`属性时, `b.person`其实就是`a.person`. 由于js的引用传值特性, `b.person`的任何修改, 其实都量对`a.person`的修改.
+
+## 循环中设置事件监听或定时任务的数据获取问题
+
+```js
+var select = ['a', 'b', 'c'];
+for(var i = 0; i < select.length; i ++){
+	$(document).on('change', 'select.' + select[i], function(event){
+		console.log(i);
+		console.log(select);
+	});
+}
+```
+
+本来我们的目的是为3个类名分别为`a`, `b`, `c`的`select`元素添加事件监听的. 但是当这个3`select`的`change`事件真的发生的时候, 输出的`i`的值却都变成了3, 正好大于`select`数组变量的长度. 为什么?
+
+因为在事件发生的时候, `i`变量已经因为`for`循环结束变成了`3`, 所以事件其实是已经绑定在了3个元素上, 这个过程没有问题. 但是回调函数对`i`变量的引用却是在`for`循环的作用域内, 相当于是回调函数的域外变量, 所以没有得到想要的值.
+
+尝试在回调函数内通过`var j = i`暂存这个`i`变量的值, 但没有效果.

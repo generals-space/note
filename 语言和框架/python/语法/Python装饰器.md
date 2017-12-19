@@ -59,7 +59,7 @@ timeit(sum1)
 
 乍一看，没啥问题，可以运行！但是还是修改了一部分代码，把sum1() 改成了timeit(sum1)。这样的话，如果sum1在N处都被调用了，你就不得不去修改这N处的代码。所以，我们需要timeit(sum1)具有和sum1()一样的效果，于是将timeit赋值给sum1。可是timeit是有参数的，我们还需要timeit(sum1)具有和sum1()一样的调用方式，所以需要找个方法去统一参数，将timeit(sum1)的返回值（计算运行时间的函数）赋值给sum1。
 
-```python
+```py
 #!/usr/bin/python
 #!coding:utf-8
 import time
@@ -69,32 +69,34 @@ def sum1():
     print(sum)
 def timeit(func):
     ## 定义一个内嵌的包装函数, 给传入的函数加上计时功能的包装
-    def wrapper():
+    def wrappedFunc():
         start = time.time()
         func()
         end = time.time()
         print("time used:",end - start)
-    return wrapper
+    return wrappedFunc
 
 sum1 = timeit(sum1)
 sum1()
 ```
 
-这样一个简易的装饰器就做好了，我们只需要在定义sum1以后调用sum1之前，加上sum1= timeit(sum1)，就可以达到计时的目的，这也就是装饰器的概念，看起来像是sum1被timeit装饰了！Python于是提供了一个语法糖来降低字符输入量。
+这样一个简易的装饰器就做好了，我们只需要在定义sum1以后调用sum1之前，加上`sum1= timeit(sum1)`，就可以达到计时的目的，这也就是装饰器的概念，看起来像是sum1被timeit装饰了！
 
-```python
+Python提供了一个语法糖来降低字符输入量。
+
+```py
 #!/usr/bin/python
 #!coding:utf-8
 import time
 
 def timeit(func):
     ## 定义一个内嵌的包装函数, 给传入的函数加上计时功能的包装
-    def wrapper():
+    def wrappedFunc():
         start = time.time()
         func()
         end = time.time()
         print("time used:",end - start)
-    return wrapper
+    return wrappedFunc
 
 @timeit
 def sum1():
@@ -106,8 +108,6 @@ sum1()
 
 重点关注`@timeit`这一行，在定义上加上这一行与另外写`sum1 = timeit(sum1)`完全等价。`@`没有额外的作用, 除了字符输入少了一些，只有一个好处：看上去更有`装饰`的感觉。
 
-------
-
 在这个例子中，函数进入和退出时需要计时，这被称为一个横切面(Aspect)，这种编程方式被称为面向切面的编程AOP(Aspect-Oriented Programming)。与传统编程习惯的从上往下执行方式相比较而言，像是在函数执行的流程中横向地插入了一段逻辑。在特定的业务领域里，能减少大量重复代码。面向切面编程还有相当多的术语，这里就不多做介绍，感兴趣的话可以去找找相关的资料。
 
-**被装饰函数带有参数和有返回值的情况?**
+执行这种被装饰过的函数时, 调用的实际上是`wrappedFunc`, 传入的参数也是传入`wrappedFunc`然后调用`func`时把这些参数传给`func`的.

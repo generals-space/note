@@ -17,7 +17,7 @@
 dump方法是生成含有SQL命令的文本文件, 当反馈回服务器时, 将顺序执行dump中的命令. postgreSql使用`pg_dump`工具, 基础用例是: 
 
 ```
-$ pg_dump dbname > outfile  
+$ pg_dump dbname > outfile
 ```
 
 注意: 

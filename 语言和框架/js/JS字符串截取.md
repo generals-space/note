@@ -61,7 +61,7 @@ testStr.substr(-5, 3)
 "orl"
 ```
 
-> length可不能为负数哦~
+> length参数可不能为负数哦~
 
 不过按照参数文章1中所说, `substr 为Web浏览器附加的ECMAScript特性，不建议使用时 start 索引为负值`
 
