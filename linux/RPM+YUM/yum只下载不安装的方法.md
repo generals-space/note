@@ -31,17 +31,13 @@ Loading mirror speeds from cached hostfile
 ---> Package salt.noarch 0:2015.5.10-2.el7 will be installed
 --> Processing Dependency: systemd-python for package: salt-2015.5.10-2.el7.noarch
 --> Processing Dependency: python-zmq for package: salt-2015.5.10-2.el7.noarch
---> Processing Dependency: python-requests for package: salt-2015.5.10-2.el7.noarch
---> Processing Dependency: python-msgpack for package: salt-2015.5.10-2.el7.noarch
 --> Finished Dependency Resolution
 ...
 Delta RPMs disabled because /usr/bin/applydeltarpm not installed.
 (1/24): PyYAML-3.10-11.el7.x86_64.rpm                                                                                            | 153 kB  00:00:00     
 (2/24): dracut-config-rescue-033-502.el7.x86_64.rpm                                                                              |  55 kB  00:00:00     
-(3/24): dracut-network-033-502.el7.x86_64.rpm                                                                                    |  97 kB  00:00:00     
-(4/24): dracut-033-502.el7.x86_64.rpm                                                                                            | 321 kB  00:00:00      
 ...
-[root@139-224-129-99 ~]# ls
+$ ls
 dracut-033-502.el7.x86_64.rpm                python2-crypto-2.6.1-15.el7.x86_64.rpm    PyYAML-3.10-11.el7.x86_64.rpm
 openpgm-5.2.122-2.el7.x86_64.rpm             python-zmq-14.3.1-1.el7.x86_64.rpm        zeromq3-3.2.5-1.el7.x86_64.rpm
 ...
@@ -71,14 +67,14 @@ Resolving Dependencies
 
 Dependencies Resolved
 
-========================================================================================================================================================
+=============================================================================================================================================
  Package                                     Arch                          Version                                 Repository                      Size
-========================================================================================================================================================
+=============================================================================================================================================
 Installing:
  salt                                        noarch                        2015.5.10-2.el7                         epel                           4.1 M
 ...
 Transaction Summary
-========================================================================================================================================================
+=============================================================================================================================================
 Install  1 Package (+17 Dependent packages)
 Upgrade  1 Package (+ 6 Dependent packages)
 
