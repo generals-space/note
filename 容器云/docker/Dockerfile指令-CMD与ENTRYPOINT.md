@@ -2,8 +2,6 @@
 
 参考文章
 
-1. []
-
 `CMD`与`ENTRYPOINT`两者有相似之处, 都是镜像在实例化成容器时执行的命令.
 
 首先要明白, `-d`(服务模式)和`-it`(交互模式)两者后面都可以指定要执行的命令.
@@ -22,16 +20,16 @@ $ docker run -d  centos:6 tail -f /etc/yum.conf
 
 即, `CMD`与`ENTRYPOINT`的目的就是可以在容器启动时不必手动执行这一过程.
 
-这也要看镜像的, 像centos, ubuntu这种系统镜像是不会为你指定启动命令的, 我们得自己定义. 而其他与nginx, mysql这种应用级镜像, 则一般会带有启动命令, 目的是简化操作, 直接使用.
+这其实也要看镜像的, 像centos, ubuntu这种官方系统镜像是不会为你指定启动命令的, 我们得自己定义. 而其他与nginx, mysql这种第三方应用级镜像, 则一般会带有启动命令, 目的是简化操作, 直接使用.
 
-`CMD`与`ENTRYPOINT`的区别在于, 使用`CMD`创建的镜像, 如果在启动容器时手动指定了命令, 会覆盖`CMD`指定的命令. 而使用`ENTRYPOINT`创建的镜像, 会同时执行通过`ENTRYPOINT`指定与通过手动指定的命令, 不会发生覆盖.
+`CMD`与`ENTRYPOINT`的区别在于, 使用`CMD`创建的镜像, 如果在启动容器时手动指定了命令, 会覆盖`CMD`指定的命令. 而使用`ENTRYPOINT`创建的镜像, 会同时执行通过`ENTRYPOINT`指定与通过手动指定的命令(我们加的命令会成为`ENTRYPOINT`后追加的参数), 不会发生覆盖.
 
 ## 指令格式
 
 ```
 CMD ping www.baidu.com 
-CMD ["/bin/ping","www.baidu.com"]
-CMD ["参数1","参数2"]
+CMD ["/bin/ping", "www.baidu.com"]
+CMD ["参数1", "参数2"]
 ```
 
 前两种是通过CMD指定在容器启动时执行指令的两种格式, 第3种是将CMD指定的列表当作`ENTRYPOINT`的参数, 不能单独使用.
@@ -67,11 +65,11 @@ root         8     7  0 07:16 ?        00:00:00 -bash
 root        19     8  0 07:16 ?        00:00:00 ps -ef
 ```
 
-这很让人无语, 因为这相当于在命令行指定的命令直接附加到`ENTRYPOINT`所指定的命令后面, 完全没有预想的那么神.
+这很让人无语, 因为这相当于在命令行指定的命令直接附加到`ENTRYPOINT`所指定的命令后面, 完全没有预想的那么神(两条命令都执行).
 
 ------
 
-CMD可以为ENTRYPOINT提供参数，ENTRYPOINT本身也可以包含参数，但是你可以把那些可能需要变动的参数写到CMD里而把那些不需要变动的参数写到ENTRYPOINT里面例如：
+CMD可以为`ENTRYPOINT`提供参数, ENTRYPOINT本身也可以包含参数, 但是你可以把那些可能需要变动的参数写到CMD里而把那些不需要变动的参数写到`ENTRYPOINT`里面例如：
 
 ```
 FROM centos:6
@@ -79,4 +77,4 @@ ENTRYPOINT ["top", "-b"]
 CMD ["-c"]  
 ```
 
-把可能需要变动的参数写到CMD里面。然后你可以在docker run里指定参数，这样CMD里的参数(这里是-c)就会被覆盖掉而ENTRYPOINT里的不被覆盖。
+把可能需要变动的参数写到CMD里面. 然后你可以在`docker run`里指定参数, 这样CMD里的参数(这里是`-c`)就会被覆盖掉而`ENTRYPOINT`里的不被覆盖, 正好实现了**默认参数**的功能.
