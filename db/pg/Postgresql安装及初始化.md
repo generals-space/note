@@ -40,7 +40,9 @@ local   all             all                                     trust
 host    all             all             127.0.0.1/32            trust
 # IPv6 local connections:
 host    all             all             ::1/128                 trust
-host    all             all             0.0.0.0                 md5 
+host    all             all             0.0.0.0/0                 md5 
 ```
 
 本机信任(trust)，其他所有机器可以MD5验证连接, 其实就是普通用户名密码形式.
+
+哦, 还有, `postgresql.conf`的`listen_addresses`默认是`localhost`, 记得改成'*'表示监听所有连接.
