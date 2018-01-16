@@ -82,7 +82,7 @@ select unnest(items) from tbl_array where id = 1;
 select * from tbl_array where id = 1;
  id |   items   
 ----+-----------
-  1 | {1,2,3}
+  1 | {1,2,3} 
 (1 row)
 update tbl_array set items = items || 7 where id = 1;
 select * from tbl_array where id = 1;

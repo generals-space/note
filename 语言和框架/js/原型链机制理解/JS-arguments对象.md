@@ -12,7 +12,7 @@ arguments是个类数组，除了有实参所组成的类似数组以外，还�
 
 2. 也有自己独特的属性，如：callee，
 
-3. `arguments`的长度(`arguments.length`属性)是**实参的个数**。补充：那`arguments.callee.length`又是什么呢？`arguments.callee`是当前正在执行的函数的引用，类似`function.length`，那就是**形参的个数**。
+3. `arguments`的长度(`arguments.length`属性)是**实参的个数**。补充：那`arguments.callee.length`又是什么呢？`arguments.callee`是当前正在执行的函数(主调函数)的引用，类似`function.length`，那就是**形参的个数**。
 
 ## 将arguments转换为真正的数组的方法
 

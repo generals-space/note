@@ -89,6 +89,8 @@ var obj = Object.assign({}, obj1, obj2);
 console.log(obj);
 ```
 
+输出为
+
 ```
 Object {a: "abc", subobj: Object, b: 123}
     a : "abc"
@@ -101,7 +103,7 @@ Object {a: "abc", subobj: Object, b: 123}
 
 使用`assign`方法合并后, `obj2.subobj`的值覆盖了`obj1.subobj`的值, 而不是对`subobj`字段继续进行合并, 这应该相当于浅拷贝.
 
-至于深拷贝, 自然就是目标对象的子对象实现递归合并了. 我只知道`jquery.extend()`方法的第一个参数可以控制是否进行深拷贝, 至于`Prototype.js`与`Undersocre.js`的实现, 不再深究.
+至于深拷贝, 自然就是目标对象的子对象实现递归合并了. 我只知道`jquery.extend()`方法的第一个参数可以控制是否进行深拷贝, 至于`Prototype.js`与`Undersocre.js`的实现, 不深究.
 
 ```js
 var obj1 = {
@@ -136,3 +138,27 @@ Object {a: "abc", subobj: Object, b: 123}
         __proto__ : Object
     __proto__ : Object
 ```
+
+## 3. 继承中原型链扩展的问题
+
+`Object.assign`不能应用于原型扩展继承, 可能是我的用法不对, 总之始终没想到错在哪里了.
+
+```js
+function A(){}
+
+A.prototype.sayA = function(){
+    console.log('I am sayA...');
+};
+
+function B(){}
+
+$.extend(B.prototype, new A());
+// Object.assign(B.prototype, new A());
+
+var b = new B();
+b.sayA();
+```
+
+`$.extend()`能正确扩展, 但是`Object.assign()`不行, 会报错说找不到`sayA`方法...
+
+理论上`new A()`将得到一个实例对象, `sayA`将是它的一个属性, 但却没能合并到`B.prototype`对象上, 就算A的实例`sayA`只是挂在原型链上, 那`Object.assign(B.prototype, A)`也没法扩展, 实在搞不懂. 留个疑问<???>

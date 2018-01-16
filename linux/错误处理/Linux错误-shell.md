@@ -101,14 +101,6 @@ linux 下在终端与脚本进行交互时, 内容输入错误使用`backspace`�
 
 终端输入`stty erase ^H`, 即可解决. 不过这是暂时的, 下次登录终端还是会出现这个问题, 建议写在`.bash_profile`文件中.
 
-## 3. ifconfig命令找不到
-
-精简版或服务器版的Linux最初会缺失很多命令工具, 如`ifconfig`, `netstat`等, 但是`apt-cache search`和`dnf search`无法找到它们, 因为它们属于一个合集工具包, 叫做`net-tools`, 可直接安装此工具包, 就可以得到这些命令.
-
-更新版本的`ip`命令包含在`iproute`包中.
-
-~~`ping`命令倒是可以单独安装.~~不对, ping命令在`iputils`包中.
-
 ## 4. shell脚本报错
 
 ```
