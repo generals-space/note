@@ -1,3 +1,32 @@
+参考文章
+
+1. [Babel官网](http://babeljs.io/)
+
+babel是一个es6->es5的编译器, 它可以将es6的代码转换成等价的es5
+
+```js
+class A{
+    constructor(){
+    }
+    render(){
+        console.log(1)
+    }
+}
+
+class B extends A{
+    constructor(){
+        super();
+    }
+    render(){
+        super.render();
+        console.log(2);
+    }
+}
+```
+
+与上面es6等价的es5语句如下
+
+```js
 var _get = function get(object, property, receiver) { 
     if (object === null) object = Function.prototype; 
     var desc = Object.getOwnPropertyDescriptor(object, property); 
@@ -99,3 +128,6 @@ var B = function (_A) {
 
     return B;
 }(A);
+```
+
+但这种转换并不是我想要的那种, 因为它的super实现是在子类方法中通过显式调用`父类名.父类方法`的形式完成的, 作为编译结果, 它可以隐藏实际代码编写时的耦合性, 但依然不能说是一种好的解决方案.

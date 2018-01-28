@@ -103,6 +103,12 @@ a.name //kelen
 
 ## 循环中设置事件监听或定时任务的数据获取问题
 
+参考文章
+
+1. [js经典面试问题：如何让for循环中的setTimeout()函数像预想中一样工作？(1)](setTimeout in for-loop does not print consecutive values [duplicate])
+
+2. [js经典面试问题：如何让for循环中的setTimeout()函数像预想中一样工作？(2)](https://stackoverflow.com/questions/750486/javascript-closure-inside-loops-simple-practical-example)
+
 ```js
 var select = ['a', 'b', 'c'];
 for(var i = 0; i < select.length; i ++){
@@ -118,3 +124,20 @@ for(var i = 0; i < select.length; i ++){
 因为在事件发生的时候, `i`变量已经因为`for`循环结束变成了`3`, 所以事件其实是已经绑定在了3个元素上, 这个过程没有问题. 但是回调函数对`i`变量的引用却是在`for`循环的作用域内, 相当于是回调函数的域外变量, 所以没有得到想要的值.
 
 尝试在回调函数内通过`var j = i`暂存这个`i`变量的值, 但没有效果.
+
+参考文章1中给出了比较好的解决办法
+
+```js
+function doSetTimeout(i) {
+  setTimeout(function() { alert(i); }, 100);
+}
+
+for (var i = 1; i <= 2; ++i)
+  doSetTimeout(i);
+```
+
+它是这么说的, 
+
+> You have to arrange for a distinct copy of "i" to be present for each of the timeout functions.
+
+`doSetTimeout`函数是必须的.
