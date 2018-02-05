@@ -1,8 +1,10 @@
-# JS-super与多级继承
+# JS-ES5模拟super与多级继承(一)
 
 参考文章
 
 1. [js多层继承 super方法](http://blog.csdn.net/xiaotuwy/article/details/76152742)
+
+本系列文章对js es5实现多级继承做一个学习和探究, 第三篇给出最终的模拟代码及测试用例.
 
 ## 简单的父-子继承
 

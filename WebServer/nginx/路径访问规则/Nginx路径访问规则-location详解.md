@@ -35,7 +35,7 @@ location /main/abc {
 
 当用户访问的uri为`/main/abc/index.php`, 将匹配到第2条`location`. 这一点很容易理解.
 
-另外`=`的级别高于`^=`, 也高于什么都不写的时候. 例如
+另外`=`的级别高于`^~`, 也高于什么都不写的时候. 例如
 
 ```
 location = /main/ {
@@ -136,7 +136,7 @@ location ~* ^/([^\/_]*)_([^\/_]*)/(.*)$ {
 location = /abc_def/ {
 
 }
-location ^= /abc_def/{
+location ^~ /abc_def/{
 
 }
 ```
@@ -155,7 +155,7 @@ location ~* ^/([^\/_]*)_([^\/_]*)/main/(.*)$ {
 location ~* ^/([^\/_]*)_([^\/_]*)/(.*)$ {
     proxy_pass http://frontend/$3;
 }
-location ^= /abc_{
+location ^~ /abc_{
 
 }
 location /abc_def/{

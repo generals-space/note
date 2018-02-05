@@ -1,4 +1,4 @@
-# SVN服务器搭建
+# SVN服务器搭建-安装及配置
 
 参考文章
 
@@ -28,7 +28,7 @@ libz-devel openssl-devel
 
 ### 1.2 编译, 安装
 
-编译安装subversion.
+编译安装`subversion`.
 
 ```
 $ ./configure --prefix=/usr/local/svn
@@ -37,12 +37,12 @@ make && make install
 
 ### 1.3 配置, 启动
 
-首先使用svn命令创建版本库, 用于存储来自客户端的提交代码.
+首先使用`svn`命令在根目录创建版本库, 用于存储来自客户端的提交代码.
 
 ```
 $ mkdir -p /svn
 $ /usr/local/svn/bin/svnadmin create /svn
-$ ls
+$ ls /svn
 conf  db  format  hooks  locks  README.txt
 ```
 
@@ -56,6 +56,8 @@ conf  db  format  hooks  locks  README.txt
 
 - conf目录：是这个版本库的配置文件（版本库的用户访问账号、权限等）
 
+- db目录: 猜测是我们工程的实际存储位置, 但是不是完整的文件, 应该是经过一系列计算分割得到的.
+
 修改svn版本库的配置, 该目录下有4个文件.
 
 ```
@@ -63,15 +65,16 @@ $ ls
 authz  hooks-env.tmpl  passwd  svnserve.conf
 ```
 
-编辑`svnserve.conf`文件, 设置权限信息及验证文件
+编辑`svnserve.conf`文件, 设置权限信息及验证文件, 注意其中的路径, 要根据自己的需要进行调整.
 
 ```
+## ...这里这个general是关键字, 自带的
 [general]
 ## 控制非鉴权用户访问版本库的权限. 
 anon-access = none
 ## 控制鉴权用户访问版本库的权限 
 auth-access = write
-## 指定用户名口令文件名。 
+## 指定用户名口令文件名
 password-db = /svn/conf/passwd
 ## 指定权限配置文件名，通过该文件可以实现以路径为基础的访问控制。 
 authz-db = /svn/conf/authz
@@ -79,8 +82,7 @@ authz-db = /svn/conf/authz
 realm = My Test Repository         
 ```
 
-
-编辑`passwd`, 添加用户及其密码
+编辑`/svn/conf/passwd`, 添加用户及其密码
 
 ```
 [users]
@@ -88,7 +90,7 @@ general = 123456
 test = 123456
 ```
 
-编辑`authz`, 修改用户所属组, 并配置组权限
+编辑`/svn/conf/authz`, 修改用户所属组, 并配置组权限
 
 ```
 ## 这里组名可以自定义, 不只是admin或user两种.
@@ -113,7 +115,7 @@ $ svnserve -d -r /svn
 
 ## 使用方法
 
-首次连接需要输入验证信息
+客户端首次连接需要输入验证信息
 
 ```
 $ svn list svn://172.32.100.136/
@@ -167,3 +169,7 @@ Committed revision 1.
 $ svn list svn://172.32.100.136/
 test.txt
 ```
+
+这个文件在`/svn`版本库是找不到的, 它应该被格式化成二进制了. 
+
+在服务端`/svn/db`目录下, 有一个`current`文件, 其内容存储当前库的最新版本号(revision), 现在应该是1.

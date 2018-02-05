@@ -4,6 +4,10 @@
 
 1. [Python: 在Unicode和普通字符串之间转换](http://blog.csdn.net/u012448083/article/details/51918681)
 
+2. [python将unicode和str互相转化](http://blog.csdn.net/huludan/article/details/59518325)
+
+3. [python 中 unicode原样转成str, unicode-escape与string_escape](http://blog.csdn.net/lrz4119/article/details/45247611)
+
 md, 目前我只见过python一种语言在定义字符串的时候可以选择定义成utf-8, unicode, ascii等格式...不明觉厉.
 
 怎么说呢, 你只要知道, unicode范围最大, 兼容并包就好了...

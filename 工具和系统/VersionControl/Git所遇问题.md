@@ -119,3 +119,7 @@ OSChina初始化一个git仓库, 本地也使用`git init`初始化了一个工�
 解决办法
 
 这个问题出现在git的`2.9.2`版本, 需要使用`--allow-unrelated-histories`选项强制合并. `pull`与`merge`都有这个选项.
+
+参考文章
+
+1. [git无法pull仓库refusing to merge unrelated histories](http://blog.csdn.net/lindexi_gd/article/details/52554159)

@@ -101,3 +101,20 @@ Last Changed Rev: 17190
 Last Changed Date: 2016-12-20 08:17:01 +0800 (Tue, 20 Dec 2016)
 ```
 
+## 7. 客户端清除用户登录信息
+
+参考文章
+
+[如何清除SVN的用户名和密码](http://jingyan.baidu.com/article/d45ad148ed12c469552b801b.html)
+
+svn客户端保存了我们连接svn服务器时的登录信息, 如果需要切换身份连接时, 需要先将登录信息删除.
+
+**windows下(TortoiseSVN)**
+
+右键->tortoisesvn->setting
+
+弹出窗口左侧->Saved Data->右侧Authentication-> clear
+
+**Linux**
+
+`rm -rf ~/.subversion/auth/svn.simple`
