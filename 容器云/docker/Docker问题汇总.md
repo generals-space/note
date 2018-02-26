@@ -185,7 +185,6 @@ _data
 
 建议读一下[mysql-server](https://hub.docker.com/r/mysql/mysql-server/)中`Where to Store Data`一节，会对你了解如何存储mysql数据有所帮助.
 
-
 ## 5. 
 
 ```
@@ -200,3 +199,96 @@ failed to register layer: ApplyLayer exit status 1 stdout:  stderr: symlink gawk
 原因分析: 当时dockerd启动的`graph`参数设置为了从windows宿主机共享的目录, 可能是由于docker需要linux的联合文件系统的特性支持而共享目录本质还是NTFS才会报错.
 
 解决办法: 尝试将`graph`参数指向了linux本地任一目录, 重启dockerd, 再次pull时正常.
+
+## 6. docker服务无法启动
+
+参考文章
+
+1. [Error starting daemon](https://github.com/moby/moby/issues/34680)
+
+docker版本
+
+```
+$ docker version
+Client:
+ Version:      17.09.1-ce
+ API version:  1.32
+ Go version:   go1.8.3
+ Git commit:   19e2cf6
+ Built:        Thu Dec  7 22:23:40 2017
+ OS/Arch:      linux/amd64
+
+Server:
+ Version:      17.09.1-ce
+ API version:  1.32 (minimum version 1.12)
+ Go version:   go1.8.3
+ Git commit:   19e2cf6
+ Built:        Thu Dec  7 22:25:03 2017
+ OS/Arch:      linux/amd64
+ Experimental: false
+```
+
+场景描述:
+
+docker的存储路径在一块独立硬盘上, 不过fstab文件貌似有点问题, 本来docker服务运行的好好的, 重启了下系统, 那块硬盘没能自动挂载, 由于docker是开机启动, 所以`docker images`镜像都不见了. 
+
+关闭docker, 手动挂载硬盘, 启动docker...失败了. 查看日志, 报了如下错误.
+
+```
+Error starting daemon: couldn't create plugin manager: error setting plugin manager root to private: invalid argument
+```
+
+参考文章1中众说纷纭, 看起来也有点道理, 什么指定`--make-private`参数重新挂载硬盘, 没试. 有一位`Faqa`的方法十分非主流, 但我很有眼光的觉得他说的是对的...把docker路径由`/disk1/docker`转到`/disk1/docker_root/docker`...即, docker的路径不能在硬盘的第一级子目录...
+
+OK, 果然解决了.
+
+## 7. Error response from daemon: endpoint with name XXX already exists in network AAA.
+
+参考文章
+
+1. ["Error response from daemon: service endpoint with name es already exists" when starting container](https://github.com/moby/moby/issues/20398)
+
+2. [docker: Error response from daemon: service endpoint with name XXX already exists.](http://blog.csdn.net/awewong/article/details/78516926)
+
+```
+$ docker run --name task-server --net=cpo --ip=172.18.1.12 -p 8202:8112 -d --rm -v /logs/cpo/task-server:/logs reg01.sky-mobi.com/cpo/task-server:1.0.0 --eureka.client.service-url.defaultZone=http://172.16.4.40:8761/eureka/,http://172.16.4.40:8762/eureka/ --spring.cloud.config.enabled=true --spring.cloud.config.discovery.enabled=true --spring.cloud.config.discovery.service-id=config-server --spring.cloud.config.username=user --spring.cloud.config.password=123456 --spring.profiles.active=test
+41ef624105a50583343bcd9ba033f2d4f7beed9552c8c5f08c720ec1e3690717
+docker: Error response from daemon: endpoint with name task-server already exists in network cpo.
+```
+
+场景描述: 
+
+就是启动一个容器的时候, 就报错了. 最初以为是有停掉的容器依然占用着ip的缘故, 但是`docker ps -a`没有发现这个名为`task-server`的容器.
+
+容器用的是自定义的网络, 名为cpo, 网段是172.18. 不过这和自定义网络应该没什么关系, 按照参考文章1中的说法, 应该是容器上次停止时返回码不正确, 导致网络中并没有真正移除它. 所以容器虽然不在了, 但是cpo网络中依然保留着这个容器所占用的IP, 不能被分配. 
+
+```
+$ docker network inspect cpo
+[
+    {
+        "Name": "cpo",
+        "Id": "36c0cf03a9c5ebb7a284972b9081c16e08b31f4c7e0404ceee7f681810faa7f0",
+        "Scope": "local",
+        "Driver": "bridge",
+
+        "Containers": {
+            "439a5c1904013c51aa71643a26771699a264d4b73fbe1b49c4bc2dd141ebb3ed": {
+                "Name": "task-server",
+                "EndpointID": "6dec7ba08b42034718ddc10ab52b5a1171f50ac08e602c8e9fd1f349485ccfb7",
+                "MacAddress": "02:42:ac:12:01:0c",
+                "IPv4Address": "172.18.1.12/16",
+                "IPv6Address": ""
+            },
+            ...
+        },
+    }
+]
+```
+
+按照参考文章2中的做法, 把`task-server`从cpo网络中强制卸载.
+
+```
+$ docker network disconnect -f cpo task-server
+```
+
+再次`inspect`网络时, `task-server`已经不在了, 启动容器成功.

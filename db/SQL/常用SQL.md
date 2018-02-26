@@ -1,4 +1,4 @@
-## 1.
+## 1. 表级备份
 
 ```sql
 sky=> select * from idc_info into idc_info_20170830;
