@@ -118,6 +118,7 @@ vrrp_instance HARedis {
     state BACKUP
     interface eth0
     virtual_router_id 55
+    ## 不同服务的优先级可以不同, 但差值最好一样都是50好了.
     priority  150       
     ## 不抢占，注意加上
     nopreempt

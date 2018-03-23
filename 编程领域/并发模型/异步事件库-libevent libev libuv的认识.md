@@ -1,6 +1,6 @@
 # 异步事件库-libevent libev libuv的认识
 
-这三个是都C语言编写的, 存在已久的系统级异步事件库, 许多高级语言都用它们封装了自己的异步操作库. 比如nodejs原生支持异步语法, 是因为其底层使用了libuv; python的gevent异步库封装了`libev`(原来用的是`libevent`).
+这三个是都C语言编写的, 存在已久的系统级异步事件库, 许多高级语言都用它们封装了自己的异步操作库. 比如nodejs原生支持异步语法, 是因为其底层使用了libuv; python的gevent异步库封装了`libev`(最初用的是`libevent`).
 
 关于这3者, 初步入门的文章可以参考这个: [网络库libevent、libev、libuv对比](http://blog.csdn.net/lijinqi1987/article/details/71214974)
 
@@ -16,4 +16,4 @@
 
 > 回顾gevent，它实际需要的只是一个负责事件循环的C库，在上面的HTTP库和DNS库，都可以交由标准库强大得不得了的python完成。
 
-最后, 这篇文章真值得一看, [使用 libevent 和 libev 提高网络应用性能——I/O模型演进变化史](http://blog.csdn.net/hguisu/article/details/38638183#comments), 文章很长, 讲解得很详细.
+最后, 这篇文章真值得一看, [使用 libevent 和 libev 提高网络应用性能——I/O模型演进变化史](http://blog.csdn.net/hguisu/article/details/38638183), 文章很长, 讲解得很详细.

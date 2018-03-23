@@ -1,8 +1,8 @@
-# GO程序编译
+# GO环境编译安装
 
 参考文章
 
-1. [Golang新起航！（编译安装go）](http://www.infocool.net/kb/Go/201706/370020.html)
+1. [Golang新起航！（编译安装go）](https://studygolang.com/articles/9999)
 
 源码地址(不必下载github源码版本)
 

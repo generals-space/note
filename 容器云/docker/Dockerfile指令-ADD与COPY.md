@@ -4,7 +4,11 @@
 
 1. [docker学习笔记16：Dockerfile 指令 ADD 和 COPY介绍](http://www.cnblogs.com/51kata/p/5264894.html)
 
+2. [构建Docker镜像时，ADD或COPY文件的路径问题](https://segmentfault.com/q/1010000012115071?sort=created)
+
 ADD/COPY指令的功能是将主机构建环境（上下文）目录中的文件和目录、以及一个URL标记的文件 拷贝到镜像中。
+
+> 一般所谓的**主机构建环境（上下文）目录**就是指dockerfile所在的目录, 不能写绝对路径. 可以看参考文章2中提问者的情况, 最高票回答值得一看.
 
 其格式是： `ADD/COPY  源路径  目标路径`
 
