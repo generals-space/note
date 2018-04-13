@@ -1,4 +1,4 @@
-# Linux-hostname详解 
+# Linux-hostname详解
 
 参考文章
 

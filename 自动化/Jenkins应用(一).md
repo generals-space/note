@@ -20,23 +20,23 @@ Please wait while Jenkins is getting ready to work...
 
 然后出现如下界面
 
-![](gitimg.generals.space/6a97f8404a44ce6160b2603324f05798.png)
+![](https://gitimg.generals.space/6a97f8404a44ce6160b2603324f05798.png)
 
 首次访问Jenkins需要确认其已经正常启动(Jenkins在当前用户主目录创建了`.jenkins`目录). 从图中指定文件中取出这个值, 填写到输入框, 点击`continue`.
 
 在一段等待之后, 会出现预装插件的选择界面. 这里有两个选项: 安装建议的插件, 选择要安装哪些插件. 为了能更清楚的认识Jenkins的工作流程, 这里选择第2项.
 
-![](gitimg.generals.space/8c4370b67cf1cf1303fd1994664e7d87.png)
+![](https://gitimg.generals.space/8c4370b67cf1cf1303fd1994664e7d87.png)
 
 然后在选择自定义插件的页面点击`none`, 然后`Install`...可能有点作死.
 
-![](gitimg.generals.space/56de6a5f8b0f4270f3eb51d871a0277e.png)
+![](https://gitimg.generals.space/56de6a5f8b0f4270f3eb51d871a0277e.png)
 
 然后会出现创建用户的界面, 你需要为自己创建一个管理账户. 不建议点击`continue as admin`, 因为不知道admin的密码, 之后登陆的时候会出问题.
 
 `Save and finish`->`Start using Jenkins`. 安装完成.
 
-![](gitimg.generals.space/1bde1fd97b40bfd272a31c0d481622b9.png)
+![](https://gitimg.generals.space/1bde1fd97b40bfd272a31c0d481622b9.png)
 
 ## 3. 新建Job
 
@@ -58,7 +58,7 @@ Job, 即是一个流程, 指定从哪里或取源代码, 部署到哪一台目�
 
 再次打开item1设置界面, 此时源码管理中将出现Git选项. 选择它之后需要在`Repository URL`字段指定git项目的地址, 最好将Jenkins(或者说Tomcat)的启动用户的SSH公钥拷贝到git服务器中, 并使用ssh类型的项目地址(一般会有https与ssh两种方式). 这种方式不需要再填写`Credentials`字段.
 
-![](gitimg.generals.space/a17fdc3a08a1e6f1bff37a1a2722f789.png)
+![](https://gitimg.generals.space/a17fdc3a08a1e6f1bff37a1a2722f789.png)
 
 > 注意此时系统中一定要已经安装sshd服务与git客户端.
 
@@ -84,7 +84,7 @@ Jenkins主页->`系统管理`->`Global Tool Configuration`
 
 Maven安装->`新增Maven`, 将自动安装取消勾选. 设置MAVEN_HOME的值, 保存即可.            
 
-![](gitimg.generals.space/729756c6f951aa38ae647be1f6bf0781.png)
+![](https://gitimg.generals.space/729756c6f951aa38ae647be1f6bf0781.png)
 
 然后安装Jenkins的maven插件`Maven Integration plugin`.
 
@@ -94,7 +94,7 @@ Maven安装->`新增Maven`, 将自动安装取消勾选. 设置MAVEN_HOME的值,
 
 Jenkins从git仓库下载完源码后, 会自行调用系统的maven工具打包, 第一次使用maven会从中央仓库下载很多文件, 可以在项目主页左侧的`Build History(构建历史)`中找到当前的构建流程, 点击进入会, 左侧有`Console Output`选项, 其中是本次构建的控制台输出.
 
-![](gitimg.generals.space/02e95ac1c6aecb18466fcac56a68d44e.png)
+![](https://gitimg.generals.space/02e95ac1c6aecb18466fcac56a68d44e.png)
 
 此次构建完成后, maven会在`~/.jenkins/workspace/item2`下生成一个`target`目录, 其中存放着git源码的war包文件.
 
@@ -131,7 +131,7 @@ maven-archiver  web  web.war
 
 `Containers`是目标tomcat的地址, 包括管理员帐号和密码, 还有tomcat访问Url, 与上面tomcat管理帐户的配置相符即可.
 
-![](gitimg.generals.space/980da6192909c321657dc34d7b13e75f.png)
+![](https://gitimg.generals.space/980da6192909c321657dc34d7b13e75f.png)
 
 其他地方如`Pre Steps`, `Build`保持默认配置即可.
 

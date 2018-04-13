@@ -21,7 +21,7 @@ from time import sleep
 
 ## 创建socket
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server.setblocking(False)
+server.setblocking(0)
 
 # Bind the socket to the port
 ## 将socket绑定IP与端口
@@ -43,10 +43,10 @@ message_queues = {}
 
 while inputs:
     print ('waiting for the next event')
-    ## `对input_list`中的服务器端socket进行监听.
-    ## `select.select`会阻塞, 一直到有连接建立.
-    ## 调用socket的send, recv函数, `select.select`也会有返回.
     try: 
+        ## `对inputs`中的服务器端socket进行监听.
+        ## `select.select`会阻塞, 一直到有连接建立.
+        ## 调用socket的send, recv函数, `select.select`也会有返回.
         readable, writable, exceptional = select.select(inputs, outputs, inputs)
     except select.error, e:
         print(e)

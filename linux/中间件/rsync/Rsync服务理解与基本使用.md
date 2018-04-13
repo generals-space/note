@@ -1,6 +1,6 @@
-# Rsync实现同步/备份
+# Rsync服务理解与基本使用
 
-## 1. 工作模式
+## 1. Rsync工作模式
 
 Linux下man手册对于rsync命令的参数解释如下
 
@@ -26,7 +26,9 @@ Access via rsync daemon:
 
 **2. daemon模式: 使用TCP直接连接rsync daemon.**
 
-当源路径或目的路径的主机名后面包含两个冒号, 或使用rsync://URL时使用这种模式, 无需远程shell, 但必须在其中一台机器上启动rsync daemon, 默认端口873, 这里可以通过`rsync --daemon`使用独立进程的方式, 或者通过`xinetd`超级进程来管理`rsync`后台进程.
+当源路径或目的路径的主机名后面包含两个冒号, 或使用rsync://URL时使用这种模式, 说明连接使用的是rsync自己定义的协议, 无需远程shell. 但必须在其中一台机器上启动rsync守护进程, 默认端口873. 
+
+rsync可以通过`rsync --daemon`使用独立进程的方式开启守护进程, 或者通过`xinetd`超级进程来管理`rsync`后台进程.
 
 **首先关闭双方的防火墙与SELinux.**
 

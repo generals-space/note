@@ -50,7 +50,7 @@ try:
                 conns[conn.fileno()] = conn
                 requests[conn.fileno()] = b''
                 responses[conn.fileno()] = response
-            ## 如果是`连接socket`可读, 处理客户端发生的信息, 并注册连接对象可写
+            ## 如果是`连接socket`可读, 处理客户端发送的信息, 并注册连接对象可写
             elif event & select.EPOLLIN:
                 ## 暂存请求头信息, 准备打印到日志
                 requests[fileno] += conns[fileno].recv(1024)

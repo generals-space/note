@@ -15,7 +15,7 @@ $ java -jar xxx.jar
 no main manifest attribute, in xxx.jar
 ```
 
-> 正常情况下，java打包成jar包需要在`MANIFEST.MF`中指定Main-Class项以便运行java -jar XXX.jar时找到对应的主类。因为-jar的含义就是后面跟的jar包是有main class可独立运行，所以需要在打包成jar包时指定这个类。
+> 正常情况下，java打包成jar包需要在`MANIFEST.MF`中指定`Main-Class`项以便运行`java -jar XXX.jar`时找到对应的主类。因为`-jar`的含义就是后面跟的jar包是有main class可独立运行，所以需要在打包成jar包时指定这个类。
 
 我尝试了下通过`jar`命令的`-m`在打包时指定`.MF`文件, 但是虽然打包成功了, 但好像无效, 而且打包命令的退出码为1, 这就表示有问题..
 
@@ -28,7 +28,7 @@ echo $?
 
 ------
 
-暂时不管用jar命令打包的问题, 如果只是要修改jar包中某个文件的内容, 可以用如下方式.
+暂时不去管用jar命令打包的问题, 如果只是要修改jar包中某个文件的内容, 可以用如下方式.
 
 在windows下, 可以用解压工具直接打开jar包, 修改目标文件, 然后直接保存到jar包中.
 
@@ -41,4 +41,4 @@ $ sed -in "s/app.hdc.addr/${HDC_ADDR}/g" BOOT-INF/classes/conf.properties
 $ jar -uvf xxx.jar BOOT-INF/classes/conf.properties
 ```
 
-`-u`参数可以将指定文件更新到jar包内. 注意目标文件的路径, 必须是与jar包内部的路径匹配, 如果如果写成这样`jar -uvf xxx.jar /opt/drgs/BOOT-INF/classes/conf.properties`, 那jar包里就多出来一个`/opt/drgs/BOOT-INF/classes/conf.properties`的文件了...
+`-u`参数可以将**指定文件**更新到jar包内. 注意**目标文件**的路径, 必须是与jar包内部的路径匹配, 如果如果写成这样`jar -uvf xxx.jar /opt/drgs/BOOT-INF/classes/conf.properties`, 那jar包里就多出来一个`/opt/drgs/BOOT-INF/classes/conf.properties`的文件了...

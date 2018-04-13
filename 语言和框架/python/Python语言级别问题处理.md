@@ -102,3 +102,13 @@ from . import VERSION PILLOW_VERSION
 貌似是因为python版本不符所以不能用相对路径导入, 使用`from PIL import VERSION PILLOW_VERSION`就可以了.
 
 关于这一点, 我觉得这篇文章[ValueError: Attempted relative import in non-package](http://www.cnblogs.com/DjangoBlog/p/3518887.html)讲得更加深入一点.
+
+## 8.
+
+```
+Python 3.5 Socket TypeError: a bytes-like object is required, not 'str' 错误提示
+```
+
+参考文章
+
+1. [Python 3.5 Socket TypeError: a bytes-like object is required, not 'str' 错误提示](https://blog.csdn.net/yexiaohhjk/article/details/68066843)

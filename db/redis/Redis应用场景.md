@@ -162,7 +162,11 @@ redis 127.0.0.1:6379> config get requirepass
 
 [(error) ERR wrong number of arguments for 'del' command](http://www.cnlvzi.com/index.php/Index/article/id/151)
 
-### 3.1 删除/获取指定前缀的key
+### 3.1 批量删除/获取指定前缀的key
+
+有时开发需要批量删除redis中的某些键, 除了写程序, 还可以在shell中完成这种操作(不是redis交互式命令行哦).
+
+批量删除
 
 ```
 ## bash命令行中必须将keys子命令的参数用引号包裹起来
