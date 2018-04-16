@@ -71,8 +71,6 @@ external_auth:
 
 curl -k http://172.32.100.232:8000/login -H "Accept: application/x-yaml" -d username='general' -d password=general系统用户的密码 -d eauth='pam'
 
-
-
 下面功能类似于`salt '*' cmd.run ifconfig`
 
 curl -k http://172.32.100.232:8000 -H "Accept: application/x-yaml" -H "X-Auth-Token: ca1e83b9ca3817d8333bd4054892bf3ac1b90b73" -d client='local' -d tgt='*' -d fun='cmd.run' -d arg='ifconfig'

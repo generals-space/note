@@ -1,5 +1,7 @@
 # Windows下查看网卡接口索引
 
+<!keys!>: <!接口索引!>
+
 参考文章
 
 1. [Windows下查看网卡“接口索引”的方法](http://news.newhua.com/news/2010/0915/102207.shtml)
