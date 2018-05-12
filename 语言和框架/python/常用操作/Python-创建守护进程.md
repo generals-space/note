@@ -2,11 +2,13 @@
 
 参考文章
 
-[守护进程 & 创建守护进程 & fork一次和fork两次的区别](http://blog.csdn.net/asd7486/article/details/51966225)
+1. [守护进程 & 创建守护进程 & fork一次和fork两次的区别](http://blog.csdn.net/asd7486/article/details/51966225)
 
-[Python中创建守护进程](http://www.cnblogs.com/zhiguo/p/3370599.html)
+2. [Python中创建守护进程](http://www.cnblogs.com/zhiguo/p/3370599.html)
 
-[Python实例浅谈之五Python守护进程和脚本单例运行](http://blog.csdn.net/taiyang1987912/article/details/44850999)
+3. [Python实例浅谈之五Python守护进程和脚本单例运行](http://blog.csdn.net/taiyang1987912/article/details/44850999)
+
+4. [Python守护进程daemon实现](https://blog.csdn.net/zhaihaifei/article/details/70213431)
 
 ## 1. 最简单的守护进程
 
