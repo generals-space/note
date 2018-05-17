@@ -73,3 +73,5 @@ func main() {
 - `timeObj.Minute()`
 
 - `timeObj.Second()`
+
+- `timeObj.Location()` // 所在时区, Location类型, 如UTC, CST等.
