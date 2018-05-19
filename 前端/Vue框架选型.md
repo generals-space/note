@@ -4,6 +4,20 @@
 
 1. [](http://sc.chinaz.com/info/170919037202.htm)
 
+## 1. 框架
+
+1. [vue-manage-system](https://github.com/lin-xin/vue-manage-system)
+    - Vue + Element
+    - 功能比较弱, 但界面挺好看, 不支持移动端
+    - [Vue2 后台管理系统解决方案](https://segmentfault.com/a/1190000008582706)
+2. [vue-framework-wz](https://github.com/herozhou/vue-framework-wz)
+    - Vue + iView
+    - 比较丑, 但文档全面, 支持移动端
+
+3. [vue-manager](https://github.com/luosijie/vue-manager)
+    - Vue + iView
+    - 不错
+    - [我写了一个叫vue-manager的管理后台](https://segmentfault.com/a/1190000010060691)
 ## 1. UI组件库
 
 [iview](https://github.com/iview/iview)
