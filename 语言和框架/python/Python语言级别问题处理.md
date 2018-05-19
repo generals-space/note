@@ -24,26 +24,6 @@ home目录下写了一个调用paramiko模块的小程序, python执行的时候
 
 将程序文件改个名字即可.
 
-## 2. 关于三引号"""
-
-```python
->>> print("""This string has three quotes!
-... Look at what it can do!""")
-This string has three quotes!
-Look at what it can do!
-```
-
-使用三引号实现换行.
-
-
-## 4.
-
-`RuntimeError: thread.__init__() not called`
-
-出现原因: 类中`__init__()`方法中没有初始化Thread原对象.
-
-解决原因: 在`__init__()`方法中加入`threading.Thread.__init__(self)`即可.
-
 ## 5. 自定义模块搜索路径
 
 ### 5.1 <!已删除!>
