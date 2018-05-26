@@ -6,6 +6,12 @@
 
 2. [Golang通过反射实现结构体转成JSON数据](http://blog.cyeam.com/golang/2014/08/11/go_json)
 
+反射的作用有什么呢?
+
+1. 判断数据类型, 类似于python的`type()`函数, js的`instanceof`操作符等
+
+2. 以字符串为键, 获取结构体中的指定成员, 类似于`obj['item']`, 或`obj.__dict__['item']`
+
 ## 1. Type与Value
 
 `reflect`包定义了两种数据类型: `Type`与`Value`.
@@ -30,14 +36,14 @@ fmt.Println(reflect.ValueOf(x))         // 3.4
 
 ```go
 type User struct {
-	name string
+	Name string
 }
 
 func (this *User) GetName() string {
-	return this.name
+	return this.Name
 }
 func (this *User) SetName(name string) {
-	this.name = name
+	this.Name = name
 }
 ```
 
@@ -100,8 +106,13 @@ fmt.Println(userType2.FieldByName("Name"))  // {Name  string  0 [0] false} true
 
 ## 3. Value类型的可用方法
 
-### `CanSet()`
+`Type`类型的相关方法只是为了获取目标类型的成员属性(或方法)的名称, 或类型, 而如果想要通过字符串变量获取指定成员字段的值的话, 就需要使用`Value`类型了.
 
-与`Elem()`方法用法类似. 不过它是用于判断的, 判断目标对象值是否可寻址(其实就是判断是否为指针), 以便对目标对象进行修改.
+与`Type`类型中的`Elem()`方法用法相似, `Value`类型也可以使用.
 
-<???>留个疑问, 这个方法没有办法得到猜测的结果.
+```go
+user1 := &User{Name: "general"} // 指针
+// user2 := User{Name: "jiangming"}                // 引用
+theVal := reflect.TypeOf(user1).Elem()
+fmt.Println(theVal.FieldByName("Name"))				// 输出general
+```
