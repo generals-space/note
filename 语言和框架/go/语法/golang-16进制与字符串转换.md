@@ -52,6 +52,10 @@ func main() {
 	// 16进制字符串转[]byte数组, 然后可以通过[]byte数组转原始字符串
 	byteArray, _ := hex.DecodeString("68656c6c6f20776f726c64")
 	fmt.Printf("%d\n", byteArray) // [104 101 108 108 111 32 119 111 114 108 100]
+	for _, byt := range byteArray {
+        fmt.Printf("0x%x, ", byt)
+    }		// 0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x20, 0x77, 0x6f, 0x72, 0x6c, 0x64, 
+    fmt.Println()
 	fmt.Printf("%s\n", byteArray) // hello world
 
 	// asicc字符串转16进制字符串
