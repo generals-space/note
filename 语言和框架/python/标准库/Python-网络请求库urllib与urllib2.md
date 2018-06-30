@@ -46,9 +46,6 @@ urllib.urlopen(url[, data[, proxies[, context]]])
 
 `urllib`提供了一个方法`urlencode()`来做这件事.
 
-------
-
-关于代理
 
 ### 1.2 urllib.urlencode
 

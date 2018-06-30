@@ -4,6 +4,8 @@
 
 1. [go语言int类型转化成string类型的方式](https://blog.csdn.net/love_se/article/details/7947511)
 
+2. [如何在Golang中将类型从字符串转换为 float64 i？](https://cloud.tencent.com/developer/ask/44574/answer/70011)
+
 主要还是`[]byte`和`字符串`, `缓冲区buffer`之间的转换.
 
 在Go当中string底层是用[]byte存的, 并且是不可以改变的(如果要修改string内容需要将string转换为[]byte或[]rune，并且修改后的string内容是重新分配的).
@@ -42,3 +44,20 @@ buffer结构在`bytes`标准库中定义.
 `strconv.Atoi func(s string) (int, error)`: ASCII -> Int, 字符串转整型
 
 `strconv.Itoa func(i int) string`: Int -> ASCII, 整型转字符串
+
+------
+
+浮点型与字符串之间互转
+
+```go
+a := "77.9285731709928"
+b := "250"
+
+a1, _ := strconv.ParseFloat(a, 64)
+b1, _ := strconv.ParseFloat(b, 64)
+
+fmt.Printf("%f\n", a1)	// 77.928573
+fmt.Printf("%f\n", b1)	// 250.000000
+```
+
+`strconv`库还有`ParseBool`, `ParseInt`, `ParseUint`等方法, 记录一下.

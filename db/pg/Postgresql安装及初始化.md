@@ -43,6 +43,8 @@ host    all             all             ::1/128                 trust
 host    all             all             0.0.0.0/0                 md5 
 ```
 
-本机信任(trust)，其他所有机器可以MD5验证连接, 其实就是普通用户名密码形式.
+本机信任(trust), 其他所有机器可以MD5验证连接, 其实就是普通用户名密码形式.
 
 哦, 还有, `postgresql.conf`的`listen_addresses`默认是`localhost`, 记得改成'*'表示监听所有连接.
+
+> pg_hba.conf修改后, 使用`pg_ctl reload`重新读取pg_hba.conf文件, 如果pg_ctl找不到数据库, 则用`-D /.../pgsql/data/`指定数据库目录, 或`export PGDATA=/.../pgsql/data/`导入环境变量.
