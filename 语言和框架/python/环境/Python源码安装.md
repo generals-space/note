@@ -10,6 +10,8 @@
 
 2. [get-pip源码](https://bootstrap.pypa.io/get-pip.py)
 
+3. [关于在centos下安装python3.7.0以上版本时报错ModuleNotFoundError: No module named '_ctypes'的解决办法](https://blog.csdn.net/qq_36416904/article/details/79316972)
+
 实验环境:
 
 - 系统版本: docker的CentOS6镜像...够精简了吧. 自带的python版本为`2.6.6`
@@ -114,3 +116,14 @@ index-url = http://pypi.douban.com/simple/
 ```
 
 完成.
+
+## 3. FAQ
+
+### 3.1 关于在centos下安装python3.7.0以上版本时报错ModuleNotFoundError: No module named '_ctypes'的解决办法
+
+3.7版本需要一个新的包libffi-devel，安装此包之后再次进行编译安装即可。
+
+```
+$ yum install libffi-devel -y
+$ make && make install
+```
