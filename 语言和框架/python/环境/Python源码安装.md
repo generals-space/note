@@ -27,7 +27,7 @@ django可能会用到sqlite库, 其实sqlite库已经集成到python里, 但是�
 `openssl-devel`则是为了使用python的httplib库去获取`https`类型的url的内容.
 
 ```
-$ yum install python-devel openssl-devel sqlite-devel
+$ yum install -y python-devel openssl-devel sqlite-devel
 ```
 
 ### 1.2 配置并编译
