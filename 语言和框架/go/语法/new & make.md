@@ -8,6 +8,6 @@
 
 参考文章1中已经说了, 通俗一点来讲, `new`的作用类似于c里的`malloc + memset(0)`, 构造了内存空间, 清空, 但并未初始化.
 
-而`make`才更像python/java中的new, 不过new出来的是动态类型, slice, map, channel这种数据结构.
+而`make`才更像python/java中的`new`, 不过new出来的是动态类型, `slice`, `map`, `channel`这种数据结构.
 
-或者说, 正是因为new和make两种方式同时存在(基础类型的指针与动态类型的引用), 才使得golang能同时兼备C和java两种特性. 虽然我还并不太能理解更深层的原理.
+或者说, 正是因为`new`和`make`两种方式同时存在(基础类型的指针与动态类型的引用), 才使得golang能同时兼备C和java两种特性. 虽然我还并不太能理解更深层的原理.
