@@ -1,4 +1,4 @@
-# Squid配置文件详解
+# Squid-访问限制
 
 参考文章
 
@@ -33,7 +33,7 @@ Re-type new password:
 Adding password for user test
 ```
 
-接下来修改`/etc/squid/squid.conf`文件, 在`http_access deny all`之前加上下面几句：
+接下来修改`/etc/squid/squid.conf`文件, 在`http_access deny all`之前加上下面几句: 
 
 ```
 auth_param basic program /usr/lib64/squid/basic_ncsa_auth /etc/squid/squid_passwd
@@ -45,7 +45,7 @@ acl ncsa_users proxy_auth REQUIRED
 http_access allow ncsa_users
 ```
 
-下面说说这几个选项的含义：
+下面说说这几个选项的含义: 
 
 `auth_param basic program /usr/lib/squid/basic_ncsa_auth /etc/squid/squid_passwd`: 指定密码文件和用来验证密码的程序
 
