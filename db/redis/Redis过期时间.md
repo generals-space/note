@@ -20,6 +20,6 @@
 
 `RENAME`命令的另一种可能是, 尝试将一个带生存时间的 key 改名成另一个带生存时间的`another_key` , 这时旧的`another_key`(以及它的生存时间)会被删除, 然后旧的 key 会改名为`another_key` , 因此, 新的 `another_key`的生存时间也和原本的key一样. 
 
-使用`PERSIST`命令可以在不删除 key 的情况下, 移除 key 的生存时间, 让 key 重新成为一个『持久的』(persistent) key . 
+使用`PERSIST`命令可以在不删除 key 的情况下, 移除 key 的生存时间, 让 key 重新成为一个『持久的』(persistent) key. 
 
 可以对一个已经带有生存时间的 key 执行 EXPIRE 命令, 新指定的生存时间会取代旧的生存时间. 
