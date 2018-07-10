@@ -2,11 +2,13 @@
 
 参考文章
 
-[Mongodb2.6 数据库和集合的复制(1)](https://my.oschina.net/u/1449160/blog/261203)
+1. [Mongodb2.6 数据库和集合的复制(1)](https://my.oschina.net/u/1449160/blog/261203)
 
-[Mongodb数据导出工具mongoexport和导入工具mongoimport介绍](http://chenzhou123520.iteye.com/blog/1641319)
+2. [Mongodb数据导出工具mongoexport和导入工具mongoimport介绍](http://chenzhou123520.iteye.com/blog/1641319)
 
-[mongodb 数据库操作--备份 还原 导出 导入](http://www.jb51.net/article/52498.htm)
+3. [mongodb 数据库操作--备份 还原 导出 导入](http://www.jb51.net/article/52498.htm)
+
+4. [MongoDB整库备份与还原以及单个collection备份、恢复方法](https://www.cnblogs.com/Joans/p/4453938.html)
 
 ## 1. 复制与克隆
 
