@@ -61,3 +61,17 @@ Server: bfe/1.0.8.18
 ```
 
 通过变量传入的字符串会被以空格分隔开, 所以会出错...不过写在行内也真够low的.
+
+## 3. 
+
+```
+curl -H "Content-Type: application/json" -d "{\"OS\":\"$RELEASE\",\"Sn\":\"$SN\",\"Memory\":[$MEMORY],\"MemorySum\":$MEMORY_SUM,\"DiskSum\":$DISK_SUM,\"Disk\":[$DISK]}" -k https://192.168.174.53/server_equipment_update
+```
+
+`-H`: 添加请求头信息
+
+`-d`: 指定数据, 此选项出现时请求类型自动变为`POST`
+
+`-k`: 忽略对目标网站的证书验证
+
+`-X POST|HEAD|OPTION`: 可以明确指定请求类型.
