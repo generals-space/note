@@ -32,11 +32,11 @@
 ```py
 from pathlib import Path
 ## 这里有两种相对路径的导入方法
-from config.settings import name, file
+from config.settings import config
 from others import show
 
-name = 'jiangming'
-file = open(str(Path.cwd().joinpath(Path(__file__).parent)) + '/config/list.txt')
+config['name'] = 'jiangming'
+config['file'] = open(str(Path.cwd().joinpath(Path(__file__).parent)) + '/config/list.txt')
 
 show.getContent()
 ```
@@ -47,8 +47,10 @@ show.getContent()
 #!/usr/bin/python3.6
 #!encoding:utf-8
 
-name = 'general'
-file = None
+config = {
+    'name': 'general',
+    'file': None,
+}
 ```
 
 ...`list.txt`这个文件的内容随便了.
@@ -57,11 +59,11 @@ file = None
 
 ```py
 ## from ..config import settings
-## from ..config.settings import file
+## from ..config.settings import config
 ## 上面的两种导入方式都会报如下错误
 ## ValueError: attempted relative import beyond top-level package
 def getContent():
-    cnt = file.read()
+    cnt = config['file'].read()
     print(cnt)
 ```
 
@@ -70,3 +72,23 @@ def getContent():
 > 当然, 顶层模块中的文件之间是可以相互导入的.
 
 那么, 我们的想法还有没有办法实现呢? 
+
+当然是可以的, 只要我们调整一个目录结构, 让子模块之间的引用不再涉及到顶层模块所在路径即可.
+
+如下:
+
+```
+.
+├── main.py
+└── sub
+    ├── __init__.py
+    ├── config
+    │   ├── __init__.py
+    │   ├── list.txt
+    │   └── settings.py
+    └── others
+        ├── __init__.py
+        └── show.py
+```
+
+这样, 在show.py中导入settings文件时, 将不经过顶层模块所在目录, 就可以了.
