@@ -6,6 +6,8 @@
 
 2. [Golang通过反射实现结构体转成JSON数据](http://blog.cyeam.com/golang/2014/08/11/go_json)
 
+3. [golang-利用反射给结构体赋值](https://www.cnblogs.com/fwdqxl/p/7789162.html)
+
 反射的作用有什么呢?
 
 1. 判断数据类型, 类似于python的`type()`函数, js的`instanceof`操作符等
@@ -115,4 +117,62 @@ user1 := &User{Name: "general"} // 指针
 // user2 := User{Name: "jiangming"}                // 引用
 theVal := reflect.TypeOf(user1).Elem()
 fmt.Println(theVal.FieldByName("Name"))				// 输出general
+```
+
+## 4. 通过反射修改结构体成员的值
+
+在golang中, 结构体的成员的取值一般为`对象名.字段名`, 而字段名是没有引号的. 所以当要修改的字段不确定时, 我们没有办法像在python中使用`__dict__`一样方便地修改结构体成员的值.
+
+比如一个结构体对象
+
+```go
+type MyStruct struct{
+	Attr01 string
+	Attr02 string
+	Attr03 string
+	...
+}
+```
+
+而我们有一个map的键值对
+
+```go
+map[string]string{
+	"Attr01": "Value01",
+	"Attr02": "Value02",
+	"Attr03": "Value03",
+	...
+}
+```
+
+如何将map中的值更新到结构体对象中?
+
+这就需要用到反射了. 参考文章3中给出了详细的做法, 这里贴一个简短的示例.
+
+```go
+package main
+import (
+	"fmt"
+	"reflect"
+	"unsafe"
+)
+// User ...
+type User struct {
+	Name string
+	Age int
+}
+func main(){
+	user := &User{
+		Name: "general",
+		Age: 21,
+	}
+	fmt.Printf("%+v\n", user)
+	nameField := reflect.ValueOf(user).Elem().FieldByName("Name")
+	addrOfName := nameField.Addr().Pointer()	// 这里是uintptr类型
+	*(*string)(unsafe.Pointer(addrOfName)) = "jiangming"
+	ageField := reflect.ValueOf(user).Elem().FieldByName("Age")
+	addrOfAge := ageField.Addr().Pointer()
+	*(*int)(unsafe.Pointer(addrOfAge)) = 26
+	fmt.Printf("%+v\n", user)
+}
 ```
