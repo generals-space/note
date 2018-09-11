@@ -2,7 +2,7 @@
 
 <!-- <!tags!>: <!源码安装!> -->
 
-<!-- <!key!>: eSy'39Nmarrypjlo -->
+<!-- <!keys!>: eSy'39Nmarrypjlo -->
 
 参考文章
 
