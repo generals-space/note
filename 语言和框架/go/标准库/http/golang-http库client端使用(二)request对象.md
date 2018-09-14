@@ -49,3 +49,90 @@ req.Header.Set("User-Agent", "curl/7.54.0")
 ------
 
 然后是post请求的实现...
+
+如下示例实现了, post请求, 带json参数, 修改请求头字体, 解析响应体, 够详细了.
+
+```go
+package main
+
+import (
+	"bytes"
+	"encoding/json"
+	"io/ioutil"
+	"log"
+	"net/http"
+)
+
+// LoginInfo ...
+type LoginInfo struct {
+	Action string `json:"action"`
+	Params struct {
+		LoginID string `json:"login_id"`
+		Passwd  string `json:"passwd"`
+		Type    int    `json:"type"`
+	} `json:"params"`
+}
+// LoginRespPayload ...
+type LoginRespPayload struct{
+	Token string	`json:"token"`
+}
+// LoginResp ...
+type LoginResp struct {
+	Token  string `json:"token"`
+	Code   int    `json:"code"`
+	Msg    string `json:"msg"`
+	Total  int `json:"total"`
+	Result LoginRespPayload `json:"result"`
+}
+
+func main() {
+	serverAddr := "http://sapigs.vipvoice.link/user/checkin.boxuds"
+	client := &http.Client{}
+
+	// loginInfo := make(map[string]interface{})
+	// loginInfo["action"] = "user/checkin"
+	// loginInfo["params"] = map[string]interface{}{
+	// 	"login_id": "13073197649",
+	// 	"passwd": "123456",
+	// 	"type": 0,
+	// }
+	loginInfo := &LoginInfo{
+		Action: "user/checkin",
+	}
+	loginInfo.Params.LoginID = "13073197649"
+	loginInfo.Params.Passwd = "123456"
+	loginInfo.Params.Type = 0
+
+	bytesData, err := json.Marshal(loginInfo)
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
+	// log.Println(string(bytesData))
+	// return
+	jsonData := bytes.NewReader(bytesData)
+	req, err := http.NewRequest("POST", serverAddr, jsonData)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("Referer", "http://ip.vipvoice.link/login?redirect=%2F")
+	req.Header.Set("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36")
+
+	rsp, err := client.Do(req)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer rsp.Body.Close()
+
+	rspData, err := ioutil.ReadAll(rsp.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.Println(string(rspData))
+	loginRsp := &LoginResp{}
+	json.Unmarshal(rspData, loginRsp)
+	log.Printf("%+v", loginRsp)
+}
+```
