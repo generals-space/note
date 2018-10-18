@@ -27,18 +27,24 @@ win平台下, 有一个bat脚本`MxiPlayer.exe`(没有办法查看ta的源码, �
 
 ## 1. `exec()`
 
-这是唯一一个bat脚本执行完毕后可以自动结束的函数, 其他的都不行.
+这是唯一一个bat脚本执行完毕后可以自动结束的函数(`close`与`exit`事件可以被捕捉到), 其他的都不行.
 
 ```js
 // 以下两个command都可以
 const command = '"C:\\Program Files\\MxiPlayer-3.0.8\\MxiPlayer.exe" "C:\\Program Files\\MxiPlayer-3.0.8\\config.json"';
 // const command = 'MxiPlayer.exe config.json';
-cprocess.exec(command, {cwd: 'C:\\Program Files\\MxiPlayer-3.0.8'}, (err, stdout, stderr) => {
+var subproc = cprocess.exec(command, {cwd: 'C:\\Program Files\\MxiPlayer-3.0.8'}, (err, stdout, stderr) => {
     if(err){
         console.error(err);
         return;
     }
     console.log(stdout);
+});
+subproc.on('close', (code) => {
+    console.log('close code: ', code);
+});
+subproc.on('exit', (code) => {
+    console.log('exit code: ', code);
 });
 ```
 
