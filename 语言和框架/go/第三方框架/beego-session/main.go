@@ -37,7 +37,6 @@ func indexHandler(resp http.ResponseWriter, req *http.Request) {
 
 func loginHandler(resp http.ResponseWriter, req *http.Request) {
 	defer req.Body.Close()
-	user := map[string]interface{}{}
 
 	req.ParseForm()
 	userinfo := req.Form
@@ -51,7 +50,6 @@ func loginHandler(resp http.ResponseWriter, req *http.Request) {
 		sess, _ := globalSessions.SessionStart(resp, req)
 		defer sess.SessionRelease(resp)
 		sess.Set("username", username)
-		user["name"] = username
 		// 登录成功, 跳转到首页
 		http.Redirect(resp, req, "/", 301)
 	} else {
