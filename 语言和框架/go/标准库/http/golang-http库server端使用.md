@@ -73,6 +73,14 @@ $ curl -X POST -d '{"username": "general", "password": "123456"}' localhost:8079
 
 关于POST请求的参数的获取, 虽然有人说在手动调用`req.ParseForm()`方法后可以通过`req.Form`变量得到POST的参数, 但是得到的是一个map类型, 而且内容非常不合理(上面POST函数测试时得到了一个`map[{"username": "general", "password": "123456"}:[]]`...这什么东西?). 还是用解析`Body`中的数据更简单方便.
 
+------
+
+咳, 打脸了.
+
+通过解析`req.Body`中的内容获取的信息是json格式的数据, 如ajax, postman测试等.
+
+但是当使用`form`标签元素, 通过submit类型的按钮点击直接提交时, Body里是没有内容的. 此时我们只能先调用`req.ParseForm()`, 然后`req.Form`就表示了提交来的数据, 类型为`map[string]interface{}`.
+
 ## 理解: http标准库的缺陷及使用第三方http server的必要性
 
 虽然 net/http 提供的各种功能已经满足基本需求了, 但是很多时候还不够方便, 比如: 
