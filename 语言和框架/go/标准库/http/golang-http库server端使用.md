@@ -79,7 +79,11 @@ $ curl -X POST -d '{"username": "general", "password": "123456"}' localhost:8079
 
 通过解析`req.Body`中的内容获取的信息是json格式的数据, 如ajax, postman测试等.
 
-但是当使用`form`标签元素, 通过submit类型的按钮点击直接提交时, Body里是没有内容的. 此时我们只能先调用`req.ParseForm()`, 然后`req.Form`就表示了提交来的数据, 类型为`map[string]interface{}`.
+但是当使用`form`标签元素, 通过submit类型的按钮点击直接提交时, Body里是没有内容的...
+
+此时我们只能先调用`req.ParseForm()`, 然后`req.Form`就表示了提交来的数据, 类型为`map[string]interface{}`, 如`map[username:[admin] password:[123456]]`. 
+
+注意: 同一个name可能有多个值, 所以取值时需要这样`req.Form["username"][0]`, 或者`req.Form.Get("username")`.
 
 ## 理解: http标准库的缺陷及使用第三方http server的必要性
 
