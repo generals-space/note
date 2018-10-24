@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>session测试</title>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.1.3/css/bootstrap.css" rel="stylesheet">
+</head>
+<body>
+    <header class="container">
+        <div class="row">
+            <div class="col-md-3 offset-md-9 text-right">
+                {{if .name}}
+                    <a href="/logout">注销</a>
+                {{end}}
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        {{if .name}}
+            欢迎: {{.name}}
+        {{else}}
+            <form action="/login" method="POST">
+                <div class="form-group">
+                    <label for="username">用户名</label>
+                    <input type="text" class="form-control" id="username" name="username">
+                </div>
+                <div class="form-group">
+                    <label for="password">密码</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                </div>
+                <button type="submit" class="btn btn-primary">登录</button>
+            </form>
+        {{end}}
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.1.3/js/bootstrap.js"></script>
+</body>
+</html>
