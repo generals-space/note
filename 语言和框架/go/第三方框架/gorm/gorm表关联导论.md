@@ -17,3 +17,22 @@
 4. 多对多
 
 5. 多种包含
+
+使用如下docker-compose配置部署依赖环境
+
+```yml
+version: '2'
+services:
+  postgres:
+    image: postgres
+    environment:
+    - "POSTGRES_USER=gormtest"
+    - "POSTGRES_PASSWORD=123456"
+    - "POSTGRES_DB=gormdb"
+    ports:
+    - "7723:5432"
+    volumes:
+      - ~/Public/dbdata/gormtest:/var/lib/postgresql/data
+```
+
+> win下就不要映射目录了...
