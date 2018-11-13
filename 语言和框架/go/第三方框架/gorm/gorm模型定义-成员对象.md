@@ -178,3 +178,5 @@ generals-MacBook-Pro:gormtest general$ go run main.go
 ```
 
 很完美.
+
+> 注意: 成员对象的标记中必须要用`gorm:"type:text"`来存储文本模式的内容.
