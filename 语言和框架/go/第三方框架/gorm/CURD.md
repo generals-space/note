@@ -45,3 +45,26 @@ db.NewRecord(user) // => 创建`user`后返回`false`
 `Updates`可以更新多个属性, 它只接受两种类型的参数, `map`和`struct`, 并且注意不能是指针类型, 只能为对象的引用.
 
 使用`struct`时, 注意gorm会自动忽略其中的空值, 比如, 如果其中某个字段为bool类型, 而它的是false, 那gorm就不会更新这个字段, 同理, 如果某个字符串字段的值为空, 也会被忽略. 使用map作为参数就不会有此问题.
+
+## Scan查询
+
+```go
+type User struct {
+	Name string
+	Age uint8
+}
+```
+
+一般与`Select()`配合使用, 当我们只想要查询某张表的指定字段时, 其他字段是没有用处的, 那么常规的`Find(&users)`其实有点得不偿失的感觉, 尤其是当这张表中的字段很多时, 结果列表可能占用较大内存. 
+
+此时我们可以使用`Scan()`方法, 仅将我们需要的列放入结果中即可.
+
+```go
+type NameResult struct{
+	Name string
+}
+nameResults := []*NameResult{}
+db.Model(&User{}).Select("name").Scan(&nameResults)
+```
+
+> 注意: 如果使用`First()`或`Find()`去查询`&nameResults`的值什么也不会得到, 猜测是因为与`Model()`的参数类型不同. 就算没有Model, 也会因为数据库中根本不存在`name_results`表而查询失败.
