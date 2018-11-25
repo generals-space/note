@@ -173,10 +173,6 @@ postgres=# grant all on database db_1 to user_1;
 GRANT
 ```
 
-```
-
-```
-
 ## 总结
 
 `\du`: 可以查看所有已存在的用户/角色, 以及它们拥有的权限属性
