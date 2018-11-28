@@ -99,3 +99,34 @@ panic
 c                   // myfunc()中的defer执行完毕
 after myfunc        // 这里跳出了myfunc()
 ```
+
+ok, 那么实际应用场景是怎样的? 
+
+可以参考一下`gin`框架的方式, `gin`提供了`gin.Recovery()`中间件, 在映射路由前`Use`这个中间件, 如下
+
+```go
+ret := gin.New()
+ret.Use(gin.Recovery())
+ret.GET("/", controller.IndexAction)
+ret.POST("/", controller.IndexAction)
+```
+
+查看`gin.Recovery`的源码一部分如下
+
+```go
+	return func(c *Context) {
+		defer func() {
+			if err := recover(); err != nil {
+				if logger != nil {
+					stack := stack(3)
+					httprequest, _ := httputil.DumpRequest(c.Request, false)
+					logger.Printf("[Recovery] panic recovered:\n%s\n%s\n%s%s", string(httprequest), err, stack, reset)
+				}
+				c.AbortWithStatus(500)
+			}
+		}()
+		c.Next()
+	}
+```
+
+按照`defer` + `recover`只能捕捉之后的异常, 并且无法恢复到异常代码之后的代码的这种特性, 优先加载`Recovery`中间件后, `c.Next()`中, 也就是控制器, 实际的业务逻辑中出现的异常, 都会被`Recovery`捕捉, 不会造成http主服务崩溃.

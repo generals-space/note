@@ -93,14 +93,16 @@ fmt.Println(userType1.NumMethod())      // 2 表示*User作receiver拥有2个方
 fmt.Println(userType2.NumMethod())      // 0 表示User作receiver没有方法
 ```
 
-### `Field()`
+### `Field()`与`FieldByName()`
 
 `Field func(i int) StructField`
 
-接受一个整型变量作为参数, 返回`StructField`结构体, 表示目标字段的相应信息.
+接受一个整型变量作为参数`i`, 其值为按照`NumField()`返回的属性数量范围内的索引, 即按照属性定义的顺序的序号, ta返回`StructField`结构体, 表示目标字段的相应信息.
+
+`FieldByName()`可以直接通过属性名得到该属性成员的相关信息.
 
 ```go
-fmt.Println(userType2.Field(0))             // {Name  string  0 [0] false}
+fmt.Println(userType2.Field(0))             // {Name  string  0 [0] false}, 这个结果的第一个成员就是Name, 即属性名
 fmt.Println(userType2.FieldByName("Name"))  // {Name  string  0 [0] false} true
 ```
 
