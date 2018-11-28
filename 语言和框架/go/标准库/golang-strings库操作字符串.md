@@ -107,7 +107,29 @@ func main() {
 }
 ```
 
-## 5. 其他
+## 5. 分隔符替换
+
+可以方便地实现`A_B_C` -> `A.B.C`这种形式的字符转换
+
+`strings.NewReplacer(old, new ...)`
+
+接受偶数个字符作为参数, 每两个为一对, 作用是将目标字符串中前一个字符都转换成后一个字符. 返回一个`Replacer`对象, 它拥有`Replace(targetStr)`方法, 可以完成替换.
+
+```go
+old := "my name is general"
+rep := strings.NewReplacer(" ", "_")
+new := rep.Replace(old)
+fmt.Println(new)	// my_name_is_general
+```
+
+```go
+old := "A.B-C"
+rep := strings.NewReplacer(".", "_", "-", "_")
+new := rep.Replace(old)
+fmt.Println(new)	// A_B_C
+```
+
+## 6. 其他
 
 ```go
 //ToLower 将字符串中的 Unicode 字符全部转换为相应的小写字符

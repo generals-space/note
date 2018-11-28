@@ -4,6 +4,8 @@
 
 1. [Go 字符串格式化](https://studygolang.com/articles/1915)
 
+2. [基础知识 - Golang 中的格式化输入输出](https://www.cnblogs.com/golove/p/3284304.html)
+
 ```go
 package main
 import "fmt"
@@ -78,4 +80,29 @@ func main() {
     // 为了使用左对齐你可以在宽度之前加上`-`号
     fmt.Printf("|%-6s|%-6s|\n", "foo", "b")
 }
+```
+
+## 关于16进制的输出
+
+使用`#`标记可以输出`0x`字样
+
+```go
+fmt.Printf("%#x\n", 1)      // 0x1
+fmt.Printf("%#x\n", 255)    // 0xff
+fmt.Printf("%#x\n", 256)    // 0x100
+```
+
+使用`0n`(`n`为大于0的整数)可以定义每一位16进制的宽度, 用于保持格式的一致
+
+```go
+fmt.Printf("%02x\n", 1)     // 01
+fmt.Printf("%02x\n", 255)   // ff
+fmt.Printf("%02x\n", 256)   // 100 ...这个好像不是02的锅, 因为单个16进制数最大值为255
+fmt.Printf("%02x\n", []byte{1, 2, 254, 255}) // 0102feff
+```
+
+当然, 两种标记可以配合使用
+
+```go
+fmt.Printf("%#02x\n", []int{1, 2, 254, 255}) // [0x01 0x02 0xfe 0xff]
 ```

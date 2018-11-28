@@ -12,6 +12,8 @@ mongo中的一条数据就是一个json对象, 被称为一篇文档(Document).
 
 ## 1. 数据库操作
 
+`show dbs`可以查看数据库列表, 类似于mysql中的`show databases;`
+
 ### 1.1 新建
 
 ```

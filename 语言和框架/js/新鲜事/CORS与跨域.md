@@ -22,7 +22,7 @@
 
 > CORS是一个W3C标准, 全称是"跨域资源共享"（Cross-origin resource sharing）. 它允许浏览器向跨源服务器, 发出XMLHttpRequest请求, 从而克服了AJAX只能同源使用的限制. 
 
-> 基本上目前所有的浏览器都实现了CORS标准, 其实目前几乎所有的浏览器ajax请求都是基于CORS机制的, 只不过可能平时前端开发人员并不关心而已, 所以说其实现在CORS解决方案**主要是考虑后台该如何实现的问题**.
+> 基本上目前所有的浏览器都实现了CORS标准, 其实目前几乎所有的浏览器ajax请求都是基于CORS机制的, 只不过可能平时前端开发人员并不关心而已, 所以说其实现在CORS解决方案 **主要是考虑后台该如何实现的问题**.
 
 如何实现? 
 
@@ -61,25 +61,11 @@ if ($request_method = 'OPTIONS') {
     add_header 'Access-Control-Allow-Origin' '*';
     add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
     add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
-    
-    add_header 'Access-Control-Max-Age' 1728000;
-    add_header 'Content-Type' 'text/plain charset=UTF-8';
-    add_header 'Content-Length' 0;
     return 204;
-}
-if ($request_method = 'POST') {
-    add_header 'Access-Control-Allow-Origin' '*';
-    add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
-    add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
-}
-if ($request_method = 'GET') {
-    add_header 'Access-Control-Allow-Origin' '*';
-    add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
-    add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
 }
 ```
 
-这是参考文章4中提到的, 可能没必要将各种请求都这个区分开, 不过是最全的情况了. 另外, 这个条件判断也可以精确到接口级别, 没必要作为全局配置处理.
+~~ 这是参考文章4中提到的, 可能没必要将各种请求都这个区分开, 不过是最全的情况了. 另外, ~~ 这个条件判断可以精确到接口级别(写到`location`块里), 没必要作为全局配置处理.
 
 有了这些知识储备, 再遇到跨域问题, 可以参考文章1和参考文章3, 讲的很详细, 对各种问题的分析也到全面.
 

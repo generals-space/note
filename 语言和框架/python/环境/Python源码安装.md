@@ -2,13 +2,15 @@
 
 <!-- <!tags!>: <!源码安装!> -->
 
-<!-- <!key!>: eSy'39Nmarrypjlo -->
+<!-- <!keys!>: eSy'39Nmarrypjlo -->
 
 参考文章
 
 1. [urllib2.URLError: < urlopen error unknown url type: https >](http://blog.csdn.net/hewy0526/article/details/9202523)
 
 2. [get-pip源码](https://bootstrap.pypa.io/get-pip.py)
+
+3. [关于在centos下安装python3.7.0以上版本时报错ModuleNotFoundError: No module named '_ctypes'的解决办法](https://blog.csdn.net/qq_36416904/article/details/79316972)
 
 实验环境:
 
@@ -27,7 +29,7 @@ django可能会用到sqlite库, 其实sqlite库已经集成到python里, 但是�
 `openssl-devel`则是为了使用python的httplib库去获取`https`类型的url的内容.
 
 ```
-$ yum install python-devel openssl-devel sqlite-devel
+$ yum install -y python-devel openssl-devel sqlite-devel
 ```
 
 ### 1.2 配置并编译
@@ -114,3 +116,14 @@ index-url = http://pypi.douban.com/simple/
 ```
 
 完成.
+
+## 3. FAQ
+
+### 3.1 关于在centos下安装python3.7.0以上版本时报错ModuleNotFoundError: No module named '_ctypes'的解决办法
+
+3.7版本需要一个新的包libffi-devel，安装此包之后再次进行编译安装即可。
+
+```
+$ yum install libffi-devel -y
+$ make && make install
+```

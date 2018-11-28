@@ -19,6 +19,8 @@ git reset HEAD
 git reset --hard HEAD^
 ```
 
+git pull --rebase=origin
+
 ```
 ## 查看对象类型, 是blob, commit还是tree或tag.
 git cat-file -t 51519c7

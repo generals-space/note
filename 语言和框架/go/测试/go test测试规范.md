@@ -1,0 +1,25 @@
+# go test测试规范
+
+参考文章
+
+1. [Golang 单元测试和性能测试](https://blog.csdn.net/shenlanzifa/article/details/51451814)
+
+Go语言中自带有一个轻量级的测试框架`testing`和自带的`go test`命令来实现单元测试和性能测试，`testing`框架和其他语言中的测试框架类似，你可以基于这个框架写针对相应函数的测试用例，也可以基于该框架写相应的压力测试用例.
+
+在一个目录下执行`go test`会自动执行当前目录下的测试文件.
+
+**原则**
+
+1. 文件名必须以`_test.go`结尾，这样在执行go test的时候才会执行到相应的代码
+
+2. 你必须import `testing`这个包
+
+3. 所有的测试用例函数必须是`Test`开头
+
+4. 测试用例会按照测试文件源代码中写的顺序依次执行
+
+5. 测试函数`TestXxx()`的参数类型为`testing.T`，我们可以使用该类型来记录错误或者是测试状态
+
+6. 测试格式：`func TestXxx (t *testing.T)`, `Xxx`部分可以为任意的字母数字的组合，但是首字母不能是小写字母`[a-z]`，例如`Testintdiv`是错误的函数名。
+
+7. 函数中通过调用`testing.T`的`Error`, `Errorf`, `FailNow`, `Fatal`, `FatalIf`方法，说明测试不通过，调用`Log`方法用来记录测试的信息。

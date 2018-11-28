@@ -1,5 +1,11 @@
 # SSH(-o)选项参数
 
+参考文章
+
+1. [Linux之ssh连接保持与重用](http://www.ttlsa.com/linux/linux-ssh-connection-reuse/)
+
+2. [通过 ControlMaster 对 OpenSSH 进行加速，减少系统资源消耗](https://www.ibm.com/developerworks/community/blogs/IBMzOS/entry/20150502?lang=en)
+
 `-o`选项有很多特性可以选用, 其基本语法为
 
 `ssh -o '选项 值' -o '选项 值' user@ip`

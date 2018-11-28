@@ -18,45 +18,7 @@ nc 远程主机IP 4567 < redis.tar.gz
 
 传输完成之后双方自动退出.
 
-## 2. 强制性操作
-
-这些方法一般用于脚本中, 以防止脚本执行被打断. 在实际系统中并不建议直接使用强制手段.
-
-### 2.1 强制复制
-
-```shell
-cp -f 源文件 目标文件
-```
-
-`-r`选项可以用于复制目录. **`scp`命令也是如此**.
-
-`-f --force`选项如果表示目标文件已存在, 先将其删除再重新复制一次, 如果没有这个选项, 将会提示你是否确定要覆盖目标文件.
-
-> PS: 有的时候即使使用了`-f`选项, 也依然会得到提示, 无法直接覆盖, 为什么?
-
-> 这有可能是因为系统默认对`cp`命令使用了别名`alias cp='cp -i'`, `-i`选项将禁止覆盖目标文件. 直接使用`alias`查看当前所有的别名.
-
-> 解决方法是使用`\cp -f 源文件 目标文件`, 使用`\cp`复制时不走`alias`;
-
-> 另外, 也可以使用`unalias cp; cp -f 源文件 目标文件`, 这是临时取消`cp`的`alias`(不过这个方法可以影响整个终端, 感觉有点风险).
-
-### 2.2 强制删除
-
-```shell
-rm -rf 目标文件/目录
-```
-
-`-r`选项可用于删除目录;
-
-`-f`选项可以防止删除原来不存在的目标文件/目录时命令中止的情况.
-
-## 2.3 强制创建目录
-
-```shell
-mkdir -p /tmp/first/second
-```
-
-`-p`命令可以防止当创建一个目录, 而你指定的它的父目录也不存在时的错误情况. 它会在创建指定的目录之前, 将所需要的父目录创建出来.
+> 关于`nc`, 貌似nc启动的服务端只能允许单个客户端连接(不管是tcp还是udp类型的).
 
 ## 3. wget下载jdk
 
@@ -83,43 +45,6 @@ yum install -y lrzsz
 另外, rz上传文件时, 如果没有当前目录的写权限, 或是当前目录存在同名文件, 会显示传输失败;
 
 而且, sz下载文件时, 下载目录也必须是xshell启动用户有写权限的才行. 比如我并不是以`Administor`身份登录, 而是以一个普通用户A身份, 如果A启动xshell, 是没有办法将文件下载到C盘的(C盘的Users/A的个人目录还是可以的). 当sz, xshell弹出对话框让你选择下载路径时, 如果你选择一个没有写权限的C盘路径, xshell将不会有任何反应, 也没有报错, 当时困扰了很久. 这一点SecureCRT做的好一点, 它是提前设置的下载目录, 当选择目录如果没有写权限, 是没有办法将其设置为下载路径的.
-
-## 5. 删除乱码文件
-
-许多文件的名称显示为乱码, 无法选中也无法删除, 比如:
-
-```
-$ ll
-total 20
--rw------- 1 root root 19151    Jul  1      20:22 anaconda-post.log
--rw-r--r-- 1 root root     0        Sep 22    05:48 ÿ3Ҩg[1ϕ??????eҬ
--rw------- 1 root root     0        Jul  1      20:20 yum.log
-```
-
-这里提供一个方法.
-
-首先使用`ls`的`-i`选项, 取到目标文件的`inode`编号.
-
-```
-$ ls -li
-total 20
-8388946 -rw------- 1 root root 19151 Jul  1   20:22 anaconda-post.log
-8427830 -rw-r--r-- 1 root root         0 Sep 22 05:48 ÿ3Ҩg[1ϕ??????eҬ
-8388947 -rw------- 1 root root         0 Jul  1   20:20 yum.log
-```
-
-然后通过`find`命令删除它
-
-```
-$ ls -li
-total 20
-8388946 -rw------- 1 root root 19151 Jul  1 20:22 anaconda-post.log
-8427830 -rw-r--r-- 1 root root     0 Sep 22   05:48 ÿ3Ҩg[1ϕ??????eҬ
-8388947 -rw------- 1 root root     0 Jul  1     20:20 yum.log
-$ find -inum 8427830 -delete
-$ ls
-anaconda-post.log  yum.log
-```
 
 ## 6. Linux生成随机密码
 
@@ -200,89 +125,6 @@ $ echo $var
 
 curl的`-s`选项必不可少，不然curl的输出会扰乱变量var的赋直. 另外，注意`$()`的包裹范围，把`2>&1`也圈进去了.
 
-
-## 12. useradd创建带密码的用户
-
-参考文章
-
-[linux下创建带密码的用户](http://blog.csdn.net/dliyuedong/article/details/24228599)
-
-`useradd`命令有一个`-p`选项, 可在创建用户的同时为其指定密码. 但这个密码是经过`crypt`加密过的, 即必须是密文(验证时使用对应的明文). `man`手册中对其的介绍如下
-
-```
-    -p, --password PASSWORD
-        The encrypted password, as returned by crypt(3). The default is to disable the password.
-
-        Note: This option is not recommended because the password (or encrypted password) will be visible by users listing the processes.
-
-        You should make sure the password respects the system's password policy.
-```
-
-需要注意的是, `crypt`并不是一个命令, 而是一个头文件(使用`whereis crypt`可以查看到相关信息), 它在`openssl-devel`包中. 我们并没有办法使用它.
-
-替代方法是使用`openssl`命令. `openssl`有一个子命令`passwd`用来生成密码. 它的相关帮助信息如下
-
-```
-$ openssl passwd --help
-Usage: passwd [options] [passwords]
-where options are
--crypt             standard Unix password algorithm (default)
--1                 MD5-based password algorithm
--apr1              MD5-based password algorithm, Apache variant
--salt string       use provided salt
--in file           read passwords from file
--stdin             read passwords from stdin
--noverify          never verify when reading password from terminal
--quiet             no warnings
--table             format output as table
--reverse           switch table columns
-```
-
-其中`-crypt`, `-1`与`-apr1`三者是并列关系, 如果不指定, 则默认为`-crypt`的加密方式, 这也是系统密码的默认算法. 
-
-我们可以使用如下方法获得加密后的密码
-
-```
-$ openssl passwd 123456
-VGmG1B363td7o
-```
-
-然后创建目标用户, 如`general`
-
-```
-$ useradd general -p VGmG1B363td7o
-```
-
-之后就可以使用`general`及其密码`123456`进行登录或切换用户等操作了.
-
-更为简便一点的方式
-
-```
-$ useradd general -p $(openssl passwd 123456)
-```
-
-除了这种方式, 也可以交互式从终端输入密码, 或是从文件读取然后批量生成.
-
-```
-$ openssl passwd
-Password: <=输入123456
-Verifying - Password: <=输入123456
-hE/MhvW1qosEs
-```
-
-**注意: 虽然明文都是123456, 但加密后的密文并不相同. 即使如此, 创建用户时指定这些密文为密码, 其明文都会是123456, 不必担心**
-
-从文件读取
-
-```
-$ cat passwd
-123456
-123456
-## 这里得到的密码依然不一样哦
-$ openssl passwd -in ./passwd
-mEX6A8pyoI2do
-UtFubbGdts3fg
-```
 
 ## 13. Linux下查看高CPU占用率线程
 

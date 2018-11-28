@@ -54,6 +54,10 @@ buf1 := bytes.NewBufferString("hello")
 fmt.Println(buf1.String())
 ```
 
+------
+
+补充: `*Buffer`对象还有一个`Reset()`方法, 用于清空缓冲区.
+
 ## 2. 写入
 
 有关缓冲区写入的方法, 有如下几个
@@ -102,7 +106,7 @@ fmt.Println(buf1.String())
 
 ------
 
-`ReadByte()`无需参数, 取出的值被当作返回值返回. `ReadBytes`与`ReadByte`完全不是一回事, 而是和`ReadByte`更像.
+`ReadByte()`无需参数, 取出的值被当作返回值返回. `ReadBytes`与`ReadByte`完全不是一回事, 而是和`ReadString`更像.
 
 `ReadBytes`与`ReadString`都需要传入一个分隔符参数, 返回缓冲区对象中分隔符前面的内容...参数传得都一样, 区别在于返回值类型不同.
 

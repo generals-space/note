@@ -2,9 +2,11 @@
 
 参考文章
 
-1. [Win下安装pip并更新源](http://blog.csdn.net/zhanghe2775115/article/details/51540584)
+1. [windows及linux环境下永久修改pip镜像源的方法](https://www.jb51.net/article/98401.htm)
 
-路径: `C:\Users\general\AppData\Local\pip`
+路径: `C:\Users\general\AppData\Roaming\pip`
+
+> 实际上是在windows文件管理器中,输入`%APPDATA%`显示的路径
 
 创建文件: `pip.ini`
 

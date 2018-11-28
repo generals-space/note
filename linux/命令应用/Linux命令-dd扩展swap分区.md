@@ -63,7 +63,7 @@ UUID=5a1fca7a-645e-45bf-ac70-b591fc951b87 /boot                   xfs     defaul
 /home/swapfile		swap 			swap	defaults	0 0
 ```
 
-### 减小swap区分
+### 减小swap分区
 
 参考文章2文末的方法可行.
 
