@@ -4,6 +4,8 @@
 
 1. [golang 中的md5 、hmac、sha1算法的简单实现](https://blog.csdn.net/yue7603835/article/details/73497034)
 
+2. [[Golang]计算一个文件的MD5值](https://blog.csdn.net/bobodem/article/details/80227029)
+
 ```go
 package main
 
@@ -20,6 +22,7 @@ import (
 func Md5(data string) string {
 	md5Obj := md5.New()
 	md5Obj.Write([]byte(data))
+	// return hex.EncodeToString(md5Obj.Sum(nil))
 	return hex.EncodeToString(md5Obj.Sum([]byte("")))
 }
 
@@ -51,3 +54,9 @@ func main() {
 	fmt.Println(Hmac("key2", "hello")) // f1b90b4efd0e5c7db52dfa0efd6521a3
 }
 ```
+
+对比md5, sha1算法的python标准库中的使用方式, 可以看出, 
+
+`Write()` == `update()`, 向md5对象中推入新的字节内容, 不断更新.
+
+`Sum()` == `digest()/hexdigest()`, 生成最终的结果, `Sum()`接受一个参数, 表示向当前md5对象追回最后一次字节内容, 然后生成最终结果. 不过我搜到的网上的教程都是填入空字节数组的, 不清楚ta的实际意义所在, 暂不深究<???>
