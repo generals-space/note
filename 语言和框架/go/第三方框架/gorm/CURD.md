@@ -46,6 +46,37 @@ db.NewRecord(user) // => 创建`user`后返回`false`
 
 使用`struct`时, 注意gorm会自动忽略其中的空值, 比如, 如果其中某个字段为bool类型, 而它的是false, 那gorm就不会更新这个字段, 同理, 如果某个字符串字段的值为空, 也会被忽略. 使用map作为参数就不会有此问题.
 
+## Where()过滤
+
+关于`Where()`, 可以使用`db.Where(&ModelStruct{ID: 1}).Find(modelStructObjs)`来实现过滤查询, 但是查询哪个表是由`Find(x)`传入的对象反向得来的, 所以`db.Where(&ModelStruct{ID: 1}).Count(&count)`是会出问题的...`no such table:`, 在没有使用`Find()`或`First()`传入struct对象时, 必须使用`db.Model(&ModelStruct{}).Where(&ModelStruct{ID: 1}).Count(count)`完成...
+
+### 布尔字段
+
+另外, 在过滤bool类型字段时, 使用如下的形式是无效的
+
+```go
+db.Where(&ModelStruct{BoolField: true})
+db.Where("`bool_field` = true")
+```
+
+有效的方法是
+
+```go
+db.Where("`bool_field` = ?", "true") 
+db.Where("`bool_field` = \"true\"")
+```
+
+...md布尔类型必须按字符串查询.
+
+还有一种动态添加字段方式
+
+```go
+filter := map[string]interface{
+	"bool_field": "true",
+}
+db.Where(filter)
+```
+
 ## Scan查询
 
 ```go
