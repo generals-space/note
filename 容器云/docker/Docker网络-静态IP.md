@@ -4,9 +4,9 @@
 
 1. [为Docker容器指定自定义网段的固定IP/静态IP地址](http://blog.csdn.net/gobitan/article/details/51104362)
 
-Docker守护进程启动以后会创建默认网桥docker0，其IP网段通常为172.17.0.1。在启动Container的时候，Docker将从这个网段自动分配一个IP地址作为容器的IP地址。最新版(1.10.3)的Docker内嵌支持在**启动容器**的时候为其指定静态的IP地址。
+Docker守护进程启动以后会创建默认网桥`docker0`，其IP网段通常为`172.17.0.0/16`。在启动Container的时候，Docker将从这个网段自动分配一个IP地址作为容器的IP地址。最新版(1.10.3)的Docker内嵌支持在**启动容器**的时候为其指定静态的IP地址。
 
-但在这之前我们要首先创建docker网络. 这个网络与`bridge`, `none`, `host`和`container`同级.
+但在这之前我们要首先创建一个docker网络(不能指定默认的名称为`bridge`的网络). 这个网络与`bridge`, `none`, `host`和`container`同级.
 
 ```
 $ docker network create --subnet=172.18.0.0/16 mynet

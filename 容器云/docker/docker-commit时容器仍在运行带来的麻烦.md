@@ -6,4 +6,4 @@
 
 真正有帮助的是一名游客的评论:
 
-> 没写清楚docker commit前需要停止容器，我安装完ping之后试了下ping www.baidu.com 然后 commit，结果就是查看镜像信息时里面COMMAND有“ping www.baidu.com”,造成每次以这个镜像启动一个容器就会去ping百度了
+> 没写清楚`docker commit`前需要停止容器，我安装完ping之后试了下ping www.baidu.com 然后 commit，结果就是查看镜像信息时里面COMMAND有“ping www.baidu.com”, 造成每次以这个镜像启动一个容器就会去ping百度了
