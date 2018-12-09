@@ -69,3 +69,71 @@ func main() {
 2. 子类倒是可以直接调用父类方法...真的是单纯调用父类方法, 因为父子类间成员变量不互通, 无法实现像其他语言中在父类中定义方法, 然后在子类调用时可以处理子类成员变量的功能...
 
 3. 子类重新定义父类的重名方法后, 就会将其覆盖, 要调用父类方法可以使用`child.Parent.Greet()`完成.
+
+------
+
+考虑如果父类有多个子类成员, 且每个子类成员拥有同名方法时, 在父类实例上调用这个方法, 会怎样?
+
+```go
+package main
+
+import (
+	"log"
+)
+
+// StepParent ...
+type StepParent struct {
+	Name string
+}
+
+// Greet ...
+func (sp *StepParent) Greet() {
+	log.Println("Step Parent name is ", sp.Name)
+}
+
+// Parent ...
+type Parent struct {
+	Name string
+}
+
+// Greet ...
+func (p *Parent) Greet() {
+	log.Println("Parent name is ", p.Name)
+}
+
+// Child ...
+type Child struct {
+	Parent
+	StepParent
+	Name string
+}
+
+/*
+// Greet ...
+// 子类同名方法会覆盖.
+// 在子类没有同名方法时, 子类实例可以调用父类的方法, 但变量不通用.
+func (c *Child) Greet() {
+	log.Println("Child name is ", c.Name)
+}
+*/
+
+func main() {
+	child := &Child{
+		Parent:     Parent{Name: "parentName"},
+		StepParent: StepParent{Name: "stepParentName"},
+		Name:       "childName",
+	}
+	child.Greet()
+	child.Parent.Greet()
+	child.StepParent.Greet()
+}
+```
+
+但是编译会报错, 报错行为`child.Greet()`
+
+```
+# command-line-arguments
+./assemble.go:49:7: ambiguous selector child.Greet
+```
+
+因为在父类`Child`没有定义`Greet()`方法时, 直接调用`child.Greet()`会让编译器疑惑, 不知道该调用`Parent`成员的`Greet()`还是`StepParent`的`Greet()`方法. 不像python, 继承时谁在前面调用谁的.
