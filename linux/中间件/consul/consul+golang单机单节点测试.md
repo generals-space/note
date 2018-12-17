@@ -5,6 +5,7 @@
 
 2. [consul dockerhub文档 [Running Consul for Development]小节](https://hub.docker.com/_/consul/)
 
+3. [golang使用服务发现系统consul](https://blog.csdn.net/changjixiong/article/details/74838182)
 
 ```
 docker run -d --name devconsul -p 8500:8500 consul agent -dev -ui -client=0.0.0.0
@@ -53,6 +54,8 @@ hello consul
 ```
 
 ## 服务注册与发现并调用
+
+参考文章3提供了使用consul进行服务注册与发现的示例代码, 但是ta把健康检查放在了单独的端口, 而且订阅者与服务提供者是通过tcp连接, 感觉不容易理解.
 
 先启动服务端, 再启动客户端, 客户端循环向consul获取指定服务的地址并请求. 
 
