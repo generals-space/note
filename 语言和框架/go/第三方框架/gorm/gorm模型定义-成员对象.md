@@ -1,6 +1,10 @@
 # gorm模型定义-成员对象
 
-gorm不支持直接将结构体成员对象按照json形式存储到数据库中.
+参考文章
+
+1. [If you want to support JSON column for mysql](https://github.com/jinzhu/gorm/issues/1935)
+
+gorm不支持直接将结构体成员对象按照json形式存储到数据库中. 如果按照如下的方式写入数据库, 是无效的.
 
 ```go
 package main
