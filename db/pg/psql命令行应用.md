@@ -17,8 +17,8 @@
 $ su - postgres
 ## 使用psql命令登录PostgreSQL控制台
 $ psql
-## 创建数据库用户dbuser（刚才创建的是Linux系统用户），并设置密码。注意结尾的分号
-postgres=# CREATE USER dbuser WITH PASSWORD '指定密码';
+## 创建数据库用户dbuser（刚才创建的是Linux系统用户），并设置密码。注意结尾的分号(有时甚至不需要`with`?)
+postgres=# CREATE USER dbuser [WITH] PASSWORD '指定密码'; 
 ## 创建用户数据库，这里为exampledb，并指定所有者为dbuser。
 postgres=# CREATE DATABASE exampledb OWNER dbuser;
 ## 将exampledb数据库的所有权限都赋予dbuser，否则dbuser只能登录控制台，没有任何数据库操作权限。

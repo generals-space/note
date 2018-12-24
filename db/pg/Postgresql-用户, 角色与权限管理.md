@@ -87,7 +87,7 @@ where option can be:
     | INHERIT | NOINHERIT
     | LOGIN | NOLOGIN
     | REPLICATION | NOREPLICATION
-    ...省略的应该不算了
+    ...省略的应该不算了, 剩下的是指定sysid和密码的
 ```
 
 赋权操作包括在创建角色时指定, 也可以在后期追加或修改.
@@ -103,7 +103,7 @@ CREATE USER 用户名 WITH 可选权限;
 示例
 
 ```
-postgres=# create user user_1 with superuser;
+postgres=# create user user_1 with superuser password '123456';
 CREATE ROLE
 ```
 
@@ -151,7 +151,7 @@ REVOKE  权限类型 ON [database 库名 | table 表名] FROM 角色名/用户�
 ```
 postgres=# create database db_1;
 CREATE DATABASE
-postgres=# create user user_1;
+postgres=# create user user_1 password '123456';
 CREATE ROLE
 postgres=# \l
                                   List of databases

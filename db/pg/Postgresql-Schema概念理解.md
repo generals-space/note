@@ -29,7 +29,7 @@ pg里的schema也差不多就是干这个用的, 同一个库内无法同时存�
 ```
 postgres=# create database db_1;
 CREATE DATABASE
-postgres=# create user user_1;
+postgres=# create user user_1 password '123456';
 CREATE ROLE
 postgres=# \c db_1
 You are now connected to database "db_1" as user "postgres".
