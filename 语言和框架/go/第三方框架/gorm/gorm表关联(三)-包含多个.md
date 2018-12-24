@@ -62,7 +62,9 @@ type Book struct {
 
 func main() {
 	var err error
-	connectStr := "host=localhost port=7723 user=gormtest dbname=gormdb sslmode=disable password=123456"
+	// 两种连接方式都可以
+	// connectStr := "host=localhost port=7723 user=wuhou password=123456 dbname=wuhoudb sslmode=disable"
+	connectStr := "postgresql://gormtest:123456@localhost:7723/gormdb?sslmode=disable"
 	db, err := gorm.Open("postgres", connectStr)
 	defer db.Close()
 
