@@ -1,8 +1,9 @@
 # Linux 源码安装 Python 环境
 
-<!-- <!tags!>: <!源码安装!> -->
-
-<!-- <!keys!>: eSy'39Nmarrypjlo -->
+<!-- 
+<!tags!>: <!源码安装!> 
+<!keys!>: eSy'39Nmarrypjlo 
+-->
 
 参考文章
 
@@ -14,11 +15,11 @@
 
 实验环境:
 
-- 系统版本: docker的CentOS6镜像...够精简了吧. 自带的python版本为`2.6.6`
+- 系统版本: docker的CentOS6镜像...够精简了吧, 其自带的python版本为`2.6.6`
 
 - 目标版本: python官网最新的2.x为`2.7.12`
 
-> 经实验, 2.7与3.5, 3.6都可以使用这篇文章中的流程进行编译.
+> 经实验, `2.7`与`3.5`, `3.6`都可以使用这篇文章中的流程进行编译.
 
 ## 1. python编译, 安装及环境配置
 
@@ -75,7 +76,7 @@ make && make install
 
 ### 3. 替换旧版本(可选)
 
-> 注意: 确认/usr/bin下面python, python2.6同时存在. 否则不要直接rm!!!
+> 注意: 确认`/usr/bin`下面python, python2.6同时存在. 否则不要直接rm!!!
 
 ```
 ll /usr/bin | grep python
@@ -109,7 +110,7 @@ pip在`/usr/local/python2.7/bin`目录下可能是`pip2`(使用python3执行`get
 
 然后设置pip的镜像源(位置在`~/.pip/pip.conf`), 用以加速国内包的下载速度.
 
-```
+```ini
 [global]
 trusted-host = pypi.douban.com
 index-url = http://pypi.douban.com/simple/
