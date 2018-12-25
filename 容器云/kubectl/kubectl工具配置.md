@@ -6,7 +6,7 @@
 
 2. [Authenticate Across Clusters with kubeconfig](https://kubernetes.io/docs/tasks/access-application-cluster/authenticate-across-clusters-kubeconfig/)
 
-当前我们通过kubectl工具与apiserver服务进行通信时, 都是通过`-s`指定目标apiserver的访问地址, 要写一长串. 尤其是连接不同的kuber集群时, 不同的apiserver地址会让人疯掉.
+当前我们通过`kubectl`工具与`apiserver`服务进行通信时, 都是通过`-s`指定目标`apiserver`的访问地址, 要写一长串. 尤其是连接不同的kuber集群时, 不同的`apiserver`地址会让人疯掉.
 
 我们可以通过配置文件, 以别名的形式指定要连接的地址. 
 
@@ -44,8 +44,7 @@ localhost.localdomain   Ready       6d        v1.7.1-beta.0.2+09955ec93bcfc1
 
 看一下`~/.kube/config`的内容.
 
-```
-$ cat ~/.kube/config
+```yml
 apiVersion: v1
 clusters:          ## 定义集群  
 - cluster:
