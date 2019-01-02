@@ -91,4 +91,4 @@ def getContent():
         └── show.py
 ```
 
-这样, 在show.py中导入settings文件时, 将不经过顶层模块所在目录, 就可以了.
+这样, 在`show.py`中导入`settings`文件时, 将不经过顶层模块所在目录, 就可以了.

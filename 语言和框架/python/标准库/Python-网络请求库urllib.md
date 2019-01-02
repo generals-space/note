@@ -25,4 +25,4 @@ Py3.x：
 在Pytho2.x中使用`cookielib.CookieJar`——-对应的，在Python3.x中会使用http.CookieJar。
 在Pytho2.x中使用`urllib2.Request`——-对应的，在Python3.x中会使用urllib.request.Request。
 
-> python3 urllib的request包导入方式应为`import urllib.request`, 而`from urllib import request`这种会出错, 显示找不到`request`属性.
+> 注意: python3 `urllib`的`request`包导入方式应为`import urllib.request`, 而`from urllib import request`这种会出错, 显示找不到`request`属性.
