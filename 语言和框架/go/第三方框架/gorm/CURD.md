@@ -100,6 +100,8 @@ db.Model(&User{}).Select("name").Scan(&nameResults)
 
 > 注意: 如果使用`First()`或`Find()`去查询`&nameResults`的值什么也不会得到, 猜测是因为与`Model()`的参数类型不同. 就算没有Model, 也会因为数据库中根本不存在`name_results`表而查询失败.
 
+> 另外, `Scan()`也可以配合`Raw()`方法执行原生sql使用.
+
 ## Pluck查询
 
 与Scan类似...上面的代码中我只想查单个列, 还要新建一个结构体, 感觉不值得, 因为单个列的最终结果其实应该是一个字符串列表, `Pluck()`就是将目标结果赋值给一个列表的函数.
