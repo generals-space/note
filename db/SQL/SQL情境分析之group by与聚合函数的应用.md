@@ -1,4 +1,4 @@
-# group by与聚合函数
+# SQL情境分析之group by与聚合函数的应用
 
 参考文章
 
@@ -33,7 +33,6 @@ insert into table_b(name, foreign_id) values
 ('成员5', 2),
 ('成员6', 2)
 ;
-
 ```
 
 我的目标是查询所有表a中的记录, 并且为每条记录都添加一个字段, 表示在表b中以此条记录为外键的行的总量, 最终结果类似如下(主要是`count`列);
@@ -125,7 +124,17 @@ select * from table_a, (select foreign_id, count(*) as sum from table_b group by
 
 表b中没有对应的外键指向`组3`, 所以结果中没有这一行的数量. 我希望至少能显示`sum`为0吧.
 
-在我找方法时, 了解到了sql语句中的`join`种类: `左连接(left join)`, `右连接(right join)`, `内连接(inner join)`, `全连接(full join)`. 其中`左连接`与`右连接`又被称为`外连接`, 而多表联合查询时默认join类型为`内连接`. 其中具体的区别可以查看参考文章2, 讲解得还算比较清晰.
+在我找方法时, 了解到了sql语句中的`join`种类: 
+
+1. `左连接(left join)`
+
+2. `右连接(right join)`
+
+3. `内连接(inner join)`
+
+4. `全连接(full join)`. 
+
+其中`左连接`与`右连接`又被称为`外连接`, 而多表联合查询时默认join类型为`内连接`. 其中具体的区别可以查看参考文章2, 讲解得还算比较清晰.
 
 我们更新下上面的sql
 

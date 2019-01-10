@@ -1,6 +1,6 @@
-# Postgresql安装及初始化
+# Postgresql-yum安装及初始化
 
-与mysql一样, 使用yum安装的pg也有客户端与服务端两个包, 分别是`postgresql`与`postgresql-server`.
+与mysql一样, 使用`yum`安装的pg也有客户端与服务端两个包, 分别是`postgresql`与`postgresql-server`.
 
 初次安装, 需要进行初始化.
 
@@ -23,9 +23,9 @@ or
 
 ```
 
-当然, yum装的最好通过service或systemctl命令启动.
+当然, `yum`装的最好通过`service`或`systemctl`命令启动.
 
-start子命令是一个前端进程, 日志会在终端直接输出, 你需要使用`-l`指定一个日志文件, 就可以以服务的形式运行postgre了.
+`start`子命令是一个前端进程, 日志会在终端直接输出, 你需要使用`-l`指定一个日志文件, 就可以以服务的形式运行postgres了.
 
 ## 配置
 
@@ -47,4 +47,4 @@ host    all             all             0.0.0.0/0                 md5
 
 哦, 还有, `postgresql.conf`的`listen_addresses`默认是`localhost`, 记得改成'*'表示监听所有连接.
 
-> pg_hba.conf修改后, 使用`pg_ctl reload`重新读取pg_hba.conf文件, 如果pg_ctl找不到数据库, 则用`-D /.../pgsql/data/`指定数据库目录, 或`export PGDATA=/.../pgsql/data/`导入环境变量.
+> `pg_hba.conf`修改后, 使用`pg_ctl reload`重新读取`pg_hba.conf`文件, 如果`pg_ctl`找不到数据库, 则用`-D /.../pgsql/data/`指定数据库目录, 或`export PGDATA=/.../pgsql/data/`导入环境变量.
