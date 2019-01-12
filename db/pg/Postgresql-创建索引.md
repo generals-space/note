@@ -34,3 +34,13 @@ Indexes:
 ```sql
 create index concurrently on books(info_addr);
 ```
+
+------
+
+创建索引操作可能花较长的时间, 视服务器配置和表记录数量而定, 创建操作是可以中途取消的, 不会有影响.
+
+```sql
+# create index on book_chapters(info_addr);
+^CCancel request sent
+ERROR:  canceling statement due to user request
+```
