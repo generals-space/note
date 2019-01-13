@@ -27,4 +27,6 @@ celery在以redis为broker时, 会在redis中建立几个键, 记录队列, 任�
 
 5. `unacked_mutex`: string类型, 我也不知道是干啥的.
 
-6. `_kombu.binding.celeryev`: 貌似存的是worker的事件对象? 虽然不太明白什么是事件对象.
+6. `_kombu.binding.celery`: 当前的工作队列, set类型, 成员为`celery══celery`, 表示其中一个工作队列为`celery`.
+
+7. `_kombu.binding.celeryev`: 貌似存的是worker的事件对象? 虽然不太明白什么是事件对象.
