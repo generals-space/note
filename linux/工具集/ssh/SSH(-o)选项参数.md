@@ -65,7 +65,7 @@ Last login: Sat Dec 30 20:39:42 2017 from 192.168.101.65
 [root@220 ~]# 
 ```
 
-> StrictHostKeyChecking选项不是不检查, 而是默认接受对方公钥. 但如果存储的公钥与目标公钥不一致时, 虽然也能正常登录, 但不会更新新的公钥(旧的公钥依然存在).
+> `StrictHostKeyChecking`选项不是不检查, 而是默认接受对方公钥. 但如果存储的公钥与目标公钥不一致时, 虽然也能正常登录, 但不会更新新的公钥(旧的公钥依然存在).
 
 ## 2. ControlMaster与ControlPersist - 连接复用, 无需重复输入密码.
 
@@ -78,3 +78,13 @@ Last login: Sat Dec 30 20:39:42 2017 from 192.168.101.65
 `ControlPersist` 参数的含义就是在最后一个连接关闭之后也不真正的关掉连接, 这样后面再连接的时候就还是不用输入密码. 
 
 启用这两个功能, 就可以解决ssh登录时每次都需要重复输入密码的问题了. 
+
+## 3. 保持连接
+
+参考文章
+
+1. [解决ssh登录后闲置时间过长而断开连接](https://www.cnblogs.com/wanghetao/p/3872919.html)
+
+```
+ServerAliveInterval 60
+```
