@@ -1,6 +1,6 @@
 # Postgres系统函数
 
-最简单的, `version()`
+最简单的, `version()`, 看看使用方法.
 
 ```sql
 postgres=# select version();
