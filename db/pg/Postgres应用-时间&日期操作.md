@@ -26,6 +26,8 @@
 
 注意, 没有`localdate`变量.
 
+补充: 还有`current_timestamp::[timestamptz|timestamp|date|time]`这种用法, 其中`current_timestamp::date`作用等同于`current_date`, 而`current_timestamp::time`等同于`current_time`.
+
 ## 2. 操作符
 
 postgres提供了一种`interval`类型, 表示日期间隔, 类似于golang中的`Duration`, 或者python里的`timedelta`. 基本的计算原则就是, 
