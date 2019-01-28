@@ -8,6 +8,8 @@
 
 3. [shell curl 数据中含有空格 如何提交](https://blog.csdn.net/qq_25279717/article/details/71577313)
 
+4. [curl 模拟 GET\POST 请求，以及 curl post 上传文件](https://blog.csdn.net/fungleo/article/details/80703365)
+
 ## 1. 请求参数中`&`的处理
 
 假设url为`http://mywebsite.com/index.PHP?a=1&b=2&c=3`, web形式下访问url地址，使用`$_GET`是可以在后台获取到所有的参数
@@ -75,3 +77,15 @@ curl -H "Content-Type: application/json" -d "{\"OS\":\"$RELEASE\",\"Sn\":\"$SN\"
 `-k`: 忽略对目标网站的证书验证
 
 `-X POST|HEAD|OPTION`: 可以明确指定请求类型.
+
+## 4. 上传文件
+
+```
+curl localhost:8000/api/upload -F "file=@/Users/general/Downloads/logo.png"
+```
+
+`file`字段即是在前端form组中`<input type="file" name="file">`的`name`属性, 后端可以通过这个`name`名称获得文件流. 
+
+`@路径`: 其中路径可以是相对路径.
+
+不需要指定`-X POST`, `-F`的作用和ta是平级且互斥的.
