@@ -13,3 +13,5 @@ postgres=# select version();
 `pg_backend_pid()`: 得到当前连接(可以是psql连接, 也可以是程序建立的连接)相关的`pid`, 可以使用此`pid`值查询`pg_stag_activity`表.
 
 `pg_terminate_backend(pid)`: 接受一个连接处理进程的pid值, 强制kill. 注意常规应用中`select pg_terminate_backend(pid) from (select pid from pg_stat_activity where datname = 'kanjula') as a;`中的用法, 可以批量杀死多个连接进程.
+
+`pg_proc`: 存储数据库系统中的所有函数的记录, 包含用户自定义的函数(UDF), 存储过程等.
