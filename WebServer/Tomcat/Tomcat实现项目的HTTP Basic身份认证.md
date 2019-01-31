@@ -57,4 +57,4 @@
 
 重启Tomcat, 访问工程时浏览器会有如下提示
 
-![](https://gitimg.generals.space/be0d8af59f812bcd18f1155a56bec3d1.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/be0d8af59f812bcd18f1155a56bec3d1.png)

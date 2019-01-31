@@ -33,7 +33,7 @@ tags目录会包含ACL目录, 而categories则会包含general目录. 但没有t
 
 这种情况下, 点击页面上的tags链接将会得到404错误. 因为tags下面没有索引, 除非指定访问某个tag如/tags/ACL.
 
-![](https://gitimg.generals.space/d8217e078ceceb8ef1901d64ea40f0a3.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/d8217e078ceceb8ef1901d64ea40f0a3.png)
 
 所以我们还需要创建标签页和分类页的索引目录.
 
@@ -65,11 +65,11 @@ date: 2017-06-25 11:06:14
 
 再次访问`/tags`将会看到如下页面.
 
-![](https://gitimg.generals.space/6f56313d4840c5b9303738c79165ce8e.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/6f56313d4840c5b9303738c79165ce8e.png)
 
 注意: 一定要添加`type: 'tags'`字段, 不然标签索引页看不到可用标签, 只有一个空页面. 如下
 
-![](https://gitimg.generals.space/f73f0660766da55d7505af6b4f8ca59c.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/f73f0660766da55d7505af6b4f8ca59c.png)
 
 同理, 分类页categories也是如此.
 

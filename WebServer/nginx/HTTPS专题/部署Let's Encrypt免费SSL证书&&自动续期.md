@@ -52,13 +52,13 @@ $ certbot --nginx
 
 生成证书是一个非常快的过程, 无需等待多长时间. 完成后命令行中会提示保留http服务, 让http与https共存, 还是只开启https.
 
-![](https://gitimg.generals.space/9f0d56711891f45568bb0c3e3877d03f.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/9f0d56711891f45568bb0c3e3877d03f.png)
 
 你完成选择后, 它会改写nginx的配置文件并重启.
 
 例如, 它在我的nginx配置文件中加了如下行
 
-![](https://gitimg.generals.space/b16b4ffaaae14257e90bd135162221b1.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/b16b4ffaaae14257e90bd135162221b1.png)
 
 注意:
 
@@ -70,7 +70,7 @@ $ certbot --nginx
 
 默认生成的证书有效时间为90天(真是严格的90天了...而不是3个月后的今天), 我们还需要设置其定时更新的策略.
 
-![](https://gitimg.generals.space/8ab4e3702fbf15e5cb84e9ff291858fc.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/8ab4e3702fbf15e5cb84e9ff291858fc.png)
 
 `certbot`官网提供了解决方案, 也是由`certbot`命令提供的. 首先使用如下命令进行检测
 

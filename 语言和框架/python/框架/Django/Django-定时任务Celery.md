@@ -121,6 +121,6 @@ Running migrations:
   Applying djcelery.0001_initial... OK
 ```
 
-![](https://gitimg.generals.space/af56402d6fb42485fadb83590562c168.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/af56402d6fb42485fadb83590562c168.png)
 
-![](https://gitimg.generals.space/cf25e80cdc912975b49a4ba9b015a7d8.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/cf25e80cdc912975b49a4ba9b015a7d8.png)

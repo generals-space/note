@@ -22,7 +22,7 @@
 
 然后是这种, 终端输入中文出现半字的情况.
 
-![](https://gitimg.generals.space/ff275c714bcd47b80da26730a4a84907.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/ff275c714bcd47b80da26730a4a84907.png)
 
 当然, 写入文件也是乱码的.
 
@@ -94,4 +94,4 @@ LANG="zh_CN.UTF-8"
 
 md, 现在系统输出都成中文的了, 真不习惯.
 
-![](https://gitimg.generals.space/836c52160fcced1521aaa31068b50ef3.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/836c52160fcced1521aaa31068b50ef3.png)

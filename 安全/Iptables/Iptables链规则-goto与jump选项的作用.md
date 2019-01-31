@@ -93,7 +93,7 @@ target     prot opt source               destination
 
 两种匹配规则的流程分别如下图.
 
-![](https://gitimg.generals.space/a3888a8b776b6ce0ce433afcfe74110d.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/a3888a8b776b6ce0ce433afcfe74110d.png)
 
 很多人称`-g/--goto`选项'一去不复返'.
 

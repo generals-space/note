@@ -20,7 +20,7 @@ size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream);
 
 ## 4. 关于位运算与逻辑运算
 
-![](https://gitimg.generals.space/e55aee31858e744b27f76fb6e57a3e80.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/e55aee31858e744b27f76fb6e57a3e80.png)
 
 逻辑运算的参数一般是表达式, 位运算参数应是确定的数值(可能会以十进制, 十六进制等表示, 但只能通过二进制计算)
 

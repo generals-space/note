@@ -10,7 +10,7 @@ genymotion: 2.11
 
 提示如下
 
-![](https://gitimg.generals.space/fde94594197e4ffc107afefcd9e41d0f.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/fde94594197e4ffc107afefcd9e41d0f.png)
 
 尝试单独运行virtualbox, 命令行显示如下
 

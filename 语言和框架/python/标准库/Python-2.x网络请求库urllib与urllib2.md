@@ -95,7 +95,7 @@ urllib.urlretrieve(url[, filename[, reporthook[, data]]])
 
 ```py
 >>> import urllib
->>> urllib.urlretrieve('https://gitimg.generals.space/54e181029ee23ae664a10fa3ef1ad5b9.png', '/tmp/1.png')
+>>> urllib.urlretrieve('https://gitee.com/generals-space/gitimg/raw/master/54e181029ee23ae664a10fa3ef1ad5b9.png', '/tmp/1.png')
 ('/tmp/1.png', <httplib.HTTPMessage instance at 0x7f0bceee1878>)
 ```
 

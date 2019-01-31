@@ -14,7 +14,7 @@
 
 我们经常见到连接vnc后显示如下窗口, 一般都是因为图形桌面没装.
 
-![](https://gitimg.generals.space/41e358070baf3597e9304c4ab6fc496e.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/41e358070baf3597e9304c4ab6fc496e.png)
 
 安装方法
 
@@ -103,7 +103,7 @@ VNCSERVERARGS[1]="-geometry 1920x1080 -depth 24"
 
 ~~这个方法我没搞成功, 通过systemctl启动的vnc server, 连接上后背景是黑的, 还没有标题栏...如下~~
 
-~~![](https://gitimg.generals.space/fc7dba6a462af812957e9523f1b6f36b.png)~~
+~~![](https://gitee.com/generals-space/gitimg/raw/master/fc7dba6a462af812957e9523f1b6f36b.png)~~
 
 首先拷贝服务脚本, 注意这只是模板, 内容需要自己修改. 它其实对应centos6的`/etc/sysconfig/vncservers`配置文件.
 

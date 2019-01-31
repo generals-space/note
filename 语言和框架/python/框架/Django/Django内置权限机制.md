@@ -20,7 +20,7 @@ Django内置一个简单权限机制, 对每一个表对象, 都有**增加**, *
 
 为了证明上述结论, 我们以超级用户身份登录后台管理系统, 打开`User`表, 查看超级用户本身(这里称为root)的权限. 如下
 
-![](https://gitimg.generals.space/00412ee5eb350d5894887e3749cf6e38.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/00412ee5eb350d5894887e3749cf6e38.png)
 
 图中所示, 以竖线`|`分隔的分别是`app名`, `表名`, `权限名`(关于这3者的关系, 看一下Django后台的笔记就可以理解).
 
@@ -125,7 +125,7 @@ Running migrations:
 
 登录后台, 查看权限列表
 
-![](https://gitimg.generals.space/459d4561505ba9d7ec39c459cefdfbba.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/459d4561505ba9d7ec39c459cefdfbba.png)
 
 这次再看, 以竖线分隔的其实是`app名`, 表中Meta元类的verbose_name字段值, 和permission的元组值.
 

@@ -16,7 +16,7 @@
 
 关于https的背景与前景就不说了. https证书的获取一般免费的方式有两种: 本地生成和在线申请. 本地生成虽然也能实现内容的加密, 但除了你自己, 没人能证明该连接是安全的, 如果是面向用户的话, 不会有人相信这样的网站是可以信任的. 在线申请则是由被浏览器厂商承认的可靠的组织给你的站点颁发证书, 这样用户在访问你的网站时浏览器不会弹出下图中的提示, 用户也能更放心的访问.
 
-![](https://gitimg.generals.space/3d2e5ce8d56b7f1df393e94d37e1a95b.jpg)
+![](https://gitee.com/generals-space/gitimg/raw/master/3d2e5ce8d56b7f1df393e94d37e1a95b.jpg)
 
 本地申请与在线申请的原理其实都一样, 只不过一个是自己给自己签名, 另一个是由CA机构给自己签名. 有点像考试成绩单, 一个是自己给自己伪造成绩单然后伪造签名, 另一个是班主任发的成绩单, 带有"官方签名"...当然, 你自己伪造的成绩单, 家长还是会有点"警觉"的, 不可信!!!.
 
@@ -168,11 +168,11 @@ ing password error:0906A068:PEM routines:PEM_do_header:bad password read error:1
 
 使用第三方认证机构进行证书签名时, 需要指定要使用的顶级域名或二级域名. 访问目标网站与配置的证书不符时, 会显示"不安全的连接", 情况大致如下.
 
-![](https://gitimg.generals.space/cce096442576ff9b29222879af44b7f7.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/cce096442576ff9b29222879af44b7f7.png)
 
-![](https://gitimg.generals.space/593f860cbebbb8704177c9ff6128154d.jpg)
+![](https://gitee.com/generals-space/gitimg/raw/master/593f860cbebbb8704177c9ff6128154d.jpg)
 
-![](https://gitimg.generals.space/d11b57c48a4e2a1cb8e1fb8833a11ce3.jpg)
+![](https://gitee.com/generals-space/gitimg/raw/master/d11b57c48a4e2a1cb8e1fb8833a11ce3.jpg)
 
 可以看到chrome与firefox中都提到该域名的证书是为`databegin.com`申请的, 虽然在服务器上配置了`www.databegin.com`也使用这个证书, 但由于没有为`www`这个子域名进行签名, 所以浏览器认为此网站不安全.
 

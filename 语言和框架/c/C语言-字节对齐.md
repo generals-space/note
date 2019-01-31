@@ -17,7 +17,7 @@ int B;
 
 假设这两个变量是从内在地址0开始分配, 如不考虑对齐, 应是这样存储的(以intel的小端序为例):
 
-![](https://gitimg.generals.space/65de997f4c19cc3c7cd0374a2c2d9de9.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/65de997f4c19cc3c7cd0374a2c2d9de9.png)
 
 因为计算机字长是4字节, 所以在处理变量A与B时的过程可能大致为:
 
@@ -27,7 +27,7 @@ B: 将0x00-0x03(共32位)读入寄存器, 并通过位运算得到低24位的值
 
 由上面叙述可知, 对A的处理较为简单, 但对B, 其本身是32位, 处理时却要拆成2部分, 之后再合并, 效率上就有些低了. 为了解决这个问题, 就需要付出几个字节的代价, 改为下图的分配方式:
 
-![](https://gitimg.generals.space/6aea738b24b5bde0a9a405206e2815e2.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/6aea738b24b5bde0a9a405206e2815e2.png)
 
 ## 2. 计算原则
 
@@ -75,17 +75,17 @@ struct T
 
 分配图如下(暂时还不正确, 耐心读下去):
 
-![](https://gitimg.generals.space/8aede96ac98d653da3d2111fbe3a7ba2.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/8aede96ac98d653da3d2111fbe3a7ba2.png)
 
 貌似已经结束了, 但如果定义一个结构体数组CAarray[2], 按变量分配原则, 这两个结构体应该是在内存中连续存储的, 分配应如下图:
 
-![](https://gitimg.generals.space/c45ef8ae5cc65f0bf735bcc2bb92f4df.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/c45ef8ae5cc65f0bf735bcc2bb92f4df.png)
 
 由上图可知, CArray[1]的很多成员都不再对齐了, 究其原因, 是结构体的开始边界不对齐. (如此解释了原则3)
 
 上述结构体应按最长的成员d对齐, 即应是8的倍数, 正确的分配图如下:
 
-![](https://gitimg.generals.space/b3853bc1ed391f52d35bd9e951d53b6f.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/b3853bc1ed391f52d35bd9e951d53b6f.png)
 
 > 注意: 不同编译环境下可能会出现不同的结果, 比如Linux下的GCC与Windows下VS/VC之类的编译器产生的结果有可能不一样, 这会涉及到#pargam pack()宏.
 

@@ -11,4 +11,4 @@
 
 当前目录下的`docker-compose.yml`是根据参考文章1创建的, 3个server节点, 1个client节点, 访问任何一个节点的`8500`都可以进行交互, 不过web ui只在client节点上开启了. client的http端口映射到宿主上是10121, 所以访问路径为`http://localhost:10121/ui/dc1/services`
 
-![](https://gitimg.generals.space/88de748b2efc24b9caa6ae903aed2077.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/88de748b2efc24b9caa6ae903aed2077.png)

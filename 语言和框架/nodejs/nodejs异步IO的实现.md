@@ -32,7 +32,7 @@ console.log('[main thread] execute operation after read');
 
 但大家也许还听说过，nodejs是单线程的，那又是怎么实现异步IO的呢？读文件操作是在哪里执行的呢？读完又是怎么调用回调函数的呢？猜想读文件可能是在另一个线程中完成的，读完后通过事件通知nodejs执行回调。为了一探究竟，debug了一把`nodejs`和`libeio`源码，重新编译后，运行测试代码`node test-fs-read.js`，输出如下：
 
-![](https://gitimg.generals.space/53b297cc15608444606ea3f31e7167ce.jpg)
+![](https://gitee.com/generals-space/gitimg/raw/master/53b297cc15608444606ea3f31e7167ce.jpg)
 
 可以看到，nodejs的IO操作是通过调用`libeio`库完成的，debug从`fs.read`开始，js代码经过v8编译后，`fs.read`会调用`node_file.cc`中的Read方法，测试代码的运行经历了以下步骤：
 
@@ -57,7 +57,7 @@ console.log('[main thread] execute operation after read');
 还需要说明的是，当同时有多个IO请求时，主线程会创建多个eio线程，以提高IO请求的处理速度。
 为了更清晰的看到nodejs的IO执行过程，图示如下，序号仅用来标示流程，与上述步骤序号并无对应关系。
 
-![](https://gitimg.generals.space/dc0674db2bd387a69ffda5c3fd45c859.jpg)
+![](https://gitee.com/generals-space/gitimg/raw/master/dc0674db2bd387a69ffda5c3fd45c859.jpg)
 
 最后总结几条，不当之处还请大家指正。
 

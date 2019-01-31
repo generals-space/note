@@ -10,4 +10,4 @@ fork其实是将对方的源码拷贝一份到自己的仓库, 之后的操作�
 
 其实不fork也能`pull request`, 但是只能推给自己, 顶多实现各分支之间的推送与接受, 类似于分支合并.
 
-![](https://gitimg.generals.space/7731cb24e4fdb841d456c320d7bbc874.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/7731cb24e4fdb841d456c320d7bbc874.png)

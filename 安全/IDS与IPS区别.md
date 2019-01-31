@@ -10,7 +10,7 @@
 
 ## 1. 区别
 
-![](https://gitimg.generals.space/b65a6cb361cb1dba42d60f55f68188d5.jpg)
+![](https://gitee.com/generals-space/gitimg/raw/master/b65a6cb361cb1dba42d60f55f68188d5.jpg)
 
 ### 1.1 入侵检测系统(IDS)
 

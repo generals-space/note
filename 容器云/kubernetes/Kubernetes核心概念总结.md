@@ -6,7 +6,7 @@
 
 ## 1. 基础架构
 
-![](https://gitimg.generals.space/9a3ce4b73794277bac82ec69dcca592d.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/9a3ce4b73794277bac82ec69dcca592d.png)
 
 ### 1.1 Master
 
@@ -86,7 +86,7 @@ Pod被分配到Node之后会根据镜像下载策略进行镜像下载, 可以�
 
 Pod被分配到一个Node上之后, 就不会离开这个Node, 直到被删除. 当某个Pod失败, 首先会被Kubernetes清理掉, 之后ReplicationController将会在其它机器上（或本机）重建Pod, 重建之后Pod的ID发生了变化, 那将会是一个新的Pod. 所以, Kubernetes中Pod的迁移, 实际指的是在新Node上重建Pod. 以下给出Pod的生命周期图. 
 
-![](https://gitimg.generals.space/5b9bfedcca7b6eb04a9a9f5532af42df.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/5b9bfedcca7b6eb04a9a9f5532af42df.png)
 
 **生命周期回调函数**: 
 

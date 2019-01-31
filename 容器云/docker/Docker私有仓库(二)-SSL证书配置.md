@@ -85,7 +85,7 @@ Get https://192.168.166.220:5000/v1/_ping: net/http: TLS handshake timeout
 
 你需要在客户端的docker服务启动时添加`--insecure-registry=192.168.166.220:5000`这个选项(或者不加等号, 直接写`--insecure-registry 192.168.166.220:5000`也可以的), 不管你是直接在docker的systemd启动脚本中直接添加这个选项, 还是在`/etc/sysconfig/docker`文件中解开`INSECURE_REGISTRY`字段的注释, 只要在ps时能看到dockerd的启动参数中有`--insecure-registry`这个选项就行.
 
-![](https://gitimg.generals.space/a744cd1fc262339d069cc3d96e20cd59.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/a744cd1fc262339d069cc3d96e20cd59.png)
 
 然后再执行`push`操作就可以了.
 

@@ -12,7 +12,7 @@
 
 如果希望把list的每个元素都作平方, 就可以用map()函数：
 
-![](https://gitimg.generals.space/3273034c16996f965ba8ca5cd273fffb.jpg)
+![](https://gitee.com/generals-space/gitimg/raw/master/3273034c16996f965ba8ca5cd273fffb.jpg)
 
 因此, 我们只需要传入函数f(x)=x*x, 就可以利用map()函数完成这个计算：
 

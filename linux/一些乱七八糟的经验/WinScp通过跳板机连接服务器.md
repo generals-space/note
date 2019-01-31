@@ -20,19 +20,19 @@
 
 新建会话
 
-![](https://gitimg.generals.space/fd1541258db2ca7b1526c25939ea4af7.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/fd1541258db2ca7b1526c25939ea4af7.png)
 
 右侧框中在选择密钥时默认寻找后缀为`ppk`的文件, 这是putty使用的密钥格式. 我自己的密钥是XShell所用的格式, 分为公钥和私钥. 
 
 初次选择时, 可以显示所有文件, 然后选中私钥, WinScp会弹出如下提示.
 
-![](https://gitimg.generals.space/16132f9a1ce88e84c22f6affb18c3fb5.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/16132f9a1ce88e84c22f6affb18c3fb5.png)
 
 按照它的提示就可以把原来的私钥转换成`ppk`的格式了.
 
 然后继续
 
-![](https://gitimg.generals.space/2ceaec4491c1e9858ece6c850affc304.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/2ceaec4491c1e9858ece6c850affc304.png)
 
 上图中右侧框的密钥文件指的是从跳板机上用于`log`用户登录目标机器的.
 
@@ -44,7 +44,7 @@
 
 按照上面的步骤完成操作, 点击连接却报如下错误.
 
-![](https://gitimg.generals.space/98b0a112c33025b42f2be1fa04a8cd00.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/98b0a112c33025b42f2be1fa04a8cd00.png)
 
 跳板机上的日志如下.
 

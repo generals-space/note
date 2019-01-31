@@ -92,4 +92,4 @@ __asm__(
 
 输入输出部分中, 指令操作数(上述代码中用到了'r', 意为可以将C语言变量a, b, c放入任意通用寄存器)
 
-![](https://gitimg.generals.space/55505280bcf99d5520d8c118c05fef1c.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/55505280bcf99d5520d8c118c05fef1c.png)

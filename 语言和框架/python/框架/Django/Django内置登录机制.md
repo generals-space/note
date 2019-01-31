@@ -25,7 +25,7 @@ urlpatterns = [
 
 我们到django包所在路径去查看`/admin`路由的处理方法, 因为我们访问这个路径就会被重定向到一个登录页`/admin/login/`, 先到`$DJANGO_HOME/contrib/admin/...`
 
-![](https://gitimg.generals.space/54e181029ee23ae664a10fa3ef1ad5b9.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/54e181029ee23ae664a10fa3ef1ad5b9.png)
 
 好吧, 没找到`admin.site.urls`的路径...根本就不对嘛. 
 

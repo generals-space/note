@@ -21,7 +21,7 @@ vSphere Client创建虚拟机时不会加载ISO镜像, 当创建完成后(相当
 
 右侧内容中, (1)客户端设备将可以使用本地的ISO镜像; (2)主机设备的作用不清楚; (3)数据存储ISO文件是需要将ISO镜像上传到ESXi服务器上才能加载的.
 
-![](https://gitimg.generals.space/518864c07beeee21d83ebac72c761664.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/518864c07beeee21d83ebac72c761664.png)
 
 我曾尝试过使用第(3)项 - 数据存储ISO文件, 但是镜像文件太大, 使用filezilla上传的文件大小有限制, 上传总是失败. 只能使用第(1)项. 过程如下:
 
@@ -31,7 +31,7 @@ vSphere Client创建虚拟机时不会加载ISO镜像, 当创建完成后(相当
 
 如果显示没有找到操作系统则看下面的2.2.
 
-![](https://gitimg.generals.space/6187185fa302529fa276ed04f3062f4f.jpg)
+![](https://gitee.com/generals-space/gitimg/raw/master/6187185fa302529fa276ed04f3062f4f.jpg)
 
 ### 2.2
 
@@ -39,7 +39,7 @@ vSphere Client创建虚拟机时不会加载ISO镜像, 当创建完成后(相当
 
 首先, 右键目标虚拟机 -> 编辑设置 -> 顶部的"选项"标签 -> 引导选项 -> 右侧内容中选中强制执行BISO设置. 然后开机/重启, 这样下次启动时可以设置引导顺序, 将光驱的顺序放在第一位.
 
-![](https://gitimg.generals.space/3dcfb8deb75ca4a0241eba3caa7a1a6a.jpg)
+![](https://gitee.com/generals-space/gitimg/raw/master/3dcfb8deb75ca4a0241eba3caa7a1a6a.jpg)
 
 BIOS中的启动顺序就不用说了吧?
 
@@ -47,6 +47,6 @@ BIOS中的启动顺序就不用说了吧?
 
 大致还是上次的位置, 右键目标虚拟机 -> 编辑设置 -> 顶部的"选项"标签 -> 引导选项 -> 右侧内容中取消强制执行BISO设置, 然后在它上面, "打开电源引导延迟", 设置它的值为10000ms(注意单位), 单击确定, 保存.
 
-![](https://gitimg.generals.space/d2f1d8577f3efa3e6dd2d0043050a048.jpg)
+![](https://gitee.com/generals-space/gitimg/raw/master/d2f1d8577f3efa3e6dd2d0043050a048.jpg)
 
 然后保存BIOS的引导设置, 重启, 你将看到BIOS在倒计时, 并没有查找引导设备, 这时候去设置光驱要加载的ISO. 10s过后将进入正确的系统安装界面.

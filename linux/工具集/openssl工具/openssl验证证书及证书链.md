@@ -20,7 +20,7 @@
 
 参考文章1中给出了对天猫证书链的验证方法, 不过那是windows下的, linux没法验证`cer`格式证书. 我在ubuntu16.04桌面版, 用chrome查看了一下`www.taobao.com`的证书链, 并导出为文件, 没后缀名.
 
-![](https://gitimg.generals.space/35402934e1075c9050ae5e0c0c498e0c.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/35402934e1075c9050ae5e0c0c498e0c.png)
 
 ```
 $ ll

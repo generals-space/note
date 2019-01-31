@@ -12,7 +12,7 @@
 
 从U盘引导启动, 选择语言, 然后配置安装盘, 显示如下
 
-![](https://gitimg.generals.space/ea6b03b539a1c168792688da9374c86f.jpg)
+![](https://gitee.com/generals-space/gitimg/raw/master/ea6b03b539a1c168792688da9374c86f.jpg)
 
 ...服务器上没法截图, 只能拍个照.
 
@@ -22,15 +22,15 @@
 
 1. 在进入安装引导界面时, 用上下键选择安装centos——Install Centos7（注意不可按Enter键），如图：
 
-![](https://gitimg.generals.space/baec675684c824bc5017d279c3df98ac.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/baec675684c824bc5017d279c3df98ac.png)
 
 2. 按Tab键，对安装进行额外配置，在屏幕最下方会显示如下字样：
 
-![](https://gitimg.generals.space/9e639b954c5f9d2891aff7ce49f94f55.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/9e639b954c5f9d2891aff7ce49f94f55.png)
 
 3. 在额外配置的命令行上添加配置： `hpsa.hpsa_simple_mode=1 hpsa.hpsa_allow_any=1`, 空格分隔, 没有换行. 如图所示：
 
-![](https://gitimg.generals.space/b2287135403542e3132af02ebd5f46b4.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/b2287135403542e3132af02ebd5f46b4.png)
 
 3. 按回车继续安装
 
@@ -56,7 +56,7 @@ dracut:/#
 
 重启服务器, 在进入`grub`引导界面时, 将光标上下移动一下, 不要让它自动跳过, 如下
 
-![](https://gitimg.generals.space/43ef78172225a8300bd8e77edbcd4d05.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/43ef78172225a8300bd8e77edbcd4d05.png)
 
 按下`e`进入编辑状态, 同样键入`hpsa.hpsa_simple_mode=1 hpsa.hpsa_allow_any=1`参数, 然后按下`Ctrl+X`可正常引导.
 
@@ -66,4 +66,4 @@ dracut:/#
 
 进入系统后, 我们还要让刚才的引导配置永久生效, `root`用户编辑`/boot/grub2/grub.cfg`文件, 在与上面启动时编辑状态相同的位置写下那两句参数配置即可. 如下
 
-![](https://gitimg.generals.space/534baa426e4aefe0ae297c035520aa25.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/534baa426e4aefe0ae297c035520aa25.png)

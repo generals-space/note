@@ -49,7 +49,7 @@ OK, 我想到一个可能性, 语法高亮...
 
 我们知道, 普通注释都会把本行变成一种被'遗弃'的颜色, 但是冒号注释不会, `salt-minion`的启动脚本中有这么用的.
 
-![](https://gitimg.generals.space/e6dec0cb18075bb1567512c3abbed0f7.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/e6dec0cb18075bb1567512c3abbed0f7.png)
 
 这么些注释我哪分得清, 丧心病狂啊!!!
 

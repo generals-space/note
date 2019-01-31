@@ -137,7 +137,7 @@ curl的`-s`选项必不可少，不然curl的输出会扰乱变量var的赋直. 
 
 如下图, 服务被入侵, 植入了挖矿服务, 杀掉`minerd`服务后CPU占用依然很高, 猜测是存在后台进程一直在检测, 但是`top`没法看到哪一个进程CPU占用率如此高.
 
-![](https://gitimg.generals.space/bc3643ce87a37194cd61427bb0939ffa.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/bc3643ce87a37194cd61427bb0939ffa.png)
 
 可以用下面的命令将 cpu 占用率高的线程找出来: 
 
@@ -149,4 +149,4 @@ $ ps H -eo user,pid,ppid,tid,time,%cpu,cmd --sort=%cpu
 
 查到的结果如下图.
 
-![](https://gitimg.generals.space/ceb8d634b41e796e3b6c98a8750ee88d.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/ceb8d634b41e796e3b6c98a8750ee88d.png)

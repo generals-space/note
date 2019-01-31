@@ -10,7 +10,7 @@
 
 JK 是通过 AJP 协议与 Tomcat 服务器进行通讯的, Tomcat 默认的 AJP Connector 的端口是 8009. JK 本身提供了一个监控以及管理的页面 jkstatus, 通过 jkstatus 可以监控 JK 目前的工作状态以及对到 tomcat 的连接进行设置, 如下图所示:
 
-![](https://gitimg.generals.space/4ced3abe58352b472bb9843bd7223f7c.jpg)
+![](https://gitee.com/generals-space/gitimg/raw/master/4ced3abe58352b472bb9843bd7223f7c.jpg)
 
 图1:监控以及管理的页面 jkstatus
 

@@ -347,11 +347,11 @@ int main()
 
 在声明`rect1`对象后，由于在构造函数中有一个动态分配的语句，因此执行捕捞内存情况大致如下：
 
-![](https://gitimg.generals.space/b8256f919f08dc2fe204972c9b666e88.jpg)
+![](https://gitee.com/generals-space/gitimg/raw/master/b8256f919f08dc2fe204972c9b666e88.jpg)
 
 在使用`rect1`复制`rect2`时，由于执行的是浅拷贝，只是将成员的值进行赋值，这时`rect1.p = rect2.p`，即这个指针指向了堆里的同一个空间，如图：
 
-![](https://gitimg.generals.space/877776a98ac0a9228727188c0dacc303.jpg)
+![](https://gitee.com/generals-space/gitimg/raw/master/877776a98ac0a9228727188c0dacc303.jpg)
 
 这不是我们期望的效果，而且在销毁对象时，两个对象的析构函数将对同一个内存空间释放两次，这就是出错的原因。我们需要的不是两个p有相同的值，而是两个p指向的空间有相同的值，解决办法就是使用"深拷贝"。
 
@@ -391,7 +391,7 @@ Rect::~Rect()
 
 这样，在完成对象的复制后，内存的大致情况如下：
 
-![](https://gitimg.generals.space/c5bab434b161318ef09f25d89f7bca20.jpg)
+![](https://gitee.com/generals-space/gitimg/raw/master/c5bab434b161318ef09f25d89f7bca20.jpg)
 
 ## 4. 阻止默认拷贝发生(不知道有啥用)
 

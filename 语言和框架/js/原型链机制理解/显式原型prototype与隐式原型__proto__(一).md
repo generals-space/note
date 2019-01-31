@@ -75,5 +75,5 @@ a instanceof Function       // 判断a是不是Function的实例
 
 下面一张图给出所有解释.
 
-![](https://gitimg.generals.space/e46508fbcd140db304232aba89f41c83.jpg)
+![](https://gitee.com/generals-space/gitimg/raw/master/e46508fbcd140db304232aba89f41c83.jpg)
 

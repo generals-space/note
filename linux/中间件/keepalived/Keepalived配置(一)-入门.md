@@ -22,7 +22,7 @@ VIR_IP(虚拟IP): 192.168.8.100
 
 如下图所示
 
-![](https://gitimg.generals.space/df7c0b15582550e531fdb50595eae77b.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/df7c0b15582550e531fdb50595eae77b.png)
 
 其中nodeA与nodeB分别只有一块网卡`eth0`, 分别绑定`8.4`与`8.6`两个IP, 虚拟IP`8.100`在`192.168`网段所在的局域网中没有被其他机器占用, 这个很重要!!! A与B主机上都需要启动`keepalived`服务, 互相监控对方是否正常运行. 但客户端连接该服务的IP是VIR_IP-`8.100`, 而不是A与B其中的任意一个. 
 

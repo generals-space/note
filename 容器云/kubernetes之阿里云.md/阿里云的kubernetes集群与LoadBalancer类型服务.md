@@ -20,7 +20,7 @@
 
 之后在容器控制台中**服务模块**对应的service资源就会出现刚刚建好的SLB的公网地址.
 
-![](https://gitimg.generals.space/7b441b410557e6f3d2f51d43850e8c23.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/7b441b410557e6f3d2f51d43850e8c23.png)
 
 我们希望每个service资源都使用同一个已经存在的SLB实例, 而不是每建一个`LoadBalancer`都新建一个公网SLB, 不好管理还费钱!
 

@@ -47,7 +47,7 @@ server.handle_request()
 
 访问这个地址, 你会得到一个'Hello World'的页面, 并且还输出了许多系统信息, 如下.
 
-![](https://gitimg.generals.space/d6925b7fb8930931c9e921db787511bd.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/d6925b7fb8930931c9e921db787511bd.png)
 
 server进程只接受一次请求就退出(因为`handle_request`已经完成了).
 

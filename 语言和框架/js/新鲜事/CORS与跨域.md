@@ -28,9 +28,9 @@
 
 一个典型场景: 客户端发出了一个跨域GET请求, 浏览器会在这之前先向目标域发出一个`OPTIONS`请求(与客户端程序无关, 是浏览器自发的行为), 而服务器端要在此接口确认, 能够接受哪个来源(`Origin`)的哪种请求(`Method`).
 
-![](https://gitimg.generals.space/3c904fad63a2982bdb0d6c753d8db9ef.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/3c904fad63a2982bdb0d6c753d8db9ef.png)
 
-![](https://gitimg.generals.space/243207c202cdb020926ca662fe6961b9.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/243207c202cdb020926ca662fe6961b9.png)
 
 上述两张图片显示了在本地创建的html请求第三方接口时的两次请求, 由于接口是nodejs的express写的, 所以这是在程序层面做的处理.
 

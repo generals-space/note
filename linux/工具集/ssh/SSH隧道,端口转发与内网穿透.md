@@ -20,7 +20,7 @@
 
 首先看下面这张图, 我们所面临的大部分情况都和它类似. 
 
-![](https://gitimg.generals.space/c9e1370f79ab53ec852d15bf7b4ec617.jpeg)
+![](https://gitee.com/generals-space/gitimg/raw/master/c9e1370f79ab53ec852d15bf7b4ec617.jpeg)
 
 `公司电脑A`, 通过公司带有防火墙功能的路由器访问互联网（当然可能还有交换机什么的在中间连接, 但是在我们的情境中交换机并不起什么关键性的作用）. 
 
