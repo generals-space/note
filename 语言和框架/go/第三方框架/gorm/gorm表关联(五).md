@@ -27,3 +27,5 @@ db.Model(&user).Association("Card").Append(newCard)
 还有`Replace`, `Delete`, `Clear`和`Count`函数, 应该比较好理解. 就不具体实验了.
 
 > 注意: 貌似只针对多对多关系有效, 比如`Clear()`操作在一对多关系中无法清除某一父级记录下的所有引用记录, 但是多对多可以清除中间表中的关系记录.
+
+> 注意: 在`Model().Association()`的方法链中, `Model()`的参数应该是被引用表对象, 而`Association()`的参数则是主引用表对象. 其逻辑关系是, 我想知道有谁引用了我.
