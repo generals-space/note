@@ -1,4 +1,4 @@
-# Python-postgres连接库psycopg2(一)-基本使用
+# psycopg2(一)-基本使用
 
 参考文章
 

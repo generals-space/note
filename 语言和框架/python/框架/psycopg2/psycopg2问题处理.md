@@ -1,4 +1,4 @@
-# Python-postgres连接库psycopg2问题处理
+# psycopg2问题处理
 
 ## 1. FATAL: remaining connection slots are reserved for non-replication superuser connections
 

@@ -1,4 +1,4 @@
-# Python-postgres连接库psycopg2(二)-进阶使用
+# psycopg2(二)-进阶使用
 
 1. [psycopg2笔记](https://www.cnblogs.com/hao-ming/p/7215050.html)
 
