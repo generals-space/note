@@ -78,6 +78,8 @@ const child = cprocess.execFile(command, [config], {cwd: dir}, (error, stdout, s
 });
 ```
 
+> 关于使用exec, spawn还是execFile来启动程序的取舍. 首先, 正常结束能有退出码, 然后是能手动`kill`进程, `exec`可以正常退出并调用回调, 但是调用`kill()`方法时播放器进程始终无法被终结. spawn两个都不满足...
+
 ## 4. `fork()`
 
 nodejs里的fork和其他语言中的fork不一样, 不需要在父子两个进程间分别处理逻辑. ta只是`spawn`的一个特殊情况, ta只是用来开一个子进程执行一个`js`脚本...但是在我知道这一点前我已经先把脚本运行起来了...

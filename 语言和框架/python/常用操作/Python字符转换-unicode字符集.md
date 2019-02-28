@@ -8,6 +8,8 @@
 
 3. [python 中 unicode原样转成str, unicode-escape与string_escape](http://blog.csdn.net/lrz4119/article/details/45247611)
 
+4. [根本解决Python2中unicode编码问题](https://blog.csdn.net/weixin_42989523/article/details/81873874)
+
 md, 目前我只见过python一种语言在定义字符串的时候可以选择定义成utf-8, unicode, ascii等格式...不明觉厉.
 
 怎么说呢, 你只要知道, unicode范围最大, 兼容并包就好了...
@@ -19,6 +21,8 @@ md, 目前我只见过python一种语言在定义字符串的时候可以选择�
 可是ascii包含的就那么几个字母和一些符号, 显示不了各国的语言字符.
 
 utf-8则是一个取中妥协的方案, 里面的ascii字符还是占用比较小的空间, 其他的各国的文字字符则根据实际情况选择占用空间, 这样最方便.
+
+> 本文讨论的是字符串变量的定义类型, 至于源文件开头添加的`#!encoding:utf-8`, 那是因为python解释器对源码读取时遵循的字符集默认为`ascii`.
 
 ------
 
