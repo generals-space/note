@@ -68,11 +68,10 @@ print(row) ## [(1004, '大主宰')]
 
 1. `fetchone`: 返回元组, 元组成员顺序为sql语句中`select xxx, yyy`的顺序. 空结果为`None`
 
-2. `fetchall`: 返回列表, 成员为元组. 
+2. `fetchall`: 返回列表, 成员为元组. 空结果为`[]`
 
 3. `fetchmany(size = None)`: `size`为数值, 可以从sql执行结果中返回`size`个行, 默认按1处理, 空结果为`[]`. `size`的作用类似于socket编程中`recv(buf)`中的buf差不多, 先规定一个预期值, 多了不会超, 少了要看实际值. 
 
 需要注意的是, `execute()`的执行结果只能被1个`fetchXXX()`取出, 之后再接的`fetchXXX()`是不会有结果的, 所以上述示例中写了3个`execute()`.
 
 ### 2.2 insert新增
-
