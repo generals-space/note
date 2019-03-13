@@ -49,14 +49,23 @@ spec:
 ### 2. 使用资源, 常规的pod添加上`volumes`声明即可.
 
 ```yml
-volumes:
-  - name: nfs-vol
-    persistentVolumeClaim:
-      claimName: nfs-claim
-containers:
-- name: nfs
-  image: nginx
-  volumeMounts:
-  - name: nfs-vol
-    mountPath: "/usr/share/nginx/html"
+## fortest
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: fortest
+spec:
+  volumes:
+    - name: fortest-vol
+      persistentVolumeClaim:
+        claimName: nfs-claim  ## 注意这里.
+  containers:
+  - name: fortest
+    image: generals/golang
+    imagePullPolicy: Always
+    volumeMounts:
+    - name: fortest-vol
+      mountPath: "/upload"
+    command: ["tail", "-f", "/etc/profile"]
 ```
