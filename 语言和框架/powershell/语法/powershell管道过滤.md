@@ -1,8 +1,18 @@
 # powershell管道
 
+参考文章
+
+1. [Powershell 语句块](http://www.pstips.net/powershell-using-scriptblocks.html)
+
 ## 1. 过滤
 
-首先要明白, powershell的命令返回值大部分是对象类型, 而不是像bash shell那种纯粹的字符串. 这些对象拥有属性和值, 所以过滤它们的返回值时, 需要指定目标属性, 或者加上期望值. 比较常用的是`select-object`命令.
+首先要明白, powershell的命令返回值大部分是对象类型, 而不是像bash shell那种纯粹的字符串. 这些对象拥有属性和值, 所以过滤它们的返回值时, 需要指定目标属性, 或者加上期望值. 比较常用的是如下命令.
+
+1. `Select-Object`
+
+2. `Where-Object`
+
+3. `ForEach-Object`
 
 ### 索引过滤
 
@@ -59,6 +69,8 @@ Stopped AppIDSvc
 Running Appinfo
 Stopped AppMgmt
 ```
+
+**注意**
 
 当然, `get-service`的输出应该不只只有`status`, `name`, `displayname`3个属性, 要查看某个对象的全部属性, 可以使用`get-member`命令.
 

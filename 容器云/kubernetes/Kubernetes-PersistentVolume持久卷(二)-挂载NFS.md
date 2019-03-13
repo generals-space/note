@@ -67,5 +67,8 @@ spec:
     volumeMounts:
     - name: fortest-vol
       mountPath: "/upload"
+      readOnly: false ## 默认为true???
     command: ["tail", "-f", "/etc/profile"]
 ```
+
+> 注意: deployment文件中`readOnly: false`是必须的, 貌似默认为true, 但是pod的配置默认为false, 可写. 所以deployment的配置要注意一下.
