@@ -10,6 +10,8 @@
 
 4. [题 如何在PowerShell或C＃中获取进程的命令行信息](http://landcareweb.com/questions/8616/ru-he-zai-powershellhuo-c-zhong-huo-qu-jin-cheng-de-ming-ling-xing-xin-xi)
 
+5. [Get-WmiObject - Use OR-Operator in -filter?](https://stackoverflow.com/questions/36861216/get-wmiobject-use-or-operator-in-filter)
+
 `Get-Process`可以获取系统中正在运行的进程列表, 类似于任务管理器中的数据.
 
 `Get-Process node | Get-Member`: 可以查看一个进程对象的所有属性.
@@ -21,3 +23,25 @@
 为了解决这个问题, 可以见参考文章3和4, 通过`Get-WmiObject`函数.
 
 `Get-WmiObject Win32_Process -Filter "name = 'node.exe'"`得到更详细的数据, ta所返回的对象中有一个成员为`CommandLine`, 值为`node index.js`, 正好就是启动行启动的参数.
+
+`Get-WmiObject`可所以查询的类型有如下几种:
+
+- `Win32_Process`: 进程信息
+
+- `Win32_LogicalDisk`: 本地逻辑卷
+
+- `win32_service`: 服务信息
+
+`filter`可用语法见参考文章5, 可使用类似sql过滤的查询方法. 如
+
+```ps1
+get-wmiobject win32_process -filter "name like '%python%'"
+```
+
+还可以使用or, and等操作符.
+
+查询当前系统中正在运行的python程序, 过滤pid和启动命令
+
+```ps1
+get-wmiobject win32_process -filter "name like '%python%'" | select-object processid, commandline
+```

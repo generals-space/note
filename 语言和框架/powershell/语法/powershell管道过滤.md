@@ -115,6 +115,8 @@ Running  COMSysApp          COM+ System Application
 
 > 过滤条件需要使用`{}`包裹起来.
 
+> `$_`默认表示每个传入`where-object`的行对象.
+
 `where-object`的过滤方式很多, 常用的有
 
 - `-contains 字符串`: 包含目标子字符串;
@@ -124,6 +126,8 @@ Running  COMSysApp          COM+ System Application
 - `-match 模式`: 符合目标正则模式;
 
 - `-eq|ge|gt|le|lt -value 数值`: 数值比较;
+
+- `like *字符串*`: 类似于sql的like查询;
 
 ## 2. 遍历
 
