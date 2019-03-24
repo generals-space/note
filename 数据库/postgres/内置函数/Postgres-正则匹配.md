@@ -28,7 +28,7 @@ skycmdb=# select 'ab' ~ '^ab$';
 (1 row)
 ```
 
-同`like`关键字一样, 也可以用在`where`子句中.
+同`like`关键字一样, 也可以用在`where`子句中. 如下两句sql作用相同.
 
 ```sql
 skycmdb=# select count(id) from domain where integral_domain ~ '51mrp.com';
