@@ -1,4 +1,4 @@
-# Postgreql-删除正在占用的数据库
+# Postgresql-删除正在占用的数据库
 
 参考文章
 
