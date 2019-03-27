@@ -1,4 +1,4 @@
-# 启动genymotion提示要先安装virtualbox的问题
+# Linux启动genymotion提示要先安装virtualbox的问题
 
 系统: CentOS7
 
