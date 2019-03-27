@@ -1,7 +1,10 @@
 # Python内置方法, 魔术方法
 
+参考文章
+
 1. [Python学习笔记二十---- 对象高级 - 163博客](http://blog.163.com/qimeizhen8808@126/blog/static/16511951820127220173667)
 
+2. [python中的globals()、locals()、dir()、vars()、__dict__](https://blog.csdn.net/biorelive/article/details/47319923)
 
 __init__(self,...)-----初始化对象，创建对象时调用（实例化对象时）
 

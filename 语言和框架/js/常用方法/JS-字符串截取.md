@@ -4,7 +4,7 @@
 
 1. [JavaScript截取字符串的Slice、Substring、Substr函数详解和比较](http://www.jb51.net/article/48257.htm)
 
-按照索引截取.
+假设有如下字符串
 
 ```js
 var testStr = 'hello world!';

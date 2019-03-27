@@ -1,4 +1,4 @@
-# Python元类.md
+# Python元类
 
 参考文章
 
