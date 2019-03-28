@@ -1,4 +1,4 @@
-# Neo4j Cypher实践
+# Neo4j-Cypher语法实践
 
 ## 1. 查询
 
