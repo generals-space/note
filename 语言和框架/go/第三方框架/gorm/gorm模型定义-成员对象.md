@@ -73,7 +73,6 @@ import (
 	"encoding/json"
 	"errors"
 	"log"
-	"unsafe"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
@@ -91,7 +90,7 @@ type UserCards []*Card
 
 // User ...
 type User struct {
-	ID    uint64     `json:"gorm" gorm:"primary_key,AUTO_INCREMENT"`
+	ID    uint64     `json:"id" gorm:"primary_key,AUTO_INCREMENT"`
 	Name  string     `json:"name" gorm:"unique"`
 	Cards *UserCards `json:"card" gorm:"type:text"`
 }
@@ -137,12 +136,13 @@ func main() {
 	db.AutoMigrate(&User{})
 
 	/*
-		card := &Card{
-			SerialNumber: "1111111111111111",
-		}
 		user := &User{
-			Name:  "general",
-			Cards: &UserCards{card},
+			Name: "general",
+			Cards: &UserCards{
+				&Card{
+					SerialNumber: "1111111111111111",
+				},
+			},
 		}
 		db.Create(user)
 	*/
@@ -152,14 +152,17 @@ func main() {
 	log.Printf("%+v\n", myUser)
 
 	userStr, _ := json.Marshal(myUser)
-    log.Printf("%s\n", userStr)
-    
+	log.Printf("%s\n", userStr)
+
 	// 切片类型由别名`UserCard`转换回来还是比较难的, 不如直接先转成json再转成`[]*Card`
-	cards := *(*[]*Card)(unsafe.Pointer(myUser.Cards))
+	// cards := *(*[]*Card)(unsafe.Pointer(myUser.Cards))
+	// 想多了, 可以直接进行显式类型转换, 这样方便多了
+	cards := []*Card(*myUser.Cards)
 	for _, c := range cards {
 		log.Printf("%+v\n", c)
 	}
 }
+
 ```
 
 上述代码在创建`uses`表时会自动创建`cards`列, 且类型为`text`, 存储的是json形式的字符串.
@@ -177,7 +180,7 @@ gormdb=# select * from users;
 ```
 generals-MacBook-Pro:gormtest general$ go run main.go
 2018/11/12 18:30:08 &{ID:1 Name:general Cards:0xc00013f2e0}
-2018/11/12 18:30:08 {"gorm":1,"name":"general","card":[{"serialNumber":"1111111111111111"}]}
+2018/11/12 18:30:08 {"id":1,"name":"general","card":[{"serialNumber":"1111111111111111"}]}
 2018/11/12 18:30:08 &{SerialNumber:1111111111111111}
 ```
 
