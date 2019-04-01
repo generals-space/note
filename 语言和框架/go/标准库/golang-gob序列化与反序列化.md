@@ -14,6 +14,8 @@
 
 4. [使用golang gin框架sessions时碰到的gob问题](https://my.oschina.net/sannychan/blog/1840048)
 
+5. [Package gob](https://golang.org/pkg/encoding/gob/#GobEncoder)
+
 gob序列化也是在使用[faygo](https://github.com/henrylee2cn/faygo)框架时, redis作session分布式缓存时遇到的, 存入redis的自定义对象取出时为空, 排查问题时发现是在服务启动前需要加一句`gob.Register()`. 
 
 ## 1. Encode与Decode
@@ -100,3 +102,7 @@ gob.Register(&types.User{})
 这句话告诉系统: 所有的不可知类型(序列化操作应该是按`interface{}`作为通用类型)是有可能为`&types.User{}`结构的. 
 
 注意: `session.Set()`如果指定了指针类型, 那么对应的, `gob.Register()`注册的也应该是指针.
+
+------
+
+不过如何序列化`channel`, `func`, 倒是没什么头绪, 网上也没有相关资料. 参考文章5中对`GobEncoder`接口函数的介绍, 不过没看太懂.
