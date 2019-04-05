@@ -24,9 +24,9 @@ func main() {
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
         panic(err)
-    }   
+    }
 	// req.Header.Set("User-Agent", "curl/7.54.0")
-        
+
     res, err := client.Do(req)
 
     result, err := ioutil.ReadAll(res.Body)

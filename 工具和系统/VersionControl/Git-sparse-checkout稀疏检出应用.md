@@ -16,4 +16,22 @@
 
 开启`sparse checkout`需要修改`.git`下的文件(你一定不想改全局配置吧), 所以本地要先init一个空仓库, 把remote指向目标仓库, 再pull才行.
 
+开启稀疏检出.
+
+```
+git config core.sparsecheckout true
+```
+
+修改`.git/info/sparse-checkout`
+
+```
+*
+!Chromium/**
+!ChromiumRes/**
+```
+
+可以单独指定要抓取的路径, 也可以通过`!`指定排除的路径. 
+
+注意, 不能光指定排除路径, 需要先使用通配符`*`指定所有路径再排除, 才有效. 否则会报`error: Sparse checkout leaves no entry on working directory`的错误.
+
 另外, 参考文章3有提到关闭`sparse checkout`的操作貌似不简单, 不过目前我也不关心.
