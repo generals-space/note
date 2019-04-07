@@ -89,3 +89,5 @@ curl localhost:8000/api/upload -F "file=@/Users/general/Downloads/logo.png"
 `@路径`: 其中路径可以是相对路径.
 
 不需要指定`-X POST`, `-F`的作用和ta是平级且互斥的.
+
+## `-k`选项忽略证书
