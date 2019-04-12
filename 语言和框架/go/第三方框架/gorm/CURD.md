@@ -46,6 +46,17 @@ db.NewRecord(user) // => 创建`user`后返回`false`
 
 使用`struct`时, 注意gorm会自动忽略其中的空值, 比如, 如果其中某个字段为bool类型, 而它的是false, 那gorm就不会更新这个字段, 同理, 如果某个字符串字段的值为空, 也会被忽略. 使用map作为参数就不会有此问题.
 
+对布尔类型字段的更新操作示例(在不事先查询出目标记录集合的时候)
+
+```go
+	// 成功
+	thedb.Model(&model.Notification{}).Where("id = 1").Updates(map[string]interface{}{"solved": true})
+	// 以下皆失败(但是没有Error生成)
+	thedb.Model(&model.Notification{}).Where("id = 1").Updates(map[string]interface{}{"solved": "true"})
+	thedb.Model(&model.Notification{}).Where("id = 1").UpdateColumn("sovled", "true")
+	thedb.Model(&model.Notification{}).Where("id = 1").UpdateColumn("sovled", true)
+```
+
 ## Where()过滤
 
 关于`Where()`, 可以使用`db.Where(&ModelStruct{ID: 1}).Find(modelStructObjs)`来实现过滤查询, 但是查询哪个表是由`Find(x)`传入的对象反向得来的, 所以`db.Where(&ModelStruct{ID: 1}).Count(&count)`是会出问题的...`no such table:`, 在没有使用`Find()`或`First()`传入struct对象时, 必须使用`db.Model(&ModelStruct{}).Where(&ModelStruct{ID: 1}).Count(count)`完成...
@@ -76,39 +87,3 @@ filter := map[string]interface{
 }
 db.Where(filter)
 ```
-
-## Scan查询
-
-```go
-type User struct {
-	Name string
-	Age uint8
-}
-```
-
-一般与`Select()`配合使用, 当我们只想要查询某张表的指定字段时, 其他字段是没有用处的, 那么常规的`Find(&users)`其实有点得不偿失的感觉, 尤其是当这张表中的字段很多时, 结果列表可能占用较大内存. 
-
-此时我们可以使用`Scan()`方法, 仅将我们需要的列放入结果中即可.
-
-```go
-type NameResult struct{
-	Name string
-}
-nameResults := []*NameResult{}
-db.Model(&User{}).Select("name").Scan(&nameResults)
-```
-
-> 注意: 如果使用`First()`或`Find()`去查询`&nameResults`的值什么也不会得到, 猜测是因为与`Model()`的参数类型不同. 就算没有Model, 也会因为数据库中根本不存在`name_results`表而查询失败.
-
-> 另外, `Scan()`也可以配合`Raw()`方法执行原生sql使用.
-
-## Pluck查询
-
-与Scan类似...上面的代码中我只想查单个列, 还要新建一个结构体, 感觉不值得, 因为单个列的最终结果其实应该是一个字符串列表, `Pluck()`就是将目标结果赋值给一个列表的函数.
-
-```go
-	results := []string{}
-	db.Model(&model.Manufacturer{}).Pluck("name", &results)
-```
-
-这样更是简单, Scan更适合查询指定列但是数量大于1列的情况.
