@@ -1,6 +1,4 @@
----
-title: Python执行shell命令
----
+# Python执行shell命令
 
 参考文章
 
