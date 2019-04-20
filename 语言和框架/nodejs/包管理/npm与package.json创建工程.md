@@ -30,13 +30,13 @@ package.json 文件至少要有两部分内容：
 
 其他元信息：
 
-`description`: 描述信息，有助于搜索
-`main:` 入口文件, 默认为`index.js`
-`scripts`: 支持的脚本，默认是一个空的 test
-`keywords`: 关键字，有助于在人们使用 npm search 搜索时发现你的项目
-`author`: 作者信息
-`license`: 默认是 MIT
-`bugs`: 当前项目的一些错误信息，如果有的话...
+- `description`: 描述信息，有助于搜索
+- `main:` 入口文件, 默认为`index.js`
+- `scripts`: 支持的脚本，默认是一个空的 test
+- `keywords`: 关键字，有助于在人们使用 npm search 搜索时发现你的项目
+- `author`: 作者信息
+- `license`: 默认是 MIT
+- `bugs`: 当前项目的一些错误信息，如果有的话...
 
 ## 2. 依赖信息
 
