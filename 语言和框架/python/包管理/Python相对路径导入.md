@@ -44,9 +44,6 @@ show.getContent()
 `config/settings.py`
 
 ```py
-#!/usr/bin/python3.6
-#!encoding:utf-8
-
 config = {
     'name': 'general',
     'file': None,
@@ -62,6 +59,9 @@ config = {
 ## from ..config.settings import config
 ## 上面的两种导入方式都会报如下错误
 ## ValueError: attempted relative import beyond top-level package
+## 由于python在执行工程时搜索路径包括当前目录, 所以从根路径进行导入是可行的.
+from config.settings import config
+
 def getContent():
     cnt = config['file'].read()
     print(cnt)
