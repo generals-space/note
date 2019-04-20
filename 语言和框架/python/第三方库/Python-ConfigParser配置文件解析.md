@@ -1,16 +1,14 @@
----
-title: Python配置文件解析(一)-ConfigParser模块
----
+# Python-ConfigParser配置文件解析
 
 参考文章
 
-[Python 解析配置模块之ConfigParser详解](http://www.pythontab.com/html/2014/pythonhexinbiancheng_1120/919.html)
+1. [Python 解析配置模块之ConfigParser详解](http://www.pythontab.com/html/2014/pythonhexinbiancheng_1120/919.html)
 
-ConfigParser模块提供了3个类: `RawConfigParser`、`ConfigParser`、`SafeConfigParser`。`RawCnfigParser`是最基础的ini文件读取类，ConfigParser、SafeConfigParser支持对`%(value)s`变量的解析.
+ConfigParser模块提供了3个类: `RawConfigParser`、`ConfigParser`、`SafeConfigParser`. `RawCnfigParser`是最基础的ini文件读取类, ConfigParser、SafeConfigParser支持对`%(value)s`变量的解析.
 
 示例配置文件如下:
 
-test.ini
+`test.ini`
 
 ```ini
 [sec_a] 
@@ -26,7 +24,7 @@ b_key4 = 127.0.0.1
 
 示例代码
 
-parse_test.py
+`parse_test.py`
 
 ```py
 #!/usr/bin/env python
@@ -97,16 +95,16 @@ new_key = new_value
 
 如下示例配置文件
 
-test2.ini
+`test2.ini`
 
-```
+```ini
 [portal] 
 url = http://%(host)s:%(port)s/Portal 
 host = localhost 
 port = 8080
 ```
 
-使用RawConfigParser：
+使用`RawConfigParser`: 
 
 ```py
 #!/usr/bin/env python

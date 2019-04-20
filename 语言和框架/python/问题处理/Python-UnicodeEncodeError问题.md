@@ -21,7 +21,7 @@ UnicodeEncodeError: 'ascii' codec can't encode characters in position 0-78: ordi
 
 可以通过在命令行里执行如下代码得到python的默认编码, 一般是ascii.
 
-```python
+```py
 import sys
 print sys.getdefaultencoding()
 # 'ascii'
@@ -37,7 +37,7 @@ AttributeError: 'module' object has no attribute 'setdefaultencoding'
 
 解决办法是, 在setdefaultencoding之前先reload()一遍sys模块, 完整的代码为
 
-```python
+```py
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')

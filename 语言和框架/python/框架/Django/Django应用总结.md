@@ -19,7 +19,7 @@
 
 后端django代码
 
-```python
+```py
 if request.method == 'POST':
     ## check_box_list是一个list对象, 选中的值会出现在里面, 如[2, 4]
     check_box_list = request.REQUEST.getlist('notuseldap')

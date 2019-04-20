@@ -1,13 +1,12 @@
-title: Python标准库-os模块exec系函数
----
+# Python标准库-os模块exec系函数
 
-tags: 语言 python os模块 exec函数族
+<!tags!>: <!exec!>
 
 `os.exec*()`都只是posix系统调用的直接映射
 
 ## 1. 
 
-```python
+```py
 os.execv(program, cmdargs)
 ```
 
@@ -15,7 +14,7 @@ os.execv(program, cmdargs)
 
 示例:
 
-```python
+```py
 os.execv('/bin/ping', ['/bin/ping', '-c', '10', 'www.baidu.com'])
 os.execv('/bin/ping', ['ping', '-c', '10', 'www.baidu.com'])
 os.execv('/bin/ping', ('/bin/ping', '-c', '10', 'www.baidu.com'))
@@ -25,14 +24,14 @@ os.execv('/bin/ping', ('/bin/ping', '-c', '10', 'www.baidu.com'))
 
 如果目标程序不需要任何参数, 我们可以传入空列表, 此时目标程序的`argv[0]`等同于参数1. 当然也可以传入与参数1相同的列表成员
 
-```python
+```py
 os.execv('/bin/pwd', [''])
 os.execv('/bin/pwd', ['/bin/pwd'])
 ```
 
 ## 2. 
 
-```python
+```py
 os.execl(program, cmdarg1, cmdarg2, ..., cmdargN)
 ```
 
@@ -40,34 +39,34 @@ os.execl(program, cmdarg1, cmdarg2, ..., cmdargN)
 
 示例
 
-```python
+```py
 os.execl('/bin/ping', '/bin/ping', '-c', '10', 'www.baidu.com')
 os.execl('/bin/ping', 'ping', '-c', '10', 'www.baidu.com')
 ```
 
 同理, 目标程序参数为空时, 需要使用如下方式
 
-```python
+```py
 os.execl('/bin/pwd', '')
 os.execl('/bin/pwd', '/bin/pwd')
 ```
 
 ## 3. 
 
-```python
+```py
 os.execvp(program, args)
 ```
 
 `p`模式下, 基本的`v`执行形式, 需要传入可执行文件路径, 以及用来运行程序的命令行参数字符的列表或元组. 运行新程序的搜索路径为当前文件的**相对路径**.
 
-```python
+```py
 os.execvp('/bin/pwd', ['pwd'])
 os.execvp('./test.py', ['test.py', 'hello', 'world'])
 ```
 
 其中, `test.py`是与当前程序同目录的程序, 它的内容可如下
 
-```python
+```py
 #!/usr/bin/env python
 #!coding:utf-8
 
@@ -80,19 +79,19 @@ print(sys.argv)
 
 ## 4. 
 
-```python
+```py
 os.execlp(program, cmdarg1, cmdarg2, ..., cmdargN)
 ```
 
 `p`模式下, 基本的`l`执行形式, 需要传入可执行文件路径, 以及用来运行程序的命令行多个字符参数. 运行新程序的搜索路径为当前文件的搜索路径.
 
-```python
+```py
 os.execvp('/bin/pwd', ['pwd'])
 ```
 
 ## 5. 
 
-```python
+```py
 os.execve(program, args, env)
 ```
 
@@ -100,13 +99,13 @@ os.execve(program, args, env)
 
 使用这个函数, 我们可以为将要执行的目标程序设置环境变量而不污染全局的环境变量.
 
-```python
+```py
 os.execve('/root/test.py', ['test.py', 'hello', 'world'], {'EXEC_TEST': '1234'})
 ```
 
 对应的`test.py`文件内容可为如下
 
-```python
+```py
 #!/usr/bin/env python
 #!coding:utf-8
 
@@ -119,7 +118,7 @@ print(os.getenv('EXEC_TEST'))
 
 ## 6. 
 
-```python
+```py
 os.execle(program, cmdarg1, cmdarg2, ..., cmdargN, env)
 ```
 
@@ -127,7 +126,7 @@ os.execle(program, cmdarg1, cmdarg2, ..., cmdargN, env)
 
 ## 7.
 
-```python
+```py
 os.execvpe(program, args, env)
 ```
 
@@ -135,7 +134,7 @@ os.execvpe(program, args, env)
 
 ## 8.
 
-```python
+```py
 os.execlpe(program, cmdarg1, cmdarg2, ..., cmdargN, env)
 ```
 

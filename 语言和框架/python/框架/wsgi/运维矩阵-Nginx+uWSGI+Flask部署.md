@@ -96,7 +96,7 @@ wsgi协议需要程序的入口文件主函数名为`application`...希望我没
 
 `SKY.wsgi`文件内容为
 
-```python
+```py
 # -*- coding: utf-8 -*-
 from SkyFlask import sky as application
 

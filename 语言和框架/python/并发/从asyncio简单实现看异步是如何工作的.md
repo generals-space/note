@@ -12,7 +12,7 @@ by ipfans
 
 首先我们来看一个 socket 通讯的例子，这个例子我们可以在官方 `socket` 模块的文档中找到部分原型代码：
 
-```python
+```py
 # echo.py
 from socket import *  # 是的，这是一个不好的写法
 def echo_server(address):
@@ -68,7 +68,7 @@ if __name__ == '__main__':
 当然了，我们都知道多线程之下总是会有一些问题的。那么还有更好的方案吗？如果你了解过**C10k问题**，你一定听过`epoll`, `kqueue`之类的大名。那么，能在 Python 中使用这些功能吗？答案是肯定的。那就是[select](https://docs.python.org/3.5/library/select.html)。
 
 
-```python
+```py
 # echo_select.py
 from socket import *
 import select
@@ -114,7 +114,7 @@ if __name__ == '__main__':
 
 这个更接近于我们在同步状态下使用 `socket` 的代码。
 
-```python
+```py
 # aecho.py
 from socket import *
 import asyncio
@@ -152,7 +152,7 @@ loop.run_forever()
 
 如果你阅读过[PEP-0492](https://www.python.org/dev/peps/pep-0492/)，你就知道，实际上 Python 的协程是通过生成器实现的。
 
-```python
+```py
 # async_yield.py
 from types import coroutine
 @coroutine
@@ -177,7 +177,7 @@ StopIteration
 
 如果不了解`send()`与`StopIteration` 作用的话，请参考 `PEP-0492` 中相关的描述。接下来继续完善 `write` 方法，并且实现我们自己的 `Loop`。
 
-```python
+```py
 # async_yield.py
 from types import coroutine
 from collections import deque
@@ -228,7 +228,7 @@ class Loop(object):
 对于之前一节中的`aecho.py`文件，我们只需要修改一下导入模块与 loop 的获取方法即可：
 
 
-```python
+```py
 # pecho.py
 from socket import *
 import async_yield

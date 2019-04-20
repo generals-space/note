@@ -101,7 +101,7 @@ MultiValueDictKeyError: "'subjectDesc'"
 
 情境描述
 
-```python
+```py
 url(r'^acceptinvitation$', chuang_views.acceptInvitation, name='acceptinvitation'),
 url(r'^rejectinvitation$', chuang_views.rejectInvitation, name='rejectinvitation'),
 ```

@@ -247,7 +247,7 @@ Jul 11 01:08:05 localhost sshd[2645]: Failed password for ldapuser1 from 172.32.
 
 手动安装了新版本的python(这里是2.7.13)后, 启动`authconfig-tui`时报错如下:
 
-```python
+```py
 Traceback (most recent call last):
   File "/usr/sbin/authconfig-tui", line 28, in <module>
     import authinfo, acutil
@@ -264,7 +264,7 @@ ImportError: No module named acutil
 
 `authconfig-tui`也是一个python脚本, 同yum一样, 依赖于python2.6. 所以与yum的兼容方法一样, 将其第一行的python的声明改为指向2.6版本的即可
 
-```python
+```py
 #!/usr/bin/python2.6
 ```
 

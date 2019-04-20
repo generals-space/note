@@ -16,7 +16,7 @@
 
 测试代码如下：
 
-```python
+```py
 def foo(*args,**kwargs):
     print 'args=',args
     print 'kwargs=',kwargs

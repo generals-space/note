@@ -18,7 +18,7 @@ XML-RPC是工作在Internet上的远程过程调用协议。一个XML-RPC消息�
 
 首先创建rpc server.
 
-```python
+```py
 #!/usr/bin/python
 #!coding:utf-8
 
@@ -60,7 +60,7 @@ Nmap done: 1 IP address (1 host up) scanned in 0.08 seconds
 
 然后通过`xmlrpclib`库与远程rpc服务器进行通信.
 
-```python
+```py
 #!/usr/bin/python
 #!coding:utf-8
 
@@ -96,7 +96,7 @@ result: hello xmlrpc
 
 ## 2. 进阶应用-传递/返回对象
 
-```python
+```py
 #!/usr/bin/python
 #!coding:utf-8
 
@@ -120,7 +120,7 @@ server.serve_forever()
 
 对应的客户端代码
 
-```python
+```py
 #!/usr/bin/python
 #!coding:utf-8
 

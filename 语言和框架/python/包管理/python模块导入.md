@@ -30,7 +30,7 @@ python中的package必须包含一个`__init__.py`的文件, 如果 `__init__.py
 
 以如下代码为例, `person.py`文件作为调用模块, `caller.py`作为主调程序, 两者放在同一目录下.
 
-```python
+```py
 #!/usr/bin/python
 #!coding:utf-8
 ## person.py模块
@@ -43,7 +43,7 @@ class Person:
 b = Person()
 ```
 
-```python
+```py
 #!/usr/bin/python
 #!coding:utf-8
 
@@ -68,7 +68,7 @@ hello Niko
 
 #### 2.1.1 用逗号分割模块名称可以同时导入多个模块
 
-```python
+```py
 ## caller.py
 ## /usr/bin/python
 import os, sys, person
@@ -76,7 +76,7 @@ import os, sys, person
 
 #### 2.1.2 使用 as 关键字可以改变模块的引用对象的名称
 
-```python
+```py
 ## /usr/bin/python
 import person as leader
 ## 调用person模块中的greet函数(不是Person类中的greet方法)
@@ -87,7 +87,7 @@ leader.greet()
 
 `from`语句不创建一个到模块命名空间的引用对象, 而是把被导入模块的一个或多个对象直接放入当前的命名空间, 可以直接使用. 
 
-```python
+```py
 ## /usr/bin/python
 from person import a, greet, Person
 print(a)
@@ -141,7 +141,7 @@ ImportError: No module named a
 
 如果一个模块如果定义有列表变量`__all__`, 则`from module import *` 语句只能导入`__all__`列表中存在的对象. 
 
-```python
+```py
 #!/usr/bin/python
 #!coding:utf-8
 ## person.py模块
@@ -157,7 +157,7 @@ class Person:
 b = Person()
 ```
 
-```python
+```py
 #!/usr/bin/python
 #!coding:utf-8
 ## from person import a, greet, Person
@@ -170,7 +170,7 @@ Person().greet()
 
 但是这种形式只能限制以`from module import *`语句的导入方式, 如果`from person import a, greet, Person`直接指定模块需要导入的对象, 那么`__all__`是不起作用的. 另外, 在`__all__`存在的情况下, 主调程序中使用`import person`导入模块本身是不可行的, 无法使用任何模块中定义的对象.
 
-```python
+```py
 #!/usr/bin/python
 #!coding:utf-8
 ## from person import a, greet, Person
@@ -181,7 +181,7 @@ greet()
 Person().greet()
 ```
 
-```python
+```py
 #!/usr/bin/python
 #!coding:utf-8
 ## from person import a, greet, Person

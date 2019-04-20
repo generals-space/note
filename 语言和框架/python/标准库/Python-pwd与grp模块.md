@@ -20,7 +20,7 @@ pwd模块有3个函数: `getpwuid`, `getpwnam`, `getpwall`。通过这三个函�
 
 示例
 
-```python
+```py
 #!/usr/bin/env python
 #!coding:utf-8
 import pwd
@@ -57,10 +57,8 @@ pwd.struct_passwd(pw_name='root', pw_passwd='x', pw_uid=0, pw_gid=0, pw_gecos='r
 
 grp模块，提供了一个Unix 用户组/group（/etc/group）数据库的接口
 
-- getgrgid(gid): 返回对应gid的组信息 
+- `getgrgid(gid)`: 返回对应gid的组信息 
+- `getgrname(name)`: 返回对应group name的组信息 
+- `getgrall()`: 返回所有组信息 
 
-- getgrname(name): 返回对应group name的组信息 
-
-- getgrall(): 返回所有组信息 
-
-使用方法与pwd模块类似
+使用方法与pwd模块类似.

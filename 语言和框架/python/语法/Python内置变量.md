@@ -2,7 +2,7 @@
 
 ## 2. __doc__
 
-```python
+```py
 #!/usr/bin/env python
 #!coding:utf-8
 

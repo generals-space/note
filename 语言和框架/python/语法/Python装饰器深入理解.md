@@ -1,6 +1,6 @@
 # Python装饰器深入理解
 
-```python
+```py
 def log(func):
     print 'entered log'
     def wrapper():
@@ -46,7 +46,7 @@ now(){}()   = log(now){...}()
 
 示例2: 尝试捕获并修改被装饰函数的参数列表
 
-```python 
+```py 
 #!/bin/python
 
 def log(func):
@@ -90,7 +90,7 @@ arguments list : 1
 
 类成员函数的定义都显式包含一个`self`参数, 所以装饰器返回的函数, 其参数列表也必须包含这个self.
 
-```python
+```py
 def log(func):
     def wrapper(self, a):
         print 'arguments list : %s' % (a)
@@ -131,7 +131,7 @@ arguments list : 1
 
 因为修饰了类成员函数, 所以装饰器函数能取得类成员变量与方法的访问权限(这正是闭包的作用), 这里, 我们在执行类成员函数now()之前修改类成员变量`self.i`的值.
 
-```python
+```py
 def log(func):
     def wrapper(self, a):
         print 'arguments list : %s' % (a)

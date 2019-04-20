@@ -1,10 +1,10 @@
-# Python-Cmd模块使用
+# Python-cmd命令行参数解析
 
 [Cmd源码](https://hg.python.org/cpython/file/2.7/Lib/cmd.py)
 
 ## 1. 交互模式
 
-```python
+```py
 #!/bin/python
 #!coding:utf-8
 from cmd import Cmd
@@ -61,7 +61,7 @@ this is exit: good bye
 
 某些时候我们不想这么做, 那么我们可以在我们自定义的派生类中定义一个`emptyline`方法, 里面只写一句`pass`, 这样可以在空行回车的时候什么也不做.
 
-```python
+```py
 class CmdInterface(Cmd):
     def emptyline(self):
         pass
@@ -78,7 +78,7 @@ this is exit: good bye
 
 好了, 现在认识一下cmd类中原本的`emptyline`方法. 如下
 
-```python
+```py
     def emptyline(self):
         """Called when an empty line is entered in response to the prompt.
 

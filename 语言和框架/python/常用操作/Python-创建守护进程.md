@@ -14,7 +14,7 @@
 
 通过`setsid()`函数, 将当前进程设置为新的session中的leader, 这样就可以摆脱当前终端的限制.
 
-```python
+```py
 #!/usr/bin/python 
 #!encoding: utf-8
 
@@ -52,7 +52,7 @@ if __name__ == '__main__':
 
 见下面的示例
 
-```python
+```py
 #!/usr/bin/python 
 #!encoding: utf-8
 
@@ -111,7 +111,7 @@ From gateway (172.32.100.2) icmp_seq=360 Destination Host Unreachable
 
 下面是一个比较完整的python守护进程类示例代码, 基本可以满足我们的要求.
 
-```python
+```py
 #!/usr/bin/env python
 #coding: utf-8
 

@@ -8,7 +8,7 @@ Python中，`for...if...`语句一种简洁的**构建List**的方法，从`for`
 
 简单示例
 
-```python 
+```py 
 #!/usr/bin/env python
 #!coding:utf-8
 
@@ -31,7 +31,7 @@ print(newlist)
 
 还有一种, oldlist是一个列表/字典, 从其中选择部分成员/键作为新列表的成员.
 
-```python
+```py
 #!/usr/bin/env python
 #!coding:utf-8
 
