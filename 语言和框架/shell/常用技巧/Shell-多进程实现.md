@@ -4,7 +4,7 @@
 
 参考文章
 
-[用fifo来处理linux shell下的多进程并发](https://my.oschina.net/sanpeterguo/blog/133304)
+1. [用fifo来处理linux shell下的多进程并发](https://my.oschina.net/sanpeterguo/blog/133304)
 
 shell脚本在大部分情况下都是顺序执行的, 后面的语句必须要等待前面的执行完毕后才能执行. 但是通过`&`可以将当前要执行的命令放到后台, 而不阻塞之后的代码执行.
 
@@ -74,8 +74,6 @@ general@ubuntu:/tmp$ bash multiproc.sh
 
 ```shell
 #!/bin/bash
-#author :  peterguo@tencent.com
-#date   :  2013.05.24
 
 #创建一个fifo文件
 FIFO_FILE=/tmp/$.fifo
