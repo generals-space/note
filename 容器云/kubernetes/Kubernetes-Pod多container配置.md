@@ -68,3 +68,5 @@ tcp        0      0 0.0.0.0:5432            0.0.0.0:*               LISTEN      
 tcp6       0      0 :::5432                 :::*                    LISTEN      -
 udp        0      0 127.0.0.1:43116         127.0.0.1:43116         ESTABLISHED -
 ```
+
+> 如果你了解docker的4种网络模式的话就会发现, kubernetes的多container的配置, 就是docker网络的`container`模式.
