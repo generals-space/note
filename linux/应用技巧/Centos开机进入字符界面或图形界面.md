@@ -1,5 +1,15 @@
 # Linux开机进入字符界面/图形界面
 
+<!key!>: {c2f8cf90-5387-11e9-ae66-aaaa0008a014}
+
+<!link!>: {664fdd98-537c-11e9-b398-aaaa0008a014}
+
+参考文章
+
+1. [systemd详解](https://blog.linuxeye.com/400.html#comments)
+
+2. [真的超赞！用systemd命令来管理linux系统！](https://linux.cn/article-3801-1.html)
+
 ## 1. CentOS7-
 
 参考文件`/etc/inittab`关于Linux运行级别的解释(连rcS.conf与rc.conf的区别都只用两句话就讲清楚了). 对启动模式的修改只有最后一行.
@@ -41,10 +51,4 @@ systemctl set-default 目标target文件名
 
 重启, 生效.
 
-------
-
- **扩展阅读**
-
-[systemd详解](https://blog.linuxeye.com/400.html#comments)
-
-[真的超赞！用systemd命令来管理linux系统！](https://linux.cn/article-3801-1.html)
+> 注意: 使用centos dvd iso镜像安装的系统, 在安装步骤中要选择安装桌面环境, 否则设置图形界面是无效的.
