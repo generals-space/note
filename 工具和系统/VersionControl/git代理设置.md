@@ -1,6 +1,6 @@
-# Linux应用技巧-代理设置
+# git代理设置
 
-## git
+<!tags!>: <!代理!>
 
 参考文章
 
@@ -16,15 +16,3 @@ git config --global https.proxy 'socks5://127.0.0.1:1080'
 ```
 
 设置了socks5的代理后, `git clone`操作无论是`https://`这种http协议, 还是`git@github`这种ssh协议, 都可以走代理. 不太清楚使用http层面的代理时, 对ssh协议是否有效.
-
-## curl
-
-```
-## 普通的http代理
-$ curl -x 127.0.0.1:3128 www.google.com
-
-## socks5代理
-$ curl --socks5 127.0.0.1:1080 www.google.com
-```
-
-至于wget, 它只有http代理, 要使用socks代理貌似需要额外的工具.

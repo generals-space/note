@@ -1,4 +1,4 @@
-# Linux磁盘挂载-执行umount时报device is busy
+# 执行umount时报device is busy
 
 参考文章
 

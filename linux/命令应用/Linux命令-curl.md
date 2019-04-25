@@ -1,5 +1,7 @@
 # Linux命令-curl
 
+<!tags!>: <!代理!>
+
 参考文章
 
 1. [Linux curl命令参数详解](http://www.aiezu.com/system/linux/linux_curl_syntax.html)
@@ -8,19 +10,34 @@
 
 3. [shell curl 数据中含有空格 如何提交](https://blog.csdn.net/qq_25279717/article/details/71577313)
 
-4. [curl 模拟 GET\POST 请求，以及 curl post 上传文件](https://blog.csdn.net/fungleo/article/details/80703365)
+4. [curl 模拟 GET\POST 请求, 以及 curl post 上传文件](https://blog.csdn.net/fungleo/article/details/80703365)
 
-## 1. 请求参数中`&`的处理
+## 1. 常用选项
 
-假设url为`http://mywebsite.com/index.PHP?a=1&b=2&c=3`, web形式下访问url地址，使用`$_GET`是可以在后台获取到所有的参数
+```
+curl -H "Content-Type: application/json" -X POST -d "{\"name\":\"general\",\"password\":\"123456\"}" -k http://localhost/login
+```
 
-而在Linux下使用`curl http://mywebsite.com/index.php?a=1&b=2&c=3`, `$_GET`只能获取到参数`a`. 由于url中有`&`，其他参数获取不到，必须对&进行下转义才能`$_GET`获取到所有参数
+`-H '请求头'`: 添加请求头信息
+`-X POST|HEAD|OPTION`: 可以明确指定请求类型.
+`-d`: 指定数据, 此选项出现时请求类型自动变为`POST`
+`-k`: 如果是https且证书不合法时, 可以使用`-k`忽略对目标网站的证书验证;
+`-s`: 静默输出(有些发行版会打印请求时间, 传输速度和下载进度等信息, 可以使用此选项屏蔽);
+`-o 文件路径`: 将请求得到的数据写入目标文件
+`-O`: 将请求得到的数据写入文件, 文件名与远程请求的文件名相同, 这需要目标url不是以`/`结尾而应该是一个文件比如`index.php`.
+`-w '格式化字符串'`: 指定curl得到的信息及格式.
 
-`curl http://mywebsite.com/index.php?a=1\&b=2\&c=3`
+**url中请求参数中`&`的处理**
 
-## 2. 使用`-H`添加请求头信息
+假设url为`http://localhost/index.php?a=1&b=2&c=3`, 浏览器中访问此地址, 后端程序可以在后台获取到所有的参数.
 
-尤其是`proxy`, `ua`和`cookie`的配置.
+如果直接使用`curl`访问, 后端程序只能获取到参数`a`. 由于url中有`&`, 命令会被放到后台执行, 其他参数获取不到, 必须对`&`进行下转义.
+
+```
+curl http://localhost/index.php?a=1\&b=2\&c=3
+```
+
+## 2. 使用`-H`添加请求头信息: `User-Agent`与`Cookie`
 
 可以分别使用`--cookie`, `--user-agent`配置, 也可以直接使用`-H 'User-Agent: UA字符串'`的形式.
 
@@ -35,50 +52,12 @@ cookie_str='Cookie: _ga=GA1.2.1337029376.1526882292; session_id=PvAvY-4CYs463Y;'
 ua_str='User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36'
 curl -I -H $cookie_str -H $ua_str www.baidu.com
 curl: (6) Could not resolve host: _ga=GA1.2.1337029376.1526882292;
-curl: (6) Could not resolve host: session_id=PvAvY-4CYs463Y;
-curl: (6) Could not resolve host: Mozilla
-curl: (6) Could not resolve host: (Macintosh;
-curl: (6) Could not resolve host: Intel
-curl: (6) Could not resolve host: Mac
-curl: (6) Could not resolve host: OS
-curl: (6) Could not resolve host: X
-curl: (6) Could not resolve host: 10_13_2)
-curl: (6) Could not resolve host: AppleWebKit
-curl: (6) Could not resolve host: (KHTML,
-curl: (6) Could not resolve host: like
-curl: (6) Could not resolve host: Gecko)
-curl: (6) Could not resolve host: Chrome
-curl: (6) Could not resolve host: Safari
-HTTP/1.1 200 OK
-Accept-Ranges: bytes
-Cache-Control: private, no-cache, no-store, proxy-revalidate, no-transform
-Connection: Keep-Alive
-Content-Length: 277
-Content-Type: text/html
-Date: Wed, 27 Jun 2018 11:22:19 GMT
-Etag: "575e1f7c-115"
-Last-Modified: Mon, 13 Jun 2016 02:50:36 GMT
-Pragma: no-cache
-Server: bfe/1.0.8.18
+...
 ```
 
-通过变量传入的字符串会被以空格分隔开, 所以会出错...不过写在行内也真够low的.
+通过变量传入的字符串会被以空格分隔开, 所以会出错...不过直接将这么长的字符串写在行内也真够low的.
 
-## 3. 
-
-```
-curl -H "Content-Type: application/json" -d "{\"OS\":\"$RELEASE\",\"Sn\":\"$SN\",\"Memory\":[$MEMORY],\"MemorySum\":$MEMORY_SUM,\"DiskSum\":$DISK_SUM,\"Disk\":[$DISK]}" -k https://192.168.174.53/server_equipment_update
-```
-
-`-H`: 添加请求头信息
-
-`-d`: 指定数据, 此选项出现时请求类型自动变为`POST`
-
-`-k`: 忽略对目标网站的证书验证
-
-`-X POST|HEAD|OPTION`: 可以明确指定请求类型.
-
-## 4. 上传文件
+## 3. 上传文件
 
 ```
 curl localhost:8000/api/upload -F "file=@/Users/general/Downloads/logo.png"
@@ -90,4 +69,38 @@ curl localhost:8000/api/upload -F "file=@/Users/general/Downloads/logo.png"
 
 不需要指定`-X POST`, `-F`的作用和ta是平级且互斥的.
 
-## `-k`选项忽略证书
+## 4. 代理设置
+
+```
+## 普通的http代理
+$ curl -x 127.0.0.1:3128 www.google.com
+
+## socks5代理
+$ curl --socks5 127.0.0.1:1080 www.google.com
+```
+
+使用wget达到同样的效果
+
+```
+$ wget -Y on -e 'http_proxy=http://10.10.10.10:10' 'www.google.com'
+```
+
+- `-Y`: 是否使用代理; 
+- `-e`执行命令;
+
+> `wget`只有http代理, 不能直接使用`socks`代理.
+
+## 5. `-w`选项指定输出格式
+
+curl命令内置了许多输出, 如状态码, 抓取速度, 总时间等, 可通过`-w`选项选择性输出.
+
+```shell
+## 输出抓取百度首页的平均速度
+$ curl -s -o /dev/null -w '%{speed_download}\n' www.baidu.com
+61669.000
+## 平均速度与总时间
+$ curl -s -o /dev/null -w '--%{speed_download}--%{time_total}--\n' www.baidu.com
+--96451.000--0.025--
+```
+
+其他可使用的字段可以参见curl命令的man手册.
