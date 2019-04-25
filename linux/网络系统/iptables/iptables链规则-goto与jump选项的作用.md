@@ -1,4 +1,4 @@
-# Iptables链规则-goto与jump选项的作用
+# iptables链规则-goto与jump选项的作用
 
 参考文章
 

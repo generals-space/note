@@ -1,4 +1,4 @@
-# Iptables-MASQUERADE
+# iptables-MASQUERADE
 
 原文链接 
 
