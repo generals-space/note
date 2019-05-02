@@ -15,12 +15,12 @@
 ## 1. 常用选项
 
 ```
-curl -H "Content-Type: application/json" -X POST -d "{\"name\":\"general\",\"password\":\"123456\"}" -k http://localhost/login
+curl -H "Content-Type: application/json" -X POST -d '{"name":"general","password":"123456"}' -k http://localhost/login
 ```
 
 `-H '请求头'`: 添加请求头信息
 `-X POST|HEAD|OPTION`: 可以明确指定请求类型.
-`-d`: 指定数据, 此选项出现时请求类型自动变为`POST`
+`-d`: 指定数据, 此选项出现时请求类型自动变为`POST`(**注意: 默认的`Content-Type`为`application/x-www-form-urlencoded`, 一般需要显式指定`application/json`**)
 `-k`: 如果是https且证书不合法时, 可以使用`-k`忽略对目标网站的证书验证;
 `-s`: 静默输出(有些发行版会打印请求时间, 传输速度和下载进度等信息, 可以使用此选项屏蔽);
 `-o 文件路径`: 将请求得到的数据写入目标文件
@@ -35,6 +35,15 @@ curl -H "Content-Type: application/json" -X POST -d "{\"name\":\"general\",\"pas
 
 ```
 curl http://localhost/index.php?a=1\&b=2\&c=3
+```
+
+**form格式与json格式的数据模拟**
+
+`form`格式的数据需要是`key=value&key=value`, 而`json`格式则是常规的字典形式.
+
+```
+curl -X POST -d 'method=login' -H 'Content-Type: application/x-www-form-urlencoded' localhost/api/admin.php
+curl -X POST -d '{"method":"login"}' -H 'Content-Type: application/json' localhost/api/admin.php
 ```
 
 ## 2. 使用`-H`添加请求头信息: `User-Agent`与`Cookie`

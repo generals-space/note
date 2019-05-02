@@ -15,9 +15,8 @@
 
 `os.removedirs(dir_path)`: 删除`file_path`所表示的目录, 但删除非空目录不好使
 
-`shutil.rmtree(path)`: 可删除非空目录, 即递归删除
-
 `os.makedirs(path)`: 创建空目录
 
 `shutil.copyfile(src, dst)`: 拷贝文件, `src`和`dst`都是(可包含路径的)文件名. 不可以是目录, 否则会报错. 
 
+`shutil.rmtree(path)`: 可删除非空目录, 即递归删除
