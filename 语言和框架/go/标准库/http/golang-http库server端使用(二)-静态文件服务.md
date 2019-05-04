@@ -22,7 +22,7 @@ func main() {
 
 ------
 
-网上大多文章都直接使用http.FileServer()就能处理静态文件请求, 如下
+网上大多文章都直接使用`http.FileServer()`就能处理静态文件请求, 如下
 
 ```go
 	http.Handle("/static/", http.FileServer(http.Dir("/tmp")))
