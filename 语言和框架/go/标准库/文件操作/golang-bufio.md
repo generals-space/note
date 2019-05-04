@@ -4,7 +4,7 @@
 
 1. [Golang学习 - bufio 包](http://www.cnblogs.com/golove/p/3282667.html)
 
-网上关于`bufio`的说明一般都是**bufio 包实现了带缓存的 I/O 操作**, 说实话我没太懂`ioutil`, `bytes`和`bufio`在读取方法上的差异.
+网上关于`bufio`的说明一般都是 **bufio 包实现了带缓存的 I/O 操作**, 说实话我没太懂`ioutil`, `bytes`和`bufio`在读取方法上的差异.
 
 其实查看一下`bufio`的源码就会发现, ta的重点在于后半句: `provides buffering and some help for textual I/O`.
 

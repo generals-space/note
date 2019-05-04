@@ -81,3 +81,26 @@ def timefun_arg(pre="hello"):
 ```
 
 按照参考文章2中`黄哥`的回答, 认识到`timefun_arg("python")`本身就是一个函数调用了...它返回了一个函数`timefun`, 正好用于装饰器. 简直了...
+
+## 3. 为类的实例方法添加装饰器
+
+因为修饰了类成员函数, 所以装饰器函数能取得类成员变量与方法的访问权限(这正是闭包的作用), 这里, 我们在执行类成员函数`now()`之前修改类成员变量`self.i`的值.
+
+```py
+def log(func):
+    def wrapper(self, a):
+        print 'arguments list : %s' % (a)
+        self.i = a
+        return func(self, a)
+    return wrapper
+    
+class Date():
+    @log
+    def now(self, a):
+        print self.i
+        print '2013-12-25'
+
+if __name__ == '__main__':
+    date = Date()
+    date.now(1)
+```
