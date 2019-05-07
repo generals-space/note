@@ -6,7 +6,7 @@
 
 Segmentation fault(段错误)是由于虚拟内存管理单元的异常所致，而该异常则通常是由于解引用一个未初始化或非法值的指针引起的。
 
-Linux中提供了core dump的功能，使得对这类错误的调试更为容易
+Linux中提供了`core dump`的功能，使得对这类错误的调试更为容易
 
 ## 1. 调试方法
 
@@ -15,8 +15,8 @@ Linux中提供了core dump的功能，使得对这类错误的调试更为容易
 一般情况下，linux系统是不允许产生core文件的，因此首先要解除这个限制. Shell下执行：
 
 ```
-ulimit -c unlimited    #设置core大小为无限制
-ulimit unlimited    #设置文件大小为无限制(可以不执行这句, 防止core文件过大)
+ulimit -c unlimited    # 设置core大小为无限制
+ulimit unlimited    # 设置文件大小为无限制(可以不执行这句, 防止core文件过大)
 ```
 
 ### 1.2 开始调试

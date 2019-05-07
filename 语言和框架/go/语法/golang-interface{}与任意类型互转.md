@@ -1,4 +1,4 @@
-# golang-interface与任意类型互转
+# golang-interface{}与任意类型互转
 
 参考文章
 

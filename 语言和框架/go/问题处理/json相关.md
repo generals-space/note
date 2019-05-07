@@ -24,5 +24,3 @@ if err != nil {
 // 注意这里
 err = json.Unmarshal(fileCnt[:num], &device)
 ```
-
-## 2. 
