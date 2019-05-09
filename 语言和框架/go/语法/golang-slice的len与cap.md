@@ -1,4 +1,4 @@
-# golang-切片的len与cap
+# golang-slice的len与cap
 
 参考文章
 
@@ -60,6 +60,7 @@ func main() {
 	fmt.Printf("slice3 len: %d\n", len(slice3)) // slice3 len: 10
 	fmt.Printf("slice3 cap: %d\n", cap(slice3)) // slice3 cap: 10
 	// make方式必须指定len参数, 平常经常使用如下方式创建slice, len和cap默认都是0
+	// 其实等同于make([]int, 0)
 	slice4 := []int{}
 	fmt.Printf("slice4 len: %d\n", len(slice4)) // slice4 len: 0
 	fmt.Printf("slice4 cap: %d\n", cap(slice4)) // slice4 cap: 0

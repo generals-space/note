@@ -6,6 +6,9 @@
 
 2. [参考golang官网(FAQ) How do I know whether a variable is allocated on the heap or the stack?](https://golang.org/doc/faq#stack_or_heap)
 
+3. [Golang 优化之路——临时对象池](https://blog.cyeam.com/golang/2017/02/08/go-optimize-slice-pool)
+	- 解释了golang在创建对象的内存分配机制以及常用优化方案.
+
 Q: 
 我怎样知道一个变量被分配到堆上还是栈上?
 
@@ -67,3 +70,5 @@ $ go run -gcflags='-l -m -v' .\main.go
 .\main.go:22:2: y declared and not used
 .\main.go:24:2: z declared and not used
 ```
+
+参考文章3的 **堆还是栈？**小节对上述各种情况有详细的解释. 

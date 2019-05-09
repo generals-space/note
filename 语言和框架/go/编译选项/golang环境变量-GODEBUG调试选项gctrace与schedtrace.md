@@ -11,6 +11,8 @@
 
 4. [Debugging performance issues in Go programs](https://software.intel.com/en-us/blogs/2014/05/10/debugging-performance-issues-in-go-programs)
 
+5. [Go 调度器跟踪](https://colobu.com/2016/04/19/Scheduler-Tracing-In-Go/)
+
 `GODEBUG`的值被解释为一个个的`name=value`对, 每一对间由逗号分割, 每一对用于控制go runtime调试工具设施, 例如: 
 
 ```
