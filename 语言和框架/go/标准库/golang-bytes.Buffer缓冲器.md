@@ -1,4 +1,4 @@
-# golang-bytes.Buffer
+# golang-bytes.Buffer缓冲器
 
 参考文章
 

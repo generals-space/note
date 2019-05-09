@@ -6,7 +6,10 @@
 
 2. [go的临时对象池--sync.Pool](https://www.jianshu.com/p/2bd41a8f2254)
 
-...我还以为`sync.Pool`是协程池呢, 原来并不是.
+3. [Golang 优化之路——临时对象池](https://blog.cyeam.com/golang/2017/02/08/go-optimize-slice-pool)
+	- 介绍了golang在内存分配机制, 尤其是对象分配时的栈/堆选择, 并且给出了对应的解决方法-`sync.Pool`, 以及一个基于`sync.Pool`的第三方对象池的优化示例.
+
+...我还以为`sync.Pool`是协程池呢, 原来并不是. 当了解golang的gc机制后再来看`sync.Pool`临时对象池就更容易理解了, 可以见参考文章3.
 
 Pool用于存储那些被分配了但是没有被使用, 而未来可能会使用的值, 以减小垃圾回收的压力. 我们先看一个简单示例, 再分析场景.
 
