@@ -1,4 +1,4 @@
-# golang-sync之WaitGroup
+# golang-sync.WaitGroup
 
 参考文章
 

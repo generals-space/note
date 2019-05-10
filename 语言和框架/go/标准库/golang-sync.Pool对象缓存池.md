@@ -1,4 +1,4 @@
-# golang-sync之Pool缓存池
+# golang-sync.Pool对象缓存池
 
 参考文章
 

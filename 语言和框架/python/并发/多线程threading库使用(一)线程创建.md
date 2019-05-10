@@ -8,7 +8,14 @@
 
 ## 1. 创建线程 - threading.Thread类
 
-`Thread`是`threading`模块中最重要的类之一, 可以使用它来创建线程. 有两种方式来创建线程：一种是通过继承`Thread`类, 重写它的`run`方法; 另一种是创建一个`threading.Thread`对象, 在它的初始化函数`__init__`中将可调用对象作为参数传入. 下面分别举例说明. 先来看看通过继承`threading.Thread`类来创建线程的例子：
+`Thread`是`threading`模块中最重要的类之一, 可以使用它来创建线程. 常用有两种方式:
+
+1. 通过继承`Thread`类, 创建一个子类, 重写它的`run`方法; 
+2. 创建一个`threading.Thread`对象, 在它的初始化函数`__init__`中将可调用对象作为参数传入. 
+
+下面分别举例说明. 
+
+### 1.1 创建`threading.Thread`子类
 
 ```py
 #!encoding: utf-8
@@ -21,7 +28,7 @@ class Counter(threading.Thread):
         @param lock: 锁对象. 
         @param threadName: 线程名称. 
         '''
-        # 注意：一定要显式的调用父类的构造函数
+        # 注意: 一定要显式的调用父类的构造函数
         super(Counter, self).__init__(name = threadName)  
         self.lock = lock
 
@@ -46,9 +53,14 @@ print count
 
 在代码中, 我们创建了一个`Counter`类, 它继承了`threading.Thread`. 初始化函数接收两个参数, 一个是琐对象, 另一个是线程的名称. 在`Counter`中, 重写了从父类继承的`run`方法, `run`方法将一个全局变量逐一的增加10000. 在接下来的代码中, 创建了五个`Counter`对象, 分别调用其`start`方法. 最后打印结果. 
 
-这里要说明一下`run`方法和`start`方法: 它们都是从`Thread`父类继承而来的, `run()`方法将在线程开启后执行, 可以把相关的逻辑写到`run`方法中（通常把`run`方法称为活动[Activity]. ）; `start()`方法用于启动线程. 
+这里要说明一下`run`方法和`start`方法, 它们都是从`Thread`父类继承而来的.
 
-再看看另外一种创建线程的方法：
+- `run()`方法将在线程开启后执行, 可以把相关的逻辑写到`run`方法中（通常把`run`方法称为活动[Activity]. ）; 
+- `start()`方法用于启动线程. 
+
+### 1.2 传入
+
+再看看另外一种创建线程的方法: 
 
 ```py
 #!encoding: utf-8
@@ -73,23 +85,20 @@ print count
 
 在这段代码中, 我们定义了方法`counter`, 它将全局变量`count`逐一的增加10000. 然后创建了5个`Thread`对象, 把函数对象`counter`作为参数传给它的初始化函数, 再调用`Thread`对象的`start`方法, 线程启动后将执行counter函数. 
 
-这里有必要介绍一下`threading.Thread`类的初始化函数原型：
+这里有必要介绍一下`threading.Thread`类的初始化函数原型: 
 
 ```py
 def __init__(self, group=None, target=None, name=None, args=(), kwargs={})
 ```
 
 1. `group`是预留的, 用于将来扩展; 
-
 2. `target`是一个可调用对象（也称为活动[activity]）, 在线程启动后执行, 上面代码中指的就是`counter`函数; 
-
 3. `name`是线程的名字. 默认值为`Thread-N`, `N`是一个数字. 可自定义;
-
 4. `args`和`kwargs`分别表示调用`target`时的参数列表和字典;
 
 ## 2. Threading类成员属性
 
-`Thread`类还定义了以下常用方法与属性：
+`Thread`类还定义了以下常用方法与属性: 
 
 ### 1.
 
@@ -135,7 +144,7 @@ def __init__(self, group=None, target=None, name=None, args=(), kwargs={})
 
 调用`Thread.join`将会使主调线程堵塞，直到被调用线程运行结束或超时。参数`timeout`是一个数值类型，表示超时时间，如果未提供该参数，那么主调线程将一直堵塞到被调线程结束。
 
-下面举个例子说明`join()`的使用：
+下面举个例子说明`join()`的使用: 
 
 ```py
 #!encoding: utf-8
