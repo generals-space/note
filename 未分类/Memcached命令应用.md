@@ -34,7 +34,7 @@ $ telnet localhost 11211
 ### set与get
 
 ```
-set mykey 0 900 3   
+set mykey 0 900 3 
 abc                 ## 值只能另起一行输入
 STORED
 get mykey
