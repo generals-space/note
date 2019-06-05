@@ -1,4 +1,4 @@
-1. `internal/poll: inconsistent poll.fdMutex while println string`
+# 并发fmt
 
 参考文章
 
@@ -9,6 +9,10 @@
 情景描述
 
 go 1.10.3
+
+```
+internal/poll: inconsistent poll.fdMutex while println string
+```
 
 遍历一个128位的大数, 为每个值进行一些计算操作. 每个值的计算的过程都丢到goroutine里, goroutine中用`fmt`打印当前处理的值. 在不限协程数量(遍历时不断把任务开协程执行)运行了几分钟后, 报上述错误.
 
