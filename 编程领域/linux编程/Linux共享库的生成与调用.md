@@ -4,9 +4,9 @@
 
 1. [ Linux-（C/C++）动态链接库生成以及使用（libxxx.so）](http://blog.csdn.net/qq_33850438/article/details/52014399)
 
-Linux: Shared Object 共享库
+Linux: `.so`(Shared Object) 共享库
 
-Windows: Dynamic Linked Library 动态链接库.
+Windows: `.dll`(Dynamic Linked Library) 动态链接库.
 
 地位等同.
 

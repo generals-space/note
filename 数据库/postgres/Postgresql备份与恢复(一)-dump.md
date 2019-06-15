@@ -9,9 +9,7 @@
 有三种不同的备份方法: 
 
 1. SQL dump
-
 2. 文件系统级备份（File system level backup）
-
 3. 连续归档（Continuous archiving）
 
 ## 备份
@@ -25,11 +23,8 @@ $ pg_dump dbname > outfile
 注意: 
 
 1. 这个命令可以在任意可以连接数据库的远程机器上运行, 但它需要读表的权限, 所以大多数是用`superuser`用户运行这个命令. 
-
 2. 连接指定的数据库可以使用`-h host`和`-p port`命令选项. 默认的`host`是local host或由PGHOST环境变量指定. 使用`-U`选项设置连接数据库的用户. 
-
 3. `pg_dump`的输出文件可以被更高版本的PostgreSql读取, 它也是唯一可以在不同系统间（比如: 32位->64位）转移数据的方法. 
-
 4. `pg_dump`不阻塞数据库的运行. 
 
 ## 恢复

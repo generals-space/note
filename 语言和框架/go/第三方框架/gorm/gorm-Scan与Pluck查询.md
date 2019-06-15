@@ -18,6 +18,7 @@ type NameResult struct{
 	Name string
 }
 nameResults := []*NameResult{}
+// nameResults := []*User{} // 其实Scan()可以将结果填入User数组对象
 db.Model(&User{}).Select("name").Scan(&nameResults)
 ```
 
