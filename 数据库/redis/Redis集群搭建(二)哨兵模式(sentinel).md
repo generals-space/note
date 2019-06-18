@@ -1,34 +1,18 @@
-# redis集群搭建 - 理论篇
-
-redis官网上提供了在同一台机器上搭建3主3备的redis集群示例, 其他大部分的博客中都是按照这样的结构实验的. 但实际应用中redis节点不可能全部部署在同一台机器上, 不然怎么还有高可用性与高扩展性可言? 本文档参考redis官网提供的工具和命令, 在3台不同机器上部署redis集群及主备架构, 仅作为笔记.
-
-## 环境准备
-
-- 操作系统: CentOS release 6.7
-
-- redis: 3.0.7
-
-redis的主从复制集群搭建十分方便, 可以轻松实现从节点`只读`且`保持与主节点的数据同步`的要求. 只需要启动`master`, `slave`两个独立的redis服务, 然后通过在`slave`的`cli`中执行`slaveof master的IP master的端口`即可完成. 一个主节点可以有多个从节点, 即主节点数据可以存在多个备份.
-
-不过, 从高可用与负载均衡的角度, 这样的配置还是不够可靠. 因为这种情况下, 只有主节点对外服务, 从节点只是充当一个备份的角色. 一旦主节点死掉, 除了数据可以保证不丢失, 整个redis环境都相当于失效. 而数据备份的工作完全可以由redis本身的数据持久化策略完成, 不需要复杂的主从配置. 所以主从节点的架构单纯在这种情况下是没有意义的, 而是有着其他的应用场景.
-
-## 1. 哨兵(sentinel)模式
+# redis集群搭建
 
 参考文章
 
-[Redis Sentinel(哨兵)：集群解决方案](http://p.primeton.com/articles/559e431d608f8f5438000059)
+1. [Redis Sentinel(哨兵)：集群解决方案](http://p.primeton.com/articles/559e431d608f8f5438000059)
 
 哨兵模式使用上述提到的`一主一从`或`一主多从`的模式, 并额外启动一个或多个名叫`sentinel(哨兵)`的进程. 其实现的主要功能有:
 
-- 监控（Monitoring）： Sentinel 会不断地检查你的主服务器和从服务器是否运作正常。
-
-- 提醒（Notification）： 当被监控的集群中某个 Redis 服务器出现问题时， Sentinel 可以通过 API 向管理员或者其他应用程序发送通知。
-
-- 自动故障迁移（Automatic failover）： 当一个主服务器不能正常工作时， Sentinel 会开始一次自动故障迁移操作， 它会将失效主服务器的其中一个从服务器升级为新的主服务器， 并让失效主服务器的其他从服务器改为复制新的主服务器； 当客户端试图连接失效的主服务器时， 集群也会向客户端返回新主服务器的地址， 使得集群可以使用新主服务器代替失效服务器。
+- 监控(Monitoring): Sentinel 会不断地检查你的主服务器和从服务器是否运作正常。
+- 提醒(Notification): 当被监控的集群中某个 Redis 服务器出现问题时， Sentinel 可以通过 API 向管理员或者其他应用程序发送通知。
+- 自动故障迁移(Automatic failover): 当一个主服务器不能正常工作时， Sentinel 会开始一次自动故障迁移操作， 它会将失效主服务器的其中一个从服务器升级为新的主服务器， 并让失效主服务器的其他从服务器改为复制新的主服务器； 当客户端试图连接失效的主服务器时， 集群也会向客户端返回新主服务器的地址， 使得集群可以使用新主服务器代替失效服务器。
 
 ...好像可以看作是同一个作用.
 
-### 1.1 基本配置
+## 1. 基本配置
 
 redis编译完成后, src目录下存在一个名为`redis-sentinel`的可执行文件. 其实sentinel是一个特殊的redis-server进程, 使用`diff ./redis-sentinel ./redis-server`可以看出, 这俩货明明是同一个文件...
 
@@ -50,7 +34,7 @@ sentinel parallel-syncs mymaster 1
 
 在上面所示的配置文件中.
 
-#### 1.1.1 sentinel monitor
+### 1.1 sentinel monitor
 
 这一行在sentinel.conf初始文件中的原型如下.
 
@@ -66,15 +50,15 @@ sentinel monitor <master-name> <ip> <redis-port> <quorum>
 
 比如为一个主从集群创建了3个sentinel进程同时监视, quorum设置为2, 当其中某个sentinel进程因为网络问题无法连接master服务(不过与其他sentinel进程可以通信), 它会主观认为master挂掉, 将其状态设置为`Subjectively Down(主观下线)`. 但是另外两个sentinel网络正常, 认为master挂的进程数量只有一个, 是不会执行故障迁移的. 当>=2个sentinel都认为master服务挂掉, 它们就会将原master进程屏蔽掉, 提升某个slave为master.
 
-但是, 就算将这个值设置为1, 其中某个sentinel主观判断master失效, 但是另外两个认为master正常, sentinel组依然不会同意进行故障迁移. 即 **无论你设置要多少个 Sentinel 同意才能判断一个服务器失效， 一个 Sentinel 都需要获得系统中多数（majority） Sentinel 的支持， 才能发起一次自动故障迁移**. 所以, 可以认为, 只有`quorum`的取值 **大于sentinel进程总数的一半** 时才会真正起作用, 否则设置它就没有意义.
+但是, 就算将这个值设置为1, 其中某个sentinel主观判断master失效, 但是另外两个认为master正常, sentinel组依然不会同意进行故障迁移. 即 **无论你设置要多少个 Sentinel 同意才能判断一个服务器失效， 一个 Sentinel 都需要获得系统中多数(majority) Sentinel 的支持， 才能发起一次自动故障迁移**. 所以, 可以认为, 只有`quorum`的取值 **大于sentinel进程总数的一半** 时才会真正起作用, 否则设置它就没有意义.
 
-#### 1.1.2 sentinel down-after-milliseconds
+### 1.2 sentinel down-after-milliseconds
 
 指定了此 Sentinel 认为服务器已经断线所需的毫秒数。
 
 如果服务器在给定的毫秒数之内， 没有返回 Sentinel 发送的 PING 命令的回复， 或者返回一个错误， 那么 Sentinel 将这个服务器标记为主观下线.
 
-#### 1.1.3 sentinel parallel-syncs
+### 1.3 sentinel parallel-syncs
 
 指定了在执行故障转移时，最多可以有多少个从服务器同时对新的主服务器进行同步，这个数字越小，完成故障转移所需的时间就越长，但越大就意味着越多的从服务器因为复制而不可用。可以通过将这个值设为 1 来保证每次只有一个从服务器处于不能处理命令请求的状态。
 
@@ -82,17 +66,17 @@ sentinel monitor <master-name> <ip> <redis-port> <quorum>
 
 所以说, 当这个值越小, 故障转移的时间越长, 出问题的可能性越大(比如在故障转移过程中, 新的master节点又挂 掉). 但又不能因为要减少故障转移的时间将其值设置过大, 这将影响其他slave节点对外读服务的效率.
 
-### 1.3 注意事项
+## 2. 注意事项
 
 sentinel模式的应用还是比较简单的. 在slave节点的cli设置slaveof, 并设置sentinel所监听的master节点地址后, 直接启动sentinel就行了.
 
 sentinel进程可以自动检测到目标master节点的所有可用slave节点, 并且一个master的所有sentinel也会自动检测到彼此的存在, 形成sentinel组.
 
-### 1.3.1 sentinel数量及quorum值的设置
+### 2.1 sentinel数量及quorum值的设置
 
 最好sentinel的进程数量为>2的奇数. 我踩过的坑是, 启动两个sentinel, `monitor`字段的quorum设置为1, 当单独kill掉redis的master时, 可以执行故障转移, 但是如果将master与其中一个sentinel同时kill掉就惨了. 剩下的那个sentinel虽然已经达到quorum的标准, 但它不能让sentinel组中超过一半都同意它...因为2个成员的sentinel组现在只剩它自己, 而1/2是不大于50%的. 所以整个集群都挂了...
 
-### 1.3.2 sentinel配置重写
+### 2.2 sentinel配置重写
 
 这是个令人心碎的事情. sentinel进程启动后会自动检测到目标master的所有slave, 以及其他同样监听这个master的所有其他sentinel, 并且记录下来.
 
@@ -126,7 +110,7 @@ cluster-require-full-coverage no
 
 在做实验时, 如果想要启动一个主节点, 请首先确认其`redis.conf`, 这些被之前实验中的redis/sentinel进程修改过的配置将会严重影响之后实验的正确性.
 
-### 1.3.3 客户端的设置
+## 3. 客户端的设置
 
 目前大多数redis客户端都支持sentinel模式, 以`Predis`为例
 
@@ -155,17 +139,3 @@ cluster-require-full-coverage no
 ?>
 
 ```
-
-## 2. 集群(cluster)模式
-
-redis3.0之前没有集群化的解决方案, 至多只有哨兵的存在. 3.0之后redis原生带有cluster的支持. 现在部署redis集群大多推荐使用cluster模式.
-
-redis官网对[cluster模式](http://redis.io/topics/cluster-tutorial)做了基础但详细的介绍, 可以参考. 下面是一点自己的理解.
-
-cluster 集群至少包含3个节点. 如果只有三个节点的话, 它们都应该作为主节点. 可以在之后为主节点添加从节点, 也可以继续添加新的主节点, 以提高可用性与负载均衡. 从节点不会直接对外服务, 而是实现对其本身的主节点的数据同步. 当主节点挂掉, 从节点可以接替主节点的位置.
-
-cluster集群作为一个整体对外服务, 集群将所有请求分成16384份(对应文档中`slot`的概念, 实际上比这个解释要复杂的多, 可以搜索`一致性哈希`深入研究), 每个主节点可以指定其所划分的slot个数及序号. 最初创建3主节点集群或是按照官网及大部分个人博客上的3主3从的教程来说, 三个主节点平分这16384份请求.
-
-cluster的建立流程, 先讲述3主节点的情况.
-
-<待续...>
