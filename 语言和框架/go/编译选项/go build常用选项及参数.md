@@ -14,7 +14,7 @@ $ go build -gcflags='-N -l'
 
 在go build编译选项中, `-asmflags`, `-gccgoflags`, `-gcflags`与`-ldflags`接受的参数格式相同, 都是用(单/双)引号包裹的, 以空格分隔的参数列表. 这些参数会在`build`期间传递给底层的go tools.
 
-使用`go tool compile -help`可以查看所有可用的编译参数.
+使用`go tool compile --help`可以查看所有可用的编译参数.
 
 常用参数
 
