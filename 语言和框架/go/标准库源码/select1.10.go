@@ -24,11 +24,14 @@ const (
 // select语句的头部, select{}
 // Known to compiler.
 // Changes here must also be made in src/cmd/internal/gc/select.go's selecttype.
+// hselect的最后是一个[1]scase表示select中只保存了一个case的空间, 说明hselect在内存只是个头部.
+// select后面保存了所有的scase, 这段Scases的大小就是tcase.
+// 在 go runtime实现中经常看到这种 头部+连续内存 的方式.
 type hselect struct {
 	tcase     uint16  // total count of scase[] select语句中总的case数目
 	ncase     uint16  // currently filled scase[] 目前已经注册的case数目
-	pollorder *uint16 // case poll order 【超重要】轮询的case序号
-	lockorder *uint16 // channel lock order 【超重要】chan的锁定顺序
+	pollorder *uint16 // case poll order 【超重要】轮询的case序号. 其实是数组类型, 后面跟着一串连续空间
+	lockorder *uint16 // channel lock order 【超重要】chan的锁定顺序. 同样是数组类型
 	// case 数组, 为了节省一个指针的 8 个字节搞成这样的结构.
 	// 实际上要访问后面的值, 还是需要进行指针移动.
 	// 指针移动使用 runtime 内部的 add 函数.
@@ -43,7 +46,7 @@ type scase struct {
 	c           *hchan         // chan 当前case对应的channel引用
 	pc          uintptr        // return pc (for race detector / msan) 和汇编中的pc同义, 表示程序计数器, 用于指示当前将要执行的下一条机器指令的内存地址
 	kind        uint16         // channel的类型, 有上面4种
-	receivedp   *bool          // pointer to received bool, if any
+	receivedp   *bool          // pointer to received bool, if any. 这个...应该是_, ok := <- ch里的那个ok的值吧?
 	releasetime int64
 }
 
@@ -52,7 +55,9 @@ var (
 	chanrecvpc = funcPC(chanrecv)
 )
 
-// selectsize() 得到hselect执行需要的空间总量
+// selectsize() 得到hselect执行需要的空间总量.
+// 包括hselect对象本身占用的空间, 以及size个scase成员占用的空间,
+// 和lockorder, pollorder成员所需的数组空间.
 // size: 为case语句的数量
 func selectsize(size uintptr) uintptr {
 	selsize := unsafe.Sizeof(hselect{}) +
@@ -81,6 +86,7 @@ func newselect(sel *hselect, selsize int64, size int32) {
 	}
 	sel.tcase = uint16(size)
 	sel.ncase = 0
+	// 这里是为lockorder和pollorder分配空间吧? 能这么干? 后面这段空间不会被GC回收掉吗?
 	sel.lockorder = (*uint16)(add(unsafe.Pointer(&sel.scase), uintptr(size)*unsafe.Sizeof(hselect{}.scase[0])))
 	sel.pollorder = (*uint16)(add(unsafe.Pointer(sel.lockorder), uintptr(size)*unsafe.Sizeof(*hselect{}.lockorder)))
 
@@ -89,11 +95,17 @@ func newselect(sel *hselect, selsize int64, size int32) {
 	}
 }
 
+// selectsend, selectrecv, selectdefault都是注册case的操作.
+// ta们的操作流程大致相同, 将hselect对象中表示已注册case数量的成员值加1,
+// 然后找到当前case在hselect对象中的空间地址, 将关联的channel, case类型等信息写入.
+
 // select {
 //   case ch<-1: ==> 这时候就会调用 selectsend
 // }
+// c表示当前case语句所绑定的channel对象
 func selectsend(sel *hselect, c *hchan, elem unsafe.Pointer) {
 	pc := getcallerpc()
+	// 保证已注册的case数量不会超过初始创建hselect的case总量, 并将已注册的case数量加1
 	i := sel.ncase
 	if i >= sel.tcase {
 		throw("selectsend: too many cases")
@@ -102,6 +114,7 @@ func selectsend(sel *hselect, c *hchan, elem unsafe.Pointer) {
 	if c == nil {
 		return
 	}
+	// 找到当前case在sel.scase所表示的连续空间中所在的位置.
 	cas := (*scase)(add(unsafe.Pointer(&sel.scase), uintptr(i)*unsafe.Sizeof(sel.scase[0])))
 	cas.pc = pc
 	cas.c = c
@@ -116,8 +129,8 @@ func selectsend(sel *hselect, c *hchan, elem unsafe.Pointer) {
 // select {
 // case <-ch: ==> 这时候就会调用 selectrecv
 // case ,ok <- ch: 也可以这样写
-// 在 ch 被关闭时, 这个 case 每次都可能被轮询到
 // }
+// 在 ch 被关闭时, 这个 case 每次都可能被轮询到
 func selectrecv(sel *hselect, c *hchan, elem unsafe.Pointer, received *bool) {
 	pc := getcallerpc()
 	i := sel.ncase
@@ -160,6 +173,9 @@ func selectdefault(sel *hselect) {
 	}
 }
 
+// sellock 对所有 case 对应的 channel 加锁
+// 需要按照 lockorder 数组中的元素索引来搞
+// 否则可能有循环等待的死锁
 func sellock(scases []scase, lockorder []uint16) {
 	var c *hchan
 	for _, o := range lockorder {
@@ -171,6 +187,7 @@ func sellock(scases []scase, lockorder []uint16) {
 	}
 }
 
+// selunlock 解锁
 func selunlock(scases []scase, lockorder []uint16) {
 	// We must be very careful here to not touch sel after we have unlocked
 	// the last lock, because sel can be freed right after the last unlock.
@@ -192,6 +209,7 @@ func selunlock(scases []scase, lockorder []uint16) {
 	}
 }
 
+// selparkcommit唤醒当前执行select, 等待可用channel的协程.
 func selparkcommit(gp *g, _ unsafe.Pointer) bool {
 	// This must not access gp's stack (see gopark). In
 	// particular, it must not access the *hselect. That's okay,
@@ -216,14 +234,15 @@ func selparkcommit(gp *g, _ unsafe.Pointer) bool {
 	return true
 }
 
+// block 挂起当前协程, 无法被唤醒, 因为gopark第一个参数为nil
+// caller: none?
 func block() {
 	gopark(nil, nil, "select (no cases)", traceEvGoStop, 1) // forever
 }
 
-// selectgo实现了select语句
+// selectgo实现了select语句的选择机制
 // *sel在当前协程的栈空间中(不管在selectgo中发生的任何逃逸)
-//
-// selectgo()返回选中的scase的索引, 按照ta们在select{}声明中的顺序排列.
+// 返回选中的scase的索引, 按照ta们在select{}声明中的顺序排列.
 // caller: reflect_rselect()
 func selectgo(sel *hselect) int {
 	if debugSelect {
@@ -232,7 +251,7 @@ func selectgo(sel *hselect) int {
 	if sel.ncase != sel.tcase {
 		throw("selectgo: case count mismatch")
 	}
-
+	// 创建内部slice对象{连续空间, len值, cap值}...nb
 	scaseslice := slice{unsafe.Pointer(&sel.scase), int(sel.ncase), int(sel.ncase)}
 	scases := *(*[]scase)(unsafe.Pointer(&scaseslice))
 
@@ -244,25 +263,28 @@ func selectgo(sel *hselect) int {
 		}
 	}
 
-	// The compiler rewrites selects that statically have
-	// only 0 or 1 cases plus default into simpler constructs.
-	// The only way we can end up with such small sel.ncase
-	// values here is for a larger select in which most channels
-	// have been nilled out. The general code handles those
-	// cases correctly, and they are rare enough not to bother
-	// optimizing (and needing to test).
+	// The compiler rewrites selects that statically have only 0 or 1 cases plus default into simpler constructs.
+	// The only way we can end up with such small sel.ncase values here
+	// is for a larger select in which most channels have been nilled out.
+	// The general code handles those cases correctly,
+	// and they are rare enough not to bother optimizing (and needing to test).
 
 	// generate permuted order
+	// 经典操作...不用make如何在内部创建slice对象
+	// pollorder数组保存的是scase的序号
 	pollslice := slice{unsafe.Pointer(sel.pollorder), int(sel.ncase), int(sel.ncase)}
 	pollorder := *(*[]uint16)(unsafe.Pointer(&pollslice))
+	// 这里i是从1开始的, 因为scase是一个长度为1的数组, 后面挂了一串空间.
 	for i := 1; i < int(sel.ncase); i++ {
+		// 乱序是为了之后执行时的随机性
 		j := fastrandn(uint32(i + 1))
 		pollorder[i] = pollorder[j]
 		pollorder[j] = uint16(i)
 	}
 
 	// sort the cases by Hchan address to get the locking order.
-	// simple heap sort, to guarantee n log n time and constant stack footprint.
+	// 按照hchan地址对scase进行排序(也是为了去重),
+	// 堆排序, 保证时间复杂度为log n, 且不占用额外空间.
 	lockslice := slice{unsafe.Pointer(sel.lockorder), int(sel.ncase), int(sel.ncase)}
 	lockorder := *(*[]uint16)(unsafe.Pointer(&lockslice))
 	for i := 0; i < int(sel.ncase); i++ {
@@ -307,6 +329,7 @@ func selectgo(sel *hselect) int {
 		}
 	*/
 
+	// 堆排序完成, 将select中所有关联的channel加锁, 之后进入loop
 	// lock all the channels involved in the select
 	sellock(scases, lockorder)
 
@@ -323,6 +346,7 @@ func selectgo(sel *hselect) int {
 
 loop:
 	// pass 1 - look for something already waiting
+	// 按顺序遍历case来寻找可执行的case
 	var dfli int
 	var dfl *scase
 	var casi int
@@ -336,18 +360,22 @@ loop:
 		case caseNil:
 			continue
 
+		// 如果当前case所关联的channel是读操作
 		case caseRecv:
+			// 看看这个channel是否有因为无人recv而阻塞的send协程
 			sg = c.sendq.dequeue()
 			if sg != nil {
 				goto recv
 			}
+			// 如果没有被阻塞的send协程, 那么看看其缓冲区中是否有待接收的成员
 			if c.qcount > 0 {
 				goto bufrecv
 			}
+			// 如果这个channel被关闭了...
 			if c.closed != 0 {
 				goto rclose
 			}
-
+		// 写channel操作和读的逻辑差不多.
 		case caseSend:
 			if raceenabled {
 				racereadpc(unsafe.Pointer(c), cas.pc, chansendpc)
@@ -368,7 +396,7 @@ loop:
 			dfl = cas
 		}
 	}
-
+	// 没有找到可以执行的case，但有default条件，这个if里就会直接退出了。
 	if dfl != nil {
 		selunlock(scases, lockorder)
 		casi = dfli
@@ -377,23 +405,31 @@ loop:
 	}
 
 	// pass 2 - enqueue on all chans
-	gp = getg()
+	// 运行到这里, 表示没有可执行的case, 也没有default语句, 只能等待.
+	// 将当前协程放到所有case绑定的channel的recvq/sendq队列中,
+	// 然后将当前协程休眠, 等待可用的事件发生然后被唤醒.
+
+	gp = getg() // 得到当前(select所在的)协程G对象
 	if gp.waiting != nil {
 		throw("gp.waiting != nil")
 	}
 	nextp = &gp.waiting
+	// 按照加锁的顺序把 gorutine 入每一个 channel 的recvq/sendq队列
+	// lockorder 按照channel地址排序后的scase序号数组
 	for _, casei := range lockorder {
 		casi = int(casei)
 		cas = &scases[casi]
 		if cas.kind == caseNil {
 			continue
 		}
-		c = cas.c
+
+		c = cas.c // cas绑定的channel对象
+		// 创建sudog对象sg, 这是channel对象recvq/sendq成员队列中的成员类型
 		sg := acquireSudog()
 		sg.g = gp
 		sg.isSelect = true
-		// No stack splits between assigning elem and enqueuing
-		// sg on gp.waiting where copystack can find it.
+		// No stack splits between assigning elem and enqueuing sg
+		// on gp.waiting where copystack can find it.
 		sg.elem = cas.elem
 		sg.releasetime = 0
 		if t0 != 0 {
@@ -414,6 +450,7 @@ loop:
 	}
 
 	// wait for someone to wake us up
+	// 这里调用gopark休眠, 等待被唤醒, 同时解锁channel, 唤醒操作由selparkcommit()参数传入
 	gp.param = nil
 	gopark(selparkcommit, nil, "select", traceEvGoBlockSelect, 1)
 
@@ -423,14 +460,14 @@ loop:
 	sg = (*sudog)(gp.param)
 	gp.param = nil
 
-	// pass 3 - dequeue from unsuccessful chans
-	// otherwise they stack up on quiet channels
-	// record the successful case, if any.
+	// pass 3 - dequeue from unsuccessful chans otherwise they stack up on quiet channels record the successful case, if any.
 	// We singly-linked up the SudoGs in lock order.
+	// 从状态2被唤醒后执行的操作
 	casi = -1
 	cas = nil
 	sglist = gp.waiting
 	// Clear all elem before unlinking from gp.waiting.
+	// 在从gp.waiting取消链接之前清除所有元素。
 	for sg1 := gp.waiting; sg1 != nil; sg1 = sg1.waitlink {
 		sg1.isSelect = false
 		sg1.elem = nil
@@ -464,16 +501,19 @@ loop:
 		sglist = sgnext
 	}
 
+	// 如果还是没有可用的case的话再次走 loop 逻辑
+	// ...为什么?
 	if cas == nil {
-		// We can wake up with gp.param == nil (so cas == nil)
-		// when a channel involved in the select has been closed.
+		// We can wake up with gp.param == nil (so cas == nil) when a channel involved in the select has been closed.
+		// 当select中关联的channel被关闭时, 我们可以通过使用gp.param == nil(这样同时cas == nil)从休眠中唤醒.
 		// It is easiest to loop and re-run the operation;
 		// we'll see that it's now closed.
 		// Maybe some day we can signal the close explicitly,
 		// but we'd have to distinguish close-on-reader from close-on-writer.
+		// 也许未来我们可以显式地处理channel的关闭事件, 但首先需要区分关闭事件是case读还是case写时发生的(处理不同)
 		// It's easiest not to duplicate the code and just recheck above.
-		// We know that something closed, and things never un-close,
-		// so we won't block again.
+		// 目前来说, 重复使用之前的代码进行上面的检测是最简单的实现方法.
+		// We know that something closed, and things never un-close, so we won't block again.
 		goto loop
 	}
 
@@ -611,11 +651,12 @@ func (c *hchan) sortkey() uintptr {
 
 // A runtimeSelect is a single case passed to rselect.
 // This must match ../reflect/value.go:/runtimeSelect
+// runtimeSelect表示传入rselect的单个case对象...与scase有所不同.
 type runtimeSelect struct {
 	dir selectDir
 	typ unsafe.Pointer // channel type (not used here)
 	ch  *hchan         // channel
-	val unsafe.Pointer // ptr to data (SendDir) or ptr to receive buffer (RecvDir)
+	val unsafe.Pointer // ptr to data (SendDir) or ptr to receive buffer (RecvDir) 指向发送方要发送的数据地址, 或是接收方的接收缓冲区地址.
 }
 
 // These values must match ../reflect/value.go:/SelectDir.
@@ -638,6 +679,7 @@ func reflect_rselect(cases []runtimeSelect) (chosen int, recvOK bool) {
 	sel := (*hselect)(mallocgc(size, nil, true))
 	newselect(sel, int64(size), int32(len(cases)))
 	r := new(bool)
+	// 遍历cases逐个的去注册对应的channel操作
 	for i := range cases {
 		rc := &cases[i]
 		switch rc.dir {
