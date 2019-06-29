@@ -1,7 +1,3 @@
-// Copyright 2014 The Go Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style
-// license that can be found in the LICENSE file.
-
 package runtime
 
 import (
@@ -13,22 +9,20 @@ import (
 
 var buildVersion = sys.TheVersion
 
-// Goroutine scheduler
-// The scheduler's job is to distribute ready-to-run goroutines over worker threads.
-//
+// 协程调度器. 该调度器的工作就是将准备好运行的协程对象分发到系统层的工作线程上.
 // The main concepts are:
-// G - goroutine.
-// M - worker thread, or machine.
-// P - processor, a resource that is required to execute Go code.
+// G - 协程对象goroutine.
+// M - 工作线程, 其实是系统层面的内核线程(worker thread), or machine.
+// P - processor, 表示M运行所需的上下文环境. M必须与P相关联才能运行go代码,
 //     M must have an associated P to execute Go code, however it can be
 //     blocked or in a syscall w/o an associated P.
 //
 // Design doc at https://golang.org/s/go11sched.
 
 // Worker thread parking/unparking.
-// We need to balance between keeping enough running worker threads to utilize
-// available hardware parallelism and parking excessive running worker threads
-// to conserve CPU resources and power. This is not simple for two reasons:
+// go需要在保证有足够的M来充分利用硬件的并行能力, 同时也不能创建过多的M以防耗尽CPU资源和计算能力之间做一个平衡.
+// 由于以下两个原因, 维持这样的平衡并不是一项简单的工作
+// This is not simple for two reasons:
 // (1) scheduler state is intentionally distributed (in particular, per-P work
 // queues), so it is not possible to compute global predicates on fast paths;
 // (2) for optimal thread management we would need to know the future (don't park
@@ -47,7 +41,7 @@ var buildVersion = sys.TheVersion
 //    unparking as the additional threads will instantly park without discovering
 //    any work to do.
 //
-// The current approach:
+// 当前的作法
 // We unpark an additional thread when we ready a goroutine if (1) there is an
 // idle P and there are no "spinning" worker threads. A worker thread is considered
 // spinning if it is out of local work and did not find work in global run queue/
@@ -106,7 +100,7 @@ var runtimeInitTime int64
 // Value to use for signal mask for newly created M's.
 var initSigmask sigset
 
-// The main goroutine.
+// 主协程
 func main() {
 	g := getg()
 
@@ -1804,9 +1798,11 @@ var newmHandoff struct {
 	haveTemplateThread uint32
 }
 
-// Create a new m. It will start off with a call to fn, or else the scheduler.
+// 创建新的M对象. 
+// It will start off with a call to fn, or else the scheduler.
 // fn needs to be static and not a heap allocated closure.
 // May run with m.p==nil, so write barriers are not allowed.
+// caller: main(), startTheWorldWithSema(), startTemplateThread(), startm().
 //go:nowritebarrierrec
 func newm(fn func(), _p_ *p) {
 	mp := allocm(_p_, fn)
@@ -1840,6 +1836,7 @@ func newm(fn func(), _p_ *p) {
 	newm1(mp)
 }
 
+// caller: newm(), templateThread()
 func newm1(mp *m) {
 	if iscgo {
 		var ts cgothreadstart
@@ -1858,12 +1855,12 @@ func newm1(mp *m) {
 		return
 	}
 	execLock.rlock() // Prevent process clone.
+	// newosproc()创建一个系统线程. 这个函数由系统平台不同有不同的实现.
 	newosproc(mp)
 	execLock.runlock()
 }
 
-// startTemplateThread starts the template thread if it is not already
-// running.
+// startTemplateThread starts the template thread if it is not already running.
 //
 // The calling thread must itself be in a known-good state.
 func startTemplateThread() {
@@ -3229,28 +3226,27 @@ func malg(stacksize int32) *g {
 	return newg
 }
 
-// Create a new g running fn with siz bytes of arguments.
-// Put it on the queue of g's waiting to run.
-// The compiler turns a go statement into a call to this.
-// Cannot split the stack because it assumes that the arguments
-// are available sequentially after &fn; they would not be
-// copied if a stack split occurred.
+// 创建一个运行fn函数, 且带有narg个字节的参数的G对象, 将其放到g的等待队列中.
+// 编译器将go func语句的入口指向这里.
+// Cannot split the stack because it assumes that the arguments are available sequentially after &fn; 
+// they would not be copied if a stack split occurred.
 //go:nosplit
 func newproc(siz int32, fn *funcval) {
 	argp := add(unsafe.Pointer(&fn), sys.PtrSize)
 	gp := getg()
-	pc := getcallerpc()
+	pc := getcallerpc() // 获取调用者的pc数据, 即程序计数器.
 	systemstack(func() {
 		newproc1(fn, (*uint8)(argp), siz, gp, pc)
 	})
 }
 
-// Create a new g running fn with narg bytes of arguments starting
-// at argp. callerpc is the address of the go statement that created
-// this. The new g is put on the queue of g's waiting to run.
+// 创建一个运行fn函数, 且带有narg个字节的参数(参数列表的起始地址为argp)的g对象.
+// callerpc是创建此协程的go func语句的地址
+// 新创建的g对象将加入到g的执行队列里等待被调度
+// caller: newproc()
 func newproc1(fn *funcval, argp *uint8, narg int32, callergp *g, callerpc uintptr) {
 	_g_ := getg()
-
+	// 异常检查
 	if fn == nil {
 		_g_.m.throwing = -1 // do not dump full stacks
 		throw("go of nil func value")
@@ -3294,12 +3290,10 @@ func newproc1(fn *funcval, argp *uint8, narg int32, callergp *g, callerpc uintpt
 	}
 	if narg > 0 {
 		memmove(unsafe.Pointer(spArg), unsafe.Pointer(argp), uintptr(narg))
-		// This is a stack-to-stack copy. If write barriers
-		// are enabled and the source stack is grey (the
-		// destination is always black), then perform a
-		// barrier copy. We do this *after* the memmove
-		// because the destination stack may have garbage on
-		// it.
+		// This is a stack-to-stack copy. 
+		// If write barriers are enabled and the source stack is grey (the destination is always black), 
+		// then perform a barrier copy. 
+		// We do this *after* the memmove because the destination stack may have garbage on it.
 		if writeBarrier.needed && !_g_.m.curg.gcscandone {
 			f := findfunc(fn.fn)
 			stkmap := (*stackmap)(funcdata(f, _FUNCDATA_ArgsPointerMaps))
