@@ -5,7 +5,6 @@
 1. [Golang源码探索(一) 编译和调试源码](https://www.cnblogs.com/zkweb/p/7777525.html)
     - lldb
     - golang示例编译
-
 2. [GDB调试GO程序](http://blog.studygolang.com/2012/12/gdb%E8%B0%83%E8%AF%95go%E7%A8%8B%E5%BA%8F/)
     - runtime-gdb.py
     - runtime.Breakpoint(): 触发调试器断点

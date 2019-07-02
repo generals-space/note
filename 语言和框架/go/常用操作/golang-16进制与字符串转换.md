@@ -9,11 +9,8 @@
 本文涉及到的字符串, 16进制变量, 16进制字符串和`[]byte`数组转换.
 
 - `hello world`
-
 - `[104 101 108 108 111 32 119 111 114 108 100]`
-
 - `68656c6c6f20776f726c64`
-
 - `[]byte{0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x20, 0x77, 0x6f, 0x72, 0x6c, 0x64}`
 
 ------
@@ -32,12 +29,6 @@ fmt.Printf("%d\n", unsafe.Sizeof(c))    // 8
 各种转换方法如下示例.
 
 ```go
-package main
-
-import "fmt"
-import "encoding/hex"
-
-func main() {
 	// str也可以是中文
 	str := "hello world"
 	// string转[]byte数组和16进制字符串
@@ -64,7 +55,6 @@ func main() {
 	// hex包里自带的EncodeToString()方法其实和上面的Sprintf()作用相同
 	hexStr2 := hex.EncodeToString([]byte(str))
 	fmt.Printf("%s\n", hexStr2) // 68656c6c6f20776f726c64
-}
 
 ```
 

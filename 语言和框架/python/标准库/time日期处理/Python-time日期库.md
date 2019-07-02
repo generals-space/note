@@ -20,7 +20,6 @@
 ## 时间戳转`struct_time`对象: GMT时间与本地时间
 
 1. `time.gmtime([secs])`: 将指定时间戳转换为`struct_time`日期对象. 如果不指定时间则默认转换当前的时间.
-
 2. `time.localtime([secs])`: 与`gmtime()`用法类似, 不过`gmtime()`返回的总是`GMT`时区的时间, 而`localtime()`返回的是本地时区对应的时间.
 
 ```py
@@ -81,11 +80,11 @@ time.struct_time(tm_year=2018, tm_mon=5, tm_mday=13, tm_hour=8, tm_min=15, tm_se
 
 ## 字符串与`struct_time`对象的相互转换
 
-1. `time.strftime(format[, t])`: 把目标`struct_time`对象转换成指定格式的字符串形式.
+1. `time.strftime(format[, t])`: 把目标`struct_time`对象`t`转换成指定格式的字符串形式.
 
-格式参数是必须的, `struct_time`如果不指定的话默认使用当前时间.
+格式参数是必须的, `t`如果不指定的话默认使用当前时间.
 
-2. `time.strptime(string[, format])`: 与`strftime`相反, 将指定指定格式的日期字符串转换成`struct_time`对象. 默认格式为`%a %b %d %H:%M:%S %Y`.
+1. `time.strptime(string[, format])`: 与`strftime`相反, 将指定指定格式的日期字符串转换成`struct_time`对象. 默认格式为`%a %b %d %H:%M:%S %Y`.
 
 **时间对象转格式化字符串**
 

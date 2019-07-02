@@ -14,12 +14,7 @@
 - `windows`(win系统)
 - `darwin`(mac系统)
 - `linux`(linux系统)
-- `dragonfly` 
-- `freebsd` 
-- `netbsd` 
-- `openbsd` 
-- `plan9` 
-- `solaris` 
+- ...
 
 `GOARCH`可选值如下:
 

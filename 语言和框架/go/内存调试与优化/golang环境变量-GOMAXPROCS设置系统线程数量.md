@@ -11,16 +11,6 @@
 以如下代码为例
 
 ```go
-package main
-
-import (
-	"fmt"
-	"runtime"
-	"sync"
-	"time"
-)
-
-func main() {
     // 设置只使用1个CPU核心
 	// runtime.GOMAXPROCS(1)
 	counter := runtime.NumCPU()
@@ -45,8 +35,6 @@ func main() {
 	waitG.Wait()
 	endT := time.Now().Unix()
 	fmt.Printf("cost time %ds\n", endT-startT)
-
-}
 ```
 
 测试电脑为8核, linux系统常规执行输出如下

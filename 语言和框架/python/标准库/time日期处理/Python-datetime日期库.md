@@ -11,31 +11,20 @@
 ### 实例属性
 
 - `datetime.year`
-
 - `datetime.month`
-
 - `datetime.day`
-
 - `datetime.hour`
-
 - `datetime.minute`
-
 - `datetime.second`
-
 - `datetime.microsecond`
-
 - `datetime.tzinfo`
 
 ### 实例方法
 
 - datetime.date() # 返回 date 对象(只有datetime的date(年月日)部分)
-
 - datetime.time() # 返回 time 对象(只有时分秒部分)
-
 - datetime.replace(name = value) # 前面所述各项属性是 read-only 的，需要此方法才可更改
-
 - dattime.strftime(format)  # 将datetime对象转换成指定格式的字符串.
-
 - datetime.timetuple() # 返回time.struct_time 对象
 
 ```py
