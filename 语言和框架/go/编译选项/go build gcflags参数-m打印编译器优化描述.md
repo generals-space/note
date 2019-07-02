@@ -3,11 +3,13 @@
 参考文章
 
 1. [从golang的垃圾回收说起（下篇） 5.1节](https://sq.163yun.com/blog/article/192800393799778304)
-
-2. [参考golang官网(FAQ) How do I know whether a variable is allocated on the heap or the stack?](https://golang.org/doc/faq#stack_or_heap)
-
+	- 用一个简洁的实例说明golang在编译过程中对几种变量分配的处理.
+2. [golang官网(FAQ) How do I know whether a variable is allocated on the heap or the stack?](https://golang.org/doc/faq#stack_or_heap)
+	- golang官方对变量分配的描述, 提出"逃逸分析"的概念
 3. [Golang 优化之路——临时对象池](https://blog.cyeam.com/golang/2017/02/08/go-optimize-slice-pool)
 	- 解释了golang在创建对象的内存分配机制以及常用优化方案.
+
+引用自参考文章2.
 
 Q: 
 我怎样知道一个变量被分配到堆上还是栈上?
