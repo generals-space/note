@@ -1,4 +1,4 @@
-# git代理设置
+# git config代理设置
 
 <!tags!>: <!代理!>
 
@@ -6,11 +6,16 @@
 
 [git代理设置方法解决](http://www.cnblogs.com/jackyshan/p/5985590.html)
 
+设置http及https代理
+
 ```
-## 设置http及https代理
 git config --global http.proxy http://127.0.0.1:1080
 git config --global https.proxy https://127.0.0.1:1080
-## 设置socks代理
+```
+
+设置socks代理
+
+```
 git config --global http.proxy 'socks5://127.0.0.1:1080'
 git config --global https.proxy 'socks5://127.0.0.1:1080'
 ```
