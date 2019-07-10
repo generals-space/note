@@ -1,5 +1,7 @@
 # 单元测试如何mock time.Now()
 
+<!tags!>: <!gomonkey!>
+
 参考文章
 
 1. [如何在单元测试过程中模拟日期和时间](https://www.cnblogs.com/redmoon/p/4433609.html)
