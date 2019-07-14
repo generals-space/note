@@ -3,9 +3,13 @@
 参考文章
 
 1. [Css多行字符截取方法详解](http://www.php.cn/css-tutorial-387729.html)
-
     - 很不错的实验验证型文章
+2. [-webkit-line-clamp超过两行就出现省略号](https://www.cnblogs.com/ldlx-mars/p/6972734.html)
+    - -webkit-line-clamp 是一个不规范的属性(unsupported WebKit property), 没有出现在 CSS 规范草案中
 
+## 1. 
+
+来自参考文章1
 
 ```html
 <!DOCTYPE html>
@@ -59,4 +63,42 @@
     </div>
 </body>
 </html>
+```
+
+## 2.
+
+示例灵感来自[CSDN](https://www.cnblogs.com/ldlx-mars/p/6972734.html), 经过了参考文章2的改进.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        div.wrapper{
+            width: 892px;
+            height: 100px;
+            margin: 0 auto;
+        }
+        p.txt{
+            font-size: 14px;
+            color: #858585;
+            line-height: 24px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+            word-wrap:break-word;
+            word-break:break-all;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <p class="txt">
+            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        </p>
+    </div>
+</body>
+</html>
+
 ```
