@@ -6,6 +6,12 @@
 git checkout -b 本地分支名称 origin/远程分支名称
 ```
 
+或是用`git fetch`先取回所有分支的更新, 再使用
+
+```
+git checkout 目标分支名称
+```
+
 `checkout`子命令帮助文档
 
 ```
