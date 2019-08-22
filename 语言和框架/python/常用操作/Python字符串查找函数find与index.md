@@ -7,12 +7,9 @@
 python 字符串查找有4个方法
 
 1. find
-
 2. index
-
-3. rfind方法
-
-4. rindex方法.
+3. rfind
+4. rindex
 
 ## 1. find()/rfind()
 
