@@ -6,6 +6,8 @@
     - GMP模型概念及流程介绍
 2. [深入Golang调度器之GMP模型](https://www.cnblogs.com/sunsky303/p/9705727.html)
     - 源码分析比较用心
+3. [协程调度时机一：系统调用](https://zhuanlan.zhihu.com/p/29970624)
+    - 用后妈比喻M对象, 很生动
 
 M是machine的头文字, 在当前版本的golang中等同于系统线程.
 
