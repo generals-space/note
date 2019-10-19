@@ -10,6 +10,10 @@
 
 4. [微软官方文档 - Environment 方法](https://msdn.microsoft.com/zh-cn/library/system.environment_methods(v=vs.110).aspx)
 
+5. [Powershell环境变量](https://www.pstips.net/powershell-environment-variables.html)
+    - 环境变量的CURD操作示例
+
+
 这里讲的修改系统环境变量是指的操作系统中的`Path`变量, 全局生效的那种. 而不是像Shell脚本运行时在`/etc/profile`中定义的变量那样, 更狭义一点.
 
 `[Environment]`是`[System.Environment]`的缩写, 是一个类...没错, 在`C#`语法中的确是一个类, 而且无法被继承???(谁没事想去继承它). 

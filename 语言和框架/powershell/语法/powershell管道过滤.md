@@ -151,3 +151,4 @@ PS C:\Users\general> 1..10 | % {echo $_}
 
 其中`%`就是foreach-object函数, 而`$_`则表示当前项.
 
+> powershell 中的 for/foreach 循环是表达式, 与管道操作是两回事.
