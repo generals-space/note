@@ -7,7 +7,8 @@
 ### 1.2 删除指定配置项
 
 ```
-$ git config --global user.name=general
+## git config --global user.name=general
+$ git config --global user.name general
 ```
 
 ## 2. 工作区, 暂存区, 本地版本库, 远程版本库相互覆盖
@@ -40,4 +41,3 @@ git reflog
 ```
 $ git branch --set-upstream-to=origin/master master
 ```
-

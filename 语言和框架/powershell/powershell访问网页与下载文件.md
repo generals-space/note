@@ -1,6 +1,4 @@
-# powershell网络操作
-
-## 1. 访问网页/下载文件
+# 访问网页与下载文件
 
 ```ps1
 (New-Object System.Net.WebClient).downloadstring('https://www.baidu.com')
