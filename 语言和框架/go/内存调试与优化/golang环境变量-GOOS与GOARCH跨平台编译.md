@@ -31,7 +31,7 @@ GOOS=windows GOARCH=amd64 go build -o main.exe main.go
 windows下编译运行在linux下的可执行程序
 
 ```
-set GOARCH=386; set GOOS=windows; go build -o main main.go
+set GOARCH=386; set GOOS=linux; go build -o main main.go
 ```
 
 > 有时可能要加上`CGO_ENABLED=0`
