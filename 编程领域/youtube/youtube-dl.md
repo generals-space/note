@@ -1,19 +1,19 @@
 ## 最简示例
 
 ```
-youtube-dl --proxy socks5://127.0.0.1:1080 --no-check-certificate --username huangjiaruo321@gmail.com --password 2q2q2q2q/ https://www.youtube.com/watch?v=ByCDKBBhdZg
+youtube-dl --proxy socks5://127.0.0.1:1080 --no-check-certificate --username huangjiaruo321@gmail.com --password 123456 https://www.youtube.com/watch?v=ByCDKBBhdZg
 ```
 
 定义输出格式, 清晰度, 文件名
 
 ```
-youtube-dl --proxy socks5://127.0.0.1:1080 --no-check-certificate --username huangjiaruo321@gmail.com --password 2q2q2q2q/ --format best -o '%(upload_date)s-%(title)s.%(ext)s' --write-auto-sub https://www.youtube.com/watch?v=ByCDKBBhdZg
+youtube-dl --proxy socks5://127.0.0.1:1080 --no-check-certificate --username huangjiaruo321@gmail.com --password 123456 --format best -o '%(upload_date)s-%(title)s.%(ext)s' --write-auto-sub https://www.youtube.com/watch?v=ByCDKBBhdZg
 ```
 
 ## 列表下载
 
 ```
-youtube-dl --proxy socks5://127.0.0.1:1080 --no-check-certificate --username huangjiaruo321@gmail.com --password 2q2q2q2q/ --format best -o '%(playlist_index)05d-%(upload_date)s-%(title)s.%(ext)s' --write-auto-sub https://www.youtube.com/playlist?list=PLsRn8zzjiZRjpuTNLrzCFtwgbRe8SyNB5
+youtube-dl --proxy socks5://127.0.0.1:1080 --no-check-certificate --username huangjiaruo321@gmail.com --password 123456 --format best -o '%(playlist_index)05d-%(upload_date)s-%(title)s.%(ext)s' --write-auto-sub https://www.youtube.com/playlist?list=PLsRn8zzjiZRjpuTNLrzCFtwgbRe8SyNB5
 ```
 
 由于失败导致的中断可以通过`--playlist-start 10`指定继续下载的起始索引.
@@ -21,7 +21,7 @@ youtube-dl --proxy socks5://127.0.0.1:1080 --no-check-certificate --username hua
 `--retries 数字/infinite`设置重试次数...好像不管用?
 
 ```
-$ youtube-dl --proxy socks5://192.168.0.5:1080 --no-check-certificate --username huangjiaruo321@gmail.com --password 2q2q2q2q/ --playlist-start 22 --retries infinite --format best -o '%(upload_date)s-%(title)s.%(ext)s' --write-auto-sub https://www.youtube.com/playlist?list=PLsRn8zzjiZRjpuTNLrzCFtwgbRe8SyNB5
+$ youtube-dl --proxy socks5://192.168.0.5:1080 --no-check-certificate --username huangjiaruo321@gmail.com --password 123456 --playlist-start 22 --retries infinite --format best -o '%(upload_date)s-%(title)s.%(ext)s' --write-auto-sub https://www.youtube.com/playlist?list=PLsRn8zzjiZRjpuTNLrzCFtwgbRe8SyNB5
 [download] Downloading video 10 of 276
 [youtube] 4vY0NqKNmB4: Downloading webpage
 [youtube] 4vY0NqKNmB4: Downloading video info webpage
@@ -38,7 +38,7 @@ ERROR: 失败...
 查看目标视频可选的格式, 包括清晰度, 文件格式等, 不会下载.
 
 ```
-$ youtube-dl --proxy socks5://127.0.0.1:1080 --no-check-certificate --username huangjiaruo321@gmail.com --password 2q2q2q2q/ --list-formats https://www.youtube.com/watch?v=ByCDKBBhdZg
+$ youtube-dl --proxy socks5://127.0.0.1:1080 --no-check-certificate --username huangjiaruo321@gmail.com --password 123456 --list-formats https://www.youtube.com/watch?v=ByCDKBBhdZg
 [youtube] Downloading login page
 [youtube] Looking up account info
 WARNING: Unable to look up account info: <urlopen error EOF occurred in violation of protocol (_ssl.c:1051)>
