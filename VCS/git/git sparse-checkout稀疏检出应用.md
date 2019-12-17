@@ -1,4 +1,4 @@
-# Git-sparse-checkout稀疏检出应用
+# git sparse-checkout稀疏检出应用
 
 参考文章
 
