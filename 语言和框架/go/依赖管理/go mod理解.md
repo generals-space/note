@@ -12,7 +12,7 @@
 
 `go mod vendor`: 会复制modules到当前工程的`vendor`子目录中, 貌似只会下载你代码中引用的库，而不是go.mod中定义全部的module(比如`indirect`标记的库就不会出现在`vendor`目录中). 
 
-`go mod tidy`: 如果有此库的版本不匹配, 可以修改`go.mod`文件, 然后执行`go mod tidy`重新整理. 此命令将会修改`go.sum`中生成的记录, 但貌似不会修改`vendor`目录中的库内容, 需要再次执行`go mod vendor`处理新导入的库.
+`go mod tidy`: 如果有此库的版本不匹配, 可以修改`go.mod`文件, 然后执行`go mod tidy`重新整理. 此命令将会修改`go.sum`中生成的记录, ~~但貌似不会修改`vendor`目录中的库内容, 需要再次执行`go mod vendor`处理新导入的库~~, 我也不知道会不会修改`vendor`中导入的库了, 总之再执行一次`go mod vendor`吧.
 
 ------
 
