@@ -11,6 +11,8 @@
 
 > etcd是一个golang编写的分布式、高可用的一致性键值存储系统，用于提供可靠的分布式键值(key-value)存储、配置共享和服务发现等功能。
 
+本文示例中使用的是`ETCDCTL_API=2`.
+
 **etcd与redis的区别**
 
 1. redis中可存储众多数据类型, 如string, list, set, map等, 而etcd中只能存储简单的string;
