@@ -2,9 +2,6 @@
 
 术语: module模式与gopath模式
 
-
-module模式下执行`go install`会安装在哪?
-
 GO111MODULE:
 
 - `off`: 无模块支持, go 会从 GOPATH 和 vendor 目录寻找包. 
@@ -23,3 +20,5 @@ gopath模式无法使用`go get|install path@version`语法.
 $ go get github.com/gorilla/mux@latest
 go: cannot use path@version syntax in GOPATH mode
 ```
+
+但是`go install`无法使用`@version`语法, gopath模式下的`go install`安装的是src目录的工程, 但modules模式下可能有多个版本的工程, 默认应该是安装当前pkg/mod目录下最新的工程.

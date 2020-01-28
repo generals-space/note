@@ -9,4 +9,10 @@
 
 2. 每个pthread的stack栈空间是8MB, 当然是virt.(可以通过ulimit -a查看, `stack size`字段即是)
 3. 一个socket连接一般占用8kb内存
-4. 
+
+
+## 20191230 reflect.DeepEqual()
+
+1. [Go语言 bytes.Equal() 和 reflect.DeepEqual() 的不同](https://www.cnblogs.com/hanyu100/p/8717456.html)
+2. [10x faster than reflect.DeepEqual](https://zhuanlan.zhihu.com/p/55654454)
+
