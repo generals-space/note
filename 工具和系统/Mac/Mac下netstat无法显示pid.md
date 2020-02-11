@@ -12,8 +12,27 @@
 lsof -nP -iTCP:端口号 -sTCP:LISTEN
 ```
 
--n 表示不显示主机名
+- `-n`: 不显示主机名
+- `-P`: 不显示端口的英文名称比如80是http
+- `-i <条件>`: 列出符合条件的进程. (4、6、协议、:端口、 @ip)
 
--P 表示不显示端口的英文名称比如80是http
-
--i<条件> 列出符合条件的进程。（4、6、协议、:端口、 @ip ） 
+```bash
+## @function: netstat -nlp | grep 端口号
+## $1:        端口号
+function netstatL
+{
+    lsof -nP -iTCP:$1 -sTCP:LISTEN
+}
+## @function: netstat -nap | grep 端口号
+## $1:        端口号
+function netstatA
+{
+    lsof -nP -iTCP:$1
+}
+## @function: netstat -nap | grep PID
+## $1:        目标进程pid
+function netstatP
+{
+    lsof -nP -iTCP -a -p $1
+}
+```
