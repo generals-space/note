@@ -1,0 +1,50 @@
+package main
+
+import (
+	"log"
+	"os"
+)
+
+const (
+	dhcpPath = "/opt/cni/bin/dhcp"
+	dhcpSock = "/run/cni/dhcp.sock"
+)
+
+func main() {
+	if os.Getppid() != 1 {
+		args := []string{dhcpPath, "daemon"}
+		// 这里是将标准输入输出等绑定到控制台了, 也可以创建一个日志文件fd, 把那3个全替换成fd.
+		// 不然控制台关闭后会被重定向到/dev/null, 就无法再看到记录了.
+		procAttr := &os.ProcAttr{
+			Files: []*os.File{
+				os.Stdin,
+				os.Stdout,
+				os.Stderr,
+			},
+		}
+		// os.StartProcess()也是非阻塞函数, 运行时立刻返回(proc进程对象会创建好), 然后才会为err赋值.
+		proc, err := os.StartProcess(dhcpPath, args, procAttr)
+		if err != nil {
+			log.Println(err)
+			// 即使执行失败, 打印完后也不退出, 除非显式调用return
+			// return
+		}
+		// 2020/02/11 20:39:57 &{Pid:6734 handle:0 isdone:0 sigMu:{w:{state:0 sema:0} writerSem:0 readerSem:0 readerCount:0 readerWait:0}}
+		// 如果这里执行完, 发现目标进程启动失败, 会回到上面err处理部分.
+		log.Printf("%+v\n", proc)
+	}
+}
+
+/*
+dhcp    12797 root    0u      CHR              136,1      0t0       4 /dev/pts/1
+dhcp    12797 root    1u      CHR              136,1      0t0       4 /dev/pts/1
+dhcp    12797 root    2u      CHR              136,1      0t0       4 /dev/pts/1
+
+...看起来像和从命令行里执行的一样, 但其实并没有与控制台绑定.
+
+关闭命令行后再看
+
+dhcp    37199 root    0u      CHR              136,1      0t0        4 /dev/pts/1 (deleted)
+dhcp    37199 root    1u      CHR              136,1      0t0        4 /dev/pts/1 (deleted)
+dhcp    37199 root    2u      CHR              136,1      0t0        4 /dev/pts/1 (deleted)
+*/
