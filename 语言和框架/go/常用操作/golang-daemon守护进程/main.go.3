@@ -1,0 +1,28 @@
+package main
+
+import (
+	"log"
+	"syscall"
+)
+
+const (
+	dhcpPath = "/opt/cni/bin/dhcp"
+	dhcpSock = "/run/cni/dhcp.sock"
+)
+
+func main() {
+	pid, _, sysErr := syscall.RawSyscall(syscall.SYS_FORK, 0, 0, 0)
+	if sysErr != 0 {
+		log.Printf("syscall fork error: %s", sysErr.Error())
+		return
+	}
+	log.Printf("the forked pid: %d", pid)
+	if pid < 0 {
+		panic("invalid child pid")
+	} else if pid > 0 {
+		// 父进程
+	} else {
+		// 子进程
+
+	}
+}
