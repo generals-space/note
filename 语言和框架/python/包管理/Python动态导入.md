@@ -8,6 +8,9 @@
 
 3. [__import__ 与动态加载 python module](http://python.jobbole.com/87492/)
 
+4. [__import__详解](https://www.jianshu.com/p/e7ee9b2c83b9)
+    - `from module import submodule`形式如何使用`__import__`动态加载
+
 ## 1. 动态改变搜索路径
 
 模块必须处于Python搜索路径中才能被导入, 但你不想设置个永久性的大而全的路径, 因为那样可能会影响性能, 所以, 你希望能够动态地改变这个路径. 

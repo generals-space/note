@@ -9,15 +9,15 @@ import os
 print(__file__)
 ```
 
-```
+```console
 $ ls
 test.py
 $ pwd
 /tmp
 $ python test.py 
-test.py
+test.py                 ## 执行时为相对路径, 输出时也是相对路径
 $ python /tmp/test.py 
-/tmp/test.py
+/tmp/test.py            ## 执行时为绝对路径, 输出时也是绝对路径
 ```
 
 由于执行python脚本时不一定是在命令行下明确地指定其路径, 也有可能是在脚本中相互调用, 所以直接通过`__file__`可能无法获取到目标脚本的正确路径. 因此实际使用中一般与`os.path.dirname()`与`os.path.abspath()`等配合使用.
@@ -53,7 +53,11 @@ $ python /tmp/test.py
 >>> 
 ```
 
-当前路径应该是通过代码中的上下文计算的, 可以通过`os.path.abspath(path)`查看. 一般来说, 在python交互终端得到的当前路径, 应该是当前用户的home目录, 而在代码中则可以得到当前python文件所在的目录. 所以python中的常用用法`os.path.abspath(os.path.dirname(__file__))`, 得到的是当前文件 **所在目录**的绝对路径. 
+当前路径应该是通过代码中的上下文计算的, 可以通过`os.path.abspath(path)`查看. 
+
+一般来说, 在python交互终端得到的当前路径, 应该是当前用户的home目录, 而在代码中则可以得到当前python文件所在的目录. 
+
+所以python中的常用用法`os.path.abspath(os.path.dirname(__file__))`, 得到的是当前文件 **所在目录**的绝对路径. 
 
 ## 路径字符串拼接
 

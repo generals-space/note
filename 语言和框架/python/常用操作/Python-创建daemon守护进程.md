@@ -1,4 +1,4 @@
-# Python-创建守护进程
+# Python-创建daemon守护进程
 
 参考文章
 
