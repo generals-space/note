@@ -39,24 +39,27 @@ BTNode* newNode(int key)
 }
 
 /*
-调用LL调整的两种情况:
-                        LL
-            4           =>          4
-          /   \                   /   \
-node ->  3     5                 2     5
-       /                       /   \
-      2                key -> 1     3 <- node
-    /                         
-   1 <- key                   
+    调用LL调整的两种情况:
 
-                         LL                                RR            
-      2                  =>             2                  =>               2
-    /   \                             /   \                               /   \
-   1     4  <- node                  1     4  <- node                    1     3  <- node
-           \                                 \                               /   \
-            5                         key ->  3                   node ->  4     5
-          /                                     \                           
-         3  <- key                               5                          
+    1. LL
+                            LL
+                4           =>          4
+              /   \                   /   \
+    node ->  3     5                 2     5
+           /                       /   \
+          2                key -> 1     3 <- node
+        /                         
+       1 <- key                   
+
+    2. RL
+                             LL(node.right)                    RR            
+          2                  =>             2                  =>               2
+        /   \                             /   \                               /   \
+       1     4  <- node                  1     4  <- node                    1     3  <- node
+               \                                 \                               /   \
+                5                         key ->  3                   node ->  4     5
+              /                                     \                           
+             3  <- key                               5                          
 */
 BTNode* ll_rotate(BTNode* node)
 {
@@ -70,6 +73,29 @@ BTNode* ll_rotate(BTNode* node)
     return tmp;
 }
 
+/*
+    调用RR调整的两种情况:
+    
+    1. RR
+                             RR                         
+           4                 =>          4              
+         /   \                         /   \            
+        3     5  <-node               3     5  <- node  
+                \                         /   \         
+                 6                       6     7  <- key
+                   \                                    
+             key -> 7                                   
+    
+    2. LR
+                            RR(node.left)              LL
+                   4        =>             4           =>               4
+                 /   \                   /   \                        /   \
+      node ->  3      5        node ->  3     5              key ->  2     5
+              /                       /                            /   \
+             1                       2  <- key                    1     3  <- node
+               \                   /                   
+                2  <- key         1                    
+*/
 BTNode* rr_rotate(BTNode* node)
 {
     BTNode *tmp = node->right;
@@ -101,6 +127,9 @@ int getBalance(BTNode* N)
 BTNode* insert(BTNode* node, int key)
 {
     // 空树时直接当根节点然后返回.
+    // 但还要注意一点, 整个程序中只有这一处调用了newNode()函数.
+    // 这也是下面比较key与node左右节点大小的目的, 先找到合适的位置, 
+    // 再创建新节点然后插入.
     if (node == NULL) return newNode(key);
 
     if (key < node->key)
@@ -149,7 +178,6 @@ BTNode * minValueNode(BTNode* node)
 
 BTNode* deleteNode(BTNode* root, int key)
 {
-
     if (root == NULL) return root;
 
     if (key < root->key) 

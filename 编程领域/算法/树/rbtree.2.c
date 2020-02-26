@@ -21,14 +21,14 @@ struct rbt_root_t{
 
 //函数声明
 rbt_root_t* rbt_init(void);
-static void rbt_handleReorient(rbt_root_t* T, rbt_t* x);
+static void rbt_handleReorient(rbt_root_t* T, rbt_t* x, int k);
 rbt_root_t* rbt_insert(rbt_root_t* T, int k);
 rbt_root_t* rbt_delete(rbt_root_t* T, int k);
 
 void rbt_transplant(rbt_root_t* T, rbt_t* u, rbt_t* v);
 
-static rbt_t* rbt_rr_rotate( rbt_root_t* T, rbt_t* x);
-static rbt_t* rbt_ll_rotate( rbt_root_t* T, rbt_t* x);
+static void rbt_rr_rotate( rbt_root_t* T, rbt_t* x);
+static void rbt_ll_rotate( rbt_root_t* T, rbt_t* x);
 
 void rbt_inPrint(const rbt_root_t* T, rbt_t* t);
 void rbt_prePrint(const rbt_root_t * T, rbt_t* t);
@@ -75,74 +75,61 @@ rbt_root_t* rbt_init(void){
 
 /*
 *@function 内部函数 由rbt_insert调用
+* 两种情况会调用这个函数: 
+* 1 x有两个红色儿子
+* 2 x为新插入的结点
+
 在第一种情况下, 进行颜色翻转; 在第二种情况下, 相当于对新插入的x点初始化
 */ 
-void rbt_handleReorient(rbt_root_t* T, rbt_t* x){
-    // 如果目标节点的父节点为黑, 则不用进行任何调整操作.
-    if(x->p->color == BLACK) 
-    {
-        //无条件令根为黑色
-        T->root->color = BLACK;
-        return;
-    }
-
-    // 运行到这, 说明父节点为红, 那肯定不是根节点, 而且x的祖父节点肯定为黑.
-
-    // 如果叔叔节点也为红, 则需要变换颜色, 否则只需要旋转.
-    rbt_t* gp = x->p->p;
-    if(gp->left->color == gp->right->color)
-    {
-        gp->color = RED;
-        gp->left->color = gp->right->color = BLACK;
-
-        if(gp == T->root)
-        {
-            gp->color = BLACK;
-            return;
-        }else if (gp->p->color == BLACK) {
-            return;
-        } else {
-            return rbt_handleReorient(T, gp);
-        }
-    } else {
-        rbt_t* subroot;
-
+void rbt_handleReorient(rbt_root_t* T, rbt_t* x, int val){
+    // x.p为红, 则出现两个连续的红节点, 需要调整.
+    // 反过来讲, 如果待插入节点的父节点为黑, 则不用进行任何操作.
+    // 如果x.p为红色, 那么x.p一定不是根, 就一定还有父节点, 则需要进行旋转.
+    if(x->p->color == RED){
         // 父节点为红, 则祖父节点一定不为红, 这里把祖父节点也转为红色.
         // 进行旋转的时候, 一定会涉及到一次颜色转换(4种旋转都是)
         // 这里就是把作为 `A -> B -> C` 这一小段子树中的节点A的颜色转换一次.
         //此时x, x->p, x->p->p都为红, 另外还一个节点一定需要转换成黑色, 
         // 要看具体的旋转类型而定.
         x->p->p->color = RED; 
+
         // LR
-        if(x->p->value < x->p->p->value && x->value > x->p->value) 
+        if(x->p->value < x->p->p->value && val > x->p->value) 
         {
             x->color = BLACK;
-            subroot = rbt_rr_rotate(T,x->p);
-            subroot = rbt_ll_rotate(T,x->p);
+            rbt_rr_rotate(T,x->p);
+            rbt_ll_rotate(T,x->p);
         }
         // LL
-        else if(x->p->value < x->p->p->value && x->value < x->p->value) 
+        else if(x->p->value < x->p->p->value && val < x->p->value) 
         {
             x->p->color = BLACK;
-            subroot = rbt_ll_rotate(T,x->p->p);
+            rbt_ll_rotate(T,x->p->p);
         }
         // RR
-        else if(x->p->value > x->p->p->value && x->value > x->p->value) 
+        else if(x->p->value > x->p->p->value && val > x->p->value) 
         {
+            // x->color = BLACK;
+            // rbt_ll_rotate(T,x->p);
+            // rbt_rr_rotate(T,x->p);
+
             x->p->color = BLACK;
-            subroot = rbt_rr_rotate(T,x->p->p);
+            rbt_rr_rotate(T,x->p->p);
         }
         // RL
-        else if(x->p->value > x->p->p->value && x->value < x->p->value) 
+        else if(x->p->value > x->p->p->value && val < x->p->value) 
         {
-            x->color = BLACK;
-            subroot = rbt_ll_rotate(T,x->p);
-            subroot = rbt_rr_rotate(T,x->p);
-        }
+            // x->p->color = BLACK;
+            // rbt_rr_rotate(T,x->p->p);
 
-        //无条件令根为黑色
-        T->root->color = BLACK;
+            x->color = BLACK;
+            rbt_ll_rotate(T,x->p);
+            rbt_rr_rotate(T,x->p);
+        }
     }
+
+    //无条件令根为黑色
+    T->root->color = BLACK;
 }
 /*
 *@function brt_insert 插入
@@ -163,12 +150,12 @@ rbt_root_t* rbt_insert(rbt_root_t* T, int val){
     while(x != T->nil){
         // 保证没有一对兄弟同时为红色, 交换父节点/叔叔节点与祖父节点的颜色.
         // 不过为什么在插入之前做这些事?
-        // if(x->left->color == RED && x->right->color == RED)
-        // {
-        //     x->color = RED;
-        //     x->left->color = x->right->color = BLACK; 
-        //     rbt_handleReorient(T, x);
-        // }
+        if(x->left->color == RED && x->right->color == RED)
+        {
+            x->color = RED;
+            x->left->color = x->right->color = BLACK; 
+            rbt_handleReorient(T, x, val);
+        }
 
         p = x;
         if(val < x->value)
@@ -200,8 +187,8 @@ rbt_root_t* rbt_insert(rbt_root_t* T, int val){
         p->right = x;
 
     // 插入完成, 开始调整.
-    // 因为一路下来, 如果x的父亲是红色, 那么x的叔叔肯定不是红色了, 这个时候只需要做一下翻转即可. 
-    rbt_handleReorient(T, x);
+    //因为一路下来, 如果x的父亲是红色, 那么x的叔叔肯定不是红色了, 这个时候只需要做一下翻转即可. 
+    rbt_handleReorient(T, x, val);
 
     return T;
 }
@@ -369,7 +356,7 @@ rbt_root_t* rbt_delete(rbt_root_t* T, int k){
               /                                     \                           
              3  <- key                               5                          
 */
-rbt_t* rbt_ll_rotate(rbt_root_t* T, rbt_t* x){
+void rbt_ll_rotate(rbt_root_t* T, rbt_t* x){
     rbt_t * tmp = x->left;
     x->left = tmp->right;
 
@@ -386,8 +373,6 @@ rbt_t* rbt_ll_rotate(rbt_root_t* T, rbt_t* x){
 
     tmp->right = x;
     x->p = tmp;
-
-    return tmp;
 }
 
 /*
@@ -416,7 +401,7 @@ rbt_t* rbt_ll_rotate(rbt_root_t* T, rbt_t* x){
                \                   /                   
                 2  <- key         1  <- node                  
 */
-rbt_t* rbt_rr_rotate(rbt_root_t* T, rbt_t* node){
+void rbt_rr_rotate(rbt_root_t* T, rbt_t* node){
     rbt_t* tmp = node->right;
 
     node->right = tmp->left;
@@ -428,12 +413,14 @@ rbt_t* rbt_rr_rotate(rbt_root_t* T, rbt_t* node){
     else if(tmp->value < tmp->p->value)
         tmp->p->left = tmp;
     else
+    {
+        // 不会出现这种情况吧? 
         tmp->p->right = tmp;
+        printf("=========== tmp.value: %d, tmp->p.value: %d\n", tmp->value, tmp->p->value);
+    }
 
     tmp->left = node;
     node->p = tmp;
-
-    return tmp;
 }
 
 // 前序遍历
