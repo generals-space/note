@@ -8,6 +8,8 @@
     - etcd restful接口的使用示例(curl)
 3. [Ubuntu 搭建etcd](https://www.cnblogs.com/xiao987334176/articles/9942195.html)
     - etcdctl各子命令的使用示例
+4. [在微服务架构中是否可用 redis 代替 etcd?](https://www.v2ex.com/t/520367?p=1)
+    - 值得一看
 
 > etcd是一个golang编写的分布式、高可用的一致性键值存储系统，用于提供可靠的分布式键值(key-value)存储、配置共享和服务发现等功能。
 
