@@ -3,6 +3,10 @@
 参考文章
 
 1. [vmware安装安卓](https://zhuanlan.zhihu.com/p/87633763)
+2. [VMware虚拟机安装教程](http://bbs.phoenixstudio.org/cn/read.php?tid=7813)
+    - 凤凰OS官方安装文档
+3. [VMware 12安装凤凰os](https://jingyan.baidu.com/article/20095761dce379cb0721b41b.html)
+    = 我最初是按照这篇文档安装凤凰OS的.
 
 只这一篇就可以了.
 
@@ -16,3 +20,5 @@ VMware Fusion: 15.1
 ------
 
 但基本就是个废物, 根本没办法安装国内的软件.
+
+凤凰OS不错, 可以安装闲鱼, 拼多多等, 安装步骤与Android x86的步骤差不多.

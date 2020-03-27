@@ -35,3 +35,4 @@ require k8s.io/client-go v0.0.0-20190918160344-1fbdaa4c8d90 // indirect
 ---
 
 `go get`或`go mod download`下载的包实际在`gopath/pkg/mod/cache/download`目录下, 将工程内容及对应commit拷贝到`pkg/mod/`下.
+

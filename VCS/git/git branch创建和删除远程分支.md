@@ -21,10 +21,13 @@ git push --set-upstream origin test
 
 这条命令的意思是把本地的 **当前分支**推送为`origin`的test分支.
 
-2. 删除远程分支
+2. 删除远程分支(tag)
 
 ...删除远程分支用的不是`branch`子命令, 还是要用`push`
 
 ```
 git push origin -d test
 ```
+
+> 貌似`1.8.3.1`版本已经没有`-d`选项了, 不过可以使用`--delete`代替.
+
