@@ -16,6 +16,6 @@ ctx对象:
 3. timerCtx
 4. valueCtx
 
-只有cancelCtx有new方法, 其余都是嵌入cancelCtx以达到可cancel()的目的.
+只有`cancelCtx`有new方法, 其余都是嵌入cancelCtx以达到可cancel()的目的.
 
 4种ctx对象的组合方式很简单, 稍微费神一点的就是`propagateCancel`和`cancel`的执行流程. ta们之间需要建立/取消父子关系.

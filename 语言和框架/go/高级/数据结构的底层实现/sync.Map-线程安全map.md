@@ -1,4 +1,4 @@
-# sync.Map线程安全map
+# sync.Map-线程安全map
 
 参考文章
 

@@ -1,4 +1,4 @@
-# mutex锁实现
+# sync.Mutex锁实现
 
 参考文章
 

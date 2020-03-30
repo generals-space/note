@@ -1,4 +1,4 @@
-# channel的关闭与读写
+# channel 关闭 读写与panic
 
 参考文章
 

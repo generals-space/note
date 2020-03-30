@@ -8,10 +8,12 @@
     - 源码分析比较用心
 3. [协程调度时机一：系统调用](https://zhuanlan.zhihu.com/p/29970624)
     - 用后妈比喻M对象, 很生动
+    - 结婚, 离婚, 前夫, 前妻
 
-M是machine的头文字, 在当前版本的golang中等同于系统线程.
+M是machine的首字母, 在当前版本的golang中等同于系统线程.
 
 M可以运行两种代码:
+
 1. go代码, 即goroutine, M运行go代码需要一个P
 2. 原生代码, 例如阻塞的syscall, M运行原生代码不需要P
 
