@@ -17,22 +17,6 @@ export GOPROXY=https://proxy.golang.org
 ### 1. 
 
 ```
-go: modules disabled inside GOPATH/src by GO111MODULE=auto; see 'go help modules'
-```
-
-go mod需要在GOPATH外
-
-### 2. 
-
-```
-go mod init: go.mod already exists
-```
-
-go.mod文件已经存在
-
-### 3. 
-
-```
 zip: not a valid zip file
 ```
 
