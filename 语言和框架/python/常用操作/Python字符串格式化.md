@@ -8,7 +8,9 @@
 Python的字符串格式化有两种方式:
 
 1. `%`占位符
-2. `format()`函数
+2. `format()`函数配合`{}`
+
+> 这两种方式在python2和python3中都可以使用.
 
 ## 1. `%`占位符
 
@@ -85,3 +87,16 @@ print(string.format(**user)) ## my name is general, 21 years old
 string = '我是内容: {}, 我是大括号: {{}}'
 print(string .format('general')) ## 我是内容: general, 我是大括号: {}
 ```
+
+------
+
+经实验, `%`占位符方式貌似不支持将十进制整数转换成二进制, python2和3都不行.
+
+```py
+>>> print('%b' % 10)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ValueError: unsupported format character 'b' (0x62) at index 1
+```
+
+只能使用`print('{:b}'.format(10))`这种形式.
