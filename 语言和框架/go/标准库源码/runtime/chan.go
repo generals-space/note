@@ -13,11 +13,22 @@ package runtime
 //  in which case the length of c.sendq and c.recvq is limited only by the
 //  size of the select statement.
 //
+// 在 hchan 对象中, c.sendq 和 c. recvq 至少有一个为空.
+// 不过有一种情况除外.
+// 
+// 
+// 
 // For buffered channels, also:
 //  c.qcount > 0 implies that c.recvq is empty.
 //  c.qcount < c.dataqsiz implies that c.sendq is empty.
 // 对于缓冲channel
-// c.qcount > 0 表示c.recvq为空
+// 当 c.qcount > 0 表示 c.recvq 为空
+// recvq 中是等待读取的协程, channel 中还有数据留存说明没有多余的协程了.
+// ...不过应该也存在 recvq 中同时出现 n 个协程来读取, 挨个读取也是需要时间的吧.
+// 当 c.qcount < c.dataqsiz 表示 c.sendq 为空().
+// sendq 中是等待写入的协程, 在 channel 未满的情况下, 不过有额外的写协程存在的.
+// 当然, 与上面一样, 同时来 n 个协程写入, 挨个写入也是需要时间的啊.
+// ...总感觉这样的说法不够严谨.
 
 import (
 	"runtime/internal/atomic"
@@ -27,30 +38,39 @@ import (
 
 const (
 	maxAlign  = 8
+	// 这是空的 hchan 结构体占用的空间大小吧
 	hchanSize = unsafe.Sizeof(hchan{}) + uintptr(-int(unsafe.Sizeof(hchan{}))&(maxAlign-1))
 	debugChan = false
 )
 
 type hchan struct {
 	// 队列里面的数据总量
-	qcount uint // total data in the queue
+	// total data in the queue
+	qcount uint 
 	// 循环队列的容量, 与qcount相比, 应该是cap与len的区别
 	// 注意, channel对象无法像slice一样扩容, 所以初始化后这个值是无法改变的
-	dataqsiz uint           // size of the circular queue
-	buf      unsafe.Pointer // points to an array of dataqsiz elements
+	// size of the circular queue
+	dataqsiz uint
+	// points to an array of dataqsiz elements
+	// 实际存储数据的地方, 这其实是一个数组对象(首地址)
+	buf      unsafe.Pointer 
 	// 队列中的元素类型占用的字节数(即单个元素的大小)
 	elemsize uint16
 	closed   uint32
 	// 队列中的元素的类型
-	elemtype *_type // element type
+	// element type
+	elemtype *_type 
 	// sendx/recvx为buf内的元素索引, 最大值为dataqsiz.
 	// 当sendx增加至dataqsiz时, 就会被重置为0, 以此表示循环队列.
 	sendx    uint   // send index
 	recvx    uint   // receive index
 	// 等待读取channel的G队列(其实是一个链表)
-	recvq waitq // list of recv waiters
+	// 这个链表如果不为空, 则说明 channel 中没有数据, 大家都在等.
+	// list of recv waiters
+	recvq waitq 
 	// 等待向channel写数据的G队列
-	sendq waitq // list of send waiters
+	// list of send waiters
+	sendq waitq 
 
 	// lock protects all fields in hchan, as well as several
 	// fields in sudogs blocked on this channel.
@@ -58,12 +78,14 @@ type hchan struct {
 	// Do not change another G's status while holding this lock
 	// (in particular, do not ready a G), as this can deadlock
 	// with stack shrinking.
-	// 全局锁
+	// 全局锁, 保护 hchan 结构中的所有字段.
 	lock mutex
 }
 
-// sudog结构是对G对象的封装.
-// waitq拥有enqueue和dequque两个方法
+// sudog结构是对 G 对象的封装.
+// 空 channel 下的读协程会挂在 recvq 队列中
+// 满 channel 下的写协程会挂在 sendq 队列中
+// waitq 拥有 enqueue 和 dequque 两个方法
 type waitq struct {
 	first *sudog
 	last  *sudog
@@ -84,7 +106,7 @@ type chantype struct {
 
 // 应用层代码中通过make(chan XXX)创建channel对象,
 // 在编译时编译器会重写然后执行这里的makechan(64)函数.
-// 实际的流程在makechan.
+// 实际的流程在 makechan().
 // @param t: channel里面保存的元素的数据类型
 // @param size: 缓冲的容量(如果为0表示是非缓冲buffer)
 func makechan64(t *chantype, size int64) *hchan {
@@ -99,41 +121,50 @@ func makechan(t *chantype, size int) *hchan {
 	elem := t.elem
 
 	// compiler checks this but be safe.
-	if elem.size >= 1<<16 {
+	if elem.size >= 1 << 16 {
 		throw("makechan: invalid channel element type")
 	}
-	if hchanSize%maxAlign != 0 || elem.align > maxAlign {
+	if hchanSize % maxAlign != 0 || elem.align > maxAlign {
 		throw("makechan: bad alignment")
 	}
 
 	// mem = channel中元素对象占用空间大小 * 队列容量size,
 	// 即为channel对象所需的整体内存大小.
-	// maxAlloc: 单次malloc内存分配的上限
+	// maxAlloc: 单次 malloc 内存分配的上限
 	mem, overflow := math.MulUintptr(elem.size, uintptr(size))
 	if overflow || mem > maxAlloc-hchanSize || size < 0 {
 		panic(plainError("makechan: size out of range"))
 	}
 
 	// 着手创建hchan对象
-	// Hchan does not contain pointers interesting for GC when elements stored in buf do not contain pointers.
+	// Hchan does not contain pointers interesting for GC 
+	// when elements stored in buf do not contain pointers.
 	// buf points into the same allocation, elemtype is persistent.
 	// SudoG's are referenced from their owning thread so they can't be collected.
 	// TODO(dvyukov,rlh): Rethink when collector can move allocated objects.
+	// mallocgc() 参数分别为: 空间大小, 类型, 是否需要清零.
 	var c *hchan
 	switch {
 	case mem == 0:
-		// 创建无缓冲channel, 无缓冲channel是没有buf队列的
+		// 创建无缓冲channel, 无缓冲channel是没有 buf 队列的
 		// Queue or element size is zero.
 		c = (*hchan)(mallocgc(hchanSize, nil, true))
 		// Race detector uses this location for synchronization.
 		// 使用mallocgc创建hchan对象后, buf为普通的Pointer对象, 没有额外空间.
 		c.buf = c.raceaddr()
-	case elem.kind&kindNoPointers != 0:
+	case elem.kind & kindNoPointers != 0:
 		// channel中的对象不为指针, 此时同时为hchan对象及其buf成员申请内存.
 		// 此时, 整个hchan对象中各成员的内存是连续的.
 		// Elements do not contain pointers.
 		// Allocate hchan and buf in one call.
 		c = (*hchan)(mallocgc(hchanSize+mem, nil, true))
+		// 这里的 add() 还是搜一下吧, 在 src/cmd 目录下, 不知道不同版本是不是相同的.
+		// 以go 1.12 为例, 原型如下
+		// func add(p unsafe.Pointer, x uintptr) unsafe.Pointer {
+		// 	return unsafe.Pointer(uintptr(p) + x)
+		// }
+		// 就是做了一个加法, 计算一下从 c 的地址开始, hchanSize 之后的位置.
+		// 就是为实际存储数据的数组起始地址.
 		c.buf = add(unsafe.Pointer(c), hchanSize)
 	default:
 		// channel中的对象为指针类型, 则先创建hchan对象, 再为buf成员申请内存
@@ -153,10 +184,11 @@ func makechan(t *chantype, size int) *hchan {
 	return c
 }
 
+// chanbuf(c, i) 返回channel对象 c.buf 成员中第 i 个元素的地址
 // chanbuf(c, i) is pointer to the i'th slot in the buffer.
-// chanbuf(c, i)返回channel对象c的buf成员中第i个元素的地址
+// caller: chansend()
 func chanbuf(c *hchan, i uint) unsafe.Pointer {
-	// add函数用于完成指针运算
+	// add 函数用于完成指针运算
 	return add(c.buf, uintptr(i)*uintptr(c.elemsize))
 }
 
@@ -174,9 +206,9 @@ func chansend1(c *hchan, elem unsafe.Pointer) {
  * sleep but return if it could not complete.
  *
  * sleep can wake up with g.param == nil
- * when a channel involved in the sleep has
- * been closed.  it is easiest to loop and re-run
- * the operation; we'll see that it's now closed.
+ * when a channel involved in the sleep has been closed. 
+ * it is easiest to loop and re-run the operation; 
+ * we'll see that it's now closed.
  */
 func chansend(c *hchan, ep unsafe.Pointer, block bool, callerpc uintptr) bool {
 	// channel为空, 什么情况下channel会为空?
@@ -311,8 +343,8 @@ func chansend(c *hchan, ep unsafe.Pointer, block bool, callerpc uintptr) bool {
 	return true
 }
 
-// send 发起一个对空缓冲的c的send操作.
-// 关于c必须为空这一情况, 由于send()函数是在当前channel拥有等待读取的进程被调用, 表示c中为空.
+// send 发起一个对空缓冲的 channel 的 send 操作.
+// 关于c必须为空这一情况, 由于 send() 函数是在当前channel拥有等待读取的进程被调用, 表示c中为空.
 // 由发送方发送的ep会被拷贝到接收方sg, 之后sg会被唤醒(通过调用goready()函数).
 // 调用此函数时, c必须为空且被加锁. 等到send()执行完成, 会调用unlockf()将其解锁.
 // sg必须已经从c.recvq中通过dequeue()弹出.
@@ -386,15 +418,19 @@ func recvDirect(t *_type, sg *sudog, dst unsafe.Pointer) {
 	memmove(dst, src, t.size)
 }
 
-// 调用close()关闭channel
+// closechan 调用 close() 关闭 channel, 通过内部锁 c.lock 完成.
+// 需要对 channel 的多种状态作出判断, 如未初始化的, 已被关闭过的等.
+// 同时对正在等待读取或写入的协程解除联系, 并在最后唤醒由于等待而阻塞的协程,
+// 此时如果有读协程, 则读协程读出为 channel 类型的默认值; 
+// 如果有写协程, 则写协程会panic...
 func closechan(c *hchan) {
-	// 对一个空channel执行close会引发panic
+	// 对一个空 channel 执行 close 会引发panic
 	if c == nil {
 		panic(plainError("close of nil channel"))
 	}
 
 	lock(&c.lock)
-	// 如果目标channel已经被关闭, 多次调用close也会引发panic
+	// 如果目标 channel 已经被关闭, 多次调用close也会引发panic
 	if c.closed != 0 {
 		unlock(&c.lock)
 		panic(plainError("close of closed channel"))
@@ -410,7 +446,7 @@ func closechan(c *hchan) {
 
 	var glist gList
 
-	// 遍历c.recvq队列, 解除所有读协程的联系.
+	// 遍历 c.recvq 队列, 解除所有读协程的联系.
 	for {
 		sg := c.recvq.dequeue()
 		if sg == nil {
@@ -431,8 +467,8 @@ func closechan(c *hchan) {
 		glist.push(gp)
 	}
 
-	// 遍历c.recvq队列, 解除所有写协程的联系.
-	// 注意: 这会导致写协程的panic
+	// 遍历 c.recvq 队列, 解除所有写协程的联系.
+	// 注意: 这会导致写协程的 panic
 	for {
 		sg := c.sendq.dequeue()
 		if sg == nil {
@@ -452,7 +488,7 @@ func closechan(c *hchan) {
 	unlock(&c.lock)
 
 	// Ready all Gs now that we've dropped the channel lock.
-	// 解除channel的全局锁后, 唤醒所有读写协程
+	// 解除 channel 的全局锁后, 唤醒所有读写协程
 	for !glist.empty() {
 		gp := glist.pop()
 		gp.schedlink = 0
@@ -493,7 +529,7 @@ func chanrecv(c *hchan, ep unsafe.Pointer, block bool) (selected, received bool)
 		print("chanrecv: chan=", c, "\n")
 	}
 
-	// ...什么情况下c可能为nil?
+	// ...什么情况下 c 可能为 nil?
 	if c == nil {
 		if !block {
 			return

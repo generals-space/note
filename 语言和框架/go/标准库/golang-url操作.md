@@ -12,9 +12,7 @@
 `net/url`包中关于解析的`Parse`函数有3个:
 
 1. `Parse()`
-
 2. `ParseQuery()`
-
 3. `ParseRequestURI()`
 
 这3个看名字就可以明白其作用. `Parse()`的示例如下.

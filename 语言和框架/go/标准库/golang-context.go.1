@@ -5,7 +5,6 @@
 // Programs that use Contexts should follow these rules to keep interfaces
 // consistent across packages and enable static analysis tools to check context
 // propagation:
-//
 package context
 
 import (
@@ -95,12 +94,14 @@ func newCancelCtx(parent Context) cancelCtx {
 	return cancelCtx{Context: parent}
 }
 
-// propagateCancel 将子级ctx添加到父级ctx的children成员map中.
+// propagateCancel propagate(传播, 繁衍), 将子级ctx添加到父级ctx的children成员map中,
+// 以便之后执行 cancel() 时可以实现传导效果.
 // caller: WithCancel(), WithDeadline()
 func propagateCancel(parent Context, child canceler) {
 	if parent.Done() == nil {
 		// 如果父级ctx无法被取消...比如Background(),
-		// 就没有继续执行的必要了.
+		// 相当于没有父级ctx, 就没有继续执行的必要了.
+		// child 本身就可以作为 parent 存在了.
 		return
 	}
 	if p, ok := parentCancelCtx(parent); ok {
@@ -129,7 +130,9 @@ func propagateCancel(parent Context, child canceler) {
 	}
 }
 
-// parentCancelCtx 返回父级ctx的*cancelCtx类型成员.
+// parentCancelCtx 返回父级context的`*cancelCtx`类型成员.
+// 可能是 cancelCtx, 也可能是 timerCtx(但timerCtx中也是有cancelCtx成员的),
+// 但不可能是 valueCtx, 因为 valueCtx
 // 最初调用时, parent应该是Background()得到的空ctx.
 // caller: propagateCancel(), removeChild()
 func parentCancelCtx(parent Context) (*cancelCtx, bool) {
@@ -140,8 +143,8 @@ func parentCancelCtx(parent Context) (*cancelCtx, bool) {
 		ctx = context.WithValue(ctx, "key", "val")
 		defer cancel()
 
-		即WithValue一般需要与其他WithXXX组合使用, 这样就无法确定传入的ctx参数是cancelCtx/timerCtx
-
+		即WithValue一般需要与其他WithXXX组合使用, 所以ta的Context一定有值,
+		但没有办法直接确定传入的ctx参数是cancelCtx/timerCtx.
 		for循环目的就是, 如果parent是valueCtx类型, 将parent重新赋值, 再做一次判断.
 	*/
 	for {
@@ -186,14 +189,18 @@ func init() {
 }
 
 type cancelCtx struct {
-	Context // 直接把interface{}放到struct中?
+	// 直接把interface{}放到struct中?
+	Context 
 
-	mu   sync.Mutex    // protects following fields
-	done chan struct{} // created lazily, closed by first cancel call
+	// protects following fields
+	mu   sync.Mutex
+	done chan struct{}
+	// created lazily, closed by first cancel call
 	// set to nil by the first cancel call
 	// canceler是接口类型, 这里应该是把map当set用了, 保证key唯一, 而不在乎val
 	children map[canceler]struct{}
-	err      error // set to non-nil by the first cancel call
+	// set to non-nil by the first cancel call
+	err      error 
 }
 
 func (c *cancelCtx) Done() <-chan struct{} {
@@ -217,10 +224,10 @@ func (c *cancelCtx) String() string {
 	return fmt.Sprintf("%v.WithCancel", c.Context)
 }
 
-// cancel 关闭c.done通道
-// 设置c.err = err, c.children = nil
-// 依次遍历c.children，每个child分别cancel
-// 如果设置了removeFromParent，则将c从其parent的children中删除
+// cancel 关闭 c.done 通道, 做了如下几件事
+// 1. 设置c.err = err, c.children = nil
+// 2. 依次遍历c.children，每个child分别cancel
+// 3. 如果设置了`removeFromParent`，则将c从其parent的children中删除.
 func (c *cancelCtx) cancel(removeFromParent bool, err error) {
 	if err == nil {
 		panic("context: internal error: missing cancel error")
@@ -248,10 +255,10 @@ func (c *cancelCtx) cancel(removeFromParent bool, err error) {
 	}
 }
 
+// WithDeadline 如果父级ctx的deadline早于参数d,
+// @param parent可能是Background()空context
 // If the parent's deadline is already earlier than d,
 // WithDeadline(parent, d) is semantically equivalent to parent.
-// 如果父级ctx的deadline早于参数d,
-// @param parent可能是Background()空context
 func WithDeadline(parent Context, d time.Time) (Context, CancelFunc) {
 	if cur, ok := parent.Deadline(); ok && cur.Before(d) {
 		// 如果父级ctx的deadline早于参考d指定的时间, 可以直接返回*cancelCtx对象了.
@@ -295,9 +302,14 @@ func (c *timerCtx) Deadline() (deadline time.Time, ok bool) {
 }
 
 func (c *timerCtx) String() string {
-	return fmt.Sprintf("%v.WithDeadline(%s [%s])", c.cancelCtx.Context, c.deadline, time.Until(c.deadline))
+	return fmt.Sprintf(
+		"%v.WithDeadline(%s [%s])", 
+		c.cancelCtx.Context, c.deadline, time.Until(c.deadline),
+	)
 }
 
+// cancel 先调用父级cancelCtx.cancel()方法, 多出来的操作是, 
+// 销毁定时器成员, 释放资源.
 func (c *timerCtx) cancel(removeFromParent bool, err error) {
 	// 这里调用父级cancelCtx的cancel方法
 	c.cancelCtx.cancel(false, err)
@@ -320,8 +332,10 @@ func WithTimeout(parent Context, timeout time.Duration) (Context, CancelFunc) {
 	return WithDeadline(parent, time.Now().Add(timeout))
 }
 
-// To avoid allocating when assigning to an interface{}, context keys often have concrete type struct{}.
-// Alternatively, exported context key variables' static type should be a pointer or interface.
+// To avoid allocating when assigning to an interface{}, 
+// context keys often have concrete type struct{}.
+// Alternatively, exported context key variables' static type
+// should be a pointer or interface.
 // 注意: WithValue需要与其他WithXXX配合使用
 func WithValue(parent Context, key, val interface{}) Context {
 	if key == nil {

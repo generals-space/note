@@ -206,11 +206,11 @@ google就为我们提供一个解决方案, 开源了`context`包. 使用`contex
 
 ## 4. 总结 - Context使用规范
 
-- context是协程程安全的
-- 不要把context存储在结构体中, 而是要显式地进行传递
-- 把context作为第一个参数, 并且一般都把变量命名为ctx
-- 就算是程序允许, 也不要传入一个`nil`的context, 如果不知道是否要用context的话, 用`context.TODO()`来替代
+- `context`是协程程安全的
+- 不要把`context`存储在结构体中, 而是要显式地进行传递
+- 把`context`作为第一个参数, 并且一般都把变量命名为`ctx`
+- 就算是程序允许, 也不要传入一个`nil`的`context`, 如果不知道是否要用`context`的话, 用`context.TODO()`来替代
 - `context.WithValue()`只用来传递请求范围的值, 不要用它来传递可选参数
-- `WithTimeout`可设置超时时间, 但是如果子协程在超时之前完成, 需要手动cancel以释放资源.
+- `WithTimeout`可设置超时时间, 但是如果子协程在超时之前完成, 需要手动`cancel()`以释放资源.
 
 > 这些在context源码中都有注释说明.

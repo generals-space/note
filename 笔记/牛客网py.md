@@ -94,3 +94,22 @@ a[1:1] ## [] 空列表
 for i in range(2) ## i的取值有0,1, 注意没有2, 所以for..range..也是左闭右开区间.
 ```
 
+## 四舍五入与上下取整
+
+`ceil`和`floor`都是在`math`包中的, 而`round`则是直接的内置函数, 无需import.
+
+## for循环
+
+```py
+## 正常遍历
+for i in [1, 2, 3]
+## 逆序遍历
+for i in reversed([1, 2, 3])
+## 正常遍历, 左闭右开
+for i in range(5)
+for i in range(0, 5)
+## 逆序遍历, 同样是左闭右开(无法到达1)
+for i in range(5, 1, -1)
+## 遍历的同时输出索引
+for i, v in enumerate([1, 2, 3])
+```
