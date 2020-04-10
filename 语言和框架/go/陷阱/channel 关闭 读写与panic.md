@@ -13,6 +13,7 @@ go version: 1.12
 5. 当一个已关闭的channel中没有数据后, 仍然可以继续读取, 此时读取出的数据为该channel类型的默认值(比如0, false等, 如果是结构体, 那么会读出空的结构体);
 6. 当关闭一个空的channel, 但同时有协程等待读取时, 读协程会得到channel类型的默认值, 同5;
 7. 当关闭一个满的channel, 但同时有协程等待写入时, 写入协程会panic, 同3.
+8. 一个只使用`var channel chan int`声明的 channel, 读写都会阻塞, close()还会panic.
 
 示例6 
 
