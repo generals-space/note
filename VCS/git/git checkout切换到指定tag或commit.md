@@ -18,6 +18,7 @@ git checkout tag名称
 
 ```
 git checkout -b 新branch名称 tag名称
+git checkout -b 新branch名称 commitID
 ```
 
 这样会从 tag 创建一个分支, 然后就和普通的 git 操作一样了. 

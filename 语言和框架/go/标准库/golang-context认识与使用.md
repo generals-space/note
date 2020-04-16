@@ -213,4 +213,4 @@ google就为我们提供一个解决方案, 开源了`context`包. 使用`contex
 - `context.WithValue()`只用来传递请求范围的值, 不要用它来传递可选参数
 - `WithTimeout`可设置超时时间, 但是如果子协程在超时之前完成, 需要手动`cancel()`以释放资源.
 
-> 这些在context源码中都有注释说明.
+> 这些在`context`源码中都有注释说明.
