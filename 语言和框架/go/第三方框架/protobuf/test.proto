@@ -1,0 +1,19 @@
+syntax = "proto3";
+package model;
+option go_package = ".;model";
+
+message Empty{}
+
+message GetUserRequest{
+    string Name = 1;
+}
+
+message GetUserResponse{
+    string Name = 1;
+    string Title = 2;
+    string Company = 3;
+}
+
+service UserManagerService{
+    rpc GetUser (GetUserRequest) returns (GetUserResponse);
+}

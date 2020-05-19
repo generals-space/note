@@ -3,6 +3,8 @@
 参考文章
 
 1. [wrk 压力测试 http benchmark POST接口](https://www.cnblogs.com/felixzh/p/8400729.html)
+2. [面试官：说说你之前负责的系统，QPS 能达到多少？](https://blog.csdn.net/weiwosuoai/article/details/100032093)
+    - wrk 的使用方法, 测试结果的理解方式
 
 ```
 $ wrk -t 5 -c 5 -d 1 https://www.baidu.com
