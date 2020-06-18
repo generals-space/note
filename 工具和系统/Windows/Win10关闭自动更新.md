@@ -15,11 +15,9 @@
     - MS官方的问答网站, 除了参考文章3和4通过设置注册表, 启用`Administrator`用户修改, 不过没用...
 6. [如何彻底禁止Windows 10自动更新？ - 不名的回答 - 知乎](https://www.zhihu.com/question/287260272/answer/483721867)
     - `usosvc.dll`, `wuaueng.dll`, `WaaSMedicSvc.dll`
-    - 编辑权限时可能复选框是灰色的, 无法点击, 可以使用`takeown /f usosvc.dll`先获取文件权限.
+    - **重要**: 编辑权限时可能复选框是灰色的, 无法点击, 可以使用`takeown /f usosvc.dll`先获取文件权限(如果`takeown`找不到, 可以试试`./takeown.exe`).
 
-win10 2019经常半夜自动更新, 更新完自动重启, 我运行的虚拟机集群全被强杀了. 
-
-参考文章1中有提到win10的自动更新非常不人性化, 因为虽然可以设置更新时间, 设置推迟时间, 但也在很多场合机器是24小时不能关机的. 而且win10判断系统空闲的算法也有些脱俗, 貌似只检测用户键鼠活动, 也不管用户是否有后台任务在进行就强制重启了...另外, 单纯禁用`windows update`服务已经无效了, 自动更新设计得极为阴险.
+------
 
 20191226更新
 
@@ -31,7 +29,17 @@ win10 2019经常半夜自动更新, 更新完自动重启, 我运行的虚拟机
 
 然后把`usosvc.dll`和`wuaueng.dll`的权限恢复, 只修改`WaasMedicSvc.dll`, 这样在"更新和安全"中的系统更新也会失败, 且`Windows Update Medic Service`在"服务"中消失了.
 
+修改完成后, `WaasMedicSvc.dll`的权限看起来会是如下这样.
+
+![](https://gitee.com/generals-space/gitimg/raw/master/EA257B894E8E9E07BAF40B0E7D476BE2.png)
+
 先这样看看吧...
+
+------
+
+win10 2019经常半夜自动更新, 更新完自动重启, 我运行的虚拟机集群全被强杀了. 
+
+参考文章1中有提到win10的自动更新非常不人性化, 因为虽然可以设置更新时间, 设置推迟时间, 但也在很多场合机器是24小时不能关机的. 而且win10判断系统空闲的算法也有些脱俗, 貌似只检测用户键鼠活动, 也不管用户是否有后台任务在进行就强制重启了...另外, 单纯禁用`windows update`服务已经无效了, 自动更新设计得极为阴险.
 
 ------
 
@@ -46,3 +54,5 @@ win10 2019经常半夜自动更新, 更新完自动重启, 我运行的虚拟机
 按照参考文章3和4的描述, 需要修改注册表字段, 将`HEKY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WaaSMedicSvc` 中`Start`的值改为`4`, 然后再点击应用, 虽然还是会显示访问拒绝, 但是服务已经被禁用了. 而且在"Windows更新"页面会显示更新遇到错误.
 
 ![](https://gitee.com/generals-space/gitimg/raw/master/82611AACEBB50C6651792834E2D9E9C7.jpg)
+
+失败

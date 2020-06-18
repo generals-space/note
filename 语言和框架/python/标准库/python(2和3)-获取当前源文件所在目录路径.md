@@ -1,5 +1,10 @@
 # python(2和3)-获取当前源文件所在目录路径
 
+参考文章
+
+1. [python获取当前文件路径以及父文件路径](https://www.cnblogs.com/yajing-zh/p/6807968.html)
+    - python2
+
 python2
 
 ```py
