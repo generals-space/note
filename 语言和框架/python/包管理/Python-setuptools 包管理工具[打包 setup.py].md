@@ -1,17 +1,11 @@
-# Python包管理工具setuptools详解
-
-> <!tags!>: <!setuptools!> <!setup.py!>
+# Python-setuptools 包管理工具[打包 setup.py]
 
 参考文章
 
 1. [Python包管理工具setuptools详解及entry point](http://blog.csdn.net/pfm685757/article/details/48651389#t3)
-
 2. [python项目打包发布总结](http://blog.csdn.net/tw18761720160/article/details/52826450)
-
 3. [一文教会你正确打包Python程序](http://www.tuicool.com/articles/Ivuaaq)
-
 4. [关于python中的setup.py](http://blog.csdn.net/xluren/article/details/41114779)
-
 5. [PyPI打包和分发文档](https://packaging.python.org/distributing/)
 
 打包的目的一般是, 要么是想提供类似`os`, `sys`, `getopt`这种类库, 可在程序中调用, 或者像是`supervisord`一样有可执行文件供用户直接使用.
