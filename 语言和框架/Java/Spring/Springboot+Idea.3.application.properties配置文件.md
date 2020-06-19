@@ -9,6 +9,8 @@
 
 本文基于前两篇文章所建的工程.
 
+## 1. 端口与访问前缀
+
 在不创建任何额外的文件时, 运行一个最基本的 spring boot 工程所使用的端口为 `:8080`, 我们从修改端口, 访问uri前缀来学习Java中配置文件的使用方法.
 
 ![](https://gitee.com/generals-space/gitimg/raw/master/95bbd3fccc850f6810d2f04e5ec8b2d5.png)
@@ -20,8 +22,20 @@ Idea 很智能, 猜到我们可能希望创建`resources`目录.
 然后再在该目录下创建`application.properties`, 内容如下
 
 ```
-server.port=8090
-server.servlet.context-path=/api
+server.address = 127.0.0.1
+server.port = 8090
+server.servlet.context-path = /api
 ```
 
 重启服务就可生效.
+
+## 2. dev, pro环境选择
+
+需要一个键
+
+```
+spring.profiles.active = pro
+```
+
+然后`application.properties`同目录再创建一个`application-pro.properties`即可. 同理, 如果`active`选择为`dev`, 也需要创建一个`application-dev.properties`文件.
+

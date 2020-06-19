@@ -48,7 +48,7 @@
 
 ```
 
-上面的 pom 中, 最主要的就是`parent`块, 表示该工程以 springboot 为基. 此时已经可以在命令行执行`maven install`安装依赖, 或是直接`maven package`进行打包了. 
+上面的 pom 中, 最主要的就是`parent`块, Maven 工程会继承 parent 块依赖的所有依赖(如果有子模块, 子模块也会继承父模块的依赖). 此时已经可以在命令行执行`maven install`安装依赖, 或是直接`maven package`进行打包了. 
 
 然后使用 Idea 打开此工程, Idea 会自动识别其中的 pom.xml, 将其视为 maven 工程.
 
