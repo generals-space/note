@@ -9,6 +9,11 @@
 2. 每个pthread的stack栈空间是8MB, 当然是virt.(可以通过ulimit -a查看, `stack size`字段即是)
 3. 一个socket连接一般占用8kb内存
 
+## 问题???
+
+单核主机上, 某个goroutine的缓冲区已满, 是否会影响其他goroutine? golang有办法将ta们调度起来吗?
+
+DDos泛洪攻击, 耗尽的是主机的哪种资源? 端口, 内存? 连接数, 还是打开文件数?
 
 ## 20191230 reflect.DeepEqual()
 
