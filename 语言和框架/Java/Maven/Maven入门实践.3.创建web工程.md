@@ -185,7 +185,7 @@ $ tree
                 └── web.xml
 
 5 directories, 3 files
-mvn jetty:run
+$ mvn jetty:run
 ...
 ```
 
