@@ -3,6 +3,7 @@
 参考文章
 
 1. [Golang 交叉编译与选择性编译](https://blog.csdn.net/dengming0922/article/details/82217929)
+2. [Golang交叉编译各个平台的二进制文件](https://www.jianshu.com/p/efaef7940207)
 
 交叉编译主要是由如下两个编译环境参数决定:
 
@@ -35,3 +36,15 @@ set GOARCH=386; set GOOS=linux; go build -o main main.go
 ```
 
 > 有时可能要加上`CGO_ENABLED=0`
+
+...windows还是有问题, 在powerhshell执行上面的命令创建的arm64程序, 还是无法运行.
+
+因为在ps中执行`set GOARCH=arm64`后, 再执行`go env`, 看到的`GOARCH`变量仍是原来的`amd64`. 后来尝试在cmd中执行, 结果`go env`没法执行了, 因为当前架构已经被修改, go程序没法运行了.
+
+所以上面的命令应该在cmd里执行, 像这样.
+
+```
+set GOARCH=386
+set GOOS=linux
+go build -o main main.go
+```
