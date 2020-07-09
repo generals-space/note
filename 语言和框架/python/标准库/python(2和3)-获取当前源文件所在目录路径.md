@@ -23,3 +23,5 @@ currDir = Path.cwd().joinpath(Path(__file__).parent)
 target_file = 
 ```
 
+> 获取用户执行脚本时所在的目录可以使用`os.getcwd()`函数, 具体可见[note-cloud]()仓库的`k2file.py`脚本.
+

@@ -7,7 +7,7 @@
 
 VSCode: 1.46.1
 Remote SSH: v0.51.0
-Win10: 教育版(build number: 18362)
+Win10: 教育版 1903(build number: 18362)
 
 win10电脑使用开源 openssh 服务做内网穿透, 使用另一台 mac 远程连接暴露出来的端口时失败, 具体内容如下.
 
