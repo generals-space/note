@@ -8,16 +8,9 @@
 
 还有另外一种方法, 借助`Reqeust`对象可以实现对请求头的自定义, 比如设置UA与代理.
 
-先创建`http.Client` -> 再创建`http.Request` -> 之后提交请求：`client.Do(request)` -> 处理返回结果，每一步的过程都可以设置一些具体的参数，
+先创建`http.Client` -> 再创建`http.Request` -> 之后提交请求：`client.Do(request)` -> 处理返回结果, 每一步的过程都可以设置一些具体的参数.
 
 ```go
-package main
-
-import "log"
-import "net/http"
-
-import "io/ioutil"
-
 func main() {
     client := &http.Client{}
     url := "https://www.baidu.com"
@@ -53,16 +46,6 @@ req.Header.Set("User-Agent", "curl/7.54.0")
 如下示例实现了, post请求, 带json参数, 修改请求头字体, 解析响应体, 够详细了.
 
 ```go
-package main
-
-import (
-	"bytes"
-	"encoding/json"
-	"io/ioutil"
-	"log"
-	"net/http"
-)
-
 // LoginInfo ...
 type LoginInfo struct {
 	Action string `json:"action"`

@@ -57,9 +57,8 @@ func main() {
 
 `http`库能实现`Post`请求的函数有两个
 
-1. Post func(url string, contentType string, body io.Reader) (resp *Response, err error)
-
-2. PostForm func(url string, data url.Values) (resp *Response, err error)
+1. `Post func(url string, contentType string, body io.Reader) (resp *Response, err error)`
+2. `PostForm func(url string, data url.Values) (resp *Response, err error)`
 
 前者适合发送二进制数据, 如文件, 图片, json数据等. 后者发送的是表单格式`application/x-www-form-urlencoded`的数据.
 
