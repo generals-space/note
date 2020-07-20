@@ -3,7 +3,6 @@
 参考文章
 
 1. [golang url解析](http://www.cnblogs.com/benlightning/articles/4441027.html)
-
 2. [Combine URL paths with path.Join()](https://stackoverflow.com/questions/34668012/combine-url-paths-with-path-join)
 	- url拼接
 
@@ -18,14 +17,6 @@
 这3个看名字就可以明白其作用. `Parse()`的示例如下.
 
 ```go
-package main
-
-import (
-	"log"
-	"net/url"
-	"strings"
-)
-
 func main() {
 	// 这个URL包含了一个 scheme, 认证信息, 主机名, 端口, 路径, 查询参数和片段.
 	urlStr := "https://user:pass@www.baidu.com:8080/path?key1=val1&key2=val2#frag"
@@ -72,13 +63,6 @@ func main() {
 拼接可用url对象的`ResolveReference()`方法, 使用示例如下.
 
 ```go
-package main
-
-import (
-	"log"
-	"net/url"
-)
-
 func main() {
 	urlStr := "https://www.baidu.com/path1/path2?key=val#frag"
 	urlObj, _ := url.Parse(urlStr)
@@ -93,7 +77,6 @@ func main() {
 ## 3. 编解码
 
 1. `urlObj.EscapedPath()`
-
 2. `url.QueryEscape(str)`
-
 3. `url.PathEscape(str)`
+

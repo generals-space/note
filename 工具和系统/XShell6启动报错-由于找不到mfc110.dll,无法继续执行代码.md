@@ -1,4 +1,4 @@
-# XShell6启动报错 由于找不到mfc110.dll,无法继续执行代码
+# XShell6启动报错-由于找不到mfc110.dll,无法继续执行代码
 
 参考文章
 
@@ -6,4 +6,4 @@
 
 [下载地址](https://www.microsoft.com/zh-CN/download/details.aspx?id=30679)
 
-64位系统要同时安装x86和x64才可以.
+64位系统要同时安装x86和x64两个包才可以.

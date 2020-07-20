@@ -13,9 +13,7 @@
 ## 1. 打开文件
 
 1. `Open func(name string) (*File, error)`
-
 2. `OpenFile func(name string, flag int, perm FileMode) (*File, error)`
-
 3. `Create func(name string) (*File, error)`
 
 `os.Open()`调用了`OpenFile`...如下

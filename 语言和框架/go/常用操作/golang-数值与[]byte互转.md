@@ -13,14 +13,6 @@ go提供了这方面相关的工具: `encoding/binary`库.
 如下展示了将整型转化为`[]byte`的最简方法
 
 ```go
-package main
-
-import (
-	"bytes"
-	"encoding/binary"
-	"log"
-)
-
 func main() {
 	buf := bytes.NewBuffer([]byte{})
 

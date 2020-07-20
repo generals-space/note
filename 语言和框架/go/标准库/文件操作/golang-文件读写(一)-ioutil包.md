@@ -11,17 +11,11 @@ golang里的文件读写操作是很多的, 入手的话通过ioutil包比较方
 go v1.10.3中, ioutil只提供了如下几个方法
 
 1. `ReadAll func(r io.Reader) ([]byte, error)`
-
 2. `ReadDir func(dirname string) ([]os.FileInfo, error)`
-
 3. `ReadFile func(filename string) ([]byte, error)`
-
 4. `TempDir func(dir, prefix string) (name string, err error)`
-
 5. `TempFile func(dir, prefix string) (f *os.File, err error)`
-
 6. `WriteFile func(filename string, data []byte, perm os.FileMode) error`
-
 7. `NopCloser func(r io.Reader) io.ReadCloser`
 
 ## 1. ReadAll
