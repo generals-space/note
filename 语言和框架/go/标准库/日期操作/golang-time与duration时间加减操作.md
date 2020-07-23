@@ -3,18 +3,13 @@
 参考文章
 
 1. [golang time and duration](https://studygolang.com/articles/5016)
-
 2. [golang time 时间的加减法](https://studygolang.com/articles/8919)
+3. [go使用变量创建time.Duration类型](https://www.jianshu.com/p/af086f53b58b)
+    - `time.Second * time.Duration(num)`
 
 如下示例展示了两个时间点的比较方法, 以及通过`Time`对象与`Duration`对象的加减操作得到新的`Time`对象或`Duration`对象.
 
 ```go
-package main
-
-import "log"
-import "time"
-
-func main(){
     now := time.Now()
 
     log.Printf("%s\n", now)
@@ -45,7 +40,6 @@ func main(){
     log.Printf("Hours: %f\n", delta.Hours())
     log.Printf("Hours: %f\n", delta.Minutes())
     log.Printf("Hours: %f\n", delta.Seconds())
-}
 ```
 
 > `Time`对象 - `Time`对象, 得到`Duration`对象.
@@ -59,14 +53,6 @@ func main(){
 `time`包里构建`duration`对象可以用`time.ParseDuration()`函数, 使用示例如下
 
 ```go
-package main
-
-import (
-	"fmt"
-	"time"
-)
-
-func main() {
 	now := time.Now()
 	fmt.Printf("%s\n", now.Format(time.RFC3339))			// 2018-06-06T18:21:32+08:00
 
@@ -78,7 +64,8 @@ func main() {
 
 	oneYearAgo := now.Add(d1 * 365)
 	fmt.Printf("%s\n", oneYearAgo.Format(time.RFC3339))		// 2017-06-06T18:21:32+08:00
-}
 ```
 
-可用单位有: "ns", "us" (or "µs"), "ms", "s", "m", "h".
+可用单位有: "ns", "us" (or "µs"), "ms", "s", "m", "h", 最大到小时, 没有天.
+
+也可以直接使用`time.Second`, `time.Hour`, 不再使用`ParseDuration()`方法.

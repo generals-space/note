@@ -3,14 +3,13 @@
 参考文章
 
 1. [Python中time模块与datetime模块在使用中的不同之处](http://www.jb51.net/article/75364.htm)
-
 2. [Python测量时间，用time.time还是time.clock](https://www.cnblogs.com/limengjie0104/archive/2018/05/06/8997466.html)
 
 常用方法及解释
 
 ## 得到当前时间戳
 
-`time.time()`: 当前时间戳, 单位为秒, 如`1526197995.321712`(js和go里面单位都是毫秒, 但是它能精确到小数点后6位, 所以还是比js和go更精确)
+`time.time()`: 当前时间戳, 单位为秒, 如`1526197995.321712`(js 里单位是毫秒, golang/java 都是秒级, 但是 python 能精确到小数点后6位, 所以还是 python 更精确)
 
 ```py
 >>> time.time()
@@ -108,7 +107,6 @@ time.struct_time(tm_year=2018, tm_mon=5, tm_mday=13, tm_hour=16, tm_min=44, tm_s
 ## 时间戳直接转字符串(一般不会用到)
 
 1. `time.ctime([secs])`: 同样可以接受时间戳作为参数, 不过转换的结果是字符串形式...但不能指定格式, 应该不会有太大用.
-
 2. `time.asctime([t])`: 与`ctime()`用法类似, 也是转换成字符串, 不过接受的参数类型为`struct_time`对象.
 
 ----

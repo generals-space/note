@@ -7,12 +7,6 @@
 ## 1. golang日期对象转时间戳和格式化字符串
 
 ```go
-package main
-
-import "log"
-import "time"
-
-func main() {
 	now := time.Now() // Time对象
 
 	timeStamp := now.Unix() // int64时间戳
@@ -28,18 +22,11 @@ func main() {
 	// timeStr := now.Format("2006-01-02 15:04:05")
 	timeStr := now.Format("2006xx2006")
 	log.Printf("%s\n", timeStr)
-}
 ```
 
 ## 2. 反向转换, 时间戳/字符串转换为日期对象
 
 ```go
-package main
-
-import "log"
-import "time"
-
-func main() {
 	// 时间戳转Time对象
 	var timeStamp int64 = 1525788126
 	// Unix(sec, nsec), sec为秒级整型, nsec为纳秒级整型
@@ -55,7 +42,6 @@ func main() {
 	}
 	timeStamp = timeObj.Unix()
 	log.Printf("%d\n", timeStamp)
-}
 ```
 
 ------
