@@ -1,16 +1,13 @@
-# Java基础尝试
-
-## 1. 命令行编译运行java程序
+# 命令行编译运行java程序
 
 参考文章
 
-[命令行执行java程序](http://blog.csdn.net/lee_decimal/article/details/5885406)
+1. [命令行执行java程序](http://blog.csdn.net/lee_decimal/article/details/5885406)
+2. [在CMD下使用Java命令执行class文件](http://ivan0513.iteye.com/blog/982445)
 
-[在CMD下使用Java命令执行class文件](http://ivan0513.iteye.com/blog/982445)
+## 1. 源文件无package语句
 
-### 1.1 源文件无package语句
-
-```
+```console
 $ pwd
 /home/App
 $ ls
@@ -29,7 +26,7 @@ public class App
 }
 ```
 
-```
+```console
 $ javac ./App.java
 $ ls
 App.class  App.java
@@ -37,9 +34,9 @@ $ java App
 Hello World!
 ```
 
-### 1.2 源文件存在package语句
+## 2. 源文件存在package语句
 
-```
+```console
 $ pwd
 /home/App/space/generals/java
 $ ls
@@ -60,7 +57,7 @@ public class App
 }
 ```
 
-```shell
+```console
 $ javac App.java
 $ ls
 App.class App.java
@@ -83,7 +80,7 @@ $ java space.generals.java.App
 
 以上面两者为例.
 
-```shell
+```console
 $ pwd
 /tmp
 ## 无package语句时
