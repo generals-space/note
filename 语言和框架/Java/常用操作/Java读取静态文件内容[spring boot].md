@@ -10,6 +10,8 @@
 2. [Java(springboot) 读取txt文本内容](https://www.cnblogs.com/strideparty/p/9517713.html)
     - `content = content.append(s)`
 
+对于参考文章1, 我实验了示例3和4, 3成功了, 4没成功.
+
 ## 1. 
 
 ```java
