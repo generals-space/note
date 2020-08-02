@@ -5,6 +5,7 @@
 1. [VS Code开发Spring Boot应用](https://zhuanlan.zhihu.com/p/54358113)
     - 2个插件包: `Java Extension Pack`, `Spring Boot Extension Pack`
 2. [VS Code打造一个完美的Springboot开发环境](https://blog.csdn.net/xiaocy66/article/details/82875770)
+3. [Could not find or load main class - VS Code](https://stackoverflow.com/questions/57857855/could-not-find-or-load-main-class-vs-code)
 
 按照参考文章1所说, 安装2个插件包(会自动安装多个插件), 然后就可以打开并运行 spring boot 工程了.
 
@@ -54,3 +55,14 @@ ok, 后来按照参考文章2中所说, 使用 vscode 重新创建了一个 spri
 ![](https://gitee.com/generals-space/gitimg/raw/master/0ef02865e36eca1211a8682b2083dc54.png)
 
 现在应该可以执行了.
+
+### 找不到主类
+
+同一个工程, 之前还可以通过 vscode 运行, 后来做了个命令行使用 maven 打包的实验, 再打开执行的时候就说找不到主类了...
+
+`launch.json`没变, `.classpath`文件也都还在, 很气愤.
+
+找到参考文章3, 高票回答中, 执行`F1` -> `Clean the java language server workspace`, 重启了下 vscode, 竟然好了...
+
+> 父级工程下不需要`.classpath`文件, 只有各子模块需要.
+
