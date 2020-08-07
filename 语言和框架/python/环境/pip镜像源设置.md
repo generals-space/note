@@ -19,7 +19,7 @@ pip install -i http://mirrors.aliyun.com/pypi/simple/ saltTesting
 
 在`~/.pip/pip.conf` 中添加
 
-```
+```ini
 [global]
 trusted-host = mirrors.aliyun.com
 index-url = http://mirrors.aliyun.com/pypi/simple/

@@ -3,11 +3,8 @@
 参考文章
 
 1. [使用nginx做pypi的反向代理，搭建pypi官方镜像](https://haoluobo.com/2012/02/nginxpypi/)
-
 2. [利用Proxy Cache使Nginx对静态资源进行缓存](http://blog.csdn.net/czp11210/article/details/28596649)
-
 3. [Simple PyPi Caching Proxy](https://gist.github.com/dctrwatson/5785638#file-nginx-conf)
-
     - md, 一点都不simple
 
 我们知道, 受天朝网络限制, 使用pip/easy_install工具直接从python官网下载安装包是多么痛苦的一件事, 不稳定还经常抽风(*￣︿￣). 
@@ -19,14 +16,13 @@
 1. 在命令行中使用
 
 ```
-$ pip install -i http://mirrors.aliyun.com/pypi flask
-$ pip install --index-url http://mirrors.aliyun.com/pypi flask
+pip install -i http://mirrors.aliyun.com/pypi flask
+pip install --index-url http://mirrors.aliyun.com/pypi flask
 ```
 
-2. 写在配置文件中作为全局配置
+2. 写在配置文件中作为全局配置(/etc/pip.conf文件, 如果没有可手动创建)
 
-```
-## /etc/pip.conf文件, 如果没有可手动创建
+```ini
 [global]
 trusted-host = mirrors.aliyun.com
 index-url = http://mirrors.aliyun.com/pypi

@@ -7,7 +7,6 @@
 2. [python concurrent.futures](https://www.cnblogs.com/kangoroo/p/7628092.html)
 
 1. `python 3.x`中自带了`concurrent.futures`模块.
-
 2. `python 2.7`需要安装`futures`模块, 使用命令`pip install futures`安装即可.
 
 `concurrent`包只有`futures`一个子模块, 而这个模块下只有两个成员: `ProcessPoolExecutor`, `ThreadPoolExecutor`.
@@ -36,7 +35,7 @@ numbers = [
 
 测试环境: MacBookPro2018, 双核4线程.
 
-```
+```console
 $ sysctl hw.physicalcpu
 hw.physicalcpu: 2
 $ sysctl hw.logicalcpu
