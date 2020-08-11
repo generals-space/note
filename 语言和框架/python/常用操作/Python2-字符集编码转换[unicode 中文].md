@@ -3,12 +3,13 @@
 参考文章
 
 1. [Python: 在Unicode和普通字符串之间转换](http://blog.csdn.net/u012448083/article/details/51918681)
-
 2. [python将unicode和str互相转化](http://blog.csdn.net/huludan/article/details/59518325)
-
 3. [python 中 unicode原样转成str, unicode-escape与string_escape](http://blog.csdn.net/lrz4119/article/details/45247611)
-
 4. [根本解决Python2中unicode编码问题](https://blog.csdn.net/weixin_42989523/article/details/81873874)
+5. [python 之路，致那些年，我们依然没搞明白的编码](https://www.cnblogs.com/alex3714/articles/7550940.html)
+    - 最全面的讲解, 值得收藏.
+
+环境: python 2.7
 
 md, 目前我只见过python一种语言在定义字符串的时候可以选择定义成utf-8, unicode, ascii等格式...不明觉厉.
 
@@ -22,10 +23,9 @@ md, 目前我只见过python一种语言在定义字符串的时候可以选择�
 
 utf-8则是一个取中妥协的方案, 里面的ascii字符还是占用比较小的空间, 其他的各国的文字字符则根据实际情况选择占用空间, 这样最方便.
 
-> 本文讨论的是字符串变量的定义类型, 至于源文件开头添加的`#!encoding:utf-8`, 那是因为python解释器对源码读取时遵循的字符集默认为`ascii`.
+> 本文讨论的是字符串变量的定义类型, 至于源文件开头添加的`#!encoding:utf-8`, 那是因为python解释器对**源码**读取时遵循的字符集默认为`ascii`.
 
 ------
-
 
 ```py
 ## 定义普通字符串, 默认是utf-8格式的
@@ -74,15 +74,11 @@ so, 如何对不同格式的字符串进行转换呢? 下面是一个列表
 
 ### 2.1 将Unicode转换成普通的Python字符串 - 编码(encode)
 
-unicodestring = u"Hello 中国"
-
-utf8string = unicodestring.encode("utf-8")
-
-asciistring = unicodestring.encode("ascii")
-
-isostring = unicodestring.encode("ISO-8859-1")
-
-utf16string = unicodestring.encode("utf-16")
+- `unicodestring = u"Hello 中国"`
+- `utf8string = unicodestring.encode("utf-8")`
+- `asciistring = unicodestring.encode("ascii")`
+- `isostring = unicodestring.encode("ISO-8859-1")`
+- `utf16string = unicodestring.encode("utf-16")`
 
 我们试试
 
@@ -106,17 +102,14 @@ u'\u4e2d\u56fd'
 
 需要声明当前字符串格式...这要怎么知道??
 
-plainstring1 = unicode(utf8string, "utf-8")
-
-plainstring2 = unicode(asciistring, "ascii")
-
-plainstring3 = unicode(isostring, "ISO-8859-1")
-
-plainstring4 = unicode(utf16string, "utf-16")
+- `plainstring1 = unicode(utf8string, "utf-8")`
+- `plainstring2 = unicode(asciistring, "ascii")`
+- `plainstring3 = unicode(isostring, "ISO-8859-1")`
+- `plainstring4 = unicode(utf16string, "utf-16")`
 
 再来
 
-```
+```py
 >>> a = '中国'
 >>> b = u'中国'
 >>> c = unicode(a, 'utf-8')

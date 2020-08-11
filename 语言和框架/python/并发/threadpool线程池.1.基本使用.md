@@ -9,7 +9,7 @@
 网络上多数文章的第一个示例都是`threadpool`官方文档中的示例, 如下
 
 ```py
-from threadpool import ThreadPool, makeRequests, putRequest
+from threadpool import ThreadPool, makeRequests
 
 pool = ThreadPool(poolsize)
 requests = makeRequests(func, list_of_args, callback)
