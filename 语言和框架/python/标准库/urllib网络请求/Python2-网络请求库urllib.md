@@ -3,12 +3,10 @@
 参考文章
 
 1. [urllib官方文档](https://docs.python.org/2.7/library/urllib.html#module-urllib)
-
 2. [urlib2官方文档](https://docs.python.org/2.7/library/urllib2.html?highlight=urllib#module-urllib2)
-
 3. [Python urllib与urllib2](http://www.cnblogs.com/wang-can/p/3591116.html)
 
-> Python中包含了两个网络模块，分别是urllib与urllib2，urllib2是urllib的升级版，拥有更强大的功能。
+> Python中包含了两个网络模块, 分别是`urllib`与`urllib2`, `urllib2`是`urllib`的升级版, 拥有更强大的功能.
 
 关于`urllib2`比`urllib`更强大的传言, 我目前只发现前者在使用`urlopen()`函数访问url时可以自定义请求头, 比如添加Cookie字段模拟登录, 其他的我还真没看出来.
 
@@ -93,7 +91,7 @@ urllib.urlretrieve(url[, filename[, reporthook[, data]]])
 
 - `urllib.quote(string[, safe])`: 对字符串进行编码。参数safe指定了不需要编码的字符;
 - `urllib.unquote(string)`: 对字符串进行解码;
-- `urllib.quote_plus(string [, safe ])`: 与`urllib.quote`类似，但这个方法用'+'来替换' '，而quote用'%20'来代替' '
+- `urllib.quote_plus(string [, safe ])`: 与`urllib.quote`类似, 但这个方法用'+'来替换' ', 而quote用'%20'来代替' '
 - `urllib.unquote_plus(string )`: 对字符串进行解码；
 - `urllib.urlencode(query[, doseq])`: 将dict或者包含两个元素的元组列表转换成url参数。例如 字典{'name': 'dark-bull', 'age': 200}将被转换为"name=dark-bull&age=200"
 - `urllib.pathname2url(path)`: 将本地路径转换成url路径；

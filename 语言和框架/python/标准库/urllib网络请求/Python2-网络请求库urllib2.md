@@ -7,6 +7,8 @@
 2. [urlib2官方文档](https://docs.python.org/2.7/library/urllib2.html?highlight=urllib#module-urllib2)
 
 3. [Python urllib与urllib2](http://www.cnblogs.com/wang-can/p/3591116.html)
+4. [Handling urllib2's timeout? - Python](https://stackoverflow.com/questions/2712524/handling-urllib2s-timeout-python)
+    - urllib2 超时设置, 补测有效.
 
 > Python中包含了两个网络模块，分别是urllib与urllib2，urllib2是urllib的升级版，拥有更强大的功能。
 
@@ -43,3 +45,15 @@ urllib2.Request(url[, data][, headers][, origin_req_host][, unverifiable])
 ```
 
 > 如果响应头中有`Content-Type`字段为`text/json`类型, 貌似就不用在`urlopen()`后调用`read()`而是直接得到字符串.<???>
+
+```py
+import urllib2
+
+url = 'http://www.baidu.com'
+headers = {
+    'User-Agent':"Mozilla/5.0 (Windows NT 6.1; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0",
+    'Referer':"http://www.baidu.com"
+}
+req = urllib2.Request(url, headers=headers)
+res = urllib2.urlopen(req)
+```
