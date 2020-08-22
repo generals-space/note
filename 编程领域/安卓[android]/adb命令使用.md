@@ -11,6 +11,13 @@
 MacOS: 10.15.4 (19E287)
 手机: Vivo Y85A, 安卓版本: 8.1.0
 
+```console
+$ adb version
+Android Debug Bridge version 1.0.41
+Version 30.0.4-6686687
+Installed as /Users/general/Public/android//platform-tools/adb
+```
+
 ## 
 
 `adb`是类似`kubectl`一样的客户端工具, 可以用来调试android模拟器和真姬. 
