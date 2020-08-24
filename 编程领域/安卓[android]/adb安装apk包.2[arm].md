@@ -8,7 +8,7 @@
     - 使用Arm镜像
 3. [Android：INSTALL_FAILED_NO_MATCHING_ABIS](https://vcoo.cc/blog/1223/)
 4. [AVD 模拟 arm 那么卡你们都怎么开发的](https://www.v2ex.com/t/475597)
-5. [在 Android 模拟器上运行 ARM 应用](https://blog.csdn.net/jILRvRTrc/article/details/105383037)
+5. [在 Android 模拟器上运行 ARM 应用](https://zhuanlan.zhihu.com/p/127016204)
 6. [Android Studio 模拟器版本说明](https://developer.android.google.cn/studio/releases/emulator#30-0-0)
     - Android 11 系统映像能够在不影响整个系统的前提下, 直接将 ARM 指令转换成 x86 指令. 
     - 开发者无需搭建高负载的 ARM 环境即可执行 ARM 二进制文件并进行测试. 
@@ -40,6 +40,10 @@ Failure [INSTALL_FAILED_NO_MATCHING_ABIS: Failed to extract native libraries, re
 
 于是我下载了`system-images;android-30;google_apis;x86_64`, 并使用ta创建了一个新的AVD.
 
+```
+avdmanager create avd -n android-05 -d 21 -k 'system-images;android-30;google_apis;x86_64'
+```
+
 ```console
 $ adb install --no-streaming ./com.quark.browser_V3.8.1.125.apk
 Performing Push Install
@@ -50,3 +54,7 @@ Success
 这次果然安装成功了.
 
 ![](https://gitee.com/generals-space/gitimg/raw/master/0b39f5821f1f17ac9bc7242ac200b91f.png)
+
+但是无法启动, 点进去就闪退了.
+
+后续的探索可以见下一篇文章.
