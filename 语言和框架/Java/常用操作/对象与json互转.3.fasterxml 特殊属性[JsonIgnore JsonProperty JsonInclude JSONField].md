@@ -1,4 +1,4 @@
-# 对象与json互转.3.fasterxml 特殊属性 JsonIgnore JsonProperty JsonInclude
+# 对象与json互转.3.fasterxml 特殊属性[JsonIgnore JsonProperty JsonInclude JSONField]
 
 参考文章
 
@@ -7,6 +7,10 @@
 2. [Jackson 序列化/反序列化时忽略某属性](https://www.iteye.com/blog/wwwcomy-2397340)
 3. [Setting default values to null fields when mapping with Jackson](https://stackoverflow.com/questions/18805455/setting-default-values-to-null-fields-when-mapping-with-jackson)
     - 默认值
+4. [Java中的JSON数据绑定框架Jackson使用介绍](https://segmentfault.com/a/1190000005717319)
+    - `@JsonProperty`属性重命名
+    - `@JsonIgnore`属性忽略
+    - `@JsonView`动态控制展示的成员变量
 
 ## 1. Java 对象 -> json 时忽略某些字段
 
@@ -67,3 +71,25 @@ Caused by: com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: Unr
 public class VersionLog {
 }
 ```
+
+## 4. 指定生成的 json 中的字段名
+
+```java
+    // @JsonProperty(value = "my.version")
+    @JsonProperty(value = "my.version")
+    String version;
+    public String getVersion() {
+        return version;
+    }
+    public void setVersion(String version) {
+        this.version = version;
+    }
+```
+
+读取 json 数据时, 会将`my.version`字段读入`version`属性, 同时在格式化成 json 时, 也会将`version`属性输出为`my.version`.
+
+类似于 golang 中结构体的 label 标签.
+
+一般用到这种场景的, 都是因为与外部交互的数据字段命名方式与 Java 自身的不相符, 比如数据库字段一般使用下划线`_`分隔, 或者大小什么的.
+
+我是因为某些 json 字段中包含点号, 一般的 Java 类成员字段在序列化与反序列化都不允许出现这样的字段, 所以找到了这样的方法.
