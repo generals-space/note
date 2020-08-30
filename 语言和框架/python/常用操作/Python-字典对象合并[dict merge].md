@@ -21,9 +21,9 @@ dict2 = {
 
 ```py
 ## items()的结果为dict_items对象, 实际是列表对象的变种, 但不支持直接相加
-print(dict1.items()) ## dict_items([('name', 'xxx'), ('age', 21)])
+print(dict1.items())    ## dict_items([('name', 'xxx'), ('age', 21)])
 new_dic = dict(list(dict1.items()) + list(dict2.items()))
-print(new_dic) ## {'name': 'general', 'age': 21, 'birthday': '2017-11-22'}
+print(new_dic)          ## {'name': 'general', 'age': 21, 'birthday': '2017-11-22'}
 ```
 
 ## 2. 
