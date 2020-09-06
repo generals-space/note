@@ -109,6 +109,7 @@ public class YamlConstructor<T> extends Constructor {
 		Yaml yaml = new Yaml(new YamlConstructor());
 		// Yaml yaml = new Yaml(new YamlConstructor<>(Map.class));
 		Object object = yaml.load(content.toString());
+        // {name=general, age=24, gender=xingbie}
 		System.out.println(object);
 ```
 
@@ -117,3 +118,11 @@ public class YamlConstructor<T> extends Constructor {
 因为这个`YamlConstructor`类并没有确切的字段, 不像上一篇文档中的`Person`与`Car`, 毕竟如果这个类的字段能够定下来, 我也不需要这么麻烦了.
 
 `Class<T>`那个可以用, 但其实不需要那么复杂, 直接定义一个`Map<String, Object>`类型的成员即可.
+
+但是这样得到的`object`大概是这样的.
+
+```
+{name=general, age=24, gender=xingbie}
+```
+
+...但是`xingbie`没有大括号`{}`包裹了, 我也只找到了能设置node节点的类型, 没找到设置node节点值的方法, 此路不通, 放弃了.
