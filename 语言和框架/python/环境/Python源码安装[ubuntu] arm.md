@@ -62,3 +62,10 @@ checking for python interpreter for cross build... configure: error: python3.7 i
 
 要注意x86平台`configure`时的`--prefix`与arm平台的不要相同, 免得覆盖.
 
+------
+
+20200831 结果还是不能用
+
+而且在ARM64宿主机中安装`gcc`也会失败(我是在`arm64v8/centos`中执行的), 直接放弃了.
+
+使用`arm64v8/gcc`镜像, 先在这个镜像中将python编译好, 再把`make install`安装的python拷贝出来, ARM宿主机也是可以使用的.

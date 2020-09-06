@@ -33,6 +33,8 @@ new_dic = dict(dict1, **dict2)
 print(new_dic) ## {'name': 'general', 'age': 21, 'birthday': '2017-11-22'}
 ```
 
+> 这种方法对`dict1`, `dict2`原始值没有影响.
+
 ## 3. 
 
 ```py

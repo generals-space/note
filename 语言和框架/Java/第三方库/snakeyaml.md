@@ -25,15 +25,15 @@ xpack.monitoring.exporters.mylocal:
 ```
 
 ```java
-		Yaml yaml = new Yaml();
+        Yaml yaml = new Yaml();
 
-		Object object = yaml.load(content.toString());
+        Object object = yaml.load(content.toString());
         // {cluster.name=elasticsearch, node.name=es-01, network.host=0.0.0.0, http.port=9200, bootstrap.memory_lock=false, cluster.initial_master_nodes=[es-01], xpack.monitoring.exporters.mylocal={type=local}}
-		System.out.println(object);
+        System.out.println(object);
 
-		Map<String, Object> map = (Map<String, Object>)object;
+        Map<String, Object> map = (Map<String, Object>)object;
         // {cluster.name=elasticsearch, node.name=es-01, network.host=0.0.0.0, http.port=9200, bootstrap.memory_lock=false, cluster.initial_master_nodes=[es-01], xpack.monitoring.exporters.mylocal={type=local}}
-		System.out.println(map);
+        System.out.println(map);
 ```
 
 `load()`方法默认生成一个`Map<String, Object>`类型的对象, 几乎可以解析所有层级的(只要是基本类型).
@@ -66,13 +66,13 @@ public class Person {
 ```java
 import org.yaml.snakeyaml.constructor.Constructor;
         // 这里是重点!!!
-		Yaml yaml = new Yaml(new Constructor(Person.class));
+        Yaml yaml = new Yaml(new Constructor(Person.class));
 
-		Person person = yaml.load(content.toString());
+        Person person = yaml.load(content.toString());
         // com.example.demo.Person@7c3fb849
-		System.out.println(person);
+        System.out.println(person);
         // {"name":"general","age":24,"gender":"男","lesson":["语文","数学","英语"]}
-		System.out.println(JsonUtil.pojoToString(person));
+        System.out.println(JsonUtil.pojoToString(person));
 
 ```
 
@@ -126,20 +126,24 @@ public class Car {
 ```
 
 ```java
-		Constructor constructor = new Constructor(Person.class);
-		TypeDescription typeDesc = new TypeDescription(Person.class);
-        // 将要废弃, 使用 addPropertyParameters() 代替.
-		// typeDesc.putListPropertyType("car", Car.class);
-		// typeDesc.putMapPropertyType("myCar", String.class, Car.class);
-		typeDesc.addPropertyParameters("car", Car.class);
-		typeDesc.addPropertyParameters("myCar", String.class, Car.class);
-		constructor.addTypeDescription(typeDesc);
+        Constructor constructor = new Constructor(Person.class);
+        TypeDescription typeDesc = new TypeDescription(Person.class);
+    // 将要废弃, 使用 addPropertyParameters() 代替.
+        // typeDesc.putListPropertyType("car", Car.class);
+        // typeDesc.putMapPropertyType("myCar", String.class, Car.class);
+        typeDesc.addPropertyParameters("car", Car.class);
+        typeDesc.addPropertyParameters("myCar", String.class, Car.class);
+        constructor.addTypeDescription(typeDesc);
 
-		Yaml yaml = new Yaml(constructor);
+        Yaml yaml = new Yaml(constructor);
 
-		Person person = yaml.load(content.toString());
-		System.out.println(person);
+        Person person = yaml.load(content.toString());
+        System.out.println(person);
         // {"name":"general","age":24,"gender":"男","lesson":["语文","数学","英语"],"car":[{"model":"比亚迪"},{"model":"特斯拉"}],"myCar":{"car1":{"model":"小三轮儿"},"car2":{"model":"小黄车"}}}
-		System.out.println(JsonUtil.pojoToString(person));
+        System.out.println(JsonUtil.pojoToString(person));
 
 ```
+
+## 4. 关于输出
+
+使用`dump()`方法将一个 map 格式化成字符串时, 得到的是类似json的东西...这个是不能直接当成
