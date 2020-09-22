@@ -4,6 +4,8 @@
 
 1. [VSCode showing “Java 11 or more recent is required to run. Please download and install a recent JDK”](https://stackoverflow.com/questions/63043585/vscode-showing-java-11-or-more-recent-is-required-to-run-please-download-and-i)
 2. [JDK Requirements](https://github.com/redhat-developer/vscode-java/wiki/JDK-Requirements#setting-the-jdk)
+3. [关于 VS Code for Java 的 Java 11 升级](https://mp.weixin.qq.com/s/cfn-0h0Ne6vJzCd-CuueWg)
+    - 翻译文章, 文中的`Java 11`应该是指那个 vscode java 插件
 
 前不久才刚刚会用 vscode 运行 java/maven/spring 项目, 今天突然就不行了, 点击`Run`按钮, 右下角就弹出如下提示框.
 
