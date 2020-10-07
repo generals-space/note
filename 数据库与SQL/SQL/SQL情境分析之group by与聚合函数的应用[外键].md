@@ -3,12 +3,10 @@
 参考文章
 
 1. [GROUP BY与COUNT用法详解](https://blog.csdn.net/liu_shi_jun/article/details/51329472)
-
 2. [SQL 连接(JOIN)](http://www.runoob.com/sql/sql-join.html)
-
 3. [SQL QUERY using LEFT JOIN and CASE Statement](https://stackoverflow.com/questions/14732500/sql-query-using-left-join-and-case-statement)
 
-必须要用到group by的场景是, 有两张表`table_a`, `table_b`, 其中表b中有一个列级外键字段, 关联表的a主键id.
+必须要用到`group by`的场景是, 有两张表`table_a`, `table_b`, 其中表b中有一个列级外键字段, 关联表的a主键id.
 
 ```sql
 CREATE TABLE table_a
@@ -35,7 +33,9 @@ insert into table_b(name, foreign_id) values
 ;
 ```
 
-我的目标是查询所有表a中的记录, 并且为每条记录都添加一个字段, 表示在表b中以此条记录为外键的行的总量, 最终结果类似如下(主要是`count`列);
+`table_a`是各组的名称, `table_b`则是人员名称, 每个人都必须属于某个组. 我们想得到所有的分组, 及每个分组的成员人数.
+
+即, 查询所有表a中的记录, 并且为每条记录都添加一个字段`count`, 表示在表b中以此条记录为外键的行的总量, 最终结果类似如下(主要是`count`列);
 
 ```
  id | name | foreign_id | count
@@ -47,7 +47,7 @@ insert into table_b(name, foreign_id) values
 (4 rows)
 ```
 
-我们想得到所有的分组, 及每个分组的成员人数. 为了达到我们的目的需要使用`group by`语句, `group by`必须与**聚合函数**配合使用.
+为了达到这个目的, 需要使用`group by`语句, `group by`必须与**聚合函数**配合使用.
 
 > 聚合函数， 例如`SUM`, `COUNT`, `MAX`, `AVG`等, 这些函数和其它函数的根本区别就是它们一般作用在**多条记录**上.
 
@@ -68,7 +68,7 @@ select count(*) from table_b group by foreign_id;
 (3 rows)
 ```
 
-由于使用了`group by`, 那我们得到的必然不会是全部的记录, 而是不同组的记录的总体信息(或者说共性). 在同一分组中, 被group by的字段必然是相同的, `select`只能查询这些共性字段, 其他任何一个单独的字段都是不可能的.
+由于使用了`group by`, 那我们得到的必然不会是全部的记录, 而是不同组的记录的总体信息(或者说共性字段). 在同一分组中, 被`group by`的字段必然是相同的, `select`只能查询这些共性字段, 其他任何一个单独的字段都是不可能的.
 
 好了, 我们先按照常规的连接查询
 
@@ -85,7 +85,7 @@ select table_a.*, table_b.foreign_id from table_a, table_b where table_a.id = ta
 (6 rows)
 ```
 
-我们用`group by`对上面的表进行一下加工.
+我们用`group by`对上面的表进行一下加工, 以`table_b.foreign_id`列进行分组, 并对其使用`count`函数.
 
 ```sql
 select table_a.*, count(table_b.foreign_id) as sum from table_a, table_b where table_a.id = table_b.foreign_id group by table_b.foreign_id;
@@ -127,11 +127,8 @@ select * from table_a, (select foreign_id, count(*) as sum from table_b group by
 在我找方法时, 了解到了sql语句中的`join`种类: 
 
 1. `左连接(left join)`
-
 2. `右连接(right join)`
-
 3. `内连接(inner join)`
-
 4. `全连接(full join)`. 
 
 其中`左连接`与`右连接`又被称为`外连接`, 而多表联合查询时默认join类型为`内连接`. 其中具体的区别可以查看参考文章2, 讲解得还算比较清晰.
@@ -164,7 +161,7 @@ select *, case when table_c.count is null then 0 else table_c.count end as sum f
 (4 rows)
 ```
 
-这里把count列作为了中间字段, 但也没有办法去除(除非再在外层套一个select).
+这里把`count`列作为了中间字段, 但也没有办法去除(除非再在外层套一个`select`).
 
 > `case when`子句要放在`select`附近.
 
@@ -172,7 +169,7 @@ select *, case when table_c.count is null then 0 else table_c.count end as sum f
 
 ## group by多个字段
 
-我们在换思路之前试验过一条语句, 但是失败了, 原因是`无法在group by表b字段的同时还能把表a的所有字段拿出来`.
+我们在换思路之前试验过一条语句, 但是失败了, 原因是**无法在`group by`表b字段的同时还能把表a的所有字段拿出来**.
 
 而dba的sql是这样的.
 
