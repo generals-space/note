@@ -35,6 +35,8 @@ windows下编译运行在linux下的可执行程序
 set GOARCH=386; set GOOS=linux; go build -o main main.go
 ```
 
+> `-o main`要在`main.go`的前面
+
 > 有时可能要加上`CGO_ENABLED=0`
 
 ...windows还是有问题, 在powerhshell执行上面的命令创建的arm64程序, 还是无法运行.
