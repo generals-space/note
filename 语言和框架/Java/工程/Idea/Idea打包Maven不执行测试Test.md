@@ -14,3 +14,8 @@
 > :compileJava > Resolve files of :compileClasspath > tomcat-embed-core-9.0.37.jar > 176 KB/3.23 MB downloaded
 > IDLE
 ```
+
+
+```
+mvn package -DskipTests
+```
