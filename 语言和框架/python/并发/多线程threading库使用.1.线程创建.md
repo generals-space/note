@@ -3,6 +3,8 @@
 参考文章
 
 1. [Python模块学习：threading 多线程控制和处理](http://python.jobbole.com/81546/)
+2. [Java并发编程：Thread类的使用](https://www.cnblogs.com/dolphin0520/p/3920357.html)
+    - 关于守护线程的说明.
 
 `threading`是比`thread`更高级的库, 封装的更好, 接口也更简单.
 
@@ -137,6 +139,8 @@ def __init__(self, group=None, target=None, name=None, args=(), kwargs={})
 设置子线程随着主线程程的退出而结束.
 
 在终端直接运行python脚本时, 如果不手动设置这个值, `Ctrl + C`无法返回终端, 因为子线程无法释放.
+
+参考文章2中说到, 守护线程将依赖于 main 线程, 而非守护线程(称用户线程)则会一直运行直到其运行完毕.
 
 ### 6. 
 
