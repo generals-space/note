@@ -3,6 +3,8 @@
 参考文章
 
 1. [python的reduce()函数](http://www.cnblogs.com/XXCXY/p/5180245.html)
+2. [Python3 reduce() 函数](https://www.runoob.com/note/26811)
+    - python3 的`reduce()`在`functools`包下
 
 `reduce()`是python内置的一个高阶函数.
 
