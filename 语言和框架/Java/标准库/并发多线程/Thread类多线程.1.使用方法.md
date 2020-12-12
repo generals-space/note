@@ -8,6 +8,11 @@
 	- 创建多线程另一种方法, 不需要创建 Thread 的扩展类
 3. [Java锁机制Lock用法示例](https://www.jb51.net/article/146258.htm)
 	- `Runnable`接口多线程示例
+4. [什么情况下线程会让出CPU](https://blog.csdn.net/xiaozhu0301/article/details/96881830)
+	- `Thread.yeild`是个native静态方法, 这个方法是想把自己占有的cpu时间释放掉, 然后和其他线程一起竞争(注意yeild的线程还是有可能争夺到cpu, 注意与sleep区别)
+	- javadoc中有说明, yeild是个基本不会用到的方法, 一般在debug和test中使用
+5. [How does a threading.Thread yield the rest of its quantum in Python?](https://prodevsblog.com/questions/134113/how-does-a-threading-thread-yield-the-rest-of-its-quantum-in-python/)
+	- `yield`系统调用的正确使用场景
 
 > `Thread.currentThread().sleep(2000)`与`Thread.sleep(2000)`区别是啥???
 
