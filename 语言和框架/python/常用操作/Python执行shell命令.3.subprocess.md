@@ -65,4 +65,3 @@ subprocess.call('ping -c 30 www.baidu.com', shell=True)
 ## 
 
 还有几个, 不想写了, 感觉没什么用处, 详见参考文章2.
-

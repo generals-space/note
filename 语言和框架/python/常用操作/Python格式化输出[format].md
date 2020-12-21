@@ -1,4 +1,4 @@
-# Python字符串格式化
+# Python格式化输出[format]
 
 参考文章
 
