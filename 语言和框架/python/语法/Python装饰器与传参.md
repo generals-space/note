@@ -3,8 +3,9 @@
 参考文章
 
 1. [六种装饰器示例](http://www.jianshu.com/p/a405814f8786)
-
 2. [Python装饰器中，装饰函数带参数，被装饰函数的地址是如何传入的？](https://www.zhihu.com/question/64433992)
+3. [python 类内部装饰器的实现 与 参数解构学习](https://www.cnblogs.com/chentingjun/p/10237011.html)
+    - 类内部装饰器方法的实现示例
 
 ## 1. 被装饰函数带参数
 

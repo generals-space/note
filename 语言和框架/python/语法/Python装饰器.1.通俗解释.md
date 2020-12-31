@@ -3,9 +3,7 @@
 参考文章
 
 1. [python装饰器通俗易懂的解释！](http://www.cnblogs.com/songyue/p/5196809.html)
-
 2. [理解Python中的装饰器](http://www.cnblogs.com/rollenholt/archive/2012/05/02/2479833.html)
-
 3. [Python装饰器学习（九步入门）](http://www.cnblogs.com/rhcad/archive/2011/12/21/2295507.html)
 
 > 装饰器是一个很著名的设计模式，经常被用于有切面需求的场景，较为经典的有插入日志、性能测试、事务处理等。装饰器是解决这类问题的绝佳设计，有了装饰器，我们就可以抽离出大量函数中与函数功能本身无关的雷同代码并继续重用。概括的讲，装饰器的作用就是为已经存在的对象添加额外的功能。
