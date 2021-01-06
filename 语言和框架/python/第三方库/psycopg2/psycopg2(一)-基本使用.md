@@ -3,11 +3,8 @@
 参考文章
 
 1. [psycopg2笔记](https://www.cnblogs.com/hao-ming/p/7215050.html)
-
 2. [cursor() — 数据库连接操作 python](https://www.cnblogs.com/qixu/p/6133429.html)
-
     - 这里介绍的是mysql的python连接库, 但是用法和`psycopg2`几乎相同.
-
 3. [数据库的Connection、Cursor两大对象](https://www.cnblogs.com/zhouziyuan/p/10155612.html)
 
 ## 1. 连接方式

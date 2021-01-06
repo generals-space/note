@@ -4,7 +4,7 @@
 
 ## 1. 动态sql-传入变量
 
-示例1(以元组形式传入变量)
+### 示例1(以元组形式传入变量)
 
 ```py
 sql_str_select = 'select id from books where info_addr = %s'
@@ -13,11 +13,10 @@ db_curr.execute(sql_str_select, (url, ))
 
 注意:
 
-1. `execute()`中传入变量是用逗号分隔, 用`%`会报sql语句中的单引号错误(不过作用和`%`一样)
+1. `execute()`中传入变量是用逗号分隔(作用和常规的`%`一样), 用`%`会报sql语句中的单引号错误
+2. 第二个参数是元组类型, 且**必须以逗号结尾**, 否则会报`TypeError: not all arguments converted during string formatting`的错误.
 
-2. 第二个参数是元组类型, 且**以逗号结尾**, 否则会报`TypeError: not all arguments converted during string formatting`的错误.
-
-示例2(以对象形式传入变量)
+### 示例2(以对象形式传入变量)
 
 ```py
 book_info = {
@@ -39,7 +38,6 @@ db_curr.execute(sql_str_insert, book_info)
 注意:
 
 1. 在`execute()`中传入的变量必须全是`%s`, 就算是数值也一样(比如上面的`category_id`).
-
 2. `sql_str_insert`把`fields`和`values`的值填入, 但`%(name)s`这些仍然有百分号, 这些是要填入`book_info`的字段.
 
 ## 2. 插入/更新操作返回值
