@@ -43,5 +43,5 @@ BUILD SUCCESSFUL in 21s
 5 actionable tasks: 5 executed
 ```
 
-可以在`build/libs`目录下生成相关的`jar`包, 可以启动.
+可以在`build/libs`目录下生成相关的`jar`包, `jar`包可以直接启动(`java -jar xxx.jar`).
 

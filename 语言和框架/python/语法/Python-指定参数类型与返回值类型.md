@@ -3,6 +3,8 @@
 参考文章
 
 1. [python限定方法参数类型、返回值类型、变量类型等](https://www.cnblogs.com/linkenpark/p/11676297.html)
+2. [How can I specify the function type in my type hints?](https://stackoverflow.com/questions/37835179/how-can-i-specify-the-function-type-in-my-type-hints)
+    - `typing.Callable`函数类型
 
 python 是弱类型语言, 每个变量的类型是不固定的, 如果要对一个变量做某种类型独有的操作时, 可能需要先对此变量进行类型检查.
 

@@ -25,15 +25,15 @@ xpack.monitoring.exporters.mylocal:
 ```
 
 ```java
-        Yaml yaml = new Yaml();
+    Yaml yaml = new Yaml();
 
-        Object object = yaml.load(content.toString());
-        // {cluster.name=elasticsearch, node.name=es-01, network.host=0.0.0.0, http.port=9200, bootstrap.memory_lock=false, cluster.initial_master_nodes=[es-01], xpack.monitoring.exporters.mylocal={type=local}}
-        System.out.println(object);
+    Object object = yaml.load(content.toString());
+    // {cluster.name=elasticsearch, node.name=es-01, network.host=0.0.0.0, http.port=9200, bootstrap.memory_lock=false, cluster.initial_master_nodes=[es-01], xpack.monitoring.exporters.mylocal={type=local}}
+    System.out.println(object);
 
-        Map<String, Object> map = (Map<String, Object>)object;
-        // {cluster.name=elasticsearch, node.name=es-01, network.host=0.0.0.0, http.port=9200, bootstrap.memory_lock=false, cluster.initial_master_nodes=[es-01], xpack.monitoring.exporters.mylocal={type=local}}
-        System.out.println(map);
+    Map<String, Object> map = (Map<String, Object>)object;
+    // {cluster.name=elasticsearch, node.name=es-01, network.host=0.0.0.0, http.port=9200, bootstrap.memory_lock=false, cluster.initial_master_nodes=[es-01], xpack.monitoring.exporters.mylocal={type=local}}
+    System.out.println(map);
 ```
 
 `load()`方法默认生成一个`Map<String, Object>`类型的对象, 几乎可以解析所有层级的(只要是基本类型).
