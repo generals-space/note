@@ -9,7 +9,7 @@ CHANGELOG.md  codecov.yaml        CONTRIBUTING.md  doc      Gopkg.lock  hack    
 cmd           code-of-conduct.md  DCO              example  Gopkg.toml  LICENSE  NOTICE       README.md  source-read.md  version
 ```
 
-在`go mod init`时, 貌似会自动读取`Gopkg.lock`中的内容, 不需要重新解析代码中的`import`信息.
+在`go mod init xxx`时, 貌似会自动读取`Gopkg.lock`中的内容, 不需要重新解析代码中的`import`信息.
 
 ```
 /home/project/etcd-operator
