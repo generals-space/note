@@ -32,7 +32,7 @@ class Seeker(threading.Thread):
     
     def run(self):
         print self.name + ': 我已经把眼睛蒙上了'
-        self.cond.set()         ## 发出通知, hider开始运行
+        self.cond.set()         ## 发出通知, hider 开始运行
         self.cond.wait()        ## 这里再次wait貌似是无意义的, 为什么???
         print self.name + ': 我找到你了 ~_~'
         print self.name + ': 我赢了'
@@ -43,7 +43,7 @@ class Hider(threading.Thread):
         self.cond = cond
         self.name = name
     def run(self):
-        self.cond.wait()        ## 先挂起等待
+        self.cond.wait()        ## 先挂起等待 seeker 把眼蒙上
         print self.name + ': 我已经藏好了，你快来找我吧'
         
 cond = threading.Event()

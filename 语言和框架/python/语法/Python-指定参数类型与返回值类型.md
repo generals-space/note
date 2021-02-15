@@ -5,6 +5,10 @@
 1. [python限定方法参数类型、返回值类型、变量类型等](https://www.cnblogs.com/linkenpark/p/11676297.html)
 2. [How can I specify the function type in my type hints?](https://stackoverflow.com/questions/37835179/how-can-i-specify-the-function-type-in-my-type-hints)
     - `typing.Callable`函数类型
+3. [Indicating multiple value in a Dict[] for type hints](https://stackoverflow.com/questions/48054521/indicating-multiple-value-in-a-dict-for-type-hints)
+    - `TypedDict`从 python 3.8 开始支持
+4. [Type for heterogeneous dictionaries with string keys](https://github.com/python/typing/issues/28)
+5. [PEP 589 -- TypedDict: Type Hints for Dictionaries with a Fixed Set of Keys](https://www.python.org/dev/peps/pep-0589/)
 
 python 是弱类型语言, 每个变量的类型是不固定的, 如果要对一个变量做某种类型独有的操作时, 可能需要先对此变量进行类型检查.
 
@@ -24,3 +28,6 @@ if __name__ == '__main__':
 ```
 
 虽然`test()`第一个参数指定了`int`, 但是传入一个字符串也不会报错.
+
+## Dict[str,] value 包含多种类型
+
