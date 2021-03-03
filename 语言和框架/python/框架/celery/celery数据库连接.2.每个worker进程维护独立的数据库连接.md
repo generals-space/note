@@ -1,11 +1,9 @@
-# celery数据库连接(二)-每个worker进程维护独立的数据库连接
+# celery数据库连接.2.每个worker进程维护独立的数据库连接
 
 参考文章
 
 1. [Celery Worker Database Connection Pooling - ThatAintWorking的回答](https://stackoverflow.com/questions/14526249/celery-worker-database-connection-pooling)
-
 2. [celery官方文档 signal](http://docs.celeryproject.org/en/latest/userguide/signals.html#worker-process-init)
-
 3. [celery.signals.worker_process_init.connect示例集合](https://programtalk.com/python-examples/celery.signals.worker_process_init.connect/)
 
 > 注意: 本文所提到的方案都是针对`prefork`并发模型来说的, 在使用`eventlet`或`gevent`时会出错.

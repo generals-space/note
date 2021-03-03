@@ -55,7 +55,7 @@ Traceback (most recent call last):
 NameError: global name 'counter' is not defined
 ```
 
-...虽然可以通过向func将我们定义的变量当作参数一样传入, 但这并不是我们真正的目的. 参考文章1中(找了很久, 只有这一篇提到我们的这种作法)解释了原因.
+...虽然可以通过向`func`将我们定义的变量当作参数一样传入, 但这并不是我们真正的目的. 参考文章1中(找了很久, 只有这一篇提到我们的这种作法)解释了原因.
 
 > Scoped names (closures) are determined at compile time, you cannot add more at runtime.
 

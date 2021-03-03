@@ -47,6 +47,8 @@ string = '我是内容: %s, 我是百分号: %%'
 print(string % 'general') ## 我是内容: general, 我是百分号: %
 ```
 
+> 布尔值可以使用`%r`表示
+
 ## 2. format()函数
 
 Python2.6 开始，新增了一种格式化字符串的函数 `str.format()`，它增强了字符串格式化的功能。
