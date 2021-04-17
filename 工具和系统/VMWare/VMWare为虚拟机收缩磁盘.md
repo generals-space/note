@@ -8,6 +8,8 @@
 VMWare: 15.1
 虚拟机: CentOS 7
 
+20210417: MacOS宿主机, VMwareFusion, CentOS7虚拟机, 实践可行.
+
 方法一实验有效.
 
 原来虚拟机实际占用11G左右, 但是在宿主机上查看已经使用了近50G.
@@ -27,6 +29,10 @@ tmpfs           182M     0  182M   0% /run/user/0
 ![](https://gitee.com/generals-space/gitimg/raw/master/D0C47E7E9C4392D6586130F96949A4A8.png)
 
 按照参考文章1中所说, 使用方法一.
+
+```
+vmware-toolbox-cmd disk shrink /
+```
 
 ![](https://gitee.com/generals-space/gitimg/raw/master/7D42926F3F8599E44EE890F55EF564C3.png)
 

@@ -16,7 +16,7 @@
 fmt.Println(iota)
 ```
 
-编译错误：undefined: iota
+编译错误: `undefined: iota`
 
 ## 2. 每次`const`出现时, 都会让`iota`初始化为0(或其他初始值).
 
