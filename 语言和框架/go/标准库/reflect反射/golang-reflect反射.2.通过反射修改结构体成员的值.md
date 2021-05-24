@@ -1,12 +1,10 @@
-# golang-reflect反射库
+# golang-reflect反射.2.通过反射修改结构体成员的值
 
 参考文章
 
 1. [golang-利用反射给结构体赋值](https://www.cnblogs.com/fwdqxl/p/7789162.html)
 
-## 通过反射修改结构体成员的值
-
-在golang中, 结构体的成员的取值一般为`对象名.字段名`, 而字段名是没有引号的. 所以当要修改的字段不确定时, 我们没有办法像在python中使用`__dict__`一样方便地修改结构体成员的值. 
+在golang中, 结构体的成员的取值一般为`对象名.字段名`, 而字段名是没有引号的(像`user["name"]`这种). 所以当要修改的字段不确定时, 我们没有办法像在python中使用`__dict__`一样方便地修改结构体成员的值. 
 
 比如一个结构体对象
 
@@ -54,14 +52,15 @@ func main(){
 	fmt.Printf("%+v\n", user)
 
 	nameField := reflect.ValueOf(user).Elem().FieldByName("Name")
-	addrOfName := nameField.Addr().Pointer()	// 这里是uintptr类型
-	// 先用Pointer()将uintptr转换成通用指针, 再用*string将其按照字符串指针对待,
+	addrOfName := nameField.Addr().Pointer()	// 这里是 uintptr 类型
+	// 先用 Pointer() 将 uintptr 转换成通用指针, 再用 *string 将其按照字符串指针对待,
 	// 再加一个*取值再赋值.
 	*(*string)(unsafe.Pointer(addrOfName)) = "jiangming"
 	
 	ageField := reflect.ValueOf(user).Elem().FieldByName("Age")
 	addrOfAge := ageField.Addr().Pointer()
 	*(*int)(unsafe.Pointer(addrOfAge)) = 26
+
 	fmt.Printf("%+v\n", user)
 }
 ```
