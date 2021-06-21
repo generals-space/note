@@ -1,5 +1,11 @@
 # Process
 
+参考文章
+
+1. [Java魔法堂：找外援的利器——Runtime.exec详解](http://www.cnblogs.com/fsjohnhuang/p/4081445.html)
+2. [Java Runtime.exec()的使用](http://www.cnblogs.com/mingforyou/p/3551199.html)
+3. [execute file from defined directory with Runtime.getRuntime().exec](http://stackoverflow.com/questions/10689193/execute-file-from-defined-directory-with-runtime-getruntime-exec)
+
 `Process`是java内置的用于执行 shell 命令的工具库.
 
 `Runtime.getRuntime()`提供了以下几种`exec()`方法: 
@@ -26,7 +32,7 @@
 
 为了执行调用操作, JVM会启一个`Process`, 可以通过调用`Process`类的以下方法, 得知调用操作是否正确执行: 
 
-```
+```java
 abstract int waitFor()
 ```
 

@@ -49,15 +49,10 @@
 日期可用函数:
 
 - `timeObj.Year()`
-
 - `timeObj.Month()`: 结果为`Month`类型, 其实为`int`类型, 不过它有一个`String()`方法, 可以转换为英文单词的形式(如`January`).
-
 - `timeObj.Day()`
-
 - `timeObj.Hour()`
-
 - `timeObj.Minute()`
-
 - `timeObj.Second()`
+- `timeObj.Location()`: 所在时区, Location类型, 如UTC, CST等.
 
-- `timeObj.Location()` // 所在时区, Location类型, 如UTC, CST等.
