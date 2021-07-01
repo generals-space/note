@@ -1,3 +1,5 @@
+# Thread类多线程.1.使用方法
+
 参考文章
 
 1. [Java并发编程：Thread类的使用](https://www.cnblogs.com/dolphin0520/p/3920357.html)
@@ -16,11 +18,11 @@
 
 > `Thread.currentThread().sleep(2000)`与`Thread.sleep(2000)`区别是啥???
 
-与 python 的 `threading`库一样, java 的 Thread 类在使用方法, 参数设置等操作上都大致相同.
+与 python 的 `threading`库一样, java 的`Thread`类在使用方法, 参数设置等操作上都大致相同.
 
 不过 java 的线程同步比较...别致, 不像其他高级语言那样显式加锁, 而是用一个`synchronized`块.
 
-Java Thread 与 python 一样, 也有两种使用方法
+Java Thread 与 python 一样, 也有两种使用方法.
 
 ## 1. 继承 Thread 类
 
@@ -120,8 +122,8 @@ public class DemoApplication {
 }
 ```
 
-这里初始化 new Thread 实例, 并在`run()`方法中传入真正的工作函数的方式, 与 python 的 threading 有异曲同工之意.
+这里初始化`new Thread()`实例, 并在`run()`方法中传入真正的工作函数的方式, 与 python 的`threading`有异曲同工之意.
 
-不过其实实现了`run()`方法的, 其实就相当于实现了`Runaable`接口了.
+不过其实实现了`run()`方法的, 其实就相当于实现了`Runable`接口了.
 
-## 实现 Runaable 接口的worker
+## 实现 Runable 接口的worker

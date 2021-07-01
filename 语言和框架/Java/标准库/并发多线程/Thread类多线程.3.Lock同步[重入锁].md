@@ -24,6 +24,8 @@
 1. `Lock`不是Java语言内置的, `synchronized`是Java语言的关键字, 因此是内置特性. `Lock`是一个类, 通过这个类可以实现同步访问; 
 2. `Lock`和`synchronized`有一点非常大的不同, 采用`synchronized`不需要用户去手动释放锁, 当`synchronized`方法或者`synchronized`代码块执行完之后, 系统会自动让线程释放对锁的占用; 而Lock则必须要用户去手动释放锁, 如果没有主动释放锁, 就有可能导致出现死锁现象. 
 
+> 如果不需要高级特性的话, `synchronized`就行了, 性能没啥大的差别.
+
 ------
 
 关于 Java 中`Lock`的使用, 其实和其他高级语言中的一样了.

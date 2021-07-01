@@ -7,7 +7,7 @@
 	- `synchronized`关键字修饰的方法
 	- `synObject`可以是`this`, 代表获取当前对象的锁, 也可以是类中的一个属性, 代表获取该属性的锁.
 
-Java 提供了两种方式来实现同步互斥访问: `synchronized`和`Lock`, 虽然在其他语言中接触的`Lock`操作比较多. 但是在 Java 中, 貌似 `synchronized`先出现.
+Java 提供了两种方式来实现同步互斥访问: `synchronized`和`Lock`, 虽然在其他语言中接触的`Lock`操作比较多. 但是在 Java 中, 貌似`synchronized`先出现.
 
 ## 1. `synchronized`关键字修饰的方法
 
@@ -15,7 +15,7 @@ Java 提供了两种方式来实现同步互斥访问: `synchronized`和`Lock`, 
 
 ## 2. `synchronized`代码块
 
-这种方法其实就和 lock 一样, 需要将一个对象(一般是`Object`对象)视作锁, 在这个代码块里执行可能发生并发冲突的操作
+这种方法其实就和 lock 一样, 需要将一个对象(一般是`Object`对象)视作锁, 在这个代码块里执行可能发生并发冲突的操作.
 
 ```java
 package com.example.demo;
@@ -77,7 +77,7 @@ public class DemoApplication {
 
 ~~类属性中`static`类型的成员属性与非`static`类型的成员属性~~, 这里ta用来举例的是`synchronized`方法而非成员属性. 
 
-在多线程操作中, 如果两个线程其中一个执行的是`synchronized`修饰的普通方法, 而另一个执行的是`synchronized`修饰的`static`方法, 那么这两个线程将不会发生互斥, 也就不会发生阻塞, 等待的情况.
+在多线程操作中, 如果两个线程其中一个执行的是`synchronized`修饰的普通方法, 而另一个执行的是`synchronized`修饰的`static`方法, 那么这两个线程将不会发生互斥, 也就不会发生阻塞而等待的情况.
 
 因为访问`static synchronized`方法占用的是类锁, 而访问非`static synchronized`方法占用的是对象锁, 所以不存在互斥现象.
 
