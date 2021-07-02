@@ -25,7 +25,7 @@ end
 
 在wrk调用脚本时, 压测过程中会输出每次请求的结果.
 
-```
+```console
 $ wrk -t 1 -c 1 -d 1 -s post.lua http://192.168.0.8:7777/uplink
 Running 1s test @ http://192.168.0.8:7777/uplink
   1 threads and 1 connections

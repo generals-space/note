@@ -3,11 +3,8 @@
 参考文章
 
 1. [轻量级性能测试工具ab / wrk / locust 分析 & 对比](http://www.istester.com/tester/181.html)
-
 2. [为什么 wrk 和 ab， locust 压测的结果差异这么大？](https://www.v2ex.com/t/423435)
-
 3. [峰云 - wrk用lua脚本构建复杂的http压力测试](http://xiaorui.cc/2018/03/14/wrk%E7%94%A8lua%E8%84%9A%E6%9C%AC%E6%9E%84%E5%BB%BA%E5%A4%8D%E6%9D%82%E7%9A%84http%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95/)
-
 4. [【测试设计】性能测试工具选择：wrk？jmeter？locust？还是LR？](https://www.cnblogs.com/Detector/p/8684658.html)
     - 给出了不同工具的优缺点及不同场景下选择工具的建议
 
