@@ -3,7 +3,6 @@
 参考文章
 
 1. [Go实战--golang中读写文件的几种方式](https://blog.csdn.net/wangshubo1989/article/details/74777112)
-
 2. [Golang读写文件操作](https://my.oschina.net/xxbAndy/blog/1594259)
 
 用os完成读写就比较复杂了, 要先打开文件(还要注意打开的模式), 读取的字节数, 偏移量等...

@@ -5,10 +5,8 @@
 1. [Golang 大杀器之性能剖析 PProf](https://github.com/EDDYCJY/blog/blob/master/golang/2018-09-15-Golang%20%E5%A4%A7%E6%9D%80%E5%99%A8%E4%B9%8B%E6%80%A7%E8%83%BD%E5%89%96%E6%9E%90%20PProf.md)
     - 先介绍了使用`net/http/pprof`的使用示例以及对应的web界面的访问方法
     - 然后介绍了使用`go tool pprof`命令行工具查看更直观的显示, 尤其是`top`命令过滤操作及其打印结果的列字段介绍(如`flat`与`cum`)
-
 2. [golang 内存分析/动态追踪](https://lrita.github.io/2017/05/26/golang-memory-pprof/)
     - 详细介绍了`net/http/pprof`开启的web采样信息界面内容(主要是heap部分)各字段的含义
-
 3. [记一次Golang内存分析——基于go pprof](https://yq.aliyun.com/articles/573743)
     - 介绍`GODEBUG='gctrace=1'`输出各字段所表示的含义, 以及`pprof/heap`界面的输出解释, 命令行调用`pprof`的`-alloc_space`, `-inuse_space`选项.
 

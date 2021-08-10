@@ -3,11 +3,8 @@
 参考文章
 
 1. [守护进程 & 创建守护进程 & fork一次和fork两次的区别](http://blog.csdn.net/asd7486/article/details/51966225)
-
 2. [Python中创建守护进程](http://www.cnblogs.com/zhiguo/p/3370599.html)
-
 3. [Python实例浅谈之五Python守护进程和脚本单例运行](http://blog.csdn.net/taiyang1987912/article/details/44850999)
-
 4. [Python守护进程daemon实现](https://blog.csdn.net/zhaihaifei/article/details/70213431)
 
 ## 1. 最简单的守护进程
@@ -36,17 +33,15 @@ if __name__ == '__main__':
 
 但是此进程的标准输入, 标准输出与标准错误还与当前终端有关联, 执行上述代码, 可以看到执行终端中不断有ping的日志在输出, 而由于我们已经将其设置了新的session, 无法再使用`Ctrl+C`将其终止, 关闭该执行终端也不行, 只能使用kill强制结束它. 
 
-> ps: `ping`进程的父进程号为1
+> ps: 此时`ping`进程的父进程号为1
 
 ## 2. 文件描述符重定向
 
 下面, 我们需要将创建守护进程的过程写得标准一些. 涉及到的函数有
 
-- `os.chdir()`:  #chdir确认进程不保持任何目录于使用状态, 否则不能umount一个文件系统. 也可以改变到对于守护程序运行重要的文件所在目录. 
-
-- `os.umask(0)`: ##重设文件创建掩码, 子进程会从父进程继承所有权限, 可以通过调用这个方法将文件创建掩码初始化成系统默认.  
-
-- `os.setsid()`: #setsid调用成功后, 进程成为新的**会话组长**和新的**进程组长**, 并与原来的登录会话和进程组脱离. 
+- `os.chdir()`: `chdir`确认进程不保持任何目录于使用状态, 否则不能`umount`一个文件系统. 也可以改变到对于守护程序运行重要的文件所在目录. 
+- `os.umask(0)`: 重设文件创建掩码, 子进程会从父进程继承所有权限, 可以通过调用这个方法将文件创建掩码初始化成系统默认. 
+- `os.setsid()`: `setsid`调用成功后, 进程成为新的**会话组长**和新的**进程组长**, 并与原来的登录会话和进程组脱离. 
 
 另外, 还需要重定向守护进程的标准文件描述符, 起码标准输入需要关闭, 标准输出/标准错误可以打开一个文件作为输出. 这时可能需要用到`os.dup2()`函数, 将守护进程的标准输出与标准错误的文件描述符修改成其他打开的文件描述符.
 
@@ -85,21 +80,15 @@ if __name__ == '__main__':
 
 这下控制终端没有ping的输出了, 因为它们被重定向到`log_file`所指向的文件中了, 包括错误输出. 如下
 
-```
+```console
 $ tail -f /tmp/log_file
 ...
 64 bytes from 115.239.210.27: icmp_seq=339 ttl=128 time=3.95 ms
 64 bytes from 115.239.210.27: icmp_seq=340 ttl=128 time=6.92 ms
-64 bytes from 115.239.210.27: icmp_seq=341 ttl=128 time=4.64 ms
-ping: sendmsg: Network is unreachable
-ping: sendmsg: Network is unreachable
-ping: sendmsg: Network is unreachable
-ping: sendmsg: Network is unreachable
 ping: sendmsg: Network is unreachable
 ping: sendmsg: Network is unreachable
 From gateway (172.32.100.2) icmp_seq=358 Destination Host Unreachable
 From gateway (172.32.100.2) icmp_seq=359 Destination Host Unreachable
-From gateway (172.32.100.2) icmp_seq=360 Destination Host Unreachable
 ...
 ```
 

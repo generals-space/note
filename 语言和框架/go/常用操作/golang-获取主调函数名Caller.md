@@ -11,7 +11,11 @@ Caller打印当前协程调用栈中相关函数所在的文件名, 行号等信
 
 (由于历史原因, `Caller`与`Callers`的skip参数含义并不相同).
 
-Caller的返回值包括 pc程序计数器, file函数所在文件名(绝对路径)), line行号(函数定义处的行号).
+Caller的返回值包括:
+
+1. pc程序计数器
+2. file函数所在文件名(绝对路径))
+3. line行号(函数定义处的行号).
 
 返回值中的ok与 `if _, ok := map["string"]; ok {}`中的ok含义相同, 如果为false则无其他值.
 
@@ -33,7 +37,9 @@ func printFuncInfo() {
 	// Caller() 的参数, 0表示当前函数, 1表示第1层主调函数, 第n层就是第n层主调函数
 	pc, file, line, ok := runtime.Caller(1)
 	funcName := runtime.FuncForPC(pc).Name()
-	fmt.Printf("This is: %s, pc: %d, file: %s, line: %d, ok: %T\n",
-		funcName, pc, file, line, ok)
+	fmt.Printf(
+		"This is: %s, pc: %d, file: %s, line: %d, ok: %T\n",
+		funcName, pc, file, line, ok,
+	)
 }
 ```
