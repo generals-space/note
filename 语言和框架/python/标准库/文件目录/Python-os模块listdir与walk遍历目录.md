@@ -1,4 +1,4 @@
-# Python-listdir与walk遍历目录
+# Python-os模块listdir与walk遍历目录
 
 参考文章
 
