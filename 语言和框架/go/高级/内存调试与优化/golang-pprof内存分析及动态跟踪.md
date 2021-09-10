@@ -36,13 +36,19 @@ heap profile: 3190: 77516056 [54762: 612664248] @ heap/1048576
 # DebugGC = false
 ```
 
-其中显示的内容会比较多, 但是主体分为2个部分: 第一个部分打印为通过`runtime.MemProfile()`获取的`runtime.MemProfileRecord`记录. 其含义为: 
+其中显示的内容会比较多, 但是主体分为2个部分.
+
+### 第一个部分
+
+第一个部分打印为通过`runtime.MemProfile()`获取的`runtime.MemProfileRecord`记录. 其含义为: 
 
 ```
 heap profile: 3190(inused objects): 77516056(inused bytes) [54762(alloc objects): 612664248(alloc bytes)] @ heap/1048576(2*MemProfileRate)
 1: 29081600 [1: 29081600] (前面4个数跟第一行的一样, 此行以后是每次记录的, 后面的地址是记录中的栈指针)@ 0x89368e 0x894cd9 0x8a5a9d 0x8a9b7c 0x8af578 0x8b4441 0x8b4c6d 0x8b8504 0x8b2bc3 0x45b1c1
 #    0x89368d    github.com/syndtr/goleveldb/leveldb/memdb.(*DB).Put+0x59d 栈信息
 ```
+
+### 第二部分
 
 第二部分就比较好理解, 打印的是通过`runtime.ReadMemStats()`读取的`runtime.MemStats`信息. 我们可以重点关注一下
 

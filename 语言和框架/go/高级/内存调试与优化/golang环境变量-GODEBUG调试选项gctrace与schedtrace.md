@@ -3,14 +3,11 @@
 参考文章
 
 1. [Go 语言运行时环境变量快速导览](https://blog.csdn.net/htyu_0203_39/article/details/50852856)
-
 2. [golang开启GODEBUG gctrace =1 显示信息的含义](https://my.oschina.net/u/2374678/blog/799477)
     - 解释了gctrace的输出各字段含义, golang版本应该>=1.6
 3. [go内存泄露case](https://blog.csdn.net/chosen0ne/article/details/46939259)
     - 第1小节解释了gctrace的输出各字段含义, golang版本应该<=1.5
-
 4. [Debugging performance issues in Go programs](https://software.intel.com/en-us/blogs/2014/05/10/debugging-performance-issues-in-go-programs)
-
 5. [Go 调度器跟踪](https://colobu.com/2016/04/19/Scheduler-Tracing-In-Go/)
 
 `GODEBUG`的值被解释为一个个的`name=value`对, 每一对间由逗号分割, 每一对用于控制go runtime调试工具设施, 例如: 
@@ -26,7 +23,7 @@ $ GODEBUG=gctrace=1,schedtrace=1000 godoc -http=:6060
 ## gctrace
 
 ```
-$ GODEBUG=gctrace=1 godoc -http=:6060
+GODEBUG=gctrace=1 godoc -http=:6060
 ```
 
 可选值为0或1, 一般都使用1表示打开gc调试功能.
