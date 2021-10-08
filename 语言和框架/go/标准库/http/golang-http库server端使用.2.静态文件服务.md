@@ -1,11 +1,9 @@
-# golang-http库server端使用(二)-静态文件服务
+# golang-http库server端使用.2.静态文件服务
 
 参考文章
 
 1. [golang http 服务器编程](https://juejin.im/post/58cffa535c497d0057cfcdfe)
-
 2. [golang http.FileServer 遇到的坑](https://blog.csdn.net/liangguangchuan/article/details/60326495)
-
 3. [Golang1.8标准库http.Fileserver跟http.ServerFile小例子](https://blog.csdn.net/fyxichen/article/details/60570484)
 
 按照参考文章1中所说, 大部分的服务器逻辑都需要使用者编写对应的 Handler, 不过有些 Handler 使用频繁, 因此 `net/http` 提供了它们的实现. 比如负责静态文件的 `FileServer`、负责 404 的`NotFoundHandler` 和 负责重定向的`RedirectHandler`. 

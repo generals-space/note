@@ -1,11 +1,9 @@
-# golang-http库使用(一)get与post方法示例
+# golang-http库client端使用.1.get与post方法示例
 
 参考文章
 
 1. [golang HTTP客户端](https://studygolang.com/articles/253)
-
 2. [golang中发送http请求的几种常见情况](https://studygolang.com/articles/4489)
-
 3. [Golang Web编程的Get和Post请求发送与解析](https://blog.csdn.net/typ2004/article/details/38669949)
 
 值得一看的是, 参考文章2中`Post`方法发送json数据时, 如何构造json请求体.

@@ -1,9 +1,8 @@
-# golang-http库server端使用
+# golang-http库server端使用.1
 
 参考文章
 
 1. [golang http 服务器编程](https://juejin.im/post/58cffa535c497d0057cfcdfe)
-
 2. [golang http.FileServer 遇到的坑](https://blog.csdn.net/liangguangchuan/article/details/60326495)
 
 ## 1. 获取GET/POST参数
