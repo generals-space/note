@@ -2,7 +2,7 @@
 
 参考文章
 
-1. [golang中发送http请求的几种常见情况](https://studygolang.com/articles/4489)
+1. [golang中发送http请求的几种常见情况](https://www.cnblogs.com/Goden/p/4658287.html)
 
 直接调用`http.Get()/http.Post()`的确够简单方便, 但是不够灵活. 如同python urllib中的urlopen直接打开url一样.
 
