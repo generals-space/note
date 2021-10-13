@@ -3,6 +3,7 @@
 参考文章
 
 1. [Keyboard Maestro | 使用 KM 实现免费中文 OCR 光学字符识别](https://zhuanlan.zhihu.com/p/60286600)
+	- MacOS上的4个截屏快捷键
 2. [在 Mac 上随时提取屏幕上的文字和解析二维码](https://zhuanlan.zhihu.com/p/143162320)
 	- 文字识别是根据 Keyboard Maestro 内置的
     - 文字识别我用的是参考文章1的脚本, 这个只看了二维码识别

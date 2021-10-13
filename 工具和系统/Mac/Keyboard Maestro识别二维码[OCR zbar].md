@@ -7,6 +7,8 @@
 
 导入到使用方法如参考文章1, 快捷键为`Ctrl+Command+Shift+A`.
 
+安装`Keyboard Maestro`后, 将如下代码保存为后缀名为`.kmmacros`的文件, 双击即可导入.
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
