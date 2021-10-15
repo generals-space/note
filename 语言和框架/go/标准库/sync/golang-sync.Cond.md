@@ -4,9 +4,9 @@
 
 1. [golang的sync.cond使用](https://blog.csdn.net/jinglexy/article/details/80516788)
 
-python的标准库`threading`中有一个`Condition`类, 与其`Event`类实现了高于互斥锁与可重入锁的锁控制机制, 和golang的`sync.Cond`的原理与使用场景很相似, 可以看一下. 见链接ID.
+python的标准库`threading`中有一个`Condition`类, 与其`Event`类实现了高于互斥锁与可重入锁的锁控制机制, 和golang的`sync.Cond`的原理与使用场景很相似.
 
-在链接1中, python中的实现的场景比较复杂, 但也比较实际. 而下面的示例是基于参考文章1的, 比较简单, 基本没有什么控制流程. 两者可以对比一下, 互相移植.
+在参考文章1中, python中的实现的场景比较复杂, 但也比较实际. 而下面的示例是基于参考文章1的, 比较简单, 基本没有什么控制流程. 两者可以对比一下, 互相移植.
 
 ```go
 package main
