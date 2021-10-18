@@ -1,3 +1,5 @@
+# 用gdb替换dlv[delve gdb dlv]
+
 参考文章
 
 1. [go语言有哪些好的debug方法？ - 幂恩的回答 - 知乎](https://www.zhihu.com/question/40980436/answer/767289819)
@@ -13,7 +15,9 @@
 
 `dlv`貌似是随vscode的golang插件一起安装的, 不需要额外动手...
 
-但我在使用delve时, 发现ta只能调试源码, 就是只能`dlv main.go xxx`.
+但我在使用delve时, 发现~~ta只能调试源码~~, 就是只能`dlv main.go xxx`.
+
+> dlv(1.7.1)也可以调试二进制文件, 使用`dlv exec runc`即可.
 
 ```console
 $ dlv debug runc run mycontainer01
