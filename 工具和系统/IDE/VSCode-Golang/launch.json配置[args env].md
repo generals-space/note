@@ -26,7 +26,7 @@
 - `request`: 可选值: "launch", "attach", 前者是自己启动调试进行, 后者则可以链接到一个正在运行的进程.
 - `program`: 待启动的工程路径.
     - ${file}: 在点击vscode的启动按钮时, 标签页中当前打开的文件, 一般是`main.go`
-    - ${fileDirname} 在点击vscode的启动按钮时, 标签页中当前打开的文件所在的目录, 一般是`cmd/main.go`文件
+    - ${fileDirname} 在点击vscode的启动按钮时, 标签页中当前打开的文件所在的目录, 一般是`cmd/`目录
     - ${workspaceFolder} vscode当前打开的目录, 与标签页打开哪个文件无关
 - `args`: 可以添加启动参数.
 

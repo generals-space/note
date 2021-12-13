@@ -21,6 +21,8 @@ S0    S1    E     O    M     CCS   YGC  YGCT   FGC FGCT  CGC CGCT GCT
 35.93 0.00  57.84 1.66 81.71 75.42 2332 53.642 7   2.062 -   -    55.704
 ```
 
+- `E(Eden)`: 新生代 = E + S0 + S1
+- `O(Old)`: 老年代
 - `YGC`: yong gc(年轻代gc)的次数
 - `YGCT`: yong gc time(年轻代gc)所花费的时间, 单位为秒
 - `FGC`: full gc(全局gc, 将会引发STW)
