@@ -25,3 +25,6 @@ Total running VMs: 2
 ```
 vmrun reset "/Users/general/Virtual Machines.localized/kw01/kw01.vmx" hard | soft
 ```
+
+> 建议使用`soft`.
+

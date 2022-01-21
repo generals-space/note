@@ -13,7 +13,7 @@ sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resourc
 Mac OS X 上打开VNC Server服务(带vnc密码, 替换myVncPassword为自己的密码): 
 
 ```
-sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -activate -configure -access -off -restart -agent -privs -all -allowAccessFor -allUsers -clientopts -setvncpw -vncpw myVn  cPassword
+sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -activate -configure -access -off -restart -agent -privs -all -allowAccessFor -allUsers -clientopts -setvncpw -vncpw myVncPassword
 ```
 
 > 这里说的带不带 vnc 密码, 应该是独立于系统密码之外的 vnc 的密码.
