@@ -2,6 +2,6 @@
 
 ```
 ## git config --global user.name=general
-$ git config --global user.name general
-$ git config --global user.email generals.space@gmail.com
+git config --global user.name general
+git config --global user.email generals.space@gmail.com
 ```
