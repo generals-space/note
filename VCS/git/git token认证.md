@@ -9,6 +9,7 @@
     - `gh auth login`
 3. [Updating credentials from the macOS Keychain](https://docs.github.com/en/get-started/getting-started-with-git/updating-credentials-from-the-macos-keychain)
     - 清除本地缓存的密码
+4. [gh安装方法](https://github.com/cli/cli#installation)
 
 token类似于加密过的密码, 进行git操作时, 将需要输入用户名&token, 而不再是用户名&密码.
 

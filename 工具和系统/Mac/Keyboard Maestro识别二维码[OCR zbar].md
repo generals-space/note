@@ -126,7 +126,13 @@
 						<key>Source</key>
 						<string>Nothing</string>
 						<key>Text</key>
-						<string>/usr/local/bin/zbarimg ~/Pictures/qrcode.png | sed 's/.\{8\}//'</string>
+						<string>raw=$(/usr/local/bin/zbarimg ~/Pictures/qrcode.png | sed 's/.\{8\}//')
+decoded=$(echo $raw | base64 -d)
+if [[ $decoded == '' ]]; then
+    echo $raw;
+else
+    echo $decoded;
+fi</string>
 						<key>TimeOutAbortsMacro</key>
 						<true/>
 						<key>TrimResults</key>
@@ -162,9 +168,9 @@
 				<key>CreationDate</key>
 				<real>611895413.97811401</real>
 				<key>ModificationDate</key>
-				<real>652354847.760499</real>
+				<real>667709866.51311195</real>
 				<key>Name</key>
-				<string>C-二维码识别</string>
+				<string>二维码识别</string>
 				<key>Triggers</key>
 				<array>
 					<dict>
@@ -189,281 +195,6 @@
 		<key>UID</key>
 		<string>3A4B600B-1D9D-4466-9748-22649E4D5AB2</string>
 	</dict>
-	<dict>
-		<key>Activate</key>
-		<string>Normal</string>
-		<key>CreationDate</key>
-		<real>610014023.49388003</real>
-		<key>Macros</key>
-		<array>
-			<dict>
-				<key>Actions</key>
-				<array>
-					<dict>
-						<key>KeyCode</key>
-						<integer>21</integer>
-						<key>MacroActionType</key>
-						<string>SimulateKeystroke</string>
-						<key>Modifiers</key>
-						<integer>4864</integer>
-						<key>ReleaseAll</key>
-						<false/>
-						<key>TargetApplication</key>
-						<dict/>
-						<key>TargetingType</key>
-						<string>Front</string>
-					</dict>
-					<dict>
-						<key>Conditions</key>
-						<dict>
-							<key>ConditionList</key>
-							<array>
-								<dict>
-									<key>Button</key>
-									<integer>0</integer>
-									<key>ConditionType</key>
-									<string>MouseButton</string>
-								</dict>
-							</array>
-							<key>ConditionListMatch</key>
-							<string>All</string>
-						</dict>
-						<key>MacroActionType</key>
-						<string>PauseUntil</string>
-						<key>TimeOutAbortsMacro</key>
-						<true/>
-					</dict>
-					<dict>
-						<key>Conditions</key>
-						<dict>
-							<key>ConditionList</key>
-							<array>
-								<dict>
-									<key>Button</key>
-									<integer>0</integer>
-									<key>ConditionType</key>
-									<string>MouseButton</string>
-									<key>Pressed</key>
-									<false/>
-								</dict>
-							</array>
-							<key>ConditionListMatch</key>
-							<string>All</string>
-						</dict>
-						<key>MacroActionType</key>
-						<string>PauseUntil</string>
-						<key>TimeOutAbortsMacro</key>
-						<true/>
-					</dict>
-					<dict>
-						<key>MacroActionType</key>
-						<string>Pause</string>
-						<key>Time</key>
-						<string>0.5</string>
-						<key>TimeOutAbortsMacro</key>
-						<true/>
-					</dict>
-					<dict>
-						<key>DisplayKind</key>
-						<string>Clipboard</string>
-						<key>ImageSource</key>
-						<string>SystemClipboard</string>
-						<key>Language</key>
-						<string>Languages/chi_sim</string>
-						<key>MacroActionType</key>
-						<string>OCRImage</string>
-						<key>TimeOutAbortsMacro</key>
-						<true/>
-					</dict>
-					<dict>
-						<key>Action</key>
-						<string>TrimWhitespace</string>
-						<key>MacroActionType</key>
-						<string>Filter</string>
-						<key>Source</key>
-						<string>Clipboard</string>
-					</dict>
-					<dict>
-						<key>MacroActionType</key>
-						<string>Notification</string>
-						<key>SoundName</key>
-						<string></string>
-						<key>Subtitle</key>
-						<string></string>
-						<key>Text</key>
-						<string>「%SystemClipboard%」已成功复制到剪贴板</string>
-						<key>Title</key>
-						<string>%ExecutingMacro%</string>
-					</dict>
-				</array>
-				<key>CreationDate</key>
-				<real>587444815.08833599</real>
-				<key>ModificationDate</key>
-				<real>652354651.90843904</real>
-				<key>Name</key>
-				<string>A-中文识别</string>
-				<key>Triggers</key>
-				<array>
-					<dict>
-						<key>FireType</key>
-						<string>Pressed</string>
-						<key>KeyCode</key>
-						<integer>0</integer>
-						<key>MacroTriggerType</key>
-						<string>HotKey</string>
-						<key>Modifiers</key>
-						<integer>4864</integer>
-					</dict>
-				</array>
-				<key>UID</key>
-				<string>FE9B9021-B5FB-4B36-8D1E-50A35865BE23</string>
-			</dict>
-		</array>
-		<key>Name</key>
-		<string>识别屏幕上的文字及二维码</string>
-		<key>ToggleMacroUID</key>
-		<string>F4C4BD3C-2615-4C2E-B56A-F0D00C52906F</string>
-		<key>UID</key>
-		<string>3A4B600B-1D9D-4466-9748-22649E4D5AB2</string>
-	</dict>
-	<dict>
-		<key>Activate</key>
-		<string>Normal</string>
-		<key>CreationDate</key>
-		<real>610014023.49388003</real>
-		<key>Macros</key>
-		<array>
-			<dict>
-				<key>Actions</key>
-				<array>
-					<dict>
-						<key>KeyCode</key>
-						<integer>21</integer>
-						<key>MacroActionType</key>
-						<string>SimulateKeystroke</string>
-						<key>Modifiers</key>
-						<integer>4864</integer>
-						<key>ReleaseAll</key>
-						<false/>
-						<key>TargetApplication</key>
-						<dict/>
-						<key>TargetingType</key>
-						<string>Front</string>
-					</dict>
-					<dict>
-						<key>Conditions</key>
-						<dict>
-							<key>ConditionList</key>
-							<array>
-								<dict>
-									<key>Button</key>
-									<integer>0</integer>
-									<key>ConditionType</key>
-									<string>MouseButton</string>
-								</dict>
-							</array>
-							<key>ConditionListMatch</key>
-							<string>All</string>
-						</dict>
-						<key>MacroActionType</key>
-						<string>PauseUntil</string>
-						<key>TimeOutAbortsMacro</key>
-						<true/>
-					</dict>
-					<dict>
-						<key>Conditions</key>
-						<dict>
-							<key>ConditionList</key>
-							<array>
-								<dict>
-									<key>Button</key>
-									<integer>0</integer>
-									<key>ConditionType</key>
-									<string>MouseButton</string>
-									<key>Pressed</key>
-									<false/>
-								</dict>
-							</array>
-							<key>ConditionListMatch</key>
-							<string>All</string>
-						</dict>
-						<key>MacroActionType</key>
-						<string>PauseUntil</string>
-						<key>TimeOutAbortsMacro</key>
-						<true/>
-					</dict>
-					<dict>
-						<key>MacroActionType</key>
-						<string>Pause</string>
-						<key>Time</key>
-						<string>0.5</string>
-						<key>TimeOutAbortsMacro</key>
-						<true/>
-					</dict>
-					<dict>
-						<key>DisplayKind</key>
-						<string>Clipboard</string>
-						<key>ImageSource</key>
-						<string>SystemClipboard</string>
-						<key>Language</key>
-						<string>Languages/eng</string>
-						<key>MacroActionType</key>
-						<string>OCRImage</string>
-						<key>TimeOutAbortsMacro</key>
-						<true/>
-					</dict>
-					<dict>
-						<key>Action</key>
-						<string>TrimWhitespace</string>
-						<key>MacroActionType</key>
-						<string>Filter</string>
-						<key>Source</key>
-						<string>Clipboard</string>
-					</dict>
-					<dict>
-						<key>MacroActionType</key>
-						<string>Notification</string>
-						<key>SoundName</key>
-						<string></string>
-						<key>Subtitle</key>
-						<string></string>
-						<key>Text</key>
-						<string>「%SystemClipboard%」已成功复制到剪贴板</string>
-						<key>Title</key>
-						<string>%ExecutingMacro%</string>
-					</dict>
-				</array>
-				<key>CreationDate</key>
-				<real>587444815.08833599</real>
-				<key>ModificationDate</key>
-				<real>652359804.97042203</real>
-				<key>Name</key>
-				<string>B-英文识别</string>
-				<key>Triggers</key>
-				<array>
-					<dict>
-						<key>FireType</key>
-						<string>Pressed</string>
-						<key>KeyCode</key>
-						<integer>0</integer>
-						<key>MacroTriggerType</key>
-						<string>HotKey</string>
-						<key>Modifiers</key>
-						<integer>4864</integer>
-					</dict>
-				</array>
-				<key>UID</key>
-				<string>4AA71433-869C-4B88-9388-8ED2574E93FD</string>
-			</dict>
-		</array>
-		<key>Name</key>
-		<string>识别屏幕上的文字及二维码</string>
-		<key>ToggleMacroUID</key>
-		<string>F4C4BD3C-2615-4C2E-B56A-F0D00C52906F</string>
-		<key>UID</key>
-		<string>3A4B600B-1D9D-4466-9748-22649E4D5AB2</string>
-	</dict>
 </array>
 </plist>
-
 ```
