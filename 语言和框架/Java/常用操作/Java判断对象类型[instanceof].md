@@ -17,7 +17,6 @@
 		System.out.println("cluster.initial_master_nodes");
 		System.out.println(map.get("cluster.initial_master_nodes") instanceof String);
 		System.out.println(map.get("cluster.initial_master_nodes") instanceof List);
-
 ```
 
 `instanceof`判断`List`, `Map`, 无法具体到`List<String>`还是`List<Integer>`.
