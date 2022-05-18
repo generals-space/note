@@ -3,6 +3,7 @@
 参考文章
 
 1. [【VSCode】golang的调试配置launch.json](https://www.jianshu.com/p/e4cca4fe6478)
+2. [配置VSCode的launch.json文件](https://blog.csdn.net/qq_53653262/article/details/120876995)
 
 ```json
 {
