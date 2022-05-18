@@ -131,7 +131,7 @@ decoded=$(echo $raw | base64 -d)
 if [[ $decoded == '' ]]; then
     echo $raw;
 else
-    echo $decoded;
+    echo $raw | base64 -d;
 fi</string>
 						<key>TimeOutAbortsMacro</key>
 						<true/>
