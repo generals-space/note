@@ -7,6 +7,7 @@
 2. [go sync.Mutex 设计思想与演化过程 （一）](https://www.cnblogs.com/niniwzw/archive/2013/06/24/3153955.html)
 3. [golang 1.10 mutex互斥锁源码](https://blog.csdn.net/weixin_40318210/article/details/80301288)
     - 对Mutex源码的解读深入到了runtime包的sema.go层面, 探究了golang中信号量机制的实现, 十分深入.
+4. [探索互斥锁 Mutex 实现原理 ](https://www.cnblogs.com/ms27946/p/golang-study-mutex.html)
 
 Mutex: 互斥量的缩写. mutual(互相) exclusion(排斥, 独占)
 
