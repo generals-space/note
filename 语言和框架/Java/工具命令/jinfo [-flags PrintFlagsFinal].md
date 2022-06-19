@@ -1,3 +1,8 @@
+参考文章
+
+1. [查看你机器中Java程序堆内存的默认初始大小和最大大小](https://blog.csdn.net/catoop/article/details/104057377)
+    - `java -XX:+PrintFlagsFinal -version`
+
 ```
 java -XX:+ -version
 ```

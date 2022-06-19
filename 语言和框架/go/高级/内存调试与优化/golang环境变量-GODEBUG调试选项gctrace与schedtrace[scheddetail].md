@@ -13,17 +13,27 @@
 `GODEBUG`的值被解释为一个个的`name=value`对, 每一对间由逗号分割, 每一对用于控制go runtime调试工具设施, 例如: 
 
 ```
-$ GODEBUG=gctrace=1,schedtrace=1000 godoc -http=:6060
+GODEBUG="gctrace=1,schedtrace=1000" godoc -http=:6060
 ```
 
 上面这条命令用于运行godoc程序时开启`GC tracing and schedule tracing`.
 
 常用的调试工具也就是这两个了: `gctrace`与`schedtrace`
 
+```c++
+// Holds variables parsed from GODEBUG env var.
+struct DebugVars
+{
+	int32	gctrace;
+	int32	schedtrace;
+	int32	scheddetail;
+};
+```
+
 ## gctrace
 
 ```
-GODEBUG=gctrace=1 godoc -http=:6060
+GODEBUG="gctrace=1" godoc -http=:6060
 ```
 
 可选值为0或1, 一般都使用1表示打开gc调试功能.
@@ -75,7 +85,7 @@ SCHED 3023ms: gomaxprocs=8 idleprocs=8 threads=20 spinningthreads=0 idlethreads=
 如果同时使用`scheddetail=1`将使go runtime输出总结性信息时, 一并输出每一个goroutine的状态信息.
 
 ```
-$ GOMAXPROCS=2 GODEBUG=schedtrace=1000,scheddetail=1 godoc -http=:6060
+$ GOMAXPROCS=2 GODEBUG="schedtrace=1000,scheddetail=1" godoc -http=:6060
 SCHED 0ms: gomaxprocs=2 idleprocs=0 threads=5 spinningthreads=0 idlethreads=0 runqueue=0 gcwaiting=0 nmidlelocked=1 stopwait=0 sysmonwait=0
   P0: status=0 schedtick=0 syscalltick=0 m=-1 runqsize=0 gfreecnt=0
   P1: status=1 schedtick=2 syscalltick=0 m=3 runqsize=0 gfreecnt=0

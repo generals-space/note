@@ -9,6 +9,7 @@
 3. [协程调度时机一：系统调用](https://zhuanlan.zhihu.com/p/29970624)
     - 用后妈比喻M对象, 很生动
     - 结婚, 离婚, 前夫, 前妻
+4. [Go scheduler 概览](https://qcrao.com/ishare/go-scheduler/#truego-scheduler-%E6%A6%82%E8%A7%88)
 
 M是machine的首字母, 在当前版本的golang中等同于系统线程.
 

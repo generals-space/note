@@ -6,6 +6,9 @@
 [JVM调优总结](https://www.cnblogs.com/houziwty/p/6178032.html)
     - `-Xxx`和`-XX`等各参数的解释
 
+[Java问题诊断和排查工具（查看JVM参数、内存使用情况及分析等） ](https://www.cnblogs.com/z-sm/p/6745375.html)
+
+
 - jps：虚拟机进程状况工具
 - jstat：虚拟机统计信息监视工具
 - jmap：Java内存印象工具

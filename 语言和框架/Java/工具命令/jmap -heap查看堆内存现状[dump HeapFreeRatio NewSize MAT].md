@@ -11,6 +11,7 @@
     - 同参考文章1(估计是同一作者)
 3. [【JVM】jmap命令详解----查看JVM内存使用详情](https://www.cnblogs.com/sxdcgaq8080/p/11089664.html)
     - `-dump`生成dump文件.
+4. [问题排查-jmap和MAT工具](https://blog.51cto.com/janephp/2432551)
 
 ## 查看进程的详细内存占用, 包括每个区域大小和使用大小
 
