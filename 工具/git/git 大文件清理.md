@@ -4,6 +4,8 @@
 
 1. [Git从库中移除已删除大文件](https://www.cnblogs.com/liangqihui/p/9880916.html)
 2. [删除Git仓库中的大文件](https://cloud.tencent.com/developer/article/1559335)
+3. [git项目大小优化笔记,删除历史提交中的大文件](https://www.cnblogs.com/fuhua/p/15527023.html)
+    - 前两个参考文章中提到的方法只有在`push --force`然后再下载后才能看到效果, 只有这篇文章是可以直接把`.git`目录缩小的.
 
 注意执行如下步骤时最好已经把大文件从仓库中删除了, 只要再从历史记录中移除就可以了.
 
