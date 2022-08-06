@@ -1,5 +1,10 @@
 # VMWare设置共享目录
 
+参考文章
+
+1. [解决 VMware 虚拟机共享文件 但是找不到共享文件夹](https://blog.csdn.net/Neneolia/article/details/119567372)
+    - windows宿主机, linux虚拟机
+
 ## 1. Linux访问windows宿主机
 
 VMware软件中开启共享目录后, 无需重启直接就可以在linux虚拟机的`/mnt/hgfs`目录下看到共享目录.
