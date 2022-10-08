@@ -15,7 +15,6 @@ var testStr = 'hello world!';
 语法: `testStr.slice(start, [stop])`
 
 1. `start`: 表示起始位置
-
 2. `stop`: 默认直接到末尾
 
 注意: **左开右闭区间**(即`start`为2, 但不包括第2个字符; `stop`为3, 包括第3个)
