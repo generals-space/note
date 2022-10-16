@@ -3,15 +3,10 @@
 参考文章
 
 1. [python子进程模块subprocess详解与应用实例 之一](http://blog.csdn.net/fireroll/article/details/39153831)
-
 2. [python子进程模块subprocess详解与应用实例 之二](http://blog.csdn.net/fireroll/article/details/39153947)
-
 3. [python子进程模块subprocess详解与应用实例 之三](http://blog.csdn.net/fireroll/article/details/39153991)
-
 4. [subprocess官方文档](https://docs.python.org/2.7/library/subprocess.html)
-
 5. [Python subprocess模块学习总结](http://www.jb51.net/article/48086.htm)
-
 6. [python subprocess.Popen 监控控制台输出](http://blog.csdn.net/mldxs/article/details/8555819)
 
 ## 1. Popen()的使用方法

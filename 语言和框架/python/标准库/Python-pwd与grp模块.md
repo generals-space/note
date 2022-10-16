@@ -2,9 +2,8 @@
 
 参考文章
 
-[Python标准库：pwd模块](http://biancheng.dnbcw.net/python/462172.html)
-
-[python pwd和grp模块](http://www.361way.com/python-pwd-grp/4015.html)
+1. [Python标准库：pwd模块](http://biancheng.dnbcw.net/python/462172.html)
+2. [python pwd和grp模块](http://www.361way.com/python-pwd-grp/4015.html)
 
 ## 1. pwd模块
 
@@ -12,10 +11,8 @@
 
 pwd模块有3个函数: `getpwuid`, `getpwnam`, `getpwall`。通过这三个函数结合list表的相关属性，可以获得用户的各类信息。
 
-- `getpwuid`: 根据UID获取用户信息, 
-
+- `getpwuid`: 根据UID获取用户信息
 - `getpwnam`: 根据USERNAME获取用户信息
-
 - `getpwall`: 获取所有的用户信息
 
 示例

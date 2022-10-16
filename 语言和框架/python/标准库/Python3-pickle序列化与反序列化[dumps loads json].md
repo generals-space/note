@@ -1,13 +1,14 @@
 # Python3-pickle序列化与反序列化
 
+<!--
 <!key!>: {664fdd98-537c-11e9-b398-aaaa0008a014}
 
 <!link!>: {c2f8cf90-5387-11e9-ae66-aaaa0008a014}
+-->
 
 参考文章
 
 1. [Python数据存储：pickle模块的使用讲解](https://www.cnblogs.com/fmgao-technology/p/9078918.html)
-
 2. [python 序列化之JSON和pickle详解](https://www.cnblogs.com/tkqasn/p/6005025.html)
 
 之前一直不知道pickle有什么用, 因为不明白把对象序列化存储到文件有什么可用场景.

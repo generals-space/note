@@ -1,7 +1,5 @@
 # Python标准库-os模块exec系函数
 
-<!tags!>: <!exec!>
-
 `os.exec*()`都只是posix系统调用的直接映射
 
 ## 1. 

@@ -3,14 +3,12 @@
 参考文章
 
 1. [php的Allowed memory size of 134217728 bytes exhausted问题](https://blog.csdn.net/qdujunjie/article/details/43672579)
-
 2. [zabbix api与php的配置](http://blog.51cto.com/caiguangguang/1407422)
-
 3. [Zabbix服务网页报错汇总](https://www.cnblogs.com/bananaaa/archive/2017/11/21/7874978.html)
 
-情景描述:
+## 场景描述
 
-zabbix模板页有一些组件无法显示, 查看apache的日志发现频繁出现500错误. 重启apache, 重启系统不管用.
+zabbix 模板页有一些组件无法显示, 查看apache的日志发现频繁出现500错误. 重启apache, 重启系统不管用.
 
 apache的`error`日志中显示如下报错.
 
