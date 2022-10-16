@@ -3,9 +3,7 @@
 参考文章
 
 1. [python笔记之psutil模块 - 博客园](http://www.cnblogs.com/liu-yao/p/5678157.html)
-
 2. [psutil documentation - pypi官方文档](http://pythonhosted.org/psutil/#psutil.Process.create_time)
-
 3. [【记录】折腾Python中的psutil：一个用于获得处理器和系统相关信息的模块](https://www.crifan.com/try_python_psutil/)
 
 ## 1. ps命令 - 进程信息

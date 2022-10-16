@@ -3,18 +3,15 @@
 参考文章
 
 1. [winScp如何通过隧道代理进行远程连接](https://www.cnblogs.com/wangkongming/p/4124945.html)
-
 2. [如何远程使用跳板机连接设备传输文件](http://www.wkgoto.com/i/216984.html)
-
 3. [SSHTunnelTroubleshooting](http://wiki.metawerx.net/wiki/SSHTunnelTroubleshooting)
 
 我们已经知道XShell, secureCRT可以通过配置**登录脚本**实现跳板机登录, 但是有时希望ftp工具也能实现类似的功能(有些开发人员不懂linux或vim, 对于线上修改配置, 上传文件等, 使用ftp工具更方便).
 
 本来更喜欢用filezilla, 但是网上说它没法实现, 倒是WinScp可以. 下面以WinScp为例.
 
-跳板机地址: 192.168.101.65
-
-目标服务器: 192.168.163.52
+- 跳板机地址: 192.168.101.65
+- 目标服务器: 192.168.163.52
 
 用户可以用密钥以`log.game`用户登录跳板机, 然后从跳板机以`log`用户登录目标机器.
 
@@ -48,7 +45,7 @@
 
 跳板机上的日志如下.
 
-```
+```log
 Apr 12 16:45:32 192_168_101_65 sshd[20092]: Accepted publickey for log.game from 10.96.0.46 port 57155 ssh2
 Apr 12 16:45:32 192_168_101_65 sshd[20092]: pam_unix(sshd:session): session opened for user log.game by (uid=0)
 Apr 12 16:45:32 192_168_101_65 sshd[20095]: Received request to connect to host 192.168.163.52 port 22, but the request was denied.

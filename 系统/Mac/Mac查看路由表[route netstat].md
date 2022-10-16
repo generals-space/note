@@ -3,6 +3,7 @@
 参考文章
 
 1. [Mac OS X 查看路由表](http://wp.panwenbin.com/2013/04/08/mac-os-x-%E6%9F%A5%E7%9C%8B%E8%B7%AF%E7%94%B1%E8%A1%A8/)
+2. [mac os (freebsd)的路由规则学习](https://zhuanlan.zhihu.com/p/163103180)
 
 想用`route`查一下当前网络的网关的, 结果怎么用都不正确, 看了`man`手册也是一脸萌...
 

@@ -3,15 +3,10 @@
 参考文章
 
 1. [python子进程模块subprocess详解与应用实例 之一](http://blog.csdn.net/fireroll/article/details/39153831)
-
 2. [python子进程模块subprocess详解与应用实例 之二](http://blog.csdn.net/fireroll/article/details/39153947)
-
 3. [python子进程模块subprocess详解与应用实例 之三](http://blog.csdn.net/fireroll/article/details/39153991)
-
 4. [subprocess官方文档](https://docs.python.org/2.7/library/subprocess.html)
-
 5. [Python subprocess模块学习总结](http://www.jb51.net/article/48086.htm)
-
 6. [python subprocess.Popen 监控控制台输出](http://blog.csdn.net/mldxs/article/details/8555819)
 
 subprocess最早在2.4版本中引入. 用来生成子进程, 并可以通过管道连接它们的输入/输出/错误, 以及获得它们的返回值. 

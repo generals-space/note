@@ -2,7 +2,7 @@
 
 参考文章
 
-[Python 命令行参数和getopt模块详解](http://www.tuicool.com/articles/jaqQvq)
+1. [Python 命令行参数和getopt模块详解](http://www.tuicool.com/articles/jaqQvq)
 
 `getopt()`的语法为
 

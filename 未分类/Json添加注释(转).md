@@ -96,7 +96,7 @@ json的decoder编码出来的数据, 不包含对应的comment, 但是encoder应
 
 然后在传输数据过程中, 则不需要传输这些comments.
 
-等等讨论和建议.个人觉得还是蛮合理的, 只是此刻, 我用的python 2.7中的json, 还是不支持`decode`带`comments`的json啊.
+等等讨论和建议.个人觉得还是蛮合理的, 只是此刻, 我用的python 2.7中的json, 还是不支持`decode`带`comments`的json.
 
 ## 总结
 

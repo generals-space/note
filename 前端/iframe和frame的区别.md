@@ -3,9 +3,7 @@
 参考文章
 
 1. [<iframe>和<frame>区别](https://www.cnblogs.com/ahudyan-forever/p/5706873.html)
-
 2. [html/css基础篇——iframe和frame的区别【转】](https://www.cnblogs.com/chuaWeb/p/5124368.html)
-
 3. [iframe下内容自适应缩放](https://segmentfault.com/q/1010000000259124)
 
 > html5不再支持frame, 单这一条就不需要再纠结要使用哪一个了.

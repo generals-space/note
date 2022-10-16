@@ -1,10 +1,8 @@
 # Python-xmlrpclib应用
 
-Tags: python rpc 
-
 参考文章
 
-[xmlrcp学习 - python中使用xmlrpc](http://www.cnblogs.com/coderzh/archive/2008/12/03/1346994.html)
+1. [xmlrcp学习 - python中使用xmlrpc](http://www.cnblogs.com/coderzh/archive/2008/12/03/1346994.html)
 
 XML-RPC的全称是XML Remote Procedure Call，即**XML远程方法调用**。
 
@@ -80,7 +78,7 @@ result: hello xmlrpc
 
 同时, rpc server端的日志输出为
 
-```
+```log
 127.0.0.1 - - [04/Feb/2017 09:34:25] "POST /RPC2 HTTP/1.1" 200 -
 ```
 
