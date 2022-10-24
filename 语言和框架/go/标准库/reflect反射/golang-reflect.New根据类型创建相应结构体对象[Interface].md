@@ -3,6 +3,7 @@
 参考文章
 
 1. [apimachinery-v0.17.2](https://github.com/kubernetes/apimachinery/blob/v0.17.2/pkg/runtime/scheme.go#L288)
+2. [Go 语言高性能编程 - Go Reflect 提高反射性能](https://geektutu.com/post/hpg-reflect.html)
 
 ```go
 // New 根据传入的 GVK 对象, 为其创建一个完成 runtime.Object 对象

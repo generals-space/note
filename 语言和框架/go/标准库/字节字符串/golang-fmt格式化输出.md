@@ -3,7 +3,6 @@
 参考文章
 
 1. [Go 字符串格式化](https://studygolang.com/articles/1915)
-
 2. [基础知识 - Golang 中的格式化输入输出](https://www.cnblogs.com/golove/p/3284304.html)
 
 ```go
