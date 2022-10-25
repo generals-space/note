@@ -3,9 +3,7 @@
 参考文章
 
 1. [Golang的字符编码介绍](https://www.cnblogs.com/yinzhengjie/p/7956689.html)
-
 2. [Golang GBK To Utf-8](https://blog.csdn.net/a99361481/article/details/83273053)
-
 3. [goquery 增加GBK支持](https://blog.csdn.net/jrainbow/article/details/52712685)
 
 [iconv-go](github.com/djimenez/iconv-go)使用了cgo, 需要gcc环境, 在win下无法通过`go get`安装. 一般情况下

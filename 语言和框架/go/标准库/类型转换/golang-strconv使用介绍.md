@@ -5,7 +5,6 @@
 参考文章
 
 1. [Go 进制转换](https://my.oschina.net/tsh/blog/1619887)
-
 2. [Go语言---strconv包](https://blog.csdn.net/li_101357/article/details/80252653)
 
 引用参考文章1中的说法
@@ -13,12 +12,9 @@
 `strconv`包括四类函数
 
 1. `Format`类, 例如`FormatBool(b bool) string`, 将`bool`, `float`, `int`, `uint`类型的转换为`string`, **`FormatInt`的缩写为`Itoa`**;
-
 2. `Parse`类, 例如`ParseBool(str string)(value bool, err error)`将字符串转换为`bool`, `float`, `int`, `uint`类型的值, `err`指定是否转换成功, **`ParseInt`的缩写是`Atoi`**;
-
 3. `Append`类, 例如`AppendBool(dst []byte, b bool) []byte`, 将值转化后添加到`[]byte`的末尾;
-
-4. `Quote`类, 对字符串的 双引号 单引号 反单引号 的操作;
+4. `Quote`类, 对字符串的"双引号", "单引号", "反单引号" 的操作;
 
 ## 1. `Format`与`Parse`类函数
 

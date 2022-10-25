@@ -27,7 +27,10 @@ const (
 )
 
 func main() {
-	connectStr := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", dbHost, dbPort, dbUser, dbPasswd, dbName)
+	connectStr := fmt.Sprintf(
+		"host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", 
+		dbHost, dbPort, dbUser, dbPasswd, dbName,
+	)
 	db, err := sql.Open("postgres", connectStr)
 	if err != nil {
 		panic(err)

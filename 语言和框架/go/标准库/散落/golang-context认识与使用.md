@@ -3,9 +3,7 @@
 参考文章
 
 1. [golang中context包解读](http://www.01happy.com/golang-context-reading/)
-
 2. [Go语言并发模型：使用 context](https://segmentfault.com/a/1190000006744213)
-
 3. [Golang context初探](https://www.jianshu.com/p/0dc7596ba90a)
 	- A -> B -> C调用实例
 	- context的使用规范
@@ -48,7 +46,7 @@ google就为我们提供一个解决方案, 开源了`context`包. 使用`contex
 	log.Printf("end")
 ```
 
-```
+```log
 2018/07/02 17:09:27 work
 2018/07/02 17:09:28 work
 2018/07/02 17:09:29 work
@@ -86,7 +84,7 @@ google就为我们提供一个解决方案, 开源了`context`包. 使用`contex
 	log.Printf("end")
 ```
 
-```
+```log
 2018/07/02 17:11:27 work
 2018/07/02 17:11:28 work
 2018/07/02 17:11:29 work
@@ -120,7 +118,7 @@ google就为我们提供一个解决方案, 开源了`context`包. 使用`contex
 	log.Printf("end")
 ```
 
-```
+```log
 2019/05/29 11:32:46 work
 2019/05/29 11:32:47 work
 2019/05/29 11:32:48 work
@@ -170,7 +168,7 @@ google就为我们提供一个解决方案, 开源了`context`包. 使用`contex
 	log.Printf("end")
 ```
 
-```
+```log
 2019/05/29 12:48:17 work
 2019/05/29 12:48:18 work
 2019/05/29 12:48:19 work

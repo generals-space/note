@@ -1,6 +1,8 @@
-# golang-切片合并
+# golang-切片合并(append)与复制(copy)[slice]
 
+<!--
 <!key!>: {0a187fb9-dc95-410a-b32a-9fc8108655c1}
+-->
 
 参考文章
 

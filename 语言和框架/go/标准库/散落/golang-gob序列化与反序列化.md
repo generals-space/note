@@ -1,26 +1,23 @@
 # golang-gob序列化与反序列化
 
+<!--
 <!key!>: {c2f8cf90-5387-11e9-ae66-aaaa0008a014}
-
 <!link!>: {664fdd98-537c-11e9-b398-aaaa0008a014}
+-->
 
 参考文章
 
 1. [golang encoding/gob包使用demo](https://blog.csdn.net/qq_21816375/article/details/80022298)
-
 2. [golang利用gob序列化struct对象保存到本地](https://www.cnblogs.com/reflectsky/p/golang-gob-struct.html)
-
 3. [Golang Gob编码](http://www.cnblogs.com/yjf512/archive/2012/08/24/2653697.html)
-
 4. [使用golang gin框架sessions时碰到的gob问题](https://my.oschina.net/sannychan/blog/1840048)
-
 5. [Package gob](https://golang.org/pkg/encoding/gob/#GobEncoder)
 
 gob序列化也是在使用[faygo](https://github.com/henrylee2cn/faygo)框架时, redis作session分布式缓存时遇到的, 存入redis的自定义对象取出时为空, 排查问题时发现是在服务启动前需要加一句`gob.Register()`. 
 
 ## 1. Encode与Decode
 
-golang的gob与python的pickle作用相同. 
+golang 的 gob 与 python 的 pickle 作用相同. 
 
 简单示例如下
 

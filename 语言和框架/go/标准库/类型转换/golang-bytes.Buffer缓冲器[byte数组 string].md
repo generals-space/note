@@ -3,7 +3,6 @@
 参考文章
 
 1. [go语言的bytes.buffer](https://my.oschina.net/u/943306/blog/127981)
-
 2. [Golang标准库之Buffer](http://blog.51cto.com/aresy/1405184)
 
 Buffer结构体.
@@ -28,7 +27,6 @@ type Buffer struct {
 Buffer类型的初始化方式有两种
 
 1. bytes.NewBuffer(buf []byte) *Buffer
-
 2. bytes.NewBufferString(s string) *Buffer
 
 它们的返回值相同, 但是传入的参数不同. 
@@ -63,9 +61,7 @@ fmt.Println(buf1.String())
 有关缓冲区写入的方法, 有如下几个
 
 1. Write func(p []byte) (n int, err error)          // 按`[]byte`类型写入
-
 2. WriteByte func(c byte) error                     // 按`byte`类型写入(每次调用只能写入一个字节(字符类型即可用做字节))
-
 3. WriteString func(s string) (n int, err error)    // 按`string`类型写入
 
 这几个方法功能相似, 都是将新数据写入到缓冲区尾部, 区别只在于新数据是以什么样的形式传入. 而缓冲区本身占用空间会增大.
@@ -84,11 +80,8 @@ fmt.Println(buf1.String())
 有关缓冲区读取的方法, 有如下几个
 
 1. Read func(p []byte) (n int, err error)
-
 2. ReadByte func() (byte, error) // 无需参数, 直接返回缓冲区的第一个字节.
-
 3. ReadBytes func(delim byte) (line []byte, err error)
-
 4. ReadString func(delim byte) (line string, err error)
 
 前面说了, `Read*`方法是从缓冲区取出数据, 会使缓冲区本身占用空间变小. 这些方法的使用方式也相似, 取出的数据都会放在传入的参数所表示的地址中. 传入的参数一般是有 **确定大小的容器([]byte数组)**.

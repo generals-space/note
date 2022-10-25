@@ -3,9 +3,7 @@
 参考文章
 
 1. [go json解析Marshal和Unmarshal](http://www.baiyuxiong.com/?p=923&utm_source=tuicool&utm_medium=referral)
-
 2. [JSON与Go](http://rgyq.blog.163.com/blog/static/316125382013934153244/)
-
 3. [Golang 解析 json 数据](https://blog.tanteng.me/2017/07/golang-decode-json/)
 
 json字符串的解析结果一般对应语言中的`dict(python)`, `map(java)`, `object(js)`等相似结构, 在go中为结构体struct.
