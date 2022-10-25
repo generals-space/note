@@ -6,6 +6,7 @@
 2. [net/http: request canceled (Client.Timeout exceeded while reading body)](https://github.com/golang/go/issues/37916)
 3. [[译]Go net/http 超时机制完全手册](https://colobu.com/2016/07/01/the-complete-guide-to-golang-net-http-timeouts/)
     - 超厉害的文章, 值得收藏
+    - 已转载 <!-- <!link!>: {2d6e6f21-4a54-44e1-9e37-4ad78d43c17c} -->
 
 我最近在用 elasticsearch 的 exporter 的时候, 发现 ta 在请求 es 的某个 http 接口时发生了`Client.Timeout exceeded while reading body`的错误, 尤其是, 这个错误发生几次后内存会发生泄露, 导致了 oom.
 

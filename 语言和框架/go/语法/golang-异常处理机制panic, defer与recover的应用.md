@@ -3,9 +3,7 @@
 参考文章
 
 1. [golang异常panic和恢复recover用法](https://blog.csdn.net/ghost911_slb/article/details/7831574)
-
 2. [关于golang的panic recover异常错误处理](http://xiaorui.cc/2016/03/09/%E5%85%B3%E4%BA%8Egolang%E7%9A%84panic-recover%E5%BC%82%E5%B8%B8%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/)
-
 3. [Go的异常处理 defer, panic, recover<转载>](https://blog.csdn.net/newsyoung1/article/details/39369667)
 
 golang 官方不推荐统一处理异常(如`try..catch..`), 你需要手动处理每一个返回的错误. 这个虽然有争议，但是支持的人也是很多的, 牺牲了代码的简洁性但是增加了可维护性.

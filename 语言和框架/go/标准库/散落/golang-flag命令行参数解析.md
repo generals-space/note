@@ -99,7 +99,6 @@ Options:
 命令行flag的语法有如下三种形式：
 
 1. `-flag` // 只支持bool类型(比如`-h`, `--debug`这种, 只要出现, 其值即可为true)
-
 2. `-flag=x`
-
 3. `-flag x` // 只支持非bool类型(`--flag true`这种不要用)
+

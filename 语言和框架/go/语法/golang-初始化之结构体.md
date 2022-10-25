@@ -3,7 +3,6 @@
 参考文章
 
 1. [go语言初始化内部结构体3中方式](https://studygolang.com/articles/3085)
-
 2. [golang 嵌套struct 如何直接初始化？](https://www.zhihu.com/question/22746100)
 
 ## 1. 普通结构体

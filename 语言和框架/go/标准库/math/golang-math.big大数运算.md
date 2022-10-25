@@ -63,11 +63,8 @@ big int类型的数据无法直接通过`+`, `-`, `*`, `/`进行计算, 而是�
 计算的方法包括
 
 - `Add func(x, y *big.Int) *big.Int`: 加
-
 - `Sub func(x, y *big.Int) *big.Int`: 减
-
 - `Mul func(x, y *big.Int) *big.Int`: 乘
-
 - `Div func(x, y *big.Int) *big.Int`: 除
 
 ...等等

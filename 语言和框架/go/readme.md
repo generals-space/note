@@ -20,3 +20,6 @@ DDos泛洪攻击, 耗尽的是主机的哪种资源? 端口, 内存? 连接数, 
 1. [Go语言 bytes.Equal() 和 reflect.DeepEqual() 的不同](https://www.cnblogs.com/hanyu100/p/8717456.html)
 2. [10x faster than reflect.DeepEqual](https://zhuanlan.zhihu.com/p/55654454)
 
+## 20221025
+
+golang 什么是协程泄露(Goroutine Leak), 以及 golang 是否需要协程池?

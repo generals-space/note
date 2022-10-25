@@ -3,7 +3,6 @@
 参考文章
 
 1. [16进制到文本字符串的转换，在线实时转换](https://www.bejson.com/convert/ox2str/)
-
 2. [Golang中的[]byte与16进制(String)之间的转换](https://blog.csdn.net/jason_cuijiahui/article/details/79418557)
 
 本文涉及到的字符串, 16进制变量, 16进制字符串和`[]byte`数组转换.

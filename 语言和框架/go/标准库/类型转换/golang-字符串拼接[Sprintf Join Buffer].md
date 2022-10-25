@@ -3,6 +3,7 @@
 参考文章
 
 1. [[笔记]Go语言的字符串拼装方式性能对比](https://studygolang.com/articles/2507)
+    - 还指明了这几种字符串拼接方式的速度水平, 可以看一下
 
 ## 1. `+`
 
@@ -22,7 +23,7 @@ func main() {
 }
 ```
 
-## 2. `SPrintf()`
+## 2. `fmt.SPrintf()`
 
 ```go
 c := fmt.Sprintf("%s %s", a, b)
@@ -78,7 +79,3 @@ func main() {
 	log.Printf("%s", s)
 }
 ```
-
-------
-
-参考文章1中还指明了这几种字符串拼接方式的速度水平, 可以看一下.
