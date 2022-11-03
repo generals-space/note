@@ -44,7 +44,7 @@ index-url = http://mirrors.aliyun.com/pypi
 
 按照个人镜像源的设置, 本来想直接使用如下配置, 但是pip设置代理后下载失败.
 
-```
+```conf
     location /pypi {
         proxy_pass http://mirrors.aliyun.com/pypi/simple/;
     }
@@ -66,7 +66,7 @@ index-url = http://mirrors.aliyun.com/pypi
 
 下面是nginx示例配置
 
-```
+```conf
     ## 缓存目录(/usr/local/nginx/cache/)不用手动创建, nginx重启会自动生成
     ## keys_zone=pypi:100m 表示这个zone名称为pypi，分配的内存大小为100MB
     ## levels=1:2 表示缓存目录的第一级目录是1个字符，第二级目录是2个字符，即/usr/local/nginx/cache/pypi/a/1b这种形式
@@ -94,7 +94,7 @@ index-url = http://mirrors.aliyun.com/pypi
 
 对应pip.conf的配置为
 
-```
+```ini
 ## /etc/pip.conf
 [global]
 trusted-host = pypi.sky-mobi.com

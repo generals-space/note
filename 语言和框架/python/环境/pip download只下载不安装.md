@@ -1,7 +1,8 @@
+# pip download只下载不安装
+
 参考文章
 
 1. [pip download 只下载不安装命令的使用方法](https://blog.csdn.net/qq_27565769/article/details/84262760)
-
 
 pip freeze: 查看当前 pip 环境已安装的依赖列表
 pip install -r requirements.txt: 安装列表中的依赖

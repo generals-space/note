@@ -15,7 +15,6 @@
 
 golang1.12中, `channel`的源码在`runtime/chan.go`, 在`runtime`目录中还包含`slice.go`和`map.go`.
 
-
 作为协程间通信的通道, 每个协程在读写channel对象时都会与其绑定, 在close()操作时, 内部会遍历所有读写的协程, 依次解除联系.
 
 底层实现(`channel`是协程安全的, 因为其内部使用了mutex)

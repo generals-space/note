@@ -5,7 +5,6 @@
 参考文章
 
 1. [bandersnatch 2.0.0](https://pypi.python.org/pypi/bandersnatch)
-
 2. [bandersnatch源码](https://bitbucket.org/pypa/bandersnatch)
 
 python官网倒是的确收集了很多私有镜像的[解决方案](https://wiki.python.org/moin/PyPiImplementations), 不过呵呵, 年久失修, 很多都找不到了. `bandersnatch`是无意间发现的, 貌似是一个不错的选择.

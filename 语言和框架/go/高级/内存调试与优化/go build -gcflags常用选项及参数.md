@@ -22,22 +22,3 @@ $ go build -gcflags='-N -l'
 `-l`: 禁用内联
 `-m`: 打印编译器优化的详细描述
 `-race`: 开启竞态检测
-
-## 
-
-linux
-
-```
-## x86
-GOOS=linux GOARCH=amd64 go build -o xxx ./main.go
-## arm
-GOOS=linux GOARCH=arm64 go build -o xxx ./main.go
-```
-
-windows
-
-```
-set GOARCH=arm64
-set GOOS=linux
-go build -o xxx .\main.go
-```

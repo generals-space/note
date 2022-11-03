@@ -26,3 +26,28 @@ func (s *Scheme) New(kind schema.GroupVersionKind) (Object, error) {
 }
 
 ```
+
+示例代码
+
+```go
+package main
+
+import (
+    "reflect"
+    "log"
+)
+
+type Student struct {
+    Name string
+}
+
+func main(){
+    s1 := Student{}
+    typ := reflect.TypeOf(s1)
+    log.Printf("%s\n", typ)
+	// 好像 TypeOf() 的类型不能是指针, 不然 Interface() 后面的类型转换不好写.
+    s2 := reflect.New(typ).Interface().(*Student)
+    s2.Name = "general"
+    log.Printf("%+v\n", s2)
+}
+```
