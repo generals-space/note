@@ -13,5 +13,3 @@ fatal error: runtime: out of memory
 开发机是4G内存, 在kubernetes工程目录下执行make都没有问题, 而且用`free -m`监控内存占用, 还有1.7G左右的空闲.
 
 这个问题没有来的及仔细研究, 网卡的文章指写到问题出在`link`阶段. 为了跳过这个问题, 只能先把`swap`打开, 使用kuber的make将kubelet单独编译成二进制文件, 但把`swap`关掉来执行.
-
-...我太难了.

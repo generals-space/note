@@ -50,3 +50,22 @@ set GOARCH=386
 set GOOS=linux
 go build -o main main.go
 ```
+
+## 
+
+linux
+
+```
+## x86
+GOOS=linux GOARCH=amd64 go build -o xxx ./main.go
+## arm
+GOOS=linux GOARCH=arm64 go build -o xxx ./main.go
+```
+
+windows
+
+```
+set GOARCH=arm64
+set GOOS=linux
+go build -o xxx .\main.go
+```

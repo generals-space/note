@@ -33,7 +33,7 @@ No matching distribution found for django==1.6
 
 修改`~/.pip/pip.conf`或是`/etc/pip.conf`, 目录或文件不存在的, 自行创建即可.
 
-```
+```ini
 [global]
 index-url = http://pypi.douban.com/simple
 [install]
@@ -54,14 +54,12 @@ trusted-host=mirrors.aliyun.com
 幸而python为解决这个问题提供了一个`virtualenv`的虚拟环境, 每个用户可以拥有其本身的packages库. 多个python环境相互独立, 互不影响. 它的作用如下:
 
 - 在没有root权限的情况下安装新模块
-
 - 不同应用可以使用不同的模块版本
-
 - 模块升级不影响其他应用
 
 安装/使用方式:
 
-```
+```console
 $ pip install virtualenv
 ## 添加普通用户general, 创建虚拟python环境目录
 $ useradd general
