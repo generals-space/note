@@ -5,11 +5,8 @@
 参考文章
 
 1. [如何搭建自己的pypi私有源服务器](http://python.jobbole.com/86585/)
-
 2. [自建内部pypi镜像](http://help.angzhou.com/2016/09/13/internal-pypi-server/)
-
     - 配置解释详细
-
 3. [官方启动脚本](https://pypi.python.org/pypi/pypiserver#managing-automated-startup)
 
 **注意: 这个服务(pypiserver-1.2.0)只能作为缓存存在, 无法实现定时同步...好坑啊.**
@@ -19,12 +16,12 @@
 然后直接pip安装
 
 ```
-$ pip install pypiserver
+pip install pypiserver
 ```
 
 安装的过程中会会出现BeautifulSoup版本不匹配的报错
 
-```
+```log
 Downloading/unpacking BeautifulSoup<=3.0.9999 (from pypimirror)
   Could not find a version that satisfies the requirement BeautifulSoup<=3.0.9999 (from pypimirror) (from versions: 3.2.0, 3.2.1)
 Cleaning up...
@@ -42,7 +39,7 @@ Storing debug log for failure in /home/topgear/.pip/pip.log
 安装完成后, 首先查看其帮助文档
 
 ```
-$ pypi-server --help
+pypi-server --help
 ```
 
 如果安装成功, 但是报`-bash: pypi-server: command not found`错误的, 创建`/usr/bin/pypi-server`文件, 写入如下内容
@@ -66,7 +63,7 @@ if __name__ == '__main__':
 
 在启动之前, 创建服务启动配置文件`/usr/lib/systemd/system/pypiserver.service`.(**未验证...**)
 
-```
+```ini
 [Unit]
 Description=Pypi Mirror
 [Service]
