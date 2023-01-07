@@ -4,7 +4,7 @@
 
 1. [Getting error with pip search and pip install](https://stackoverflow.com/questions/66375972/getting-error-with-pip-search-and-pip-install)
 
-```console
+```log
 $ pip3 search s3cmd
 ERROR: Exception:
 Traceback (most recent call last):
@@ -24,7 +24,7 @@ xmlrpc.client.Fault: <Fault -32500: "RuntimeError: PyPI's XMLRPC API is currentl
 
 完事之后, 我又尝试把 search 流量指到阿里云镜像源, 不过也报错了.
 
-```console
+```log
 $ pip3 search s3cmd -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
 ERROR: Exception:
 Traceback (most recent call last):

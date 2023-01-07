@@ -8,9 +8,7 @@
 参考文章
 
 1. [urllib2.URLError: < urlopen error unknown url type: https >](http://blog.csdn.net/hewy0526/article/details/9202523)
-
 2. [get-pip源码](https://bootstrap.pypa.io/get-pip.py)
-
 3. [关于在centos下安装python3.7.0以上版本时报错ModuleNotFoundError: No module named '_ctypes'的解决办法](https://blog.csdn.net/qq_36416904/article/details/79316972)
 
 实验环境:
