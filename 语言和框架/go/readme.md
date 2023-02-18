@@ -10,6 +10,10 @@
     - golang 的发展历程
     - 可以搜索很多源码层面的问题
 
+[Go 语言原本](https://golang.design/under-the-hood/)
+    - 基于 1.15
+
+
 [disk io引起golang线程数暴涨的问题](http://xiaorui.cc/2018/04/23/disk-io%E5%BC%95%E8%B5%B7golang%E7%BA%BF%E7%A8%8B%E6%95%B0%E6%9A%B4%E6%B6%A8%E7%9A%84%E9%97%AE%E9%A2%98/)
 
 1. golang的scheduler会帮你调度关联 PMG, 用户无法看到也无法创建原生系统线程, 且golang社区并没有要加入这个特性的意图. 如果有必要那么可以用cgo, 或者手动触发`runtime.LockOSThread`绑定.

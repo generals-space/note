@@ -10,7 +10,7 @@ sudo vim /Library/Preferences/VMware\ Fusion/networking
 
 更新网段
 
-```
+```ini
 VERSION=1,0
 answer VNET_1_DHCP yes
 answer VNET_1_DHCP_CFG_HASH BA5B761F774CC031718E05D8A7F5446CF7033192
