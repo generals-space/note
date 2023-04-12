@@ -72,7 +72,7 @@ scvg143: inuse: 8, idle: 104, sys: 113, released: 104, consumed: 8 (MB)
 
 `schedtrace`的值为协程信息的打印频率, 单位是毫秒. 如果值太小, 比如1, 控制台会频繁打印, 可能会导致无法接受到ctrl-c信号而卡住, 一定要当心!
 
-```console
+```log
 $ GODEBUG=schedtrace=1000 godoc -http=:6060
 SCHED 0ms: gomaxprocs=8 idleprocs=5 threads=6 spinningthreads=1 idlethreads=0 runqueue=0 [0 0 0 0 0 0 0 0]
 SCHED 1008ms: gomaxprocs=8 idleprocs=8 threads=20 spinningthreads=0 idlethreads=15 runqueue=0 [0 0 0 0 0 0 0 0]
@@ -84,7 +84,7 @@ SCHED 3023ms: gomaxprocs=8 idleprocs=8 threads=20 spinningthreads=0 idlethreads=
 
 如果同时使用`scheddetail=1`将使go runtime输出总结性信息时, 一并输出每一个goroutine的状态信息.
 
-```console
+```log
 $ GOMAXPROCS=2 GODEBUG="schedtrace=1000,scheddetail=1" godoc -http=:6060
 SCHED 0ms: gomaxprocs=2 idleprocs=0 threads=5 spinningthreads=0 idlethreads=0 runqueue=0 gcwaiting=0 nmidlelocked=1 stopwait=0 sysmonwait=0
   P0: status=0 schedtick=0 syscalltick=0 m=-1 runqsize=0 gfreecnt=0

@@ -16,6 +16,14 @@
 6. [如何彻底禁止Windows 10自动更新？ - 不名的回答 - 知乎](https://www.zhihu.com/question/287260272/answer/483721867)
     - `usosvc.dll`, `wuaueng.dll`, `WaaSMedicSvc.dll`
     - **重要**: 编辑权限时可能复选框是灰色的, 无法点击, 可以使用`takeown /f usosvc.dll`先获取文件权限(如果`takeown`找不到, 可以试试`./takeown.exe`).
+7. [win10禁止自动更新的终极方法（亲测有效）](https://zhuanlan.zhihu.com/p/93110333)
+    - 组策略
+
+
+------
+20230412更新
+
+组策略应该可以了.
 
 ------
 
