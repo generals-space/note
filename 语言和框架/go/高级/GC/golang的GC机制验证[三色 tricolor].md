@@ -3,6 +3,7 @@
 参考文章
 
 1. [Golang源码探索(三) GC的实现原理](https://www.cnblogs.com/zkweb/p/7880099.html)
+2. [Go语言设计与实现 7.2 垃圾收集器](https://draveness.me/golang/docs/part3-runtime/ch07-memory/golang-garbage-collector/)
 
 Golang从1.5开始引入了三色GC, 经过多次改进, 当前的1.9版本的GC停顿时间已经可以做到极短. 停顿时间的减少意味着"最大响应时间"的缩短, 这也让go更适合编写网络服务程序. 这篇文章将通过分析golang的源代码来讲解go中的三色GC的实现原理. 首先会讲解基础概念, 然后讲解分配器, 再讲解收集器的实现.
 
@@ -54,17 +55,6 @@ arena, bitmap, spans
 ---------------
 
 三色, tricolor, 本意为三原色. 猜测由于三原色为红绿蓝, 不太好记, 所以直接以黑白灰命名, 同时用白色指代回收的垃圾, 还是比较贴切的.
-
-Q: 都说gc操作(标记和回收)是从根节点开始的, 那根节点是哪里?
-
-A: 根节点包含全局变量和各函数体中明确声明的变量.
-
-```go
-var A LinkedListNode;
-A.next = &LinkedListNode{next: nil};
-```
-
-其中A就是根节点的对象, ta的next属性分配的对象并不属于根节点(虽然是匿名变量, 但仍可与A对象平级对待), 扫描时只会先处理A对象, 类似于广度优先.
 
 Q: 函数栈可能变得很深(比如a调用b, b调用c...), 那么gc回收是从哪一个函数栈开始的? 
 
