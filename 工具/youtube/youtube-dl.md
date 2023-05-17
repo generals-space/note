@@ -1,3 +1,5 @@
+[用 yt-dlp 下载整个 YouTube 频道的视频](https://cloud.tencent.com/developer/beta/article/1943974)
+
 ## 最简示例
 
 ```
