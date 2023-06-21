@@ -6,4 +6,3 @@
 2. [Go 语言编译器的 "//go:" 详解](https://www.jianshu.com/p/afd6dd988c20)
     - `//go:`等价于C语言中的`#include`, 是给编译器看的标记
     - 常用标记: `//go:noinline`: 不要内联; `//go:nosplit`: 跳过栈溢出检测; `//go:noescape`: 禁止逃逸; `//go:norace`: 跳过竞态检测;
-标准库源码中一般都配有相应的测试代码, 通过查看测试用例可以方便的了解标准库提供的函数的使用方法.
