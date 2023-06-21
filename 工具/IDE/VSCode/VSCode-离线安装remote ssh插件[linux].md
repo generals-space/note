@@ -18,7 +18,9 @@ c9a2f78283b6e5ef708fb8869e2a5adaa476e42f
 https://update.code.visualstudio.com/commit:{COMMIT_ID}/server-linux-x64/stable
 ```
 
-`COMMIT_ID`就是上面的hash值, 手动下载对应版本的 vscode-server 包, 放到`~/.vscode-server/bin/{COMMIT_ID}`目录下, 解压.
+`{COMMIT_ID}`就是上面的hash值, 手动下载对应版本的 vscode-server 包, 放到`~/.vscode-server/bin/{COMMIT_ID}`目录下, 解压.
+
+> 注意: `commit:{COMMIT_ID}`中, 是`:`冒号不是`/`斜杠
 
 注意, vscode-server 的 tar 包解压后会得到一个目录, 我们需要将这个目录下的所有内容移动到 hash 目录本身下面.
 
