@@ -22,7 +22,7 @@
 
 ...但只是理论上, 实际上我在实践过程中在创建完成这个`launch.json`, 然后点击`Run and Debug`这个按钮时, 右下角总是弹出报错:
 
-```
+```log
 Error: Main method not found in the file, please define the main method as: public static void main(String[] args)
 ```
 

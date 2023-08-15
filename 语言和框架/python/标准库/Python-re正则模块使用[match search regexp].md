@@ -51,3 +51,5 @@ ip2 = re.search('(.*)(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})', target_str)
 print 'ip2.group(): ' + ip2.group()
 print 'ip2.group(2): ' + ip2.group(2)
 ```
+
+## findall()匹配多个结果
