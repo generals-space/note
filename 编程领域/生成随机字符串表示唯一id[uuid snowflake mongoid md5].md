@@ -6,6 +6,7 @@
 2. [xid](https://github.com/rs/xid)
     - 各种编码算法生成的字符串长度表格对比
 3. [为什么没有人用md5(UUID(), 16)来生成16位大小写不敏感的唯一取值？](https://segmentfault.com/q/1010000002949015)
+4. [safe enough 8-character short unique random string](https://stackoverflow.com/questions/13484726/safe-enough-8-character-short-unique-random-string)
 
 最近有一个需求, 在向数据库中新增记录时, 需要用一个字段作为唯一编号, 要求为16位, 可以是字母数字的组合.
 
@@ -72,6 +73,12 @@ md5(UUID(), 32) = 7ac66c0f148de9519b8bd264312c4d64
 
 但是每个结果需要18个字符.
 
-------
+## 时间戳
 
 本来想着, 没有长度为16的唯一id字符串, 可以找长度为10, 12, 14的方案, 只要在前缀处加上固定的标记就行, 如SNxxxxxxxxxxxxxx. 但目前来看, 没有找到.
+
+秒级的时间戳是10个字符, 毫秒级的是13个字符(如1692241260547), 但这要求并发在1000以下, 否则仍旧会出现碰撞的情况.
+
+------
+
+只能截取了, 我目前的场景数据量很小, 暂时不考虑冲突的情况.
