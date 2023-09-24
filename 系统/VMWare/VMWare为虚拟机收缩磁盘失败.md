@@ -3,6 +3,10 @@
 参考文章
 
 1. [关于VMware虚拟机磁盘收缩的几种方法](https://www.cnblogs.com/5201351/p/4290401.html)
+2. [vmware fusion清理linux虚拟机磁盘](https://zhuanlan.zhihu.com/p/275907188)
+     - `vmware-toolbox-cmd disk shrink /`宿主机可能会崩溃
+     - `vmware-toolbox-cmd disk shrinkonly`换成这个
+     - 收缩磁盘包括两部分, 整理和收缩, 前者包含了整理的过程, 而后者只是收缩
 
 宿主机: Win10
 VMWare: 15.1

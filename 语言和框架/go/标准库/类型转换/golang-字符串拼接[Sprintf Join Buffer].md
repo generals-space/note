@@ -2,7 +2,7 @@
 
 参考文章
 
-1. [[笔记]Go语言的字符串拼装方式性能对比](https://studygolang.com/articles/2507)
+1. [[笔记]Go语言的字符串拼装方式性能对比](https://www.cnblogs.com/journeyonmyway/p/4320091.html)
     - 还指明了这几种字符串拼接方式的速度水平, 可以看一下
 
 ## 1. `+`
