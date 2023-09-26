@@ -64,6 +64,8 @@ select a.*, b.department from "user" a join department b on a.department_id = b.
 
 可以看出, **join查询是根据当前表已经查出的行中某个字段去另一个表查询与之匹配的行的某些字段**.
 
+> `左连接`与`右连接`又被称为`外连接`, 而多表联合查询时默认join类型为`内连接`.
+
 ## 3. union查询
 
 OK, 有了上面的概念作基础, 我们再来看一下`union`查询.
