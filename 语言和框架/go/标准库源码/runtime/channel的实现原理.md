@@ -13,9 +13,7 @@
 4. [golang 中 channel 的非阻塞访问方法](https://www.jianshu.com/p/4f51fe7dad62)
     - select + default 可实现非阻塞读取.
 
-golang1.12中, `channel`的源码在`runtime/chan.go`, 在`runtime`目录中还包含`slice.go`和`map.go`.
-
-作为协程间通信的通道, 每个协程在读写channel对象时都会与其绑定, 在close()操作时, 内部会遍历所有读写的协程, 依次解除联系.
+作为协程间通信的通道, 每个协程在读/写channel对象时都会与其绑定, 在close()操作时, 内部会遍历所有读写的协程, 依次解除联系.
 
 底层实现(`channel`是协程安全的, 因为其内部使用了mutex)
 
@@ -45,4 +43,3 @@ golang1.12中, `channel`的源码在`runtime/chan.go`, 在`runtime`目录中还�
 5. 如果 recvq 为空, 且 channel 未满, 可以写入.
 6. 如果 channel 已满, 但写协程为非阻塞, 则直接返回写入失败
 7. 如果写协程可阻塞, 则阻塞该写协程, 等待被唤醒
-
