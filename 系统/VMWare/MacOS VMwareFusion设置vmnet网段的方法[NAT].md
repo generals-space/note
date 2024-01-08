@@ -26,3 +26,5 @@ answer VNET_8_NAT yes
 answer VNET_8_VIRTUAL_ADAPTER yes
 add_bridge_mapping en0 2
 ```
+
+注意: 不只需要重启虚拟机, 而且还要重启 vmware fusion 软件才能生效.
