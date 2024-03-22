@@ -6,6 +6,7 @@
     - 废止密码认证, 使用token认证
 2. [Creating a personal access token](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token)
     - 生成自己的token串以及使用方法
+    - 在使用git命令时, 如果提示输入账号密码, 用户名可保持不变, 而**将密码更换成token**.
     - `gh auth login`
 3. [Updating credentials from the macOS Keychain](https://docs.github.com/en/get-started/getting-started-with-git/updating-credentials-from-the-macos-keychain)
     - 清除本地缓存的密码

@@ -16,7 +16,7 @@ vscode在测试golang代码时, 发现测试结果都是旧的. 接口连接了�
 
 最后的vscode配置文件为
 
-```
+```json
 {
     "go.testFlags": ["-v", "-count=1"],
 }
