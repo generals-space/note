@@ -1,5 +1,7 @@
 # Win10 启用管理员账户Administrator
 
+操作系统: win10
+
 以管理员身份运行 powershell 输入如下命令.
 
 ```console
