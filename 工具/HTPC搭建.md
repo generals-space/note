@@ -79,7 +79,7 @@ chrome打开后自动置顶, 要看到其他窗口, 只能先关闭.
 
 调整"图钉"标识跟随窗口的频率，太高会占用CPU，太低的话在移动窗口的时候图钉标识容易产生残影. 由于主要是全屏钉住, 因此可以调低一点, 设置为"200ms"就可以了.
 
-### 右键映射"主页"按钮: AutoControl: Keyboard shortcut, Mouse gesture
+### ~~右键映射"主页"按钮: AutoControl: Keyboard shortcut, Mouse gesture~~(飞鼠有主页功能)
 
 配置选项
 
