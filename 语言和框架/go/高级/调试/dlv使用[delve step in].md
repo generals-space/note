@@ -52,7 +52,7 @@ idea 与 vscode 的调试都是在底层调用dlv, 但是ta们两个都没有办
 
 但是在直接使用dlv进入交互式命令行, 发现还是这样...
 
-```
+```go
 (dlv) n
 > k8s.io/client-go/informers.(*sharedInformerFactory).Start() /usr/local/gopath/pkg/mod/k8s.io/client-go@v0.17.2/informers/factory.go:137 (PC: 0x11f975e)
 Warning: debugging optimized function
