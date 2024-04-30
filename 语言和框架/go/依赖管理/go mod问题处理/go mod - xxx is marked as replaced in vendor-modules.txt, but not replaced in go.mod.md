@@ -6,7 +6,7 @@
 
 在编译 containerd v1.5.8 版本时, 将 go.mod 文件中的 kubernetes 相关包 replace 到了本地包, 然后 make 就报错了.
 
-```console
+```log
 $ make
 + bin/ctr
 go: inconsistent vendoring in /home/github.com/containerd/containerd:
@@ -22,6 +22,10 @@ go: inconsistent vendoring in /home/github.com/containerd/containerd:
 make: *** [bin/ctr] Error 1
 ```
 
-vendor 目录下存在 gopath 模式下依赖的包, 同时包含一个 modules.txt 文件.
+按照规定, vendor 目录由`go mod vendor`生成, 保存有 go mod 本地缓存的依赖包, 同时包含一个`modules.txt`文件, 记录着 vendor 中依赖包的版本信息.
 
-可以再次执行 go mod vendor, 将 replace 后的本地包, 放到 vendor 目录, 再次 make 就可以了.
+但是`go build -mod=vendor`时, 虽然使用的是 vendor 目录中的包, 但仍然会与`go.mod`文件做对比, 如果不一致, 就会报错.
+
+上面我们将 go.mod 中的部分包指向的本地的其他目录(这些包也会独立更新), 与`vendor/modules.txt`记录的内容就不一致了.
+
+可以再次执行 go mod vendor, 将 replace 后的本地包, 放到 vendor 目录, 同时更新`vendor/modules.txt`中的版本记录, 再次 make 就可以了.

@@ -12,7 +12,7 @@ require (
 
 在执行`go mod download`时出现如下错误(其他依赖正常).
 
-```console
+```log
 $ go mod download
 -> unzip /usr/local/gopath/pkg/mod/cache/download/github.com/docker/distribution/@v/v0.0.0-20160419170423-cd27f179f2c1.zip: malformed file path "contrib/docker-integration/generated_certs.d/localregistry:5440/ca.crt": invalid char ':'
 github.com/docker/distribution@v0.0.0-20160419170423-cd27f179f2c1: unzip /usr/local/gopath/pkg/mod/cache/download/github.com/docker/distribution/@v/v0.0.0-20160419170423-cd27f179f2c1.zip: malformed file path "contrib/docker-integration/generated_certs.d/localregistry:5440/ca.crt": invalid char ':'
@@ -22,7 +22,7 @@ github.com/docker/distribution@v0.0.0-20160419170423-cd27f179f2c1: unzip /usr/lo
 
 后来我按照错误提示中, 到`gopath/pkg/mod/cache`目录下找到出问题zip包, 该目录有如下文件.
 
-```console
+```log
 /usr/local/gopath/pkg/mod/cache/download/github.com/docker/distribution/@v $ ll
 总用量 2060
 -rw------- 1 root root    110 1月  15 14:13 list
@@ -36,7 +36,7 @@ github.com/docker/distribution@v0.0.0-20160419170423-cd27f179f2c1: unzip /usr/lo
 
 但是`gopath/pkg/mod/github.com/docker`下并没有该版本(v0.0.0)的`distribution`工程(flannel工程下`vendor`目录下当前也没有), 但是有其他版本.
 
-```console
+```log
 /usr/local/gopath/pkg/mod/github.com/docker $ ll
 总用量 44
 dr-x------ 17 root root 4096 12月 31 14:59 distribution@v2.6.0-rc.1.0.20170726174610-edc3ab29cdff+incompatible
