@@ -6,7 +6,7 @@
 
 `/Library/Preferences/VMware\ Fusion/networking`文件中存储了vmware提供的虚拟网络配置, 默认包括`vnet1`, `vnet8`两个(前者应该是`host-only`, 后者则是`NAT`).
 
-```
+```log
 VERSION=1,0
 answer VNET_1_DHCP yes
 answer VNET_1_DHCP_CFG_HASH B4B7EF1463ADB73FAF55D8E47623A74DC52336B3

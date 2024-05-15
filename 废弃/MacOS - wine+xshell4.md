@@ -1,9 +1,7 @@
 # wine+xshell4
 
 1. [Mac OS X上安装Xshell](https://www.linuxidc.com/Linux/2015-04/116463.htm)
-
 2. [Installing WineHQ packages](https://wiki.winehq.org/MacOS)
-
 3. [xshell的注册码](http://www.xuebuyuan.com/2126914.html)
 
 Xshell 4 注册码： 690313-111999-999313
@@ -25,3 +23,5 @@ function xshell(){
 ```
 
 太丑了, 而且没有全局快捷键, 放弃.
+
+不再做运维工作, 使用 Iterm2 也够了.

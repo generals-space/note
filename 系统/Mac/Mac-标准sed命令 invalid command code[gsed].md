@@ -14,7 +14,7 @@
 
 在Mac下执行sed命令报错
 
-```console
+```bash
 $ sed -i '0,/\<h1\>/d' ./*.html
 sed: 1: ".//028.html": invalid command code .
 ```
