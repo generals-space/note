@@ -3,6 +3,17 @@
 参考文章
 
 1. [golang 位运算](https://studygolang.com/articles/6337)
+2. [运算操作符](https://gfw.go101.org/article/operators.html)
+	- Go语言101
+3. [Operators](https://go.dev/ref/spec#Operators)
+	- 官方文档
+
+- 按位与`&`
+- 按位或`|`
+- 按位异或`^`
+- 按位取反`^`
+- 左移`<<`
+- 右移`>>`
 
 ```go
 package main
