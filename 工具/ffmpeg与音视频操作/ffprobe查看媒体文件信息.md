@@ -10,7 +10,7 @@
 
 首先查看一个音频文件
 
-```
+```log
 $ ffprobe 永夜\ -\ 石岩.mp3
 ffprobe version 4.1 Copyright (c) 2007-2018 the FFmpeg developers
 ...省略
@@ -32,7 +32,7 @@ Input #0, mp3, from '永夜 - 石岩.mp3':
 
 然后是一个视频文件
 
-```
+```log
 $ ffprobe RWBY\ White\ trailer\ -\ Miku\ version.mp4
 ffprobe version 4.1 Copyright (c) 2007-2018 the FFmpeg developers
 ...省略
@@ -65,7 +65,7 @@ Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'RWBY White trailer - Miku version.mp4':
 
 ### 2.1 `-show_format`: 输出媒体文件的格式信息(包括时长, 文件大小, 格式信息等等)
 
-```
+```log
 $ ffprobe -show_format 永夜\ -\ 石岩.mp3
 ffprobe version 4.1 Copyright (c) 2007-2018 the FFmpeg developers
 ...省略
@@ -125,7 +125,7 @@ $ ffprobe -show_packets 永夜\ -\ 石岩.mp3
 
 示例如下
 
-```
+```log
 $ ffprobe -show_format -print_format json 永夜\ -\ 石岩.mp3
 ffprobe version 4.1 Copyright (c) 2007-2018 the FFmpeg developers
 ...省略
@@ -162,7 +162,7 @@ Input #0, mp3, from '永夜 - 石岩.mp3':
 
 `-v`和`-loglevel`选项, 这两个选项完全一样, 不知道有多少可用参数, 但是至少有一个是确定的: `quite`.
 
-```
+```java
 $ ffprobe -show_format -print_format json -v quiet 永夜\ -\ 石岩.mp3
 {
     "format": {

@@ -1,41 +1,11 @@
-# golang-初始化之结构体
+# golang-初始化结构体[嵌套 匿名]
 
 参考文章
 
 1. [go语言初始化内部结构体3中方式](https://studygolang.com/articles/3085)
 2. [golang 嵌套struct 如何直接初始化？](https://www.zhihu.com/question/22746100)
 
-## 1. 普通结构体
-
-```go
-package main
-
-import "log"
-
-type User struct {
-	Id   int
-	Name string
-	Age  int
-}
-
-func main() {
-	userA := User{
-		Id:   1,
-		Name: "general",
-		// 最后一个成员的必须要有一个逗号
-		Age: 21,
-	}
-	// 输出{Id:1 Name:general Age:21}
-	log.Printf("%+v", userA)
-
-	// 可以按照成员排列顺序进行初始化, 但是不够灵活
-	userB := User{2, "jiangming", 24}
-	// {Id:2 Name:jiangming Age:24}
-	log.Printf("%+v", userB)
-}
-```
-
-## 2. 嵌套结构体
+## 1. 嵌套结构体
 
 ```go
 package main
@@ -90,7 +60,7 @@ func main() {
 }
 ```
 
-## 3. 嵌套 + 匿名结构体
+## 2. 嵌套 + 匿名结构体
 
 这个例子是参考文章2中提出的...感觉很有意义.
 

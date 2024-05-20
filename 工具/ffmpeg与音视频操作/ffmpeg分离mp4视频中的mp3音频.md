@@ -13,7 +13,7 @@ ffmpeg版本: 2.8.15
 
 从mp4视频中分离mp3音频
 
-```
+```log
 $ ffmpeg -i xiaonan.mp4 -f mp3 -vn xiaonan.mp3
 ffmpeg version 2.8.15 Copyright (c) 2000-2018 the FFmpeg developers
   built with gcc 4.8.5 (GCC) 20150623 (Red Hat 4.8.5-36)

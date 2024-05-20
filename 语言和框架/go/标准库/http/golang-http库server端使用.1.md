@@ -63,7 +63,7 @@ func main() {
 
 测试结果如下
 
-```console
+```log
 $ curl 'localhost:8079/get?name=general&title=ceo&title=manager'
 {"name":"general","title":["ceo","manager"]}
 $ curl -X POST -d '{"username": "general", "password": "123456"}' localhost:8079/post

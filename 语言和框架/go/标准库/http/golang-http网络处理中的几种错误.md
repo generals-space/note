@@ -21,34 +21,6 @@ resp, err := c.Get("https://blog.filippo.io/")
 
 ## client 端
 
-### 找不到服务器（no such host）的几种情况
-
-**域名不存在，瞄了下代码，应该是 dns 包返回的**
-
-```
-Get http://a.b/abc: dial tcp: lookup a.b: no such host
-```
-
-**ip 不合法不会直接检查，也会返回同样错误**
-
-```
-Get http://127.0.0.1888:8080/abc: dial tcp: lookup 127.0.0.1888: no such host
-```
-
-**端口瞎填会直接报错，都不会发请求**
-
-```
-Get http://127.0.0.1:65536/abc: dial tcp: address 65536: invalid port
-```
-
-------
-
-**拒绝连接，对方端口未监听、进程挂掉等等**
-
-```
-Get http://127.0.0.1:8080/abc: dial tcp 127.0.0.1:8080: connect: connection refused
-```
-
 **建立连接超时**
 
 ```
