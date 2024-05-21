@@ -83,7 +83,7 @@ func main() {
 
 不过要使用`-gcflags='-l -N'`编译选项, 因为在参考文章2的评论区, 有人说使用了`sync.Pool`反而变慢了, 尤其是第1个for循环竟然只用了1s甚至0s, 这简直是不可能的. 使用这个编译选项是为了禁用编译器优化, 这样才能看出差别.
 
-```
+```log
 $ go run -gcflags='-l -N' .\main.go
 without pool 36s
 with    pool 29s

@@ -16,12 +16,12 @@
 
 用了 MobaXterm, 在使用`edit`和`exec`子命令时无法执行...
 
-```console
+```log
 $ kubectl edit deploy xxx
 error: there was a problem with the editor "/bin/vim"
 ```
 
-```console
+```log
 $ kubectl exec -it xxx /bin/bash
 Unable to use a TTY - input is not a terminal or the right kind of file
 ```
