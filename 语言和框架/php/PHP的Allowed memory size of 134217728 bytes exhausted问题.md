@@ -12,7 +12,7 @@ zabbix 模板页有一些组件无法显示, 查看apache的日志发现频繁�
 
 apache的`error`日志中显示如下报错.
 
-```
+```log
 PHP Fatal error: Allowed memory size of 134217728 bytes exhausted (tried to allocate 72 bytes) in /usr/local/webdata/andy/fanli/jd/job/parse.php on line 11
 ```
 
@@ -22,7 +22,7 @@ PHP Fatal error: Allowed memory size of 134217728 bytes exhausted (tried to allo
 
 后来找到参考文章3. 它对这个问题的处理方法是, 修改`/etc/httpd/conf.d/zabbix.conf`文件, 因为在部署zabbix的时候, 可能会在zabbix.conf里写一些配置, 我这边的配置如下.
 
-```
+```xml
 #
 # Zabbix monitoring system php web frontend
 #

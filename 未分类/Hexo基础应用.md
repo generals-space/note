@@ -3,7 +3,6 @@
 参考文章
 
 1. [Hexo 入门指南（三） - 文章 & 草稿](http://blog.csdn.net/wizardforcel/article/details/40684575?_t_t_t=0.7924863273750762)
-
 2. [Github 搭建 hexo （五）- 站点地图（sitemap.xml）](http://blog.csdn.net/u010053344/article/details/50706790)
 
 ## 1. 创建标签及分类.
@@ -92,7 +91,7 @@ $ npm install hexo-generator-baidu-sitemap --save
 
 保证`$HEXO/_config.yml`文件中有如下配置(默认存在)
 
-```
+```yaml
 # sitemap
 sitemap:
   path: sitemap.xml
