@@ -167,3 +167,35 @@ case 1
 	fmt.Println(val2) // 0
 	fmt.Println(ok2)  // false
 ```
+
+## 5. 空case
+
+```go
+	for {
+		select {
+		case <-ch1:
+			// 这里啥也不会做
+		case c := <-ch2:
+			log.Printf("case 2, counter: %d\n", c)
+		}
+		time.Sleep(time.Second)
+	}
+```
+
+## 6. 多case
+
+golang 不支持类似C的`case 1,2,3: {}`这种语法, 多个case执行相同操作只能使用如下格式.
+
+```go
+	for {
+		select {
+		case <-ch1:
+			log.Printf("hello world\n")
+		case <-ch2:
+			log.Printf("hello world\n")
+		}
+		time.Sleep(time.Second)
+	}
+```
+
+如果要执行的操作过长, 则需要自行用函数封装.

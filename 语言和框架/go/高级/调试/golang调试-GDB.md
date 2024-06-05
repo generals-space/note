@@ -11,7 +11,7 @@
 
 gdb可以通过`list 函数名称`查看函数指定函数前后的代码, 如下
 
-```
+```log
 (gdb) list main // 或是list 文件名(带后缀):main
 1	#include <stdio.h>
 2

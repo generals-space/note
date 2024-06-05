@@ -19,7 +19,7 @@
 
 > dlv(1.7.1)也可以调试二进制文件, 使用`dlv exec runc`即可.
 
-```console
+```log
 $ dlv debug runc run mycontainer01
 can't load package: package runc: cannot find package "runc" in any of:
 	/usr/local/go/src/runc (from $GOROOT)
