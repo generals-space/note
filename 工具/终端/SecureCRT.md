@@ -3,6 +3,8 @@
 1. [SecureCRT修改全局外观及连接linux乱码的办法](https://www.cnblogs.com/lisn666/p/11882312.html)
     - 全局外观可以看一下
 2. [SecureCRT中文乱码解决方案](https://blog.csdn.net/yongqi_wang/article/details/81392638)
+3. [securecrt 8之后版本， new host key 取消显示](https://blog.csdn.net/warcraftzhaochen/article/details/73867385)
+    - 自动接受服务器公钥
 
 ## 默认外观设置
 
@@ -19,3 +21,14 @@
 这个在`会话选项`中.
 
 左侧 终端 -> 外观 -> 右侧 字符编码.
+
+## 自动接受服务器公钥
+
+初始连接某个服务器, 需要用户手动点击"Accept and Save"按钮, 我希望ta可以自动接受, 不用每次都点.
+
+选项 -> 全局选项 -> 左侧常规 -> 配置文件路径, 打开对应的配置文件的目录, 编辑`SSH2.ini`文件, 修改`Automatically Accept Host Keys`的值, 由`00000000`改为`00000001`
+
+```ini
+D:"Automatically Accept Host Keys"=00000000
+D:"Automatically Accept Host Keys"=00000001
+```

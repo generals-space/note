@@ -4,6 +4,7 @@
 
 1. [Golang源码探索(三) GC的实现原理](https://www.cnblogs.com/zkweb/p/7880099.html)
 2. [Go语言设计与实现 7.2 垃圾收集器](https://draveness.me/golang/docs/part3-runtime/ch07-memory/golang-garbage-collector/)
+    - GC 机制的演进过程
 
 Golang从1.5开始引入了三色GC, 经过多次改进, 当前的1.9版本的GC停顿时间已经可以做到极短. 停顿时间的减少意味着"最大响应时间"的缩短, 这也让go更适合编写网络服务程序. 这篇文章将通过分析golang的源代码来讲解go中的三色GC的实现原理. 首先会讲解基础概念, 然后讲解分配器, 再讲解收集器的实现.
 
