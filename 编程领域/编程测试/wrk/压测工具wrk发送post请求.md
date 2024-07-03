@@ -3,9 +3,7 @@
 参考文章
 
 1. [wrk issue - JSON Post](https://github.com/wg/wrk/issues/267)
-
 2. [wrk post.lua](https://github.com/wg/wrk/blob/master/scripts/post.lua)
-
 3. [wrk用lua脚本构建复杂的http压力测试](http://xiaorui.cc/2018/03/14/wrk%E7%94%A8lua%E8%84%9A%E6%9C%AC%E6%9E%84%E5%BB%BA%E5%A4%8D%E6%9D%82%E7%9A%84http%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95/)
 
 没找到行内编写post请求的方法, 这一点比curl还不方便, 只能编写lua脚本.

@@ -13,7 +13,7 @@ nginx容器只提供`index`静态页面服务, 端口映射`3001:3001`.
 
 在alpine容器中执行wrk命令
 
-```
+```log
 $ wrk -t 16 -c 10000 -d 30 --timeout 15 --latency http://192.168.0.8:3001
 Running 30s test @ http://192.168.0.8:3001
   16 threads and 10000 connections
@@ -43,7 +43,7 @@ docker桌面版对每个容器的的资源限制都是8核2G, 但是实际上ngi
 
 事实证明我的猜想是正确的, 如果在wrk容器中直接请求nginx所在容器的地址, 错误率会低很多.
 
-```
+```log
 $ wrk -t 8 -c 10000 -d 30 --timeout 15 --latency http://172.17.0.2:3001
 Running 30s test @ http://172.17.0.2:3001
   8 threads and 10000 connections

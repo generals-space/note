@@ -178,7 +178,7 @@ public class VersionLogList {
 
 在进行 json 转 Java 对象的实验时, 访问接口, 日志中出现异常, 报错如下.
 
-```
+```log
 com.fasterxml.jackson.databind.exc.InvalidDefinitionException: Cannot construct instance of `com.example.javastruct.VersionLogList` (no Creators, like default constructor, exist): cannot deserialize from Object value (no delegate- or property-based Creator)
  at [Source: (String)"{"versionList":[{"title":"v0.0.1","versionDescribe":["1. aaa","2. bbb"]}]}"; line: 1, column: 2]
 ```

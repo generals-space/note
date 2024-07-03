@@ -24,7 +24,7 @@ route: writing to routing socket: Invalid argument
 
 后来找到参考文章1, 可以使用`netstat -r`来代替`route`.
 
-```console
+```log
 $ netstat -r
 Routing tables
 

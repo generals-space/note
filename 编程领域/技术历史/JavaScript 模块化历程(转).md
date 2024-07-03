@@ -123,11 +123,8 @@ jQuery的封装风格曾经被很多框架模仿，通过匿名函数包装代�
 从以上的尝试中，可以归纳出js模块化需要解决那些问题：
 
 1. 如何安全的包装一个模块的代码？（不污染模块外的任何代码）
-
 2. 如何唯一标识一个模块？
-
 3. 如何优雅的把模块的API暴漏出去？（不能增加全局变量）
-
 4. 如何方便的使用所依赖的模块？
 
 围绕着这些问题，js模块化开始了一段艰苦而曲折的征途。
@@ -139,13 +136,9 @@ jQuery的封装风格曾经被很多框架模仿，通过匿名函数包装代�
 大牛云集的CommonJs社区发力，制定了[Modules/1.0规范](http://wiki.commonjs.org/wiki/Modules/1.0)，首次定义了一个模块应该长啥样。具体来说，Modules/1.0规范包含以下内容：
 
 1. 模块的标识应遵循的规则（书写规范）
-
 2. 定义全局函数require，通过传入模块标识来引入其他模块，执行的结果即为别的模块暴漏出来的API
-
 3. 如果被require函数引入的模块中也包含依赖，那么依次加载这些依赖
-
 4. 如果引入模块失败，那么require函数应该报一个异常
-
 5. 模块通过变量exports来向往暴漏API，exports只能是一个对象，暴漏的API须作为此对象的属性。
 
 此规范一出，立刻产生了良好的效果，由于其简单而直接，在nodejs中，这种模块化方案立刻被推广开了。
@@ -209,13 +202,9 @@ Modules/1.0规范源于服务端，无法直接用于浏览器端，原因表现
 这一波人有点像“中间派”，既不想丢掉旧的规范，也不想像AMD那样推到重来。他们认为，Modules/1.0固然不适合浏览器，但它里面的一些理念还是很好的，（如通过require来声明依赖），新的规范应该兼容这些，AMD规范也有它好的地方（例如模块的预先加载以及通过return可以暴漏任意类型的数据，而不是像commonjs那样exports只能为object），也应采纳。最终他们制定了一个[Modules/Wrappings规范](http://wiki.commonjs.org/wiki/Modules/Wrappings)，此规范指出了一个模块应该如何“包装”，包含以下内容：
 
 1. 全局有一个module变量，用来定义模块
-
 2. 通过module.declare方法来定义一个模块
-
 3. module.declare方法只接收一个参数，那就是模块的factory，此factory可以是函数也可以是对象，如果是对象，那么模块输出就是此对象。
-
 4. 模块的factory函数传入三个参数：`require`, `exports`, `module`，用来引入其他依赖和导出本模块API
-
 5. 如果factory函数最后明确写有return数据（js函数中不写return默认返回undefined），那么return的内容即为模块的输出。
 
 使用该规范的例子看起来像这样：
@@ -243,17 +232,11 @@ AMD的思想正如其名，异步加载所需的模块，然后在回调函数�
 AMD规范包含以下内容：
 
 1. 用全局函数define来定义模块，用法为：`define(id?, dependencies?, factory)`;
-
 2. id为模块标识，遵从CommonJS Module Identifiers规范
-
 3. dependencies为依赖的模块数组，在factory中需传入形参与之一一对应
-
 4. 如果dependencies的值中有`require`、”exports”或”module”，则与commonjs中的实现保持一致
-
 5. 如果dependencies省略不写，则默认为[“require”, “exports”, “module”]，factory中也会默认传入require,exports,module
-
 6. 如果factory为函数，模块对外暴漏API的方法有三种：return任意类型的数据、exports.xxx=xxx、module.exports=xxx
-
 7. 如果factory为对象，则该对象即为模块的返回值
 
 基于以上几点基本规范，我们便可以用这样的方式来进行模块化组织代码了：
