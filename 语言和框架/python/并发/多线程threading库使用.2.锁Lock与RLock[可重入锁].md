@@ -3,8 +3,10 @@
 参考文章
 
 1. [Python模块学习：threading 多线程控制和处理](http://python.jobbole.com/81546/)
-
 2. [Java并发编程——锁与可重入锁](http://www.jianshu.com/p/007bd7029faf)
+3. [使用python实现可重入的公平读写锁](https://cloud.tencent.com/developer/article/1571399)
+    - python2.7自带的`threading`库没有读写锁, 只有可重入锁RLock, 因此有必要自己实现一个读写锁以提升程序的并发性.
+    - 读写锁的状态自动机
 
 上一篇文档中简单的使用了一个`threading.Lock`类, 在操作`count`共享变量时, 首先获得这个锁, 操作完成后再释放. 这也是线程锁的基本使用方法.
 
@@ -30,9 +32,9 @@ rLock.release()
 
 这两种锁的主要区别是: `RLock`允许在同一线程中被多次`acquire`. 而`Lock`却不允许这种情况. 注意: 如果使用`RLock`, 那么`acquire`和`release`必须成对出现, 不可嵌套.
 
-> `RLock`学名为`可重入锁`, 而`Lock`这种不可重入锁, 有些地方称之为`自旋锁(linux内核)`, 更常见的是叫做`互斥锁`.
+> `RLock`学名为`可重入锁`, 而`Lock`这种不可重入锁, 更常见的是叫做`互斥锁`.
 
-可重入意味着: 线程可以进入任何一个它 **已经拥有的锁**所同步着的代码块. 如下示例
+可重入意味着: 线程可以进入任何一个它**已经拥有的锁**所同步着的代码块. 如下示例
 
 ```py
 lock = RLock()

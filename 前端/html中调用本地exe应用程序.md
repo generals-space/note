@@ -14,7 +14,7 @@
 
 []中的为全路径键名, 其下的为字段值. `[HKEY_CLASSES_ROOT\MXIControl]`有两个值.
 
-```
+```bat
 Windows Registry Editor Version 5.00
 
 ; 分号开头的为注释
@@ -63,7 +63,7 @@ Windows Registry Editor Version 5.00
 
 `.reg`文件
 
-```
+```bat
 Windows Registry Editor Version 5.00
 
 ; 分号开头的为注释

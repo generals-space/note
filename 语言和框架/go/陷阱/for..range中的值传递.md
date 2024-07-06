@@ -1,10 +1,6 @@
 # for..range中的值传递
 
 ```go
-package main
-
-import "log"
-
 type student struct {
 	Name string
 	Age  int
@@ -45,4 +41,4 @@ func main() {
 1. `for..range..`是值拷贝, `stu`变量是一个成员副本, 所以通过`stu`修改的属性无法影响到`stus`中的成员.
 2. 循环中只创建一个新对象, 每次为这个对象赋予不同的值, 所以`&stu`的地址是相同的.
 
-> 可以使用索引完成对 slice/map 原数据的修改.
+> 需要使用索引完成对 slice/map 原数据的修改.
