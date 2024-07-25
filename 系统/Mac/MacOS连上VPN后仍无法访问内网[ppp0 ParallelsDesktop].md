@@ -16,7 +16,7 @@ MacOS: Catalina 10.15.7
 
 连接上vpn后, 会多出一个`ppp0`接口.
 
-```console
+```log
 $ ifconfig
 ppp0: flags=8051<UP,POINTOPOINT,RUNNING,MULTICAST> mtu 1280
 	inet 10.10.200.16 --> 10.10.200.1 netmask 0xffffff00
@@ -24,7 +24,7 @@ ppp0: flags=8051<UP,POINTOPOINT,RUNNING,MULTICAST> mtu 1280
 
 但是查看路由表, 发现默认路由没变, 还是原来网关.
 
-```console
+```log
 $ route -n get default
    route to: default
 destination: default
