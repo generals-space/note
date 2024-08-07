@@ -80,7 +80,7 @@ if __name__ == '__main__':
 
 这下控制终端没有ping的输出了, 因为它们被重定向到`log_file`所指向的文件中了, 包括错误输出. 如下
 
-```console
+```log
 $ tail -f /tmp/log_file
 ...
 64 bytes from 115.239.210.27: icmp_seq=339 ttl=128 time=3.95 ms
