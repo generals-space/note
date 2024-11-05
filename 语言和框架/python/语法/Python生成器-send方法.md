@@ -20,7 +20,7 @@ print gen.send(3)
 
 输出的结果如下
 
-```
+```log
 $  python gen.py 
 1
 3
@@ -50,7 +50,7 @@ print gen.send(2)
 
 结果如下
 
-```
+```log
 $ python gen.py 
 Traceback (most recent call last):
   File "gen.py", line 5, in <module>

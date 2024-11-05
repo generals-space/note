@@ -35,7 +35,7 @@ for k, v in dic.items():
 
 python2的执行结果
 
-```
+```log
 key: a, value 78
 key: c, value 12
 key: b, value 56
@@ -44,7 +44,7 @@ key: d, value 34
 
 python3的执行结果
 
-```
+```log
 key: c, value 12
 key: d, value 34
 key: b, value 56
