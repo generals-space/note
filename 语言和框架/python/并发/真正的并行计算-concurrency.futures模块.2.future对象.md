@@ -135,7 +135,7 @@ print('Took %.3f seconds.' % (end - start))
 
 执行ta, 输出
 
-```
+```log
 =========================
 执行中:True, 已完成:False
 执行中:False, 已完成:False
@@ -196,7 +196,7 @@ print('Took %.3f seconds.' % (end - start))
 
 输出
 
-```
+```log
 =========================
 执行中:True, 已完成:False
 执行中:True, 已完成:False
@@ -220,7 +220,7 @@ Took 0.840 seconds.
 
 这是`return_when`取`ALL_COMPLETED`的情况, 如果换成`FIRST_COMPLETED`, 将会得到如下结果
 
-```
+```log
 =========================
 执行中:True, 已完成:False
 执行中:True, 已完成:False
