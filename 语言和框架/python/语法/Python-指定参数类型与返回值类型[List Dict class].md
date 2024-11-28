@@ -9,6 +9,11 @@
     - `TypedDict`从 python 3.8 开始支持
 4. [Type for heterogeneous dictionaries with string keys](https://github.com/python/typing/issues/28)
 5. [PEP 589 -- TypedDict: Type Hints for Dictionaries with a Fixed Set of Keys](https://www.python.org/dev/peps/pep-0589/)
+6. [Python 强类型编程](https://blog.dreamrounder.com/posts/python/strong-type-coding/)
+    - dataclass
+7. [用@dataclasses和@dataclasses_json做嵌套类型的序列化和反序列化，并定义属性的对外映射字段](https://blog.csdn.net/yournevermore/article/details/139474398)
+8. [Dataclass object property alias](https://stackoverflow.com/questions/67001442/dataclass-object-property-alias)
+9. [Add alias as a field() parameter for dataclasses](https://github.com/python/cpython/issues/101192)
 
 python 是弱类型语言, 每个变量的类型是不固定的, 如果要对一个变量做某种类型独有的操作时, 可能需要先对此变量进行类型检查.
 
@@ -29,5 +34,4 @@ if __name__ == '__main__':
 
 虽然`test()`第一个参数指定了`int`, 但是传入一个字符串也不会报错.
 
-## Dict[str,] value 包含多种类型
-
+Dict[str,] value 包含多种类型

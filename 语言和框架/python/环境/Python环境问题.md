@@ -10,7 +10,7 @@
 
 在使用pip设置douban等代理地址安装python包时报错如下:
 
-```
+```log
 [root@localhost docs]# pip install -i http://pypi.douban.com/simple/ django==1.6
 You are using pip version 7.1.0, however version 8.1.2 is available.
 You should consider upgrading via the 'pip install --upgrade pip' command.
@@ -22,7 +22,7 @@ No matching distribution found for django==1.6
 
 报错时, 只有下面一段是红色的, 上面的是黄色的, 原以为不重要就没有仔细看.
 
-```
+```log
 Could not find a version that satisfies the requirement django==1.6 (from versions: )
 No matching distribution found for django==1.6
 ```
@@ -90,7 +90,7 @@ $ source ./bin/activate
 
 ## 3. 
 
-```
+```log
 $ pip install pymongo==2.7.2
 shell-init: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
 shell-init: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
