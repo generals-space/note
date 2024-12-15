@@ -13,4 +13,3 @@ Mac版本: 10.14.5
 Windows: win10 1903
 
 ![](https://gitee.com/generals-space/gitimg/raw/master/550e4db3598bee5e4ca28e7626b751de.png)
-
