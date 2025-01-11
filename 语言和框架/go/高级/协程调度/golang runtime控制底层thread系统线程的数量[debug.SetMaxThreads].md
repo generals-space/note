@@ -12,9 +12,7 @@
     - 什么情况下, golang runtime 会创建许多系统线程(threads)
     - golang 中 net 相关的系统调用是非阻塞的, 因为使用了 epoll 多路复用. 不过磁盘IO则是阻塞的.
 
-可以, 但不是通过 `GOMAXPROCS`环境变量.
-
-而是通过`runtime/debug.SetMaxThreads()`
+可以, 但不是通过 `GOMAXPROCS`环境变量, 而是通过`runtime/debug.SetMaxThreads()`
 
 ```go
 package main
@@ -33,7 +31,7 @@ func main() {
 
 在 go 1.2 版本中, thread 值最小为 4, 否则"go run main.go"执行时, 会直接报错.
 
-```console
+```log
 $ go run main.go
 runtime: program exceeds 3-thread limit
 fatal error: thread exhaustion
