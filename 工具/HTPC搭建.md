@@ -92,6 +92,15 @@ Action -> Trigger: "Right Button"
 
 ### 关闭自动更新
 
+## Firefox
+
+### 强制单标签页
+
+[Open links in the same tab?](https://support.mozilla.org/en-US/questions/970999)
+
+1. about:config 
+2. browser.link.open_newwindow.restriction: 0
+3. browser.link.open_newwindow: 1
 
 ## 无线摇控
 
