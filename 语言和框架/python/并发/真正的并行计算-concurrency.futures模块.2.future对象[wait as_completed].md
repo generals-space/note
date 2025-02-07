@@ -3,8 +3,8 @@
 参考文章
 
 1. [python异步并发模块concurrent.futures简析](http://lovesoo.org/analysis-of-asynchronous-concurrent-python-module-concurrent-futures.html)
-
 2. [python concurrent.futures](https://www.cnblogs.com/kangoroo/p/7628092.html)
+3. [How to kill/cancel/stop running executor future in python ThreadPoolExecutor? future.cancel() is returning False](https://stackoverflow.com/questions/71464095/how-to-kill-cancel-stop-running-executor-future-in-python-threadpoolexecutor-fu)
 
 `concurrency.futures`的两个并发模型: `ProcessPoolExecutor`与`ThreadPoolExecutor`都继承自`Executor`抽象类, 实现了ta的`submit`, `map`和`shutdown`方法. 
 
@@ -135,7 +135,7 @@ print('Took %.3f seconds.' % (end - start))
 
 执行ta, 输出
 
-```
+```log
 =========================
 执行中:True, 已完成:False
 执行中:False, 已完成:False
@@ -196,7 +196,7 @@ print('Took %.3f seconds.' % (end - start))
 
 输出
 
-```
+```log
 =========================
 执行中:True, 已完成:False
 执行中:True, 已完成:False
@@ -220,7 +220,7 @@ Took 0.840 seconds.
 
 这是`return_when`取`ALL_COMPLETED`的情况, 如果换成`FIRST_COMPLETED`, 将会得到如下结果
 
-```
+```log
 =========================
 执行中:True, 已完成:False
 执行中:True, 已完成:False
@@ -237,3 +237,22 @@ Took 0.893 seconds.
 ```
 
 这是`wait`在当第一个任务完成时就返回的情况.
+
+## 终止异常线程
+
+20241128
+
+在使用多线程, 尤其是线程池时, 经常会担心某些线程陷入死循环, 或是无法正常结束的状态, 导致`wait()`时无法结束.
+
+但是无法结束反而是好事, 这样表象会很明显, 容易追查. 如果`wait()`时配合了`timeout`参数, 时间到了只处理了`completed`状态的线程结果, 留下那些异常的线程一直在运行, 占用cpu资源, 且会造成线程泄露.
+
+Future对象提供了`cancel()`方法, 比如如下
+
+```py
+for item in uncompleted:
+    item.cancel()
+```
+
+但是对于处于 running 状态的线程, 是无效的. Future对象又没有 thread_id, 根本无法追踪.
+
+在网上翻遍了, 没有解决方案, 开发者需要自行在线程函数内部, 可能会发生死循环的地方埋点, 接收来自外界的信号, 自行退出(类似于 golang 的 context).

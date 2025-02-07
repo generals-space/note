@@ -12,13 +12,16 @@
 4. [同一份代码，虚机和Docker耗时差8倍，什么原因? ](https://www.cnblogs.com/mycodingworld/p/golang_profiler.html)
     - 一次完整的排查流程
 5. [golang性能分析及优化](https://qiankunli.github.io/2022/12/09/go_performance.html)
-
+6. [Golang 内存泄漏详解：原因、检测与修复](https://blog.csdn.net/weixin_43114209/article/details/128964087)
+    - 内存泄漏的定义与分类, 以及详细示例
+        - Goroutine泄漏
+        - 闭包导致的内存泄漏
 
 网上关于golang pprof如何使用的文章不少, 但大部分都是告诉你引用`runtime/pprof`, `net/http/pprof`, 做一些操作, 得到一些数据, 生成一些漂亮的图...但是完全不明白这些数据表示什么意思. 找了半天才找到几个写的比较细致的文章, 记录一下性能分析的方法.
 
 ## web界面heap的输出
 
-```
+```log
 heap profile: 3190: 77516056 [54762: 612664248] @ heap/1048576
 1: 29081600 [1: 29081600] @ 0x89368e 0x894cd9 0x8a5a9d 0x8a9b7c 0x8af578 0x8b4441 0x8b4c6d 0x8b8504 0x8b2bc3 0x45b1c1
 #    0x89368d    github.com/syndtr/goleveldb/leveldb/memdb.(*DB).Put+0x59d
@@ -46,7 +49,7 @@ heap profile: 3190: 77516056 [54762: 612664248] @ heap/1048576
 
 第一个部分打印为通过`runtime.MemProfile()`获取的`runtime.MemProfileRecord`记录. 其含义为: 
 
-```
+```log
 heap profile: 3190(inused objects): 77516056(inused bytes) [54762(alloc objects): 612664248(alloc bytes)] @ heap/1048576(2*MemProfileRate)
 1: 29081600 [1: 29081600] (前面4个数跟第一行的一样, 此行以后是每次记录的, 后面的地址是记录中的栈指针)@ 0x89368e 0x894cd9 0x8a5a9d 0x8a9b7c 0x8af578 0x8b4441 0x8b4c6d 0x8b8504 0x8b2bc3 0x45b1c1
 #    0x89368d    github.com/syndtr/goleveldb/leveldb/memdb.(*DB).Put+0x59d 栈信息
@@ -66,7 +69,7 @@ heap profile: 3190(inused objects): 77516056(inused bytes) [54762(alloc objects)
 
 ## 命令行heap
 
-```
+```log
 [root@b055c5c3461b /]# go tool pprof --seconds 30 http://localhost:6060/debug/pprof/heap
 Fetching profile over HTTP from http://localhost:6060/debug/pprof/heap?seconds=30
 Please wait... (30s)

@@ -162,7 +162,7 @@ def read_wait(sock):
 
 下面来模拟实际调用：
 
-```
+```py
 python -i async_yield.py
 >>> f = read_wait("somesocket")
 >>> f

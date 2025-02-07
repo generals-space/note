@@ -44,7 +44,7 @@ b.__private()
 
 执行它, 得到如下输出
 
-```
+```py
 A的__private()                                   ## A类的构造方法, 不解释
 A的__private()                                   ## B类没有覆盖A类的构造方法, 所以也调用了`self.__private()`
 Traceback (most recent call last):              ## 类外调用私有方法的错误姿势...

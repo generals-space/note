@@ -12,3 +12,4 @@
 
 1.64.2 是兼容 go 插件 v0.33.1 版本的最高版本(v0.33.1版本的go插件是能调试 go v1.2 版本源码的最高版本)
 
+https://update.code.visualstudio.com/1.64.2/win32-x64/stable

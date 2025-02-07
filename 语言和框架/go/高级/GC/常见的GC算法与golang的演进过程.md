@@ -12,6 +12,7 @@
     - 一组演示GC回收机制的PPT示例, 配合几行简洁的代码, 共12张图
     - golang的GC追求低延迟, haskell则追求吞吐量
 5. [Golang源码探索(三) GC的实现原理](https://developer.aliyun.com/article/536589)
+6. [死磕GC：Java GC 和 GO GC 大对比，看完秒成高高手](https://www.cnblogs.com/crazymakercircle/p/17547202.html)
 
 网上关于golang的GC机制说的太过笼统, 《golang学习笔记》中只介绍了GC的算法却没有说明ta的优劣以及GC的目标对象群体(即什么情况下触发GC操作), 这两篇参考文章做了比较详细的解释.
 

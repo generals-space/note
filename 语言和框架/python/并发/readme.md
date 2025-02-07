@@ -21,3 +21,9 @@
 5. [gevent和twisted对比](http://blog.csdn.net/qq_17612199/article/details/51111440)
 
 6. [gevent、eventlet、Twisted、Tornado各有什么区别和优劣？](https://www.zhihu.com/question/42762014)
+
+[Python并发编程之协程/异步IO](https://segmentfault.com/a/1190000007851357)
+
+[http://python.jobbole.com/88291/](http://python.jobbole.com/88291/)
+
+[用 Python 3 的 async / await 做异步编程](https://www.keakon.net/2017/06/28/%E7%94%A8Python3%E7%9A%84async/await%E5%81%9A%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B)

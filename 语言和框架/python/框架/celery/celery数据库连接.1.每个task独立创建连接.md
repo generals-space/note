@@ -6,7 +6,7 @@
 
 本来我在任务目录下的`__init__.py`中定义了一个`conn_db()`函数, 返回`db_conn`和`db_curr`, 并且自行调用, 所有task都使用相同的`db_conn`和`db_curr`. 但是在执行时出现了如下问题.
 
-```
+```log
 DatabaseError: (psycopg2.DatabaseError) error with status PGRES_TUPLES_OK and no message from the libpq
 ```
 
