@@ -26,4 +26,4 @@ result4 := client.Do("keys", "*").Val()
 fmt.Println(result4) // [name]
 ```
 
-> 按照**峰云**的说法, go redis库, 推荐使用`go-redis`. `redigo`那个库连个cluster都不整, 作者把cluster实现的机会让他其他人了. redigo的连接池实现有点操.
+> 按照**峰云**的说法, go redis库, 推荐使用`go-redis`. `redigo`那个库连个cluster都不整, 作者把cluster实现的机会让他其他人了.

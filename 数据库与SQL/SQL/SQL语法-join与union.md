@@ -6,18 +6,18 @@
 
 `user`表
 
-|id|department_id|name|
-|:-:|:-:|:-:|
-|1|1|userA|
-|2|2|userB|
-|3|2|userC|
+|  id   | department_id | name  |
+| :---: | :-----------: | :---: |
+|   1   |       1       | userA |
+|   2   |       2       | userB |
+|   3   |       2       | userC |
 
 `department`表
 
-|id|department|
-|:-:|:-:|
-|1|财务|
-|2|人力|
+|  id   | department |
+| :---: | :--------: |
+|   1   |    财务    |
+|   2   |    人力    |
 
 建表语句如下
 
@@ -30,11 +30,11 @@ CREATE TABLE
 
 我们希望在查询`user`时通过这个外键字段同时得到`department`表中的`department`字段.
 
-|id|department|name|
-|:-:|:-:|:-:|
-|1|部门1|userA|
-|2|部门2|userB|
-|3|部门2|userC|
+|  id   | department | name  |
+| :---: | :--------: | :---: |
+|   1   |   部门1    | userA |
+|   2   |   部门2    | userB |
+|   3   |   部门2    | userC |
 
 最基本的写法是
 
